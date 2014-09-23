@@ -5,6 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(auto-revert-check-vc-info t)
  '(global-auto-revert-mode t)
+ '(global-git-gutter-mode t)
  '(global-undo-tree-mode t)
  '(ido-mode (quote both) nil (ido))
  '(ido-ubiquitous-mode t)

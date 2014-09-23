@@ -7,6 +7,7 @@
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "flx-ido")
+(depends-on "git-gutter")
 (depends-on "ido-ubiquitous")
 (depends-on "magit")
 (depends-on "multiple-cursors")
