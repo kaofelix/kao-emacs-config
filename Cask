@@ -1,5 +1,6 @@
 (source melpa)
 
+(depends-on "ace-jump-mode")
 (depends-on "ag")
 (depends-on "browse-kill-ring")
 (depends-on "exec-path-from-shell")

@@ -28,5 +28,8 @@
 ;;; Duplicate line
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
 
+;; Ace Jump
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
