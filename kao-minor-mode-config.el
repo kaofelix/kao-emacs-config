@@ -52,5 +52,9 @@
 (--each kao/sp-bindings
     (define-key sp-keymap (read-kbd-macro (car it)) (cdr it)))
 
+;;; Projectile
+(projectile-global-mode t)
+(define-key projectile-mode-map (kbd "C-c a") 'ag-project)
+
 (provide 'kao-minor-mode-config)
 ;;; kao-minor-mode-config.el ends here
