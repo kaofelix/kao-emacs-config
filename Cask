@@ -14,6 +14,8 @@
 (depends-on "pallet")
 (depends-on "paradox")
 (depends-on "projectile")
+(depends-on "rspec-mode")
+(depends-on "rvm")
 (depends-on "smartparens")
 (depends-on "smex")
 (depends-on "undo-tree")

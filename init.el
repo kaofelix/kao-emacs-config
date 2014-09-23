@@ -80,5 +80,6 @@
 (require 'kao-minor-mode-config)
 (require 'kao-keybindings)
 (require 'kao-emacs-lisp)
+(require 'kao-ruby-mode)
 
 ;;; init.el ends here

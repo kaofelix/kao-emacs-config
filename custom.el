@@ -12,6 +12,9 @@
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(paradox-github-token t)
+ '(rspec-use-rvm t)
+ '(rspec-use-spring-when-possible nil)
+ '(rspec-use-zeus-when-possible nil)
  '(smartparens-global-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
