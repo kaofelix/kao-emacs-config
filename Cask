@@ -1,3 +1,5 @@
+(source gnu)
+(source marmalade)
 (source melpa)
 
 (depends-on "ace-jump-mode")
@@ -8,6 +10,7 @@
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
 (depends-on "flx-ido")
+(depends-on "flycheck")
 (depends-on "git-gutter")
 (depends-on "ido-ubiquitous")
 (depends-on "magit")
@@ -16,6 +19,7 @@
 (depends-on "pallet")
 (depends-on "paradox")
 (depends-on "projectile")
+(depends-on "rainbow-mode")
 (depends-on "rspec-mode")
 (depends-on "rvm")
 (depends-on "smartparens")

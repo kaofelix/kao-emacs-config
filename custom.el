@@ -17,7 +17,11 @@
  '(rspec-use-rvm t)
  '(rspec-use-spring-when-possible nil)
  '(rspec-use-zeus-when-possible nil)
- '(smartparens-global-mode t))
+ '(smartparens-global-mode t)
+ '(whitespace-action (quote (auto-cleanup)))
+ '(whitespace-global-modes nil)
+ '(whitespace-style (quote (face trailing tabs)))
+ '(whitespace-trailing (quote whitespace-space-before-tab)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
