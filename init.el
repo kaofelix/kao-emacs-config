@@ -61,6 +61,7 @@
 (setq shift-select-mode nil)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 8)
+(setq gc-cons-threshold 20000000)
 
 ;; Setup custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
