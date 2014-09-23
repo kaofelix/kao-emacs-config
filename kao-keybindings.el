@@ -22,5 +22,6 @@
 ;; Magit
 (global-set-key (kbd "C-c g") 'magit-status)
 
+(browse-kill-ring-default-keybindings)
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here

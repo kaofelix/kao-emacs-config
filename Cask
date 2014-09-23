@@ -1,6 +1,7 @@
 (source melpa)
 
 (depends-on "ag")
+(depends-on "browse-kill-ring")
 (depends-on "exec-path-from-shell")
 (depends-on "flx-ido")
 (depends-on "ido-ubiquitous")
