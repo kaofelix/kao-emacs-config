@@ -8,6 +8,7 @@
  '(ido-mode (quote both) nil (ido))
  '(ido-ubiquitous-mode t)
  '(inhibit-startup-screen t)
+ '(paradox-github-token t)
  '(smartparens-global-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

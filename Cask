@@ -8,6 +8,7 @@
 (depends-on "ido-ubiquitous")
 (depends-on "magit")
 (depends-on "pallet")
+(depends-on "paradox")
 (depends-on "projectile")
 (depends-on "smartparens")
 (depends-on "smex")
