@@ -77,8 +77,8 @@
 ;; Load personal packages
 (add-to-list 'load-path user-emacs-directory t)
 (require 'kao-defuns)
-(require 'kao-minor-mode-config)
 (require 'kao-keybindings)
+(require 'kao-minor-mode-config)
 (require 'kao-setup-hippie)
 (require 'kao-emacs-lisp)
 (require 'kao-ruby-mode)
