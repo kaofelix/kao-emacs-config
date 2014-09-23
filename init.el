@@ -29,17 +29,22 @@
 
 (when (eq window-system 'ns)
   (menu-bar-mode t))
+
 (set-frame-font "Source Code Pro-14" t t)
 
-;;; Setup custom.el
+;; Setup custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-(add-to-list 'load-path user-emacs-directory t)
-
-(require 'kao-keybindings)
+;; Shell Path
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;; auto-modes
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
+
+;; Load personal packages
+(add-to-list 'load-path user-emacs-directory t)
+(require 'kao-keybindings)
 
 ;;; init.el ends here
