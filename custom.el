@@ -9,6 +9,7 @@
  '(global-undo-tree-mode t)
  '(ido-mode (quote both) nil (ido))
  '(ido-ubiquitous-mode t)
+ '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(paradox-github-token t)
  '(smartparens-global-mode t))
