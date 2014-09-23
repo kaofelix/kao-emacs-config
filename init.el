@@ -46,11 +46,21 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)
+(setq ring-bell-function 'ignore)
+(setq-default indicate-empty-lines t)
 
 (when (eq window-system 'ns)
   (menu-bar-mode t))
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (set-frame-font "Source Code Pro-14" t t)
+
+;; Misc
+(delete-selection-mode 1)
+(setq shift-select-mode nil)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 8)
 
 ;; Setup custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
