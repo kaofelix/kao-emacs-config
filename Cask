@@ -25,3 +25,4 @@
 (depends-on "smartparens")
 (depends-on "smex")
 (depends-on "undo-tree")
+(depends-on "vagrant")
