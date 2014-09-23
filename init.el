@@ -65,6 +65,7 @@
 
 ;; Load personal packages
 (add-to-list 'load-path user-emacs-directory t)
+(require 'kao-defuns)
 (require 'kao-minor-mode-config)
 (require 'kao-keybindings)
 

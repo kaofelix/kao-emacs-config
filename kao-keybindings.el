@@ -22,6 +22,11 @@
 ;; Magit
 (global-set-key (kbd "C-c g") 'magit-status)
 
+;; Browse kill ring
 (browse-kill-ring-default-keybindings)
+
+;;; Duplicate line
+(global-set-key (kbd "C-c d") 'kao/duplicate-line)
+
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
