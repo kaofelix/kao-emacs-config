@@ -76,14 +76,15 @@
   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
 (add-hook 'ido-setup-hook 'my-ido-setup-hook)
 
-;; Clean modeline
-(diminish 'undo-tree-mode)
 
+;; Clean modeline
 (eval-after-load 'magit
   '(diminish 'magit-auto-revert-mode))
+(eval-after-load 'rainbow-mode
+  '(diminish 'rainbow-mode))
+(diminish 'undo-tree-mode)
 (diminish 'smartparens-mode)
 (diminish 'git-gutter-mode)
-(diminish 'rainbow-mode)
 
 (provide 'kao-minor-mode-config)
 ;;; kao-minor-mode-config.el ends here
