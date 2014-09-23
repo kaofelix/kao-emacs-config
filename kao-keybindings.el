@@ -38,5 +38,13 @@
 ;; Ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+;;; Expand region
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;;; Multiple Cursors
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-*") 'mc/mark-all-dwim)
+(global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
