@@ -79,5 +79,6 @@
 (require 'kao-defuns)
 (require 'kao-minor-mode-config)
 (require 'kao-keybindings)
+(require 'kao-emacs-lisp)
 
 ;;; init.el ends here
