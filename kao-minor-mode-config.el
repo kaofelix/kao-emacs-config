@@ -76,6 +76,12 @@
   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
 (add-hook 'ido-setup-hook 'my-ido-setup-hook)
 
+;; Visual regexp
+(require 'visual-regexp)
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
+;; if you use multiple-cursors, this is for you:
+(define-key global-map (kbd "C-c m") 'vr/mc-mark)
 
 ;; Clean modeline
 (eval-after-load 'magit
