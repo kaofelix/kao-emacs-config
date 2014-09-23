@@ -31,5 +31,9 @@
 ;; Ace Jump
 (global-set-key (kbd "C-c SPC") 'ace-jump-mode)
 
+;; C-h for backspace
+(define-key key-translation-map [?\C-h] [?\C-?])
+(global-set-key (kbd "C-M-h") 'backward-kill-word)
+
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
