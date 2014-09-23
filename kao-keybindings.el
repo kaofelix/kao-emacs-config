@@ -34,6 +34,8 @@
 ;; C-h for backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
+(global-set-key (kbd "<backspace>") '(lambda () (interactive) (message "No!")))
+(global-set-key (kbd "M-<backspace>") '(lambda () (interactive) (message "No!")))
 
 ;; Ibuffer
 (global-set-key (kbd "C-x C-b") 'ibuffer)
