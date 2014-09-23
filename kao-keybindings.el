@@ -66,5 +66,9 @@
 (global-unset-key (kbd "C-x C-c"))
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-emacs)
 
+;; Completion that uses many different methods to find options.
+(global-set-key (kbd "M-/") 'hippie-expand-no-case-fold)
+(global-set-key (kbd "M-?") 'hippie-expand-lines)
+
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
