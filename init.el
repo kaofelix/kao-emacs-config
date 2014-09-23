@@ -45,6 +45,7 @@
 
 ;; Load personal packages
 (add-to-list 'load-path user-emacs-directory t)
+(require 'kao-minor-mode-config)
 (require 'kao-keybindings)
 
 ;;; init.el ends here
