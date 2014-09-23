@@ -29,7 +29,7 @@
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
 
 ;; Ace Jump
-(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+(global-set-key (kbd "C-;") 'ace-jump-mode)
 
 ;; C-h for backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
