@@ -51,6 +51,7 @@
 
 (--each kao/sp-bindings
     (define-key sp-keymap (read-kbd-macro (car it)) (cdr it)))
+(show-smartparens-global-mode t)
 
 ;;; Projectile
 (projectile-global-mode t)

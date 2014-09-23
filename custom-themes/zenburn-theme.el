@@ -529,6 +529,9 @@
    ;; show-paren
    `(show-paren-mismatch ((,class (:foreground ,zenburn-red-3 :background ,zenburn-bg :weight bold))))
    `(show-paren-match ((,class (:foreground ,zenburn-yellow :background ,zenburn-bg :weight bold))))
+   `(sp-show-pair-mismatch-face ((,class (:foreground ,zenburn-red-3 :background ,zenburn-bg :weight bold))))
+   `(sp-show-pair-match-face ((,class (:foreground ,zenburn-yellow :background ,zenburn-bg :weight bold))))
+
 
    ;; SLIME
    `(slime-repl-inputed-output-face ((,class (:foreground ,zenburn-red))))
