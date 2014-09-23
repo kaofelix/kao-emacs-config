@@ -48,5 +48,10 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-*") 'mc/mark-all-dwim)
 (global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
+
+;; Use cua mark
+(require 'cua-base)
+(global-set-key (kbd "C-SPC") 'cua-set-mark)
+
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
