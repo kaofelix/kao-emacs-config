@@ -35,5 +35,8 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 
+;; Ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
