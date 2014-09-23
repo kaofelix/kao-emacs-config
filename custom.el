@@ -5,6 +5,8 @@
  ;; If there is more than one, they won't work right.
  '(auto-revert-check-vc-info t)
  '(global-auto-revert-mode t)
+ '(ido-mode (quote both) nil (ido))
+ '(ido-ubiquitous-mode t)
  '(inhibit-startup-screen t)
  '(smartparens-global-mode t))
 (custom-set-faces

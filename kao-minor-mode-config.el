@@ -56,5 +56,25 @@
 (projectile-global-mode t)
 (define-key projectile-mode-map (kbd "C-c a") 'ag-project)
 
+;; Smex and Ido
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+
+(setq ido-enable-prefix nil
+      ido-auto-merge-work-directories-length nil
+      ido-create-new-buffer 'always
+      ido-use-filename-at-point 'guess
+      ido-use-virtual-buffers t)
+
+(flx-ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces t)
+
+(defun my-ido-setup-hook ()
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+(add-hook 'ido-setup-hook 'my-ido-setup-hook)
+
+
 (provide 'kao-minor-mode-config)
 ;;; kao-minor-mode-config.el ends here
