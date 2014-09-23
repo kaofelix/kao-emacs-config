@@ -70,5 +70,8 @@
 (global-set-key (kbd "M-/") 'hippie-expand-no-case-fold)
 (global-set-key (kbd "M-?") 'hippie-expand-lines)
 
+;; Windmove: Shift+direction
+(windmove-default-keybindings)
+
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
