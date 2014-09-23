@@ -12,3 +12,4 @@
 (depends-on "projectile")
 (depends-on "smartparens")
 (depends-on "smex")
+(depends-on "undo-tree")
