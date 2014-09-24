@@ -31,6 +31,9 @@
 ;; Ace Jump
 (global-set-key (kbd "C-;") 'ace-jump-mode)
 
+;; Ace Window
+(global-set-key (kbd "C-x o") 'ace-window)
+
 ;; C-h for backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
 (define-key key-translation-map [?\M-\C-h] [?\M-\C-?])

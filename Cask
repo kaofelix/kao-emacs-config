@@ -3,6 +3,7 @@
 (source melpa)
 
 (depends-on "ace-jump-mode")
+(depends-on "ace-window")
 (depends-on "ag")
 (depends-on "browse-kill-ring")
 (depends-on "diminish")
