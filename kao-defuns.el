@@ -14,7 +14,7 @@
 ;; Interactive commands
 
 (defun kao/duplicate-line (times)
-  "Duplicates the current line."
+  "Duplicate the current line TIMES times."
   (interactive "p")
   (kao/type-last-key-to-repeat
     (save-excursion
@@ -26,8 +26,7 @@
 ;; Utility functions and macros
 
 (defmacro kao/type-last-key-to-repeat (&rest body)
-  "Repeat body when typing the last key on the key sequence used
-to call the enclosing command."
+  "Repeat BODY when typing the last key on the key sequence typed."
   (declare (indent defun))
   `(progn
      (progn ,@body)
