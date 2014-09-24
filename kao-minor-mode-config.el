@@ -11,6 +11,9 @@
 
 ;;; Code:
 
+;; Company
+(add-hook 'after-init-hook 'global-company-mode)
+
 ;; Smart parens
 (require 'smartparens-config)
 (defvar kao/sp-bindings

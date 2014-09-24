@@ -6,6 +6,7 @@
 (depends-on "ace-window")
 (depends-on "ag")
 (depends-on "browse-kill-ring")
+(depends-on "company")
 (depends-on "diminish")
 (depends-on "elisp-slime-nav")
 (depends-on "exec-path-from-shell")
