@@ -53,8 +53,9 @@
 (require 'kao-defuns)
 (require 'kao-keybindings)
 (require 'kao-minor-mode-config)
-(require 'kao-prog-mode)
 (require 'kao-setup-hippie)
+(require 'kao-setup-yasnippet)
+(require 'kao-prog-mode)
 (require 'kao-emacs-lisp)
 (require 'kao-ruby-mode)
 

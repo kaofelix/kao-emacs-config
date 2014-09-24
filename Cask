@@ -28,3 +28,4 @@
 (depends-on "undo-tree")
 (depends-on "vagrant")
 (depends-on "visual-regexp")
+(depends-on "yasnippet")
