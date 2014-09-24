@@ -34,7 +34,8 @@
 (setq-default indicate-empty-lines t)
 
 (when (eq window-system 'ns)
-  (menu-bar-mode t))
+  (menu-bar-mode t)
+  (add-hook 'after-init-hook 'toggle-frame-fullscreen))
 
 (set-frame-font "Source Code Pro-14" t t)
 
