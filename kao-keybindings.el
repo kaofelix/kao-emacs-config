@@ -20,7 +20,7 @@
 (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
 
 ;; Magit
-(global-set-key (kbd "C-c g") 'magit-status)
+(global-set-key (kbd "C-c g") 'magit-status-project-dwim)
 
 ;; Browse kill ring
 (browse-kill-ring-default-keybindings)

@@ -22,6 +22,19 @@
         (end-of-line)
         (insert "\n" (replace-regexp-in-string "\n" "" (thing-at-point 'line)))))))
 
+(defun magit-status-project-dwim (always-prompt)
+  "Run magit-status for current project or prompts for project.
+When ALWAYS-PROMPT is passed, prompts for project even if it's
+already inside a project."
+  (interactive "P")
+  (let ((project-root (projectile-project-p)))
+    (if (and project-root (not always-prompt))
+        (magit-status project-root)
+      (let ((relevant-projects (projectile-relevant-known-projects)))
+        (if relevant-projects
+            (let ((target-project (projectile-completing-read "Magit status for project: " relevant-projects)))
+              (magit-status target-project))
+          (error "There are no known projects"))))))
 
 ;; Utility functions and macros
 
