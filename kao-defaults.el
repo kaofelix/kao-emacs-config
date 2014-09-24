@@ -4,9 +4,18 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
+
+;; GUI
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(blink-cursor-mode -1)
+(setq ring-bell-function 'ignore)
+(setq-default indicate-empty-lines t)
+(set-frame-font "Source Code Pro-14" t t)
 
 ;; Setup caches, autosave, and backups
 (defvar cache-and-saves-dir (expand-file-name "caches-and-saves" user-emacs-directory))

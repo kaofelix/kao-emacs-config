@@ -25,19 +25,9 @@
 (cask-initialize)
 (require 'pallet)
 
-;; GUI
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(blink-cursor-mode -1)
-(setq ring-bell-function 'ignore)
-(setq-default indicate-empty-lines t)
-
 (when (eq window-system 'ns)
   (menu-bar-mode t)
   (add-hook 'after-init-hook 'toggle-frame-fullscreen))
-
-(set-frame-font "Source Code Pro-14" t t)
 
 ;; Setup custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
