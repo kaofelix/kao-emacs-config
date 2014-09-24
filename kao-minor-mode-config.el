@@ -96,5 +96,11 @@
 (diminish 'smartparens-mode)
 (diminish 'git-gutter-mode)
 
+;; Tramp with vc
+(setq vc-ignore-dir-regexp
+                (format "\\(%s\\)\\|\\(%s\\)"
+                        vc-ignore-dir-regexp
+                        tramp-file-name-regexp))
+
 (provide 'kao-minor-mode-config)
 ;;; kao-minor-mode-config.el ends here
