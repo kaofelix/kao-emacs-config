@@ -7,6 +7,7 @@
  '(custom-safe-themes (quote ("683f2ee482d6e9a9003759b775884afbfd74e5a3177448cc31401a36e6359346" default)))
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
+ '(global-hungry-delete-mode t)
  '(global-undo-tree-mode t)
  '(ido-mode (quote both) nil (ido))
  '(ido-ubiquitous-mode t)

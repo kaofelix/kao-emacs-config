@@ -15,6 +15,7 @@
 (depends-on "flycheck")
 (depends-on "git-gutter")
 (depends-on "git-timemachine")
+(depends-on "hungry-delete")
 (depends-on "ido-ubiquitous")
 (depends-on "magit")
 (depends-on "markdown-mode")
