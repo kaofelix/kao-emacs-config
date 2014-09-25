@@ -16,6 +16,12 @@
 
 ;; Smart parens
 (require 'smartparens-config)
+
+(defun kao/wrap-with-round-brackets (&optional arg)
+  "Wrap next ARG expressions with round brackets."
+  (interactive "P")
+  (sp-wrap-with-pair "("))
+
 (defvar kao/sp-bindings
   '(("C-M-f" . sp-forward-sexp)
     ("C-M-b" . sp-backward-sexp)
@@ -37,6 +43,7 @@
     ("M-<up>" . sp-splice-sexp-killing-backward)
     ("M-<down>" . sp-splice-sexp-killing-forward)
 
+    ("M-(" . kao/wrap-with-round-brackets)
     ("C-)" . sp-forward-slurp-sexp) ;; barf/slurp
     ("C-<right>" . sp-forward-slurp-sexp)
     ("C-}" . sp-forward-barf-sexp)
