@@ -32,4 +32,6 @@
 (depends-on "undo-tree")
 (depends-on "vagrant")
 (depends-on "visual-regexp")
+(depends-on "wgrep")
+(depends-on "wgrep-ag")
 (depends-on "yasnippet")
