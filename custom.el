@@ -3,8 +3,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ahs-face-check-include-overlay t)
+ '(ahs-idle-interval 0.5)
+ '(ahs-inhibit-face-list (quote (font-lock-comment-delimiter-face font-lock-comment-face font-lock-doc-face font-lock-doc-string-face font-lock-string-face font-lock-keyword-face)))
  '(auto-revert-check-vc-info t)
- '(custom-safe-themes (quote ("91399283bbafe6e34bb2f44e22a2dd1c773d3ae9e5f1359b938a9d5e768363d8" default)))
+ '(custom-safe-themes (quote ("dae8329350e048e2e50f61980b50818ac127112233ec8950ccdba71ce3dd1464" default)))
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-hungry-delete-mode t)
