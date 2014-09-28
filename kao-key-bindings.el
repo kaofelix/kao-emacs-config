@@ -1,4 +1,4 @@
-;;; kao-keybindings.el --- Global keybings
+;;; kao-key-bindings.el --- Global keybindinggs
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -82,6 +82,7 @@
 
 (define-key ctl-x-map "t" 'kao/toggle-map)
 (define-key kao/toggle-map "r" 'rainbow-blocks-mode)
+(define-key kao/toggle-map "e" 'toggle-debug-on-error)
 
-(provide 'kao-keybindings)
-;;; kao-keybindings.el ends here
+(provide 'kao-key-bindings)
+;;; kao-key-bindings.el ends here

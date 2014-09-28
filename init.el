@@ -42,7 +42,7 @@
 
 ;; Load personal packages
 (require 'kao-defuns)
-(require 'kao-keybindings)
+(require 'kao-key-bindings)
 (require 'kao-minor-mode-config)
 (require 'kao-setup-hippie)
 (require 'kao-setup-yasnippet)
