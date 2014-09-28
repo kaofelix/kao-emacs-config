@@ -27,6 +27,7 @@
 (depends-on "paradox")
 (depends-on "paren-face")
 (depends-on "projectile")
+(depends-on "rainbow-blocks")
 (depends-on "rainbow-mode")
 (depends-on "rspec-mode")
 (depends-on "rvm")

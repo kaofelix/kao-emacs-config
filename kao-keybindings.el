@@ -76,5 +76,12 @@
 ;; Windmove: Shift+direction
 (windmove-default-keybindings)
 
+;; Toggle Map
+(defvar kao/toggle-map)
+(define-prefix-command 'kao/toggle-map)
+
+(define-key ctl-x-map "t" 'kao/toggle-map)
+(define-key kao/toggle-map "r" 'rainbow-blocks-mode)
+
 (provide 'kao-keybindings)
 ;;; kao-keybindings.el ends here
