@@ -14,6 +14,9 @@
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; Paren face
+(global-paren-face-mode)
+
 ;; Smart parens
 (require 'smartparens-config)
 

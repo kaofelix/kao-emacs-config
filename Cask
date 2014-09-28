@@ -25,6 +25,7 @@
 (depends-on "multiple-cursors")
 (depends-on "pallet")
 (depends-on "paradox")
+(depends-on "paren-face")
 (depends-on "projectile")
 (depends-on "rainbow-mode")
 (depends-on "rspec-mode")
