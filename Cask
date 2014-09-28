@@ -34,4 +34,5 @@
 (depends-on "visual-regexp")
 (depends-on "wgrep")
 (depends-on "wgrep-ag")
+(depends-on "yaml-mode")
 (depends-on "yasnippet")
