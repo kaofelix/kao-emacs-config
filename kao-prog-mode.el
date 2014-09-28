@@ -25,6 +25,7 @@
 (add-hook 'prog-mode-hook 'turn-on-hl-line)
 (add-hook 'prog-mode-hook 'turn-on-which-function-mode)
 (add-hook 'prog-mode-hook 'turn-on-whitespace)
+(add-hook 'prog-mode-hook 'highlight-numbers-mode)
 (add-hook 'prog-mode-hook 'turn-on-rainbow-mode)
 (add-hook 'prog-mode-hook 'flycheck-mode)
 

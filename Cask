@@ -16,6 +16,8 @@
 (depends-on "flycheck")
 (depends-on "git-gutter")
 (depends-on "git-timemachine")
+(depends-on "highlight-numbers")
+(depends-on "highlight-quoted")
 (depends-on "hungry-delete")
 (depends-on "ido-ubiquitous")
 (depends-on "magit")

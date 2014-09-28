@@ -599,6 +599,13 @@
    `(git-gutter-fr:deleted ((,class (:foreground ,zenburn-red-2 :weight bold))))
    `(git-gutter-fr:modified ((,class (:foreground ,zenburn-magenta :weight bold))))
 
+   ;; highlight-numbers
+   `(highlight-numbers-number ((,class (:foreground ,zenburn-blue :weight normal))))
+
+   ;; highlight-quoted
+   `(highlight-quoted-quote ((,class (:foreground ,zenburn-yellow :weight normal))))
+   `(highlight-quoted-symbol ((,class (:foreground ,zenburn-yellow :weight normal))))
+
    ;; term-mode
    `(term-color-black ((,class (:background ,zenburn-bg :foreground ,zenburn-bg :weight bold))))
    `(term-color-blue ((,class (:background ,zenburn-blue :foreground ,zenburn-blue :weight bold))))

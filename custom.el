@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-revert-check-vc-info t)
- '(custom-safe-themes (quote ("683f2ee482d6e9a9003759b775884afbfd74e5a3177448cc31401a36e6359346" default)))
+ '(custom-safe-themes (quote ("91399283bbafe6e34bb2f44e22a2dd1c773d3ae9e5f1359b938a9d5e768363d8" default)))
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-hungry-delete-mode t)
