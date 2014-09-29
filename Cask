@@ -25,6 +25,7 @@
 (depends-on "ido-ubiquitous")
 (depends-on "magit")
 (depends-on "markdown-mode")
+(depends-on "mmm-mode")
 (depends-on "multiple-cursors")
 (depends-on "pallet")
 (depends-on "paradox")
