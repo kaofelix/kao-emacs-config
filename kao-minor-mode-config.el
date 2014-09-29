@@ -89,6 +89,7 @@
 
 (defun my-ido-setup-hook ()
   "Setup navigation in ido."
+  (define-key ido-completion-map (kbd "M-DEL") 'ido-delete-backward-word-updir)
   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
 (add-hook 'ido-setup-hook 'my-ido-setup-hook)
