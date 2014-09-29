@@ -37,8 +37,6 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-;; auto-modes
-(add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
 ;; Load personal packages
 (require 'kao-defuns)

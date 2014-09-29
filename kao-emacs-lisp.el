@@ -18,5 +18,8 @@
 (add-hook 'lisp-interaction-mode-hook 'elisp-slime-nav-mode)
 (add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
 
+;; auto-modes
+(add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
+
 (provide 'kao-emacs-lisp)
 ;;; kao-emacs-lisp.el ends here
