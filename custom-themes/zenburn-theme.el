@@ -606,6 +606,11 @@
    `(highlight-quoted-quote ((,class (:foreground ,zenburn-yellow :weight normal))))
    `(highlight-quoted-symbol ((,class (:foreground ,zenburn-yellow :weight normal))))
 
+   ;; prodigy
+   `(prodigy-red-face ((,class (:foreground ,zenburn-red-2))))
+   `(prodigy-green-face ((,class (:foreground ,zenburn-green+2))))
+   `(prodigy-yellow-face ((,class (:foreground ,zenburn-yellow))))
+
    ;; term-mode
    `(term-color-black ((,class (:background ,zenburn-bg :foreground ,zenburn-bg :weight bold))))
    `(term-color-blue ((,class (:background ,zenburn-blue :foreground ,zenburn-blue :weight bold))))
