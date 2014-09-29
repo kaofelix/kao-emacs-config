@@ -11,6 +11,9 @@
 
 ;;; Code:
 
+;; Dependencies requires
+(require 'f)
+
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -111,6 +114,17 @@
                 (format "\\(%s\\)\\|\\(%s\\)"
                         vc-ignore-dir-regexp
                         tramp-file-name-regexp))
+
+;; Prodigy
+(defvar prodigy-file "~/.prodigy-services.el")
+
+(defun reload-prodigy ()
+  "Reload prodigy file."
+  (interactive)
+  (when (f-exists? prodigy-file)
+    (load prodigy-file)))
+
+(reload-prodigy)
 
 (provide 'kao-minor-mode-config)
 ;;; kao-minor-mode-config.el ends here
