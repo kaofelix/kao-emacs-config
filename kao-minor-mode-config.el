@@ -17,6 +17,9 @@
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 
+;; discover
+(global-discover-mode)
+
 ;; Paren face
 (global-paren-face-mode)
 

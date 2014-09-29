@@ -9,6 +9,7 @@
 (depends-on "browse-kill-ring")
 (depends-on "company")
 (depends-on "diminish")
+(depends-on "discover")
 (depends-on "elisp-slime-nav")
 (depends-on "exec-path-from-shell")
 (depends-on "expand-region")
