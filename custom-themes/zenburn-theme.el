@@ -399,6 +399,7 @@
    `(magit-diff-add ((,class (:foreground ,zenburn-green+4))))
    `(magit-diff-del ((,class (:foreground ,zenburn-red))))
    `(magit-log-sha1 ((,class (:foreground ,zenburn-orange))))
+   `(magit-item-mark ((,class (:background ,zenburn-blue-5 :weight bold ))))
 
    ;; message-mode
    `(message-cited-text ((,class (:inherit font-lock-comment))))
