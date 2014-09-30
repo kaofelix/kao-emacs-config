@@ -77,12 +77,14 @@
 (windmove-default-keybindings)
 
 ;; Toggle Map
-(defvar kao/toggle-map)
-(define-prefix-command 'kao/toggle-map)
-
-(define-key ctl-x-map "t" 'kao/toggle-map)
-(define-key kao/toggle-map "r" 'rainbow-blocks-mode)
-(define-key kao/toggle-map "e" 'toggle-debug-on-error)
+(discover-add-context-menu
+ :context-menu '(toggle-map
+                 (actions
+                  ("Toggle"
+                   ("e" "Debug On Error" toggle-debug-on-error)
+                   ("r" "Rainbow Blocks Mode" rainbow-blocks-mode)
+                   ("f" "Flycheck Mode" flycheck-mode))))
+ :bind "C-x t")
 
 (provide 'kao-key-bindings)
 ;;; kao-key-bindings.el ends here
