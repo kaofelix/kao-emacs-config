@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         hungry-delete-backward
+        hungry-delete-forward
         sp--self-insert-command
         ))
 
