@@ -22,10 +22,13 @@
 (defun turn-on-rainbow-mode ()
   (rainbow-mode 1))
 
-(defun prog-mode-key-bindings ()
-  "Set keys for `prog-mode'."
-  (local-set-key (kbd "C-,") 'highlight-symbol-next)
-  (local-set-key (kbd "C-.") 'highlight-symbol-next))
+;; Temp fix for emacs bug where lisp-mode-shared-map doesn't inherit from
+;; prog-mode-map.
+(unless (keymap-parent lisp-mode-shared-map)
+  (set-keymap-parent lisp-mode-shared-map prog-mode-map))
+
+(define-key prog-mode-map (kbd "C-,") 'highlight-symbol-prev)
+(define-key prog-mode-map (kbd "C-.") 'highlight-symbol-next)
 
 (add-hook 'prog-mode-hook 'turn-on-hl-line)
 (add-hook 'prog-mode-hook 'turn-on-which-function-mode)
