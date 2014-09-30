@@ -619,7 +619,24 @@
    `(term-color-magenta ((,class (:background ,zenburn-magenta :foreground ,zenburn-magenta :weight bold))))
    `(term-color-red ((,class (:background ,zenburn-red :foreground ,zenburn-red :weight bold))))
    `(term-color-white ((,class (:background ,zenburn-fg :foreground ,zenburn-fg :weight bold))))
-   `(term-color-yellow ((,class (:background ,zenburn-yellow :foreground ,zenburn-yellow :weight bold)))))
+   `(term-color-yellow ((,class (:background ,zenburn-yellow :foreground ,zenburn-yellow :weight bold))))
+
+   ;; w3m
+   `(w3m-anchor ((,class (:foreground ,zenburn-blue :underline t))))
+   `(w3m-arrived-anchor ((,class (:foreground ,zenburn-blue-2 :underline t :weight normal))))
+   `(w3m-form ((,class (:foreground ,zenburn-red-1 :underline t))))
+   `(w3m-form-button-mouse ((,class (:foreground ,zenburn-bg :background ,zenburn-green+1))))
+   `(w3m-header-line-location-content ((,class (:foreground ,zenburn-yellow+1))))
+   `(w3m-header-line-location-title ((,class (:foreground ,zenburn-yellow :underline t :weight bold))))
+   `(w3m-history-current-url ((,class (:inherit match))))
+   `(w3m-lnum ((,class (:foreground ,zenburn-green+2 :background ,zenburn-bg))))
+   `(w3m-lnum-match ((,class (:background ,zenburn-bg-1 :foreground ,zenburn-orange :weight bold))))
+   `(w3m-lnum-minibuffer-prompt ((,class (:foreground ,zenburn-yellow))))
+   `(w3m-image ((,class (:foreground ,zenburn-green+3 :weight bold))))
+   `(w3m-image-anchor ((,class (:background ,zenburn-green+3 :foreground ,zenburn-bg))))
+   `(w3m-insert ((,class (:foreground ,zenburn-magenta))))
+   `(w3m-tab-background ((,class (:background ,zenburn-bg-1))))
+   `(w3m-tab-selected ((,class (:background ,zenburn-bg+3 :foreground ,zenburn-fg)))))
 
   ;;; custom theme variables
   (custom-theme-set-variables

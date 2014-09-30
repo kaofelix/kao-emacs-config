@@ -45,6 +45,7 @@
 (depends-on "undo-tree")
 (depends-on "vagrant")
 (depends-on "visual-regexp")
+(depends-on "w3m")
 (depends-on "wgrep")
 (depends-on "wgrep-ag")
 (depends-on "yaml-mode")

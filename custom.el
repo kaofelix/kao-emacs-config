@@ -7,7 +7,7 @@
  '(ahs-idle-interval 0.5)
  '(ahs-inhibit-face-list (quote (font-lock-comment-delimiter-face font-lock-comment-face font-lock-doc-face font-lock-doc-string-face font-lock-string-face font-lock-keyword-face)))
  '(auto-revert-check-vc-info t)
- '(custom-safe-themes (quote ("c23e3069e34cc2ff4284e05d7c41452d508eb8948d94ec43b995342c93de6784" default)))
+ '(custom-safe-themes (quote ("4844bbe6d913ebe67419972d2150407bc679100aa2a101de5829b3ef0e336d33" default)))
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-hungry-delete-mode t)
