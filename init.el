@@ -47,5 +47,6 @@
 (require 'kao-prog-mode)
 (require 'kao-emacs-lisp)
 (require 'kao-ruby-mode)
+(require 'kao-setup-javascript)
 
 ;;; init.el ends here
