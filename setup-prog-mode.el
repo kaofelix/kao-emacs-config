@@ -1,4 +1,4 @@
-;;; kao-prog-mode.el --- prog-mode config
+;;; setup-prog-mode.el --- prog-mode config
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -39,5 +39,5 @@
 (add-hook 'prog-mode-hook 'auto-highlight-symbol-mode)
 (add-hook 'prog-mode-hook 'prog-mode-key-bindings)
 
-(provide 'kao-prog-mode)
-;;; kao-prog-mode.el ends here
+(provide 'setup-prog-mode)
+;;; setup-prog-mode.el ends here

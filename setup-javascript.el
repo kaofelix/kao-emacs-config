@@ -1,4 +1,4 @@
-;;; kao-setup-javascript.el --- setup javascript modes
+;;; setup-javascript.el --- setup javascript modes
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -39,5 +39,5 @@
 
 (add-hook 'js2-mode-hook 'dtrt-indent-adapt)
 
-(provide 'kao-setup-javascript)
-;;; kao-setup-javascript.el ends here
+(provide 'setup-javascript)
+;;; setup-javascript.el ends here

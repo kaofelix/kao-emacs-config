@@ -1,4 +1,4 @@
-;;; kao-setup-yasnippet.el --- yasnippet setup
+;;; setup-yasnippet.el --- yasnippet setup
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -44,5 +44,5 @@
 ;; Wrap around region
 (setq yas-wrap-around-region t)
 
-(provide 'kao-setup-yasnippet)
-;;; kao-setup-yasnippet.el ends here
+(provide 'setup-yasnippet)
+;;; setup-yasnippet.el ends here

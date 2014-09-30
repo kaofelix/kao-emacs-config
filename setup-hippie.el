@@ -1,4 +1,4 @@
-;;; kao-setup-hippie.el --- hippie setup
+;;; setup-hippie.el --- hippie setup
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -179,5 +179,5 @@ string).  It returns t if a new completion is found, nil otherwise."
   (let ((case-fold-search nil))
     (hippie-expand nil)))
 
-(provide 'kao-setup-hippie)
-;;; kao-setup-hippie.el ends here
+(provide 'setup-hippie)
+;;; setup-hippie.el ends here

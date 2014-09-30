@@ -1,4 +1,4 @@
-;;; kao-minor-mode-config.el --- Config for minor modes
+;;; setup-minor-modes.el --- Config for minor modes
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -132,5 +132,5 @@
 
 (reload-prodigy)
 
-(provide 'kao-minor-mode-config)
-;;; kao-minor-mode-config.el ends here
+(provide 'setup-minor-modes)
+;;; setup-minor-modes.el ends here

@@ -1,4 +1,4 @@
-;;; kao-ruby-mode.el --- ruby0-mode config
+;;; setup-ruby-mode.el --- ruby0-mode config
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -41,5 +41,5 @@
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . html-erb-mode))
 (add-to-list 'auto-mode-alist '("\\.jst\\.ejs\\'"  . html-erb-mode))
 
-(provide 'kao-ruby-mode)
-;;; kao-ruby-mode.el ends here
+(provide 'setup-ruby)
+;;; setup-ruby.el ends here

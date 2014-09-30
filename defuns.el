@@ -1,4 +1,4 @@
-;;; kao-defuns.el --- Defuns
+;;; defuns.el --- Defuns
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -87,5 +87,5 @@ already inside a project."
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
 
-(provide 'kao-defuns)
-;;; kao-defuns.el ends here
+(provide 'defuns)
+;;; defuns.el ends here

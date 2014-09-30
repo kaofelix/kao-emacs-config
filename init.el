@@ -18,7 +18,7 @@
 (load-theme 'zenburn t)
 
 ;; Defaults
-(require 'kao-defaults)
+(require 'defaults)
 
 ;; Initialize Cask and Pallet
 (require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el")
@@ -39,14 +39,14 @@
 
 
 ;; Load personal packages
-(require 'kao-defuns)
-(require 'kao-key-bindings)
-(require 'kao-minor-mode-config)
-(require 'kao-setup-hippie)
-(require 'kao-setup-yasnippet)
-(require 'kao-prog-mode)
-(require 'kao-emacs-lisp)
-(require 'kao-ruby-mode)
-(require 'kao-setup-javascript)
+(require 'defuns)
+(require 'key-bindings)
+(require 'setup-minor-modes)
+(require 'setup-hippie)
+(require 'setup-yasnippet)
+(require 'setup-prog-mode)
+(require 'setup-emacs-lisp)
+(require 'setup-ruby)
+(require 'setup-javascript)
 
 ;;; init.el ends here

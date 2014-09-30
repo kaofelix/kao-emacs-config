@@ -1,4 +1,4 @@
-;;; kao-emacs-lisp.el --- Config for Emacs Lisp editing
+;;; emacs-lisp.el --- Config for Emacs Lisp editing
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -21,5 +21,5 @@
 ;; auto-modes
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
-(provide 'kao-emacs-lisp)
-;;; kao-emacs-lisp.el ends here
+(provide 'setup-emacs-lisp)
+;;; setup-emacs-lisp.el ends here

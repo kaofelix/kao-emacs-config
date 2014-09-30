@@ -1,4 +1,4 @@
-;;; kao-key-bindings.el --- Global keybindinggs
+;;; key-bindings.el --- Global keybindinggs
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -86,5 +86,5 @@
                    ("f" "Flycheck Mode" flycheck-mode))))
  :bind "C-x t")
 
-(provide 'kao-key-bindings)
-;;; kao-key-bindings.el ends here
+(provide 'key-bindings)
+;;; key-bindings.el ends here

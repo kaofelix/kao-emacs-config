@@ -1,4 +1,4 @@
-;;; kao-defaults.el --- nice defaults
+;;; defaults.el --- nice defaults
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -137,5 +137,5 @@
 ;; that you can always see what's happening.
 (setq eval-expression-print-level nil)
 
-(provide 'kao-defaults)
-;;; kao-defaults.el ends here
+(provide 'defaults)
+;;; defaults.el ends here
