@@ -76,7 +76,6 @@
 
 ;;; Projectile
 (projectile-global-mode t)
-(define-key projectile-mode-map (kbd "C-c a") 'ag-project)
 
 ;; Smex and Ido
 (smex-initialize)
