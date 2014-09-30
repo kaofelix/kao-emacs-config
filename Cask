@@ -20,6 +20,7 @@
 (depends-on "flycheck")
 (depends-on "git-gutter")
 (depends-on "git-timemachine")
+(depends-on "guide-key")
 (depends-on "highlight-numbers")
 (depends-on "highlight-quoted")
 (depends-on "highlight-symbol")

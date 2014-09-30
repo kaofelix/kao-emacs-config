@@ -127,6 +127,11 @@
    `(grep-match-face ((,class (:foreground ,zenburn-orange :weight bold))))
    `(match ((,class (:background ,zenburn-bg-1 :foreground ,zenburn-orange :weight bold))))
 
+   ;; guide-key
+   `(guide-key/highlight-command-face ((,class (:foreground ,zenburn-yellow))))
+   `(guide-key/key-face ((,class (:foreground ,zenburn-red))))
+   `(guide-key/prefix-command-face ((,class (:foreground ,zenburn-cyan))))
+
    ;; faces used by isearch
    `(isearch ((,class (:foreground ,zenburn-yellow :background ,zenburn-bg-1))))
    `(isearch-fail ((,class (:foreground ,zenburn-fg :background ,zenburn-red-4))))
