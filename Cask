@@ -7,6 +7,7 @@
 (depends-on "ag")
 (depends-on "auto-highlight-symbol")
 (depends-on "browse-kill-ring")
+(depends-on "coffee-mode")
 (depends-on "company")
 (depends-on "diminish")
 (depends-on "discover")
