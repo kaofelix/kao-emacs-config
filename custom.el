@@ -10,7 +10,6 @@
  '(custom-safe-themes (quote ("961c16955aad99a73dfb711b31d2ac5208cb4bc89e40d28563a91455826f4da1" default)))
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
- '(global-hungry-delete-mode t)
  '(global-undo-tree-mode t)
  '(ido-mode (quote both) nil (ido))
  '(ido-ubiquitous-mode t)

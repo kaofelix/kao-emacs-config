@@ -24,7 +24,6 @@
 (depends-on "highlight-numbers")
 (depends-on "highlight-quoted")
 (depends-on "highlight-symbol")
-(depends-on "hungry-delete")
 (depends-on "ido-ubiquitous")
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
