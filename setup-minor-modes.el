@@ -110,12 +110,16 @@
   '(diminish 'magit-auto-revert-mode))
 (eval-after-load 'rainbow-mode
   '(diminish 'rainbow-mode))
+(eval-after-load 'auto-highlight-symbol
+  '(diminish 'auto-highlight-symbol-mode))
+(eval-after-load 'company
+  '(diminish 'company-mode))
+(eval-after-load 'yasnippet
+  '(diminish 'yas-minor-mode))
+
 (diminish 'undo-tree-mode)
 (diminish 'smartparens-mode)
 (diminish 'git-gutter-mode)
-(diminish 'auto-highlight-symbol-mode)
-(diminish 'company-mode)
-(diminish 'yas-minor-mode)
 (diminish 'guide-key-mode)
 
 ;; Tramp with vc
