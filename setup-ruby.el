@@ -41,5 +41,9 @@
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . html-erb-mode))
 (add-to-list 'auto-mode-alist '("\\.jst\\.ejs\\'"  . html-erb-mode))
 
+;; projectile rails
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
+
+
 (provide 'setup-ruby)
 ;;; setup-ruby.el ends here

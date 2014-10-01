@@ -18,6 +18,8 @@
  '(inhibit-startup-screen t)
  '(paradox-github-token t)
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
+ '(projectile-rails-discover-bind "C-c p ;")
+ '(projectile-rails-keymap-prefix "")
  '(rspec-use-rvm t)
  '(rspec-use-spring-when-possible nil)
  '(rspec-use-zeus-when-possible nil)

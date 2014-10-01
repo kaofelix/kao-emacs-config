@@ -37,6 +37,7 @@
 (depends-on "paren-face")
 (depends-on "prodigy")
 (depends-on "projectile")
+(depends-on "projectile-rails")
 (depends-on "rainbow-blocks")
 (depends-on "rainbow-mode")
 (depends-on "rspec-mode")
