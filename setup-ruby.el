@@ -23,11 +23,6 @@
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile$" . ruby-mode))
 
-(defun turn-on-rspec-mode ()
-  (rspec-mode t))
-
-(add-hook 'ruby-mode-hook 'turn-on-rspec-mode)
-
 ;; erb with mmm
 (require 'mmm-auto)
 
