@@ -36,26 +36,12 @@ already inside a project."
               (magit-status target-project))
           (error "There are no known projects"))))))
 
-;; Utility functions and macros
-
-(defmacro kao/type-last-key-to-repeat (&rest body)
-  "Repeat BODY when typing the last key on the key sequence typed."
-  (declare (indent defun))
-  `(progn
-     (progn ,@body)
-     (let* ((repeat-key last-input-event)
-            (repeat-key-str (format-kbd-macro (vector repeat-key) nil)))
-       (while repeat-key
-         (message "(Type %s to repeat.)" repeat-key-str)
-         (if (equal repeat-key (read-event))
-             (progn
-               (clear-this-command-keys t)
-               (progn ,@body)
-               (setq last-input-event nil))
-           (setq repeat-key nil)))
-       (when last-input-event
-         (clear-this-command-keys t)
-         (setq unread-command-events (list last-input-event))))))
+(defun kao/neotree-project-toggle ()
+  "Show neotree for current projectile project."
+  (interactive)
+  (if (neo-global--window-exists-p)
+      (neotree-hide)
+    (neotree-dir (projectile-project-root))))
 
 (defun rename-current-buffer-file ()
   "Rename current buffer and file it is visiting."
@@ -86,6 +72,27 @@ already inside a project."
         (delete-file filename)
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
+
+;; Utility functions and macros
+
+(defmacro kao/type-last-key-to-repeat (&rest body)
+  "Repeat BODY when typing the last key on the key sequence typed."
+  (declare (indent defun))
+  `(progn
+     (progn ,@body)
+     (let* ((repeat-key last-input-event)
+            (repeat-key-str (format-kbd-macro (vector repeat-key) nil)))
+       (while repeat-key
+         (message "(Type %s to repeat.)" repeat-key-str)
+         (if (equal repeat-key (read-event))
+             (progn
+               (clear-this-command-keys t)
+               (progn ,@body)
+               (setq last-input-event nil))
+           (setq repeat-key nil)))
+       (when last-input-event
+         (clear-this-command-keys t)
+         (setq unread-command-events (list last-input-event))))))
 
 (provide 'defuns)
 ;;; defuns.el ends here

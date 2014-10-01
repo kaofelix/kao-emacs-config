@@ -31,6 +31,7 @@
 (depends-on "markdown-mode")
 (depends-on "mmm-mode")
 (depends-on "multiple-cursors")
+(depends-on "neotree")
 (depends-on "pallet")
 (depends-on "paradox")
 (depends-on "paren-face")
