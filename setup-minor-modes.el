@@ -46,30 +46,23 @@
     ("C-M-u" . sp-backward-up-sexp)
     ("C-M-k" . sp-kill-sexp)
     ("C-M-w" . sp-copy-sexp)
-    ("M-<delete>" . sp-unwrap-sexp)
 
     ("M-s" . sp-splice-sexp) ;; depth-changing commands
-    ("M-<up>" . sp-splice-sexp-killing-backward)
-    ("M-<down>" . sp-splice-sexp-killing-forward)
+    ("M-S" . sp-split-sexp) ;; depth-changing commands
 
     ("M-(" . kao/wrap-with-round-brackets)
     ("C-)" . sp-forward-slurp-sexp) ;; barf/slurp
-    ("C-<right>" . sp-forward-slurp-sexp)
     ("C-}" . sp-forward-barf-sexp)
-    ("C-<left>" . sp-forward-barf-sexp)
     ("C-(" . sp-backward-slurp-sexp)
-    ("C-M-<left>" . sp-backward-slurp-sexp)
     ("C-{" . sp-backward-barf-sexp)
-    ("C-M-<right>" . sp-backward-barf-sexp)
 
-    ("M-D" . sp-splice-sexp)
     ("C-]" . sp-select-next-thing-exchange)
     ("C-M-]" . sp-select-next-thing)
     ("M-F" . sp-forward-symbol)
     ("M-B" . sp-backward-symbol)))
 
 (--each kao/sp-bindings
-    (define-key sp-keymap (read-kbd-macro (car it)) (cdr it)))
+  (define-key sp-keymap (read-kbd-macro (car it)) (cdr it)))
 
 ;; Show paren
 (show-paren-mode t)
@@ -120,6 +113,10 @@
 (diminish 'undo-tree-mode)
 (diminish 'smartparens-mode)
 (diminish 'git-gutter-mode)
+(diminish 'auto-highlight-symbol-mode)
+(diminish 'company-mode)
+(diminish 'yas-minor-mode)
+(diminish 'guide-key-mode)
 
 ;; Tramp with vc
 (setq vc-ignore-dir-regexp

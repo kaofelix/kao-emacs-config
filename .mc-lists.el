@@ -5,6 +5,9 @@
       '(
         hungry-delete-backward
         hungry-delete-forward
+        org-metaleft
+        org-metaright
+        org-self-insert-command
         sp--self-insert-command
         ))
 
