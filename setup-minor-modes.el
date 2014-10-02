@@ -69,8 +69,8 @@
 
 ;;; Projectile
 (require 'neotree)
-(define-key projectile-command-map (kbd "n") 'kao/neotree-project-toggle)
 (projectile-global-mode t)
+(define-key projectile-command-map (kbd "n") 'kao/neotree-project-toggle)
 
 ;; Smex and Ido
 (smex-initialize)
