@@ -2,12 +2,12 @@
 
 ;; Copyright (C) 2014  Kao Felix
 
-;; Author: Kao Felix <kaofelix@Steelix.local>
+;; Author: Kao Felix <kcfelix@gmail.com>
 ;; Keywords: local, convenience
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 (defvar he-search-loc-backward (make-marker))

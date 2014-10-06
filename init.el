@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2014  Kao Felix
 
-;; Author: Kao Felix;; Custom theme <kaofelix@Steelix.local>
+;; Author: Kao Felix;; Custom theme <kcfelix@gmail.com>
 ;; Keywords: local
 
 ;;; Commentary:
@@ -16,6 +16,8 @@
 (add-to-list 'load-path user-emacs-directory t)
 (setq custom-theme-directory (expand-file-name "custom-themes" user-emacs-directory))
 (load-theme 'zenburn t)
+
+(setq user-mail-address "kcfelix@gmail.com")
 
 ;; Defaults
 (require 'defaults)

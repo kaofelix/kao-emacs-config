@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2014  Kao Felix
 
-;; Author: Kao Felix(require 'yasnippet) <kaofelix@Steelix.local>
+;; Author: Kao Felix(require 'yasnippet) <kcfelix@gmail.com>
 ;; Keywords: local, convenience
 
 ;;; Commentary:
