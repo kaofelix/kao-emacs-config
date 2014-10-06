@@ -14,4 +14,5 @@
 (setq mc/cmds-to-run-once
       '(
         ace-window
+        magit-goto-next-section
         ))
