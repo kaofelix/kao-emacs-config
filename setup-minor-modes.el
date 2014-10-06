@@ -20,6 +20,9 @@
 ;; discover
 (global-discover-mode)
 
+;; dtrt-indent
+(dtrt-indent-mode 1)
+
 ;; Paren face
 (global-paren-face-mode)
 
