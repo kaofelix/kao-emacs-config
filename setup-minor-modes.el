@@ -14,6 +14,9 @@
 ;; Dependencies requires
 (require 'f)
 
+;; Compile packages asynchronously
+(require 'async-bytecomp)
+
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 

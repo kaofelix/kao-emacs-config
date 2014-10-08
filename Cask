@@ -5,6 +5,7 @@
 (depends-on "ace-jump-mode")
 (depends-on "ace-window")
 (depends-on "ag")
+(depends-on "async")
 (depends-on "auto-highlight-symbol")
 (depends-on "browse-kill-ring")
 (depends-on "coffee-mode")
