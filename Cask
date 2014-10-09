@@ -27,6 +27,7 @@
 (depends-on "highlight-quoted")
 (depends-on "highlight-symbol")
 (depends-on "ido-ubiquitous")
+(depends-on "inf-ruby")
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
 (depends-on "json-reformat")
