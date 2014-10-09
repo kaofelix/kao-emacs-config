@@ -29,6 +29,7 @@
 (depends-on "ido-ubiquitous")
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
+(depends-on "json-reformat")
 (depends-on "less-css-mode")
 (depends-on "magit")
 (depends-on "markdown-mode")
