@@ -9,6 +9,7 @@
  '(auto-revert-check-vc-info t)
  '(coffee-tab-width 2)
  '(custom-safe-themes (quote ("961c16955aad99a73dfb711b31d2ac5208cb4bc89e40d28563a91455826f4da1" default)))
+ '(dired-dwim-target t)
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-undo-tree-mode t)
