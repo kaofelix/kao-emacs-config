@@ -62,7 +62,6 @@
     ("C-(" . sp-backward-slurp-sexp)
     ("C-{" . sp-backward-barf-sexp)
 
-    ("C-]" . sp-select-next-thing-exchange)
     ("C-M-]" . sp-select-next-thing)
     ("M-F" . sp-forward-symbol)
     ("M-B" . sp-backward-symbol)))
