@@ -51,6 +51,7 @@
 (depends-on "rvm")
 (depends-on "smartparens")
 (depends-on "smex")
+(depends-on "sml-mode")
 (depends-on "undo-tree")
 (depends-on "vagrant")
 (depends-on "visual-regexp")
