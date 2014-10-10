@@ -34,6 +34,9 @@
 ;; Ace Window
 (global-set-key (kbd "C-x o") 'ace-window)
 
+;; Comment DWIM 2
+(global-set-key [remap comment-dwim] 'comment-dwim-2)
+
 ;; C-h for backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
 (define-key key-translation-map [?\M-\C-h] [?\M-\C-?])
