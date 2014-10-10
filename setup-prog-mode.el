@@ -37,6 +37,7 @@
 (add-hook 'prog-mode-hook 'turn-on-rainbow-mode)
 (add-hook 'prog-mode-hook 'flycheck-mode)
 (add-hook 'prog-mode-hook 'auto-highlight-symbol-mode)
+(add-hook 'prog-mode-hook 'yas-minor-mode)
 
 (provide 'setup-prog-mode)
 ;;; setup-prog-mode.el ends here
