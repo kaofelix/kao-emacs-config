@@ -13,7 +13,7 @@
 ;; -Neal Stephenson, "In the Beginning was the Command Line"
 
 ;;; Code:
-(add-to-list 'load-path user-emacs-directory t)
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory) t)
 (setq custom-theme-directory (expand-file-name "custom-themes" user-emacs-directory))
 (load-theme 'zenburn t)
 
