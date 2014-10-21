@@ -37,6 +37,9 @@
 ;; Comment DWIM 2
 (global-set-key [remap comment-dwim] 'comment-dwim-2)
 
+;; cycle-spacing instead of just-one-space
+(global-set-key [remap just-one-space] 'cycle-spacing)
+
 ;; C-h for backspace
 (define-key key-translation-map [?\C-h] [?\C-?])
 (define-key key-translation-map [?\M-\C-h] [?\M-\C-?])
