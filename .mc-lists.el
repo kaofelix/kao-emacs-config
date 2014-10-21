@@ -9,6 +9,7 @@
         org-metaright
         org-self-insert-command
         sp--self-insert-command
+        yas-expand
         ))
 
 (setq mc/cmds-to-run-once
