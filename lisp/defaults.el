@@ -38,6 +38,9 @@
       version-control t)
 (setq create-lockfiles nil)
 
+;; Always load newer elisp files
+(setq load-prefer-newer t)
+
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)
 
