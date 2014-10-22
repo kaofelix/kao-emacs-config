@@ -49,6 +49,7 @@
 (require 'setup-prog-mode)
 (require 'setup-emacs-lisp)
 (require 'setup-ruby)
+(require 'setup-sml)
 (require 'setup-javascript)
 
 ;;; init.el ends here
