@@ -20,9 +20,6 @@
 ;; Company
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; discover
-(global-discover-mode)
-
 ;; dtrt-indent
 (dtrt-indent-mode 1)
 
@@ -98,13 +95,6 @@
   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
 (add-hook 'ido-setup-hook 'my-ido-setup-hook)
 
-;; Guide Key
-(setq guide-key/guide-key-sequence '("C-x 4" "C-c p"))
-(setq guide-key/recursive-key-sequence-flag t)
-(setq guide-key/idle-delay 1.0)
-(setq guide-key/popup-window-position 'bottom)
-(guide-key-mode 1)  ; Enable guide-key-mode
-
 ;; Visual regexp
 (require 'visual-regexp)
 (define-key global-map (kbd "C-c r") 'vr/replace)
@@ -127,7 +117,6 @@
 (diminish 'undo-tree-mode)
 (diminish 'smartparens-mode)
 (diminish 'git-gutter-mode)
-(diminish 'guide-key-mode)
 
 ;; Tramp with vc
 (setq vc-ignore-dir-regexp
