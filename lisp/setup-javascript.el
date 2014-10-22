@@ -15,8 +15,8 @@
 (add-to-list 'auto-mode-alist '("\\.jshintrc$" . javascript-mode))
 (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
 
-(eval-after-load 'dtrt-indent
-  '(add-to-list 'dtrt-indent-hook-mapping-list '(js2-mode c/c++/java  js2-basic-offset)))
+(with-eval-after-load 'dtrt-indent
+  (add-to-list 'dtrt-indent-hook-mapping-list '(js2-mode c/c++/java  js2-basic-offset)))
 
 (require 'js2-refactor)
 (js2r-add-keybindings-with-prefix "C-c C-r")

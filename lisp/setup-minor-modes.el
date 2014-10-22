@@ -103,16 +103,16 @@
 (define-key global-map (kbd "C-c m") 'vr/mc-mark)
 
 ;; Clean modeline
-(eval-after-load 'magit
-  '(diminish 'magit-auto-revert-mode))
-(eval-after-load 'rainbow-mode
-  '(diminish 'rainbow-mode))
-(eval-after-load 'auto-highlight-symbol
-  '(diminish 'auto-highlight-symbol-mode))
-(eval-after-load 'company
-  '(diminish 'company-mode))
-(eval-after-load 'yasnippet
-  '(diminish 'yas-minor-mode))
+(with-eval-after-load 'magit
+  (diminish 'magit-auto-revert-mode))
+(with-eval-after-load 'rainbow-mode
+  (diminish 'rainbow-mode))
+(with-eval-after-load 'auto-highlight-symbol
+  (diminish 'auto-highlight-symbol-mode))
+(with-eval-after-load 'company
+  (diminish 'company-mode))
+(with-eval-after-load 'yasnippet
+  (diminish 'yas-minor-mode))
 
 (diminish 'undo-tree-mode)
 (diminish 'smartparens-mode)
