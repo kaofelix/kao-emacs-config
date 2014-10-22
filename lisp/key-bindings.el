@@ -28,6 +28,9 @@
 ;;; Duplicate line
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
 
+;; smarter move-beginning-of-line
+(global-set-key [remap move-beginning-of-line] 'kao/move-beginning-of-line)
+
 ;; Ace Jump
 (global-set-key (kbd "C-;") 'ace-jump-mode)
 
