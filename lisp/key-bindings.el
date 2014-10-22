@@ -34,6 +34,9 @@
 ;; Ace Jump
 (global-set-key (kbd "C-;") 'ace-jump-mode)
 
+;; go to char
+(global-set-key (kbd "s-;") 'iy-go-up-to-char)
+
 ;; Ace Window
 (global-set-key (kbd "C-x o") 'ace-window)
 
