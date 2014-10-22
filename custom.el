@@ -37,14 +37,10 @@
    (quote
     (("C-c C-c" . term-interrupt-subjob)
      ("C-c C-e" . term-send-esc)
-     ("C-p" . previous-line)
-     ("C-n" . next-line)
      ("C-s" . isearch-forward)
      ("C-r" . isearch-backward)
      ("C-m" . term-send-return)
      ("C-y" . term-paste)
-     ("M-f" . term-send-forward-word)
-     ("M-b" . term-send-backward-word)
      ("M-p" . term-send-up)
      ("M-n" . term-send-down)
      ("M-d" . term-send-forward-kill-word)
@@ -52,7 +48,9 @@
      ("M-r" . term-send-reverse-search-history)
      ("M-," . term-send-raw)
      ("M-." . comint-dynamic-complete))))
- '(term-unbind-key-list (quote ("C-z" "C-x" "C-c" "C-y" "<ESC>")))
+ '(term-unbind-key-list
+   (quote
+    ("C-z" "C-x" "C-c" "C-y" "<ESC>" "C-a" "C-e" "C-f" "C-b" "C-n" "C-p" "C-g")))
  '(whitespace-action (quote (auto-cleanup)))
  '(whitespace-global-modes nil)
  '(whitespace-style (quote (face trailing tabs)))
