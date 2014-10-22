@@ -18,6 +18,9 @@
 (add-hook 'lisp-interaction-mode-hook 'elisp-slime-nav-mode)
 (add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
 
+(add-hook 'eval-expression-minibuffer-setup-hook 'eldoc-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook 'smartparens-mode)
+
 ;; auto-modes
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
