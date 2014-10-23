@@ -17,9 +17,6 @@
 ;; Compile packages asynchronously
 (require 'async-bytecomp)
 
-;; Company
-(add-hook 'after-init-hook 'global-company-mode)
-
 ;; dtrt-indent
 (dtrt-indent-mode 1)
 
