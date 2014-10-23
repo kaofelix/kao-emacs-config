@@ -52,6 +52,7 @@
 (depends-on "smartparens")
 (depends-on "smex")
 (depends-on "sml-mode")
+(depends-on "solarized-theme")
 (depends-on "undo-tree")
 (depends-on "vagrant")
 (depends-on "visual-regexp")

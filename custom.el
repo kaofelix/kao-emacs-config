@@ -16,8 +16,9 @@
  '(company-idle-delay 0)
  '(custom-safe-themes
    (quote
-    ("961c16955aad99a73dfb711b31d2ac5208cb4bc89e40d28563a91455826f4da1" default)))
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(dired-dwim-target t)
+ '(flycheck-indication-mode nil)
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-undo-tree-mode t)
@@ -25,6 +26,8 @@
  '(ido-ubiquitous-mode t)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
+ '(magit-diff-use-overlays nil)
+ '(magit-use-overlays nil)
  '(paradox-github-token t)
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
  '(projectile-rails-keymap-prefix "")
@@ -61,4 +64,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(highlight-numbers-number ((t (:foreground "#d33682"))))
+ '(highlight-quoted-symbol ((t (:inherit font-lock-constant-face :weight normal))))
+ '(variable-pitch ((t (:family "Source Sans Pro")))))

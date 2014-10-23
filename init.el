@@ -14,9 +14,6 @@
 
 ;;; Code:
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory) t)
-(setq custom-theme-directory (expand-file-name "custom-themes" user-emacs-directory))
-(load-theme 'zenburn t)
-
 (setq user-mail-address "kcfelix@gmail.com")
 
 ;; Defaults
@@ -26,6 +23,8 @@
 (require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el")
 (cask-initialize)
 (require 'pallet)
+
+(require 'setup-theme)
 
 (when (eq window-system 'ns)
   (menu-bar-mode t)
