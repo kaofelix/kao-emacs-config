@@ -22,9 +22,6 @@
 ;; Magit
 (global-set-key (kbd "C-c g") 'magit-status-project-dwim)
 
-;; Browse kill ring
-(browse-kill-ring-default-keybindings)
-
 ;;; Duplicate line
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
 

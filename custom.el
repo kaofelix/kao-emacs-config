@@ -22,13 +22,17 @@
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-undo-tree-mode t)
- '(ido-mode (quote both) nil (ido))
- '(ido-ubiquitous-mode t)
+ '(helm-buffers-fuzzy-matching t)
+ '(helm-ff-file-name-history-use-recentf t)
+ '(helm-ff-search-library-in-sexp t)
+ '(helm-quick-update t)
+ '(helm-split-window-in-side-p t)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(paradox-github-token t)
+ '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
  '(projectile-rails-keymap-prefix "")
  '(register-preview-delay 0)
@@ -64,6 +68,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-source-header ((t (:inherit variable-pitch :background "#69B7F0" :foreground "#fdf6e3" :underline nil :weight semi-bold :height 1.3))))
  '(highlight-numbers-number ((t (:foreground "#d33682"))))
  '(highlight-quoted-symbol ((t (:inherit font-lock-constant-face :weight normal))))
  '(variable-pitch ((t (:family "Source Sans Pro")))))
