@@ -31,6 +31,7 @@
  '(inhibit-startup-screen t)
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
+ '(multi-term-program-switches "--login")
  '(paradox-github-token t)
  '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))

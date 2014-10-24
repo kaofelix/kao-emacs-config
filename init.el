@@ -34,10 +34,10 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
-;; Shell Path
+;; Shell Path and Args
+(defvar explicit-zsh-args '("--login" "-i"))
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-
 
 ;; Load personal packages
 (require 'defuns)
