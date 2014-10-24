@@ -36,7 +36,6 @@
 (add-hook 'prog-mode-hook 'highlight-numbers-mode)
 (add-hook 'prog-mode-hook 'turn-on-rainbow-mode)
 (add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'prog-mode-hook 'auto-highlight-symbol-mode)
 (add-hook 'prog-mode-hook 'yas-minor-mode)
 (add-hook 'prog-mode-hook 'company-mode)
 

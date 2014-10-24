@@ -104,8 +104,6 @@
   (diminish 'magit-auto-revert-mode))
 (with-eval-after-load 'rainbow-mode
   (diminish 'rainbow-mode))
-(with-eval-after-load 'auto-highlight-symbol
-  (diminish 'auto-highlight-symbol-mode))
 (with-eval-after-load 'company
   (diminish 'company-mode))
 (with-eval-after-load 'yasnippet
