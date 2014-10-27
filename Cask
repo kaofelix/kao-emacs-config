@@ -11,6 +11,7 @@
 (depends-on "comment-dwim-2")
 (depends-on "company")
 (depends-on "diminish")
+(depends-on "drag-stuff")
 (depends-on "dtrt-indent")
 (depends-on "elisp-slime-nav")
 (depends-on "exec-path-from-shell")
