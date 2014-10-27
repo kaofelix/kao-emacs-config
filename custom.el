@@ -27,6 +27,7 @@
  '(helm-ff-search-library-in-sexp t)
  '(helm-quick-update t)
  '(helm-split-window-in-side-p t)
+ '(helm-truncate-lines t)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(magit-diff-use-overlays nil)
