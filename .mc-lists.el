@@ -5,6 +5,7 @@
       '(
         hungry-delete-backward
         hungry-delete-forward
+        kill-region
         org-metaleft
         org-metaright
         org-self-insert-command
@@ -15,5 +16,6 @@
 (setq mc/cmds-to-run-once
       '(
         ace-window
+        helm-confirm-and-exit-minibuffer
         magit-goto-next-section
         ))
