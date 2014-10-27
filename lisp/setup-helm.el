@@ -11,8 +11,12 @@
 
 ;;; Code:
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
-
 (require 'helm-config)
+
+;; Projectile integration
+(require 'helm-projectile)
+(helm-projectile-on)
+(helm-mode 1)
 
 (global-set-key [remap execute-extended-command] 'helm-M-x)
 (global-set-key [remap find-file] 'helm-find-files)
@@ -21,11 +25,6 @@
 
 (define-key helm-command-map (kbd "o") 'helm-occur)
 (define-key helm-command-map (kbd "SPC") 'helm-all-mark-rings)
-
-;; Projectile integration
-(require 'helm-projectile)
-(helm-projectile-on)
-(helm-mode 1)
 
 ;; git grep
 (define-key helm-command-map (kbd "g") 'helm-git-grep)
