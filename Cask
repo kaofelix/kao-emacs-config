@@ -53,7 +53,6 @@
 (depends-on "rspec-mode")
 (depends-on "rvm")
 (depends-on "smartparens")
-(depends-on "smex")
 (depends-on "sml-mode")
 (depends-on "solarized-theme")
 (depends-on "undo-tree")
