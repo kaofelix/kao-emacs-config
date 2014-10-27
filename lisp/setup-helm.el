@@ -27,5 +27,10 @@
 (helm-projectile-on)
 (helm-mode 1)
 
+;; git grep
+(define-key helm-command-map (kbd "g") 'helm-git-grep)
+(define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
+(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm)
+
 (provide 'setup-helm)
 ;;; setup-helm.el ends here
