@@ -40,7 +40,6 @@
 (depends-on "mmm-mode")
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
-(depends-on "neotree")
 (depends-on "org")
 (depends-on "pallet")
 (depends-on "paradox")

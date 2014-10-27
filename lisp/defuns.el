@@ -36,13 +36,6 @@ already inside a project."
               (magit-status target-project))
           (error "There are no known projects"))))))
 
-(defun kao/neotree-project-toggle ()
-  "Show neotree for current projectile project."
-  (interactive)
-  (if (neo-global--window-exists-p)
-      (neotree-hide)
-    (neotree-dir (projectile-project-root))))
-
 (defun kao/move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 

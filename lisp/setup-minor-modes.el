@@ -67,9 +67,7 @@
 (show-paren-mode t)
 
 ;;; Projectile
-(require 'neotree)
 (projectile-global-mode t)
-(define-key projectile-command-map (kbd "n") 'kao/neotree-project-toggle)
 
 ;; Visual regexp
 (require 'visual-regexp)
