@@ -47,9 +47,6 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 (define-key key-translation-map [?\M-\C-h] [?\M-\C-?])
 
-;; Ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
 ;;; Expand region
 (global-set-key (kbd "C-=") 'er/expand-region)
 
