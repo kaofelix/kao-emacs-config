@@ -1,4 +1,4 @@
-;;; setup-minor-modes.el --- Config for minor modes
+;;; setup-misc-modes.el --- Config for misc modes
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -76,6 +76,9 @@
 ;; if you use multiple-cursors, this is for you:
 (define-key global-map (kbd "C-c m") 'vr/mc-mark)
 
+;; Man mode
+(add-hook 'Man-mode-hook 'visual-line-mode)
+
 ;; Clean modeline
 (with-eval-after-load 'magit
   (diminish 'magit-auto-revert-mode))
@@ -107,5 +110,5 @@
 
 (reload-prodigy)
 
-(provide 'setup-minor-modes)
-;;; setup-minor-modes.el ends here
+(provide 'setup-misc-modes)
+;;; setup-misc-modes.el ends here

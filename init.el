@@ -42,7 +42,7 @@
 ;; Load personal packages
 (require 'defuns)
 (require 'key-bindings)
-(require 'setup-minor-modes)
+(require 'setup-misc-modes)
 (require 'setup-hippie)
 (require 'setup-yasnippet)
 (require 'setup-prog-mode)
