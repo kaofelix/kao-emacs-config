@@ -22,7 +22,7 @@
 (global-set-key [remap find-file] 'helm-find-files)
 (global-set-key [remap switch-to-buffer] 'helm-mini)
 (global-set-key [remap yank-pop] 'helm-show-kill-ring)
-(global-set-key [remap list-buffers] 'helm-buffer-list)
+(global-set-key [remap list-buffers] 'helm-buffers-list)
 
 (define-key helm-command-map (kbd "o") 'helm-occur)
 (define-key helm-command-map (kbd "SPC") 'helm-all-mark-rings)
