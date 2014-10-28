@@ -24,6 +24,7 @@
  '(global-undo-tree-mode t)
  '(helm-ack-grep-executable "ack")
  '(helm-adaptive-mode t nil (helm-adaptive))
+ '(helm-buffer-max-length 45)
  '(helm-buffers-fuzzy-matching t)
  '(helm-ff-file-name-history-use-recentf t)
  '(helm-ff-search-library-in-sexp t)
