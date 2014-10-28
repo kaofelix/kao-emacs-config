@@ -16,9 +16,6 @@
 (setq mac-option-modifier 'meta)
 (setq mac-right-option-modifier nil)
 
-;; ^⌘F: Fullscreen on Mac
-(global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
-
 ;; Magit
 (global-set-key (kbd "C-c g") 'magit-status-project-dwim)
 
