@@ -38,6 +38,7 @@
  '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
  '(projectile-rails-keymap-prefix "")
+ '(projectile-switch-project-action (quote helm-projectile-find-file))
  '(register-preview-delay 0)
  '(rspec-use-rvm t)
  '(rspec-use-spring-when-possible nil)
