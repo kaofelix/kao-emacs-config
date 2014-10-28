@@ -31,7 +31,7 @@
  '(helm-grep-default-command "ack -Hn --no-group --no-color %e %p %f")
  '(helm-grep-default-recurse-command "ack -H --no-group --no-color %e %p %f")
  '(helm-quick-update t)
- '(helm-split-window-in-side-p t)
+ '(helm-split-window-default-side (quote other))
  '(helm-truncate-lines t)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
