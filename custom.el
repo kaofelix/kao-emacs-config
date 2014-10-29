@@ -38,6 +38,11 @@
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
  '(multi-term-program-switches "--login")
+ '(org-capture-templates
+   (quote
+    (("e" "Emacs Idea" entry
+      (file+headline "~/org/notes.org" "Emacs Config")
+      "* TODO %?" :prepend t))))
  '(paradox-github-token t)
  '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))

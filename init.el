@@ -50,6 +50,7 @@
 (require 'setup-ruby)
 (require 'setup-sml)
 (require 'setup-javascript)
+(require 'setup-org)
 (require 'setup-helm)
 
 ;;; init.el ends here
