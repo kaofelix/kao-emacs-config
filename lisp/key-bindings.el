@@ -31,6 +31,9 @@
 ;; go to char
 (global-set-key (kbd "s-;") 'iy-go-up-to-char)
 
+;; Ace Window
+(global-set-key [remap other-window] 'ace-window)
+
 ;; Comment DWIM 2
 (global-set-key [remap comment-dwim] 'comment-dwim-2)
 

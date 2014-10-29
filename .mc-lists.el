@@ -17,6 +17,7 @@
 
 (setq mc/cmds-to-run-once
       '(
+        ace-window
         helm-confirm-and-exit-minibuffer
         magit-goto-next-section
         ))

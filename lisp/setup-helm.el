@@ -27,6 +27,13 @@
 (define-key helm-command-map (kbd "o") 'helm-occur)
 (define-key helm-command-map (kbd "SPC") 'helm-all-mark-rings)
 
+;; Shadow ace-window binding when helm is open
+(defun do-nothing()
+  "Command that does nothing."
+  (interactive))
+
+(define-key helm-map (kbd "C-x o") 'do-nothing)
+
 ;; git grep
 (define-key helm-command-map (kbd "g") 'helm-git-grep)
 (define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
