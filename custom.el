@@ -22,6 +22,7 @@
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-undo-tree-mode t)
+ '(helm-M-x-always-save-history t)
  '(helm-ack-grep-executable "ack")
  '(helm-buffer-max-length 45)
  '(helm-buffers-fuzzy-matching t)
