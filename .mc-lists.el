@@ -12,6 +12,8 @@
         sp--self-insert-command
         sp-backward-delete-char
         sp-backward-kill-word
+        sp-kill-sexp
+        sp-kill-word
         yas-expand
         ))
 
