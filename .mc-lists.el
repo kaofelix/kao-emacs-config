@@ -10,6 +10,8 @@
         org-metaright
         org-self-insert-command
         sp--self-insert-command
+        sp-backward-delete-char
+        sp-backward-kill-word
         yas-expand
         ))
 
