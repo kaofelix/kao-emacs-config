@@ -63,9 +63,6 @@
 (global-set-key (kbd "C-M-s") 'isearch-forward)
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 
-;; Jump to a definition in the current file. (Protip: this is awesome.)
-(global-set-key (kbd "C-x C-i") 'imenu)
-
 ;; Change quit keybing
 (global-unset-key (kbd "C-x C-c"))
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-emacs)
