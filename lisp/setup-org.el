@@ -11,6 +11,7 @@
 
 ;;; Code:
 (global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c l") 'org-store-link)
 
 (provide 'setup-org)
 ;;; setup-org.el ends here
