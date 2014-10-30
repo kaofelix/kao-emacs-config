@@ -28,6 +28,8 @@
 (global-set-key [remap yank-pop] 'helm-show-kill-ring)
 (global-set-key [remap list-buffers] 'helm-buffers-list)
 
+(define-key helm-command-map (kbd "h o") 'helm-info-org)
+(define-key helm-command-map (kbd "h l") 'helm-info-elisp)
 (define-key helm-command-map (kbd "o") 'helm-occur)
 (define-key helm-command-map (kbd "SPC") 'helm-all-mark-rings)
 
