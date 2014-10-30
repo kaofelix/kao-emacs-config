@@ -33,6 +33,11 @@
 (define-key helm-command-map (kbd "o") 'helm-occur)
 (define-key helm-command-map (kbd "SPC") 'helm-all-mark-rings)
 
+;; git grep
+(define-key helm-command-map (kbd "g") 'helm-git-grep)
+(define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
+(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm)
+
 ;; Shadow ace-window binding when helm is open
 (defun do-nothing()
   "Command that does nothing."
@@ -40,10 +45,12 @@
 
 (define-key helm-map (kbd "C-x o") 'do-nothing)
 
-;; git grep
-(define-key helm-command-map (kbd "g") 'helm-git-grep)
-(define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
-(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm)
+;; Hack for making C-j work on helm-projectile-switch-project
+(defvar helm-projectile--source-projects-keymap
+  (cdr (assoc 'keymap helm-source-projectile-projects)))
+(fset 'helm-projectile--switch-to-project-action
+      (cdr (assoc "Switch to project" (assoc 'action helm-source-projectile-projects))))
+(helm-projectile-define-key helm-projectile--source-projects-keymap (kbd "C-j") 'helm-projectile--switch-to-project-action)
 
 (provide 'setup-helm)
 ;;; setup-helm.el ends here
