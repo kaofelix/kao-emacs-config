@@ -23,6 +23,7 @@
 (depends-on "git-timemachine")
 (depends-on "haskell-mode")
 (depends-on "helm")
+(depends-on "helm-descbinds")
 (depends-on "helm-git-grep")
 (depends-on "helm-projectile")
 (depends-on "highlight-numbers")
