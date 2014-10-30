@@ -19,6 +19,9 @@
 ;; Magit
 (global-set-key (kbd "C-c g") 'magit-status-project-dwim)
 
+;; eshell
+(global-set-key (kbd "C-c e") 'eshell)
+
 ;;; Duplicate line
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
 
