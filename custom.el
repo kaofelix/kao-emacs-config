@@ -53,7 +53,6 @@
  '(rspec-use-spring-when-possible nil)
  '(rspec-use-zeus-when-possible nil)
  '(smartparens-global-mode t)
- '(sml-electric-pipe-mode nil)
  '(term-bind-key-alist
    (quote
     (("C-c C-c" . term-interrupt-subjob)
