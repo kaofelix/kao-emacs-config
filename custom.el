@@ -40,7 +40,10 @@
  '(multi-term-program-switches "--login")
  '(org-capture-templates
    (quote
-    (("e" "Emacs Idea" entry
+    (("t" "Todo" entry
+      (file+headline "~/org/notes.org" "Inbox")
+      "* TODO %?" :prepend t)
+     ("e" "Emacs Idea" entry
       (file+headline "~/org/notes.org" "Emacs Config")
       "* TODO %?" :prepend t))))
  '(paradox-github-token t)
