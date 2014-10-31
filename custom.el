@@ -95,4 +95,5 @@
  '(org-level-6 ((t (:inherit default))))
  '(org-level-7 ((t (:inherit default))))
  '(org-level-8 ((t (:inherit default))))
+ '(rbenv-active-ruby-face ((t (:foreground "#dc322f" :weight normal))))
  '(variable-pitch ((t (:family "Source Sans Pro")))))
