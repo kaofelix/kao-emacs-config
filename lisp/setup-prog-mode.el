@@ -30,7 +30,7 @@
 (define-key prog-mode-map (kbd "C-,") 'highlight-symbol-prev)
 (define-key prog-mode-map (kbd "C-.") 'highlight-symbol-next)
 
-(require hideshow)
+(require 'hideshow)
 (define-key hs-minor-mode-map (kbd "C-c [ [") 'hs-toggle-hiding)
 (define-key hs-minor-mode-map (kbd "C-c [ s") 'hs-show-all)
 (define-key hs-minor-mode-map (kbd "C-c [ h") 'hs-hide-all)
