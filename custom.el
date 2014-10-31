@@ -60,21 +60,20 @@
  '(term-bind-key-alist
    (quote
     (("C-c C-c" . term-interrupt-subjob)
+     ("C-c C-d" . term-send-eof)
      ("C-c C-e" . term-send-esc)
-     ("C-s" . isearch-forward)
-     ("C-r" . isearch-backward)
+     ("C-c C-j" . term-line-mode)
+     ("C-c C-k" . term-char-mode)
+     ("C-c C-q" . term-pager-toggle)
      ("C-m" . term-send-return)
      ("C-y" . term-paste)
-     ("M-p" . term-send-up)
-     ("M-n" . term-send-down)
+     ("M-f" . term-send-forward-word)
+     ("M-b" . term-send-backward-word)
      ("M-d" . term-send-forward-kill-word)
      ("M-DEL" . term-send-backward-kill-word)
-     ("M-r" . term-send-reverse-search-history)
      ("M-," . term-send-raw)
      ("M-." . comint-dynamic-complete))))
- '(term-unbind-key-list
-   (quote
-    ("C-z" "C-x" "C-c" "C-y" "<ESC>" "C-a" "C-e" "C-f" "C-b" "C-n" "C-p" "C-g")))
+ '(term-unbind-key-list (quote ("C-x" "C-c" "C-h" "C-y" "C-d" "<ESC>")))
  '(whitespace-action (quote (auto-cleanup)))
  '(whitespace-global-modes nil)
  '(whitespace-style (quote (face trailing tabs)))
