@@ -88,6 +88,8 @@
   (diminish 'company-mode))
 (with-eval-after-load 'yasnippet
   (diminish 'yas-minor-mode))
+(with-eval-after-load 'drag-stuff
+  (diminish 'drag-stuff-mode))
 
 (diminish 'undo-tree-mode)
 (diminish 'smartparens-mode)
