@@ -17,6 +17,7 @@
 (require 'helm-projectile)
 (helm-projectile-on)
 (helm-mode 1)
+(diminish 'helm-mode)
 
 ;; descbinds
 (require 'helm-descbinds)
