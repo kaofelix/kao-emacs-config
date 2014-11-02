@@ -49,6 +49,11 @@
      ("e" "Emacs Idea" entry
       (file+headline "~/org/notes.org" "Emacs Config")
       "* TODO %?" :prepend t))))
+ '(org-catch-invisible-edits (quote error))
+ '(org-replace-disputed-keys t)
+ '(org-special-ctrl-a/e t)
+ '(org-special-ctrl-k t)
+ '(org-src-fontify-natively t)
  '(paradox-github-token t)
  '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
