@@ -19,6 +19,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(custom-search-field nil)
  '(dired-dwim-target t)
+ '(eshell-aliases-file "/Users/kaofelix/.emacs.d/eshell-aliases")
  '(flycheck-indication-mode nil)
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
