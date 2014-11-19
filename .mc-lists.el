@@ -6,6 +6,7 @@
         hungry-delete-backward
         hungry-delete-forward
         kill-region
+        org-delete-char
         org-metaleft
         org-metaright
         org-self-insert-command
@@ -23,4 +24,5 @@
         ace-window
         helm-confirm-and-exit-minibuffer
         magit-goto-next-section
+        wgrep-finish-edit
         ))
