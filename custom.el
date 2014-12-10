@@ -35,6 +35,8 @@
  '(helm-locate-command "mdfind %s %s")
  '(helm-quick-update t)
  '(helm-split-window-default-side (quote other))
+ '(helm-split-window-preferred-function (quote split-window-sensibly))
+ '(helm-swoop-split-direction (quote split-window-horizontally))
  '(helm-truncate-lines t)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
