@@ -77,6 +77,8 @@
      ("C-c C-q" . term-pager-toggle)
      ("C-m" . term-send-return)
      ("C-y" . term-paste)
+     ("M-p" . term-send-up)
+     ("M-n" . term-send-down)
      ("M-f" . term-send-forward-word)
      ("M-b" . term-send-backward-word)
      ("M-d" . term-send-forward-kill-word)
