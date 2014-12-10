@@ -28,6 +28,7 @@
 (global-set-key [remap switch-to-buffer] 'helm-mini)
 (global-set-key [remap yank-pop] 'helm-show-kill-ring)
 (global-set-key [remap list-buffers] 'helm-buffers-list)
+(global-set-key [remap tab-to-tab-stop] 'helm-swoop)
 
 (define-key helm-command-map (kbd "h o") 'helm-info-org)
 (define-key helm-command-map (kbd "h l") 'helm-info-elisp)

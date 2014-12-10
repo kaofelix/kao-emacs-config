@@ -25,6 +25,7 @@
 (depends-on "helm-descbinds")
 (depends-on "helm-git-grep")
 (depends-on "helm-projectile")
+(depends-on "helm-swoop")
 (depends-on "highlight-numbers")
 (depends-on "highlight-quoted")
 (depends-on "highlight-symbol")
