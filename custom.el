@@ -65,8 +65,7 @@
  '(projectile-rails-keymap-prefix "")
  '(projectile-switch-project-action (quote helm-projectile-find-file))
  '(register-preview-delay 0)
- '(rspec-use-spring-when-possible nil)
- '(rspec-use-zeus-when-possible nil)
+ '(rspec-use-rake-when-possible nil)
  '(smartparens-global-mode t)
  '(term-bind-key-alist
    (quote
