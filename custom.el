@@ -96,6 +96,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(helm-ff-dotted-directory ((t (:inherit helm-ff-directory :weight bold))))
  '(helm-source-header ((t (:inherit variable-pitch :underline nil :weight semi-bold :height 1.3))))
  '(highlight-numbers-number ((t (:foreground "#d33682"))))
  '(highlight-quoted-symbol ((t (:inherit font-lock-constant-face :weight normal))))
