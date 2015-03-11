@@ -59,6 +59,7 @@
  '(org-special-ctrl-a/e t)
  '(org-special-ctrl-k t)
  '(org-src-fontify-natively t)
+ '(paradox-execute-asynchronously nil)
  '(paradox-github-token t)
  '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
