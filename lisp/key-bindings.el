@@ -77,6 +77,16 @@
 ;; Windmove: Shift+direction
 (windmove-default-keybindings)
 
+;; Vagrant
+(defvar kao/vagrant-map)
+(define-prefix-command 'kao/vagrant-map)
+(define-key global-map (kbd "C-c v") 'kao/vagrant-map)
+(define-key kao/vagrant-map "s" 'vagrant-status)
+(define-key kao/vagrant-map "h" 'vagrant-ssh)
+(define-key kao/vagrant-map "e" 'vagrant-edit)
+(define-key kao/vagrant-map "r" 'vagrant-reload)
+(define-key kao/vagrant-map "p" 'vagrant-provision)
+
 ;; Toggle Map
 (defvar kao/toggle-map)
 (define-prefix-command 'kao/toggle-map)
