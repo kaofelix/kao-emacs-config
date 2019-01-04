@@ -86,6 +86,7 @@
 (define-key kao/vagrant-map "e" 'vagrant-edit)
 (define-key kao/vagrant-map "r" 'vagrant-reload)
 (define-key kao/vagrant-map "p" 'vagrant-provision)
+(define-key kao/vagrant-map "u" 'vagrant-up)
 
 ;; Toggle Map
 (defvar kao/toggle-map)

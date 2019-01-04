@@ -33,12 +33,11 @@
 (mmm-add-mode-ext-class 'html-erb-mode nil 'html-js)
 (mmm-add-mode-ext-class 'html-erb-mode nil 'html-css)
 
-(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . html-erb-mode))
-(add-to-list 'auto-mode-alist '("\\.jst\\.ejs\\'"  . html-erb-mode))
-
-;; projectile rails
+(setq projectile-rails-keymap-prefix (kbd "C-c p C-r"))
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 
+(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . html-erb-mode))
+(add-to-list 'auto-mode-alist '("\\.jst\\.ejs\\'"  . html-erb-mode))
 
 (provide 'setup-ruby)
 ;;; setup-ruby.el ends here

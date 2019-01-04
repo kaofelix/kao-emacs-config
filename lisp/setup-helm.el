@@ -47,14 +47,8 @@
 
 (define-key helm-map (kbd "C-x o") 'do-nothing)
 
-;; helm-projectile hacks
-(let* ((search-action (assoc "Grep in projects `C-s'.  With C-u, recurse" (assoc 'action helm-source-projectile-projects)))
-       (projects-keymap (cdr (assoc 'keymap helm-source-projectile-projects))))
-
-  ;; Make C-j work on helm-projectile-switch-project
-  (fset 'helm-projectile--switch-to-project-action
-        (cdr (assoc "Switch to project" (assoc 'action helm-source-projectile-projects))))
-  (helm-projectile-define-key projects-keymap (kbd "C-j") 'helm-projectile--switch-to-project-action))
+;; disable pre-input
+(setq helm-swoop-pre-input-function (lambda () ""))
 
 (provide 'setup-helm)
 ;;; setup-helm.el ends here

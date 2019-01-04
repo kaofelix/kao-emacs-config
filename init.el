@@ -20,7 +20,7 @@
 (require 'defaults)
 
 ;; Initialize Cask and Pallet
-(require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el")
+(require 'cask "/usr/local/Cellar/cask/0.8.4/cask.el")
 (cask-initialize)
 (require 'pallet)
 (pallet-mode t)
@@ -40,6 +40,9 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+
+(require 'magit)
+
 ;; Load personal packages
 (require 'defuns)
 (require 'key-bindings)
@@ -54,4 +57,5 @@
 (require 'setup-org)
 (require 'setup-helm)
 
+(server-start)
 ;;; init.el ends here

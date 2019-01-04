@@ -67,7 +67,8 @@
 (show-paren-mode t)
 
 ;;; Projectile
-(projectile-global-mode t)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; Visual regexp
 (require 'visual-regexp)
@@ -76,12 +77,20 @@
 ;; if you use multiple-cursors, this is for you:
 (define-key global-map (kbd "C-c m") 'vr/mc-mark)
 
+;; Golden Ratio
+(defun golden-ratio-ace-window (&optional arg)
+    "Advice function to make `golden-ratio' work with `ace-window'.  Ignore ARG."
+    (if golden-ratio-mode
+        (advice-add 'ace-window :after #'golden-ratio)
+      (advice-remove 'ace-window #'golden-ratio)))
+
+(with-eval-after-load 'golden-ratio
+  (advice-add 'golden-ratio-mode :after #'golden-ratio-ace-window))
+
 ;; Man mode
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
 ;; Clean modeline
-(with-eval-after-load 'magit
-  (diminish 'magit-auto-revert-mode))
 (with-eval-after-load 'rainbow-mode
   (diminish 'rainbow-mode))
 (with-eval-after-load 'company
@@ -100,6 +109,9 @@
                 (format "\\(%s\\)\\|\\(%s\\)"
                         vc-ignore-dir-regexp
                         tramp-file-name-regexp))
+
+;; vagrant tramp
+(eval-after-load 'tramp '(vagrant-tramp-enable))
 
 ;; Prodigy
 (defvar prodigy-file "~/.prodigy-services.el")

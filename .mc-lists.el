@@ -3,8 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        helm-M-x
+        hippie-expand-no-case-fold
         hungry-delete-backward
         hungry-delete-forward
+        isearch-forward-regexp
+        isearch-printing-char
+        iy-go-to-char--command
+        kao/move-beginning-of-line
         kill-region
         org-delete-char
         org-metaleft
@@ -14,6 +20,7 @@
         sp-backward-delete-char
         sp-backward-kill-word
         sp-delete-char
+        sp-forward-slurp-sexp
         sp-kill-sexp
         sp-kill-word
         yas-expand

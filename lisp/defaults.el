@@ -15,7 +15,7 @@
 (blink-cursor-mode -1)
 (setq ring-bell-function 'ignore)
 (setq-default indicate-empty-lines t)
-(set-frame-font "Source Code Pro-14" t t)
+(set-frame-font "Source Code Pro-13" t t)
 
 ;; Setup caches, autosave, and backups
 (defvar cache-and-saves-dir (expand-file-name "caches-and-saves" user-emacs-directory))
