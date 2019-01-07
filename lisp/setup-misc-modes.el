@@ -113,16 +113,5 @@
 ;; vagrant tramp
 (eval-after-load 'tramp '(vagrant-tramp-enable))
 
-;; Prodigy
-(defvar prodigy-file "~/.prodigy-services.el")
-
-(defun reload-prodigy ()
-  "Reload prodigy file."
-  (interactive)
-  (when (f-exists? prodigy-file)
-    (load prodigy-file)))
-
-(reload-prodigy)
-
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here

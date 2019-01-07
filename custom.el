@@ -66,7 +66,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv ace-window dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column vagrant-tramp vagrant use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails prodigy popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff)))
+    (gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv ace-window dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column vagrant-tramp vagrant use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff)))
  '(paradox-execute-asynchronously nil)
  '(paradox-github-token t)
  '(projectile-completion-system (quote helm))

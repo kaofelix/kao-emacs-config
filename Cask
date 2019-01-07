@@ -73,7 +73,6 @@
 (depends-on "pcre2el")
 (depends-on "pkg-info")
 (depends-on "popup")
-(depends-on "prodigy")
 (depends-on "projectile")
 (depends-on "projectile-rails")
 (depends-on "pythonic")
