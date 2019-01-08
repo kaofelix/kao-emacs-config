@@ -10,45 +10,62 @@
 ;;
 
 ;;; Code:
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(require 'helm-config)
+(use-package shackle
+  :init
+  (shackle-mode 1))
 
-;; Projectile integration
-(require 'helm-projectile)
-(helm-projectile-on)
-(helm-mode 1)
-(diminish 'helm-mode)
+(use-package helm
+  :after shackle
+  :diminish helm-mode
 
-;; descbinds
-(require 'helm-descbinds)
-(helm-descbinds-mode)
+  :init
+  (require 'helm-config)
+  (helm-mode 1)
 
-(global-set-key [remap execute-extended-command] 'helm-M-x)
-(global-set-key [remap find-file] 'helm-find-files)
-(global-set-key [remap switch-to-buffer] 'helm-mini)
-(global-set-key [remap yank-pop] 'helm-show-kill-ring)
-(global-set-key [remap list-buffers] 'helm-buffers-list)
-(global-set-key [remap tab-to-tab-stop] 'helm-swoop)
+  :config
+  ;; Display helm nicely
+  (defun helm-hide-minibuffer-maybe ()
+    "Hides minibuffer when `helm-echo-input-in-header-line' is true."
+    (when (with-helm-buffer helm-echo-input-in-header-line)
+      (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+        (overlay-put ov 'window (selected-window))
+        (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
+                                `(:background ,bg-color :foreground ,bg-color)))
+        (setq-local cursor-type nil))))
+  (setq helm-echo-input-in-header-line t)
+  (setq helm-display-function 'pop-to-buffer)
+  (setq shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.6)))
+  (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
 
-(define-key helm-command-map (kbd "h o") 'helm-info-org)
-(define-key helm-command-map (kbd "h l") 'helm-info-elisp)
-(define-key helm-command-map (kbd "o") 'helm-occur)
-(define-key helm-command-map (kbd "SPC") 'helm-all-mark-rings)
+  (setq helm-swoop-pre-input-function (lambda () ""))
 
-;; git grep
-(define-key helm-command-map (kbd "g") 'helm-git-grep)
-(define-key isearch-mode-map (kbd "C-c g") 'helm-git-grep-from-isearch)
-(define-key helm-map (kbd "C-c g") 'helm-git-grep-from-helm)
+  :bind (([remap execute-extended-command] . helm-M-x)
+         ([remap find-file] . helm-find-files)
+         ([remap switch-to-buffer] . helm-mini)
+         ([remap yank-pop] . helm-show-kill-ring)
+         ([remap list-buffers] . helm-buffers-list)
+         ([remap tab-to-tab-stop] . helm-swoop)
+         ("C-c h" . helm-command-prefix)
+         :map helm-map
+         ("C-c g" . helm-git-grep-from-helm)
+         :map helm-command-map
+         ("h o" . helm-info-org)
+         ("h l" . helm-info-elisp)
+         ("o" . helm-occur)
+         ("SPC" . helm-all-mark-rings)
+         ("g" . helm-git-grep)
+         :map isearch-mode-map
+         ("C-c g" . helm-git-grep-from-isearch)))
 
-;; Shadow ace-window binding when helm is open
-(defun do-nothing()
-  "Command that does nothing."
-  (interactive))
+(use-package helm-projectile
+  :after (helm)
+  :init
+  (helm-projectile-on))
 
-(define-key helm-map (kbd "C-x o") 'do-nothing)
-
-;; disable pre-input
-(setq helm-swoop-pre-input-function (lambda () ""))
+(use-package helm-descbinds
+  :after (helm)
+  :init
+  (helm-descbinds-mode))
 
 (provide 'setup-helm)
 ;;; setup-helm.el ends here
