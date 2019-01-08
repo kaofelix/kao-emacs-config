@@ -24,5 +24,14 @@
 ;; auto-modes
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
+(defface emacs-lisp-keyword-symbol-face
+  '((t :inherit font-lock-variable-name-face))
+  "Face to highlight Lisp keyword symbols (starting with :)."
+  :group 'keyword-symbol)
+
+(font-lock-add-keywords
+ 'emacs-lisp-mode
+ '((":\\(\\sw\\|\\s_\\|\\\\.\\)+" . 'emacs-lisp-keyword-symbol-face)))
+
 (provide 'setup-emacs-lisp)
 ;;; setup-emacs-lisp.el ends here
