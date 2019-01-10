@@ -8,6 +8,8 @@
  '(ahs-inhibit-face-list
    (quote
     (font-lock-comment-delimiter-face font-lock-comment-face font-lock-doc-face font-lock-doc-string-face font-lock-string-face font-lock-keyword-face)))
+ '(ansi-color-names-vector
+   ["#3c3836" "#fb4933" "#b8bb26" "#fabd2f" "#83a598" "#d3869b" "#8ec07c" "#ebdbb2"])
  '(auto-revert-check-vc-info t)
  '(browse-kill-ring-display-duplicates nil)
  '(browse-kill-ring-highlight-current-entry t)
@@ -16,7 +18,7 @@
  '(company-idle-delay 0)
  '(custom-safe-themes
    (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+    ("595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "a622aaf6377fe1cd14e4298497b7b2cae2efc9e0ce362dade3a58c16c89e089c" default)))
  '(custom-search-field nil)
  '(dired-dwim-target t)
  '(elpy-modules
@@ -39,6 +41,7 @@
  '(helm-swoop-speed-or-color t)
  '(helm-swoop-split-direction (quote split-window-horizontally))
  '(helm-truncate-lines t t)
+ '(helm-window-prefer-horizontal-split t)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice "~/org/notes.org")
@@ -64,9 +67,10 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv ace-window dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column vagrant-tramp vagrant use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff)))
+    (gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv ace-window dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column vagrant-tramp vagrant use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell drag-stuff)))
  '(paradox-execute-asynchronously nil)
  '(paradox-github-token t)
+ '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#32302f")))
  '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
  '(projectile-rails-keymap-prefix "" t)
@@ -80,7 +84,8 @@
  '(rspec-vagrant-cwd "/vagrant/transervicos/")
  '(safe-local-variable-values
    (quote
-    ((pyvenv-activate . "/Users/kaofelix/Library/Caches/pypoetry/virtualenvs/op1-py3.")
+    ((elpy-test-runner quote elpy-test-pytest-runner)
+     (pyvenv-activate . "/Users/kaofelix/Library/Caches/pypoetry/virtualenvs/op1-py3.")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect" "angular")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect"))))
  '(smartparens-global-mode t)
@@ -114,8 +119,6 @@
  ;; If there is more than one, they won't work right.
  '(helm-ff-dotted-directory ((t (:inherit helm-ff-directory :weight bold))))
  '(helm-source-header ((t (:inherit variable-pitch :underline nil :weight semi-bold :height 1.3))))
- '(highlight-numbers-number ((t (:foreground "#d33682"))))
- '(highlight-quoted-symbol ((t (:inherit font-lock-constant-face :weight normal))))
  '(org-level-1 ((t (:inherit default :height 1.1))))
  '(org-level-2 ((t (:inherit default :height 1.0))))
  '(org-level-3 ((t (:inherit default :height 1.0))))
@@ -124,5 +127,4 @@
  '(org-level-6 ((t (:inherit default))))
  '(org-level-7 ((t (:inherit default))))
  '(org-level-8 ((t (:inherit default))))
- '(rbenv-active-ruby-face ((t (:foreground "#dc322f" :weight normal))))
  '(variable-pitch ((t (:family "Source Sans Pro")))))

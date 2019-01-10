@@ -36,6 +36,7 @@
 (depends-on "gitignore-templates")
 (depends-on "golden-ratio")
 (depends-on "grunt")
+(depends-on "gruvbox-theme")
 (depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "helm-ag")
