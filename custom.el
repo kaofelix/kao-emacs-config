@@ -45,7 +45,6 @@
  '(helm-window-prefer-horizontal-split t)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
- '(initial-buffer-choice "~/org/notes.org")
  '(locate-command "mdfind")
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)

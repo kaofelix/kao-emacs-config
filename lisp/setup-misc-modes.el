@@ -17,6 +17,8 @@
 ;; Compile packages asynchronously
 (require 'async-bytecomp)
 
+(desktop-save-mode 1)
+
 ;; dtrt-indent
 (dtrt-indent-mode 1)
 

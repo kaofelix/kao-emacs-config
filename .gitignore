@@ -7,3 +7,4 @@ var/
 /elpa/
 /helm-adaptive-history
 .org-id-locations
+.emacs.desktop*
