@@ -15,5 +15,9 @@
 
 (add-hook 'org-mode-hook 'auto-fill-mode)
 
+(use-package org-mobile
+  :config
+  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg/"))
+
 (provide 'setup-org)
 ;;; setup-org.el ends here
