@@ -25,6 +25,7 @@
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-flymake elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
  '(eshell-aliases-file "/Users/kaofelix/.emacs.d/eshell-aliases")
+ '(exec-path-from-shell-arguments (quote ("-l")))
  '(flycheck-indication-mode nil)
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
