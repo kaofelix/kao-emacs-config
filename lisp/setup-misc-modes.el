@@ -29,6 +29,10 @@
   :init
   (smart-mode-line-enable))
 
+(use-package which-key
+  :init
+  (which-key-mode t))
+
 ;; Smart parens
 (require 'smartparens-config)
 
