@@ -86,6 +86,7 @@
 (depends-on "shackle")
 (depends-on "shut-up")
 (depends-on "slim-mode")
+(depends-on "smart-mode-line")
 (depends-on "smartparens")
 (depends-on "sml-mode")
 (depends-on "solarized-theme")

@@ -25,6 +25,10 @@
 ;; Paren face
 (global-paren-face-mode)
 
+(use-package smart-mode-line
+  :init
+  (smart-mode-line-enable))
+
 ;; Smart parens
 (require 'smartparens-config)
 
