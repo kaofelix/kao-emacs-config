@@ -92,6 +92,7 @@
 (depends-on "solarized-theme")
 (depends-on "spinner")
 (depends-on "toml-mode")
+(depends-on "transpose-frame")
 (depends-on "undo-tree")
 (depends-on "use-package")
 (depends-on "vagrant")
