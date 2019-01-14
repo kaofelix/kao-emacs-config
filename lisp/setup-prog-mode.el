@@ -45,6 +45,7 @@
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'drag-stuff-mode)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'prog-mode-hook 'prettify-symbols-mode)
 
 (provide 'setup-prog-mode)
 ;;; setup-prog-mode.el ends here
