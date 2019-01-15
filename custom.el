@@ -27,6 +27,7 @@
  '(eshell-aliases-file "/Users/kaofelix/.emacs.d/eshell-aliases")
  '(exec-path-from-shell-arguments (quote ("-l")))
  '(flycheck-indication-mode nil)
+ '(git-commit-post-finish-hook (quote (git-gutter:update-all-windows)))
  '(global-auto-revert-mode t)
  '(global-git-gutter-mode t)
  '(global-rbenv-mode nil)
