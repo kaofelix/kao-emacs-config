@@ -57,6 +57,7 @@
 (require 'setup-javascript)
 (require 'setup-org)
 (require 'setup-helm)
+(require 'setup-terraform)
 
 (server-start)
 ;;; init.el ends here
