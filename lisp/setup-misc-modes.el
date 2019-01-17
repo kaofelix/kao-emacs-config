@@ -87,16 +87,6 @@
 ;; if you use multiple-cursors, this is for you:
 (define-key global-map (kbd "C-c m") 'vr/mc-mark)
 
-;; Golden Ratio
-(defun golden-ratio-ace-window (&optional arg)
-    "Advice function to make `golden-ratio' work with `ace-window'.  Ignore ARG."
-    (if golden-ratio-mode
-        (advice-add 'ace-window :after #'golden-ratio)
-      (advice-remove 'ace-window #'golden-ratio)))
-
-(with-eval-after-load 'golden-ratio
-  (advice-add 'golden-ratio-mode :after #'golden-ratio-ace-window))
-
 ;; Man mode
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
@@ -107,8 +97,6 @@
   (diminish 'company-mode))
 (with-eval-after-load 'yasnippet
   (diminish 'yas-minor-mode))
-(with-eval-after-load 'drag-stuff
-  (diminish 'drag-stuff-mode))
 
 (diminish 'undo-tree-mode)
 (diminish 'smartparens-mode)
@@ -129,9 +117,6 @@
                 (format "\\(%s\\)\\|\\(%s\\)"
                         vc-ignore-dir-regexp
                         tramp-file-name-regexp))
-
-;; vagrant tramp
-(eval-after-load 'tramp '(vagrant-tramp-enable))
 
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here

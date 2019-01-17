@@ -16,31 +16,14 @@
 (setq mac-option-modifier 'meta)
 (setq mac-right-option-modifier nil)
 
-;; Magit
+
 (global-set-key (kbd "C-c g") 'magit-status-project-dwim)
-
-;; eshell
 (global-set-key (kbd "C-c e") 'eshell)
-
-;;; Duplicate line
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
-
-;; smarter move-beginning-of-line
 (global-set-key [remap move-beginning-of-line] 'kao/move-beginning-of-line)
-
-;; Ace Jump
 (global-set-key (kbd "C-;") 'ace-jump-mode)
-
-;; go to char
 (global-set-key (kbd "s-;") 'iy-go-up-to-char)
-
-;; Ace Window
-;; (global-set-key [remap other-window] 'ace-window)
-
-;; Comment DWIM 2
 (global-set-key [remap comment-dwim] 'comment-dwim-2)
-
-;; cycle-spacing instead of just-one-space
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
 ;; C-h for backspace
@@ -76,17 +59,6 @@
 
 ;; Windmove: Shift+direction
 (windmove-default-keybindings)
-
-;; Vagrant
-(defvar kao/vagrant-map)
-(define-prefix-command 'kao/vagrant-map)
-(define-key global-map (kbd "C-c v") 'kao/vagrant-map)
-(define-key kao/vagrant-map "s" 'vagrant-status)
-(define-key kao/vagrant-map "h" 'vagrant-ssh)
-(define-key kao/vagrant-map "e" 'vagrant-edit)
-(define-key kao/vagrant-map "r" 'vagrant-reload)
-(define-key kao/vagrant-map "p" 'vagrant-provision)
-(define-key kao/vagrant-map "u" 'vagrant-up)
 
 ;; Toggle Map
 (defvar kao/toggle-map)
