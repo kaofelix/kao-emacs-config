@@ -44,6 +44,8 @@
  '(helm-swoop-split-direction (quote split-window-horizontally))
  '(helm-truncate-lines t t)
  '(helm-window-prefer-horizontal-split t)
+ '(helm-yas-display-key-on-candidate t)
+ '(helm-yas-display-msg-after-complete nil)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(locate-command "mdfind")
@@ -70,7 +72,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (cider company ivy projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
+    (helm-c-yasnippet cider company ivy projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
  '(paradox-execute-asynchronously nil)
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#32302f")))

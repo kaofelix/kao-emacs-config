@@ -39,6 +39,7 @@
 (depends-on "haskell-mode")
 (depends-on "helm")
 (depends-on "helm-ag")
+(depends-on "helm-c-yasnippet")
 (depends-on "helm-core")
 (depends-on "helm-descbinds")
 (depends-on "helm-git-grep")

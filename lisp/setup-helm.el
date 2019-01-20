@@ -67,5 +67,8 @@
   :init
   (helm-descbinds-mode))
 
+(use-package helm-c-yasnippet
+  :bind ("C-c y" . helm-yas-complete))
+
 (provide 'setup-helm)
 ;;; setup-helm.el ends here
