@@ -58,6 +58,7 @@
 (require 'setup-org)
 (require 'setup-helm)
 (require 'setup-terraform)
+(require 'setup-rust)
 
 (server-start)
 ;;; init.el ends here
