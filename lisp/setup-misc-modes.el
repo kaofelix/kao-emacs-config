@@ -90,13 +90,18 @@
 ;; Man mode
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
-;; Clean modeline
 (with-eval-after-load 'rainbow-mode
   (diminish 'rainbow-mode))
-(with-eval-after-load 'company
-  (diminish 'company-mode))
+
 (with-eval-after-load 'yasnippet
   (diminish 'yas-minor-mode))
+
+(use-package company
+  :diminish company-mode
+  :bind
+  (("C-c C-M-i" . #'completion-at-point)
+   :map company-mode-map
+   ("C-M-i" . #'company-complete-common)))
 
 (diminish 'smartparens-mode)
 
