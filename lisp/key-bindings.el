@@ -27,8 +27,11 @@
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
 ;; C-h for backspace
+(setq help-char nil)
+(global-unset-key [?\C-h])
 (define-key key-translation-map [?\C-h] [?\C-?])
 (define-key key-translation-map [?\M-\C-h] [?\M-\C-?])
+(global-set-key (kbd "C-?") 'help-command)
 
 ;;; Expand region
 (global-set-key (kbd "C-=") 'er/expand-region)

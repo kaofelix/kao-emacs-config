@@ -98,8 +98,13 @@
 (with-eval-after-load 'yasnippet
   (diminish 'yas-minor-mode))
 
-(diminish 'undo-tree-mode)
 (diminish 'smartparens-mode)
+
+(use-package undo-tree
+  :diminish undo-tree-mode
+  :config
+  (define-key undo-tree-map (kbd "C-?") nil)
+  (define-key undo-tree-map (kbd "C-/") nil))
 
 (use-package git-gutter
   :diminish git-gutter-mode
