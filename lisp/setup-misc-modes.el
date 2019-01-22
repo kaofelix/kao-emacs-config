@@ -101,7 +101,10 @@
   :bind
   (("C-c C-M-i" . #'completion-at-point)
    :map company-mode-map
-   ("C-M-i" . #'company-complete-common)))
+   ("C-M-i" . #'company-complete-common)
+   :map company-active-map
+   ("C-n" . #'company-select-next-or-abort)
+   ("C-p" . #'company-select-previous-or-abort)))
 
 (diminish 'smartparens-mode)
 
