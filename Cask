@@ -18,6 +18,7 @@
 (depends-on "dash")
 (depends-on "diminish")
 (depends-on "discover")
+(depends-on "dockerfile-mode")
 (depends-on "dtrt-indent")
 (depends-on "elisp-slime-nav")
 (depends-on "elpy")
