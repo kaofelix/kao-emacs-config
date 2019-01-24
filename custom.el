@@ -72,7 +72,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (dockerfile-mode nginx-mode company-nginx helm-c-yasnippet cider company ivy projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
+    (neotree helm-c-yasnippet cider company projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
  '(paradox-execute-asynchronously nil)
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#32302f")))
@@ -94,6 +94,7 @@
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect" "angular")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect"))))
  '(smartparens-global-mode t)
+ '(sp-navigate-interactive-always-progress-point t)
  '(term-bind-key-alist
    (quote
     (("C-c C-c" . term-interrupt-subjob)
@@ -133,4 +134,6 @@
  '(org-level-6 ((t (:inherit default))))
  '(org-level-7 ((t (:inherit default))))
  '(org-level-8 ((t (:inherit default))))
+ '(sp-show-pair-match-face ((t (:inherit show-paren-match))))
+ '(sp-show-pair-mismatch-face ((t (:inherit show-paren-mismatch))))
  '(variable-pitch ((t (:family "Source Sans Pro")))))
