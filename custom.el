@@ -53,6 +53,10 @@
  '(magit-use-overlays nil)
  '(mmm-parse-when-idle t)
  '(multi-term-program-switches "--login")
+ '(neo-default-system-application "open")
+ '(neo-hide-cursor t)
+ '(neo-window-fixed-size nil)
+ '(neo-window-width 35)
  '(org-agenda-files (quote ("~/org/notes.org")))
  '(org-capture-templates
    (quote

@@ -113,5 +113,13 @@
   ("C-x v r" . git-gutter:revert-hunk)
   ("C-x v SPC" . git-gutter:mark-hunk))
 
+(use-package neotree
+  :config
+  (setq neo-theme 'nerd)
+  (setq neo-smart-open t)
+  (setq neo-show-hidden-files t)
+  :bind
+  (:map kao/toggle-map ("t" . #'neotree-toggle)))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
