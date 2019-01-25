@@ -68,6 +68,7 @@
 (depends-on "neotree")
 (depends-on "nginx-mode")
 (depends-on "org")
+(depends-on "org-tree-slide")
 (depends-on "pallet")
 (depends-on "paradox")
 (depends-on "paren-face")
