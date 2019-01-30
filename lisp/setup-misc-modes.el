@@ -104,13 +104,14 @@
 (use-package git-gutter
   :diminish git-gutter-mode
   :bind
-  ("C-x C-g" . git-gutter)
-  ("C-x v =" . git-gutter:popup-hunk)
-  ("C-x p" . git-gutter:previous-hunk)
-  ("C-x n" . git-gutter:next-hunk)
-  ("C-x v s" . git-gutter:stage-hunk)
-  ("C-x v r" . git-gutter:revert-hunk)
-  ("C-x v SPC" . git-gutter:mark-hunk))
+  ("C-x C-g" . #'git-gutter)
+  ("C-x v =" . #'git-gutter:popup-hunk)
+  ("C-x p" . #'git-gutter:previous-hunk)
+  ("C-x n" . #'git-gutter:next-hunk)
+  ("C-x v s" . #'git-gutter:stage-hunk)
+  ("C-x v r" . #'git-gutter:revert-hunk)
+  ("C-x v R" . #'vc-revert)
+  ("C-x v SPC" . #'git-gutter:mark-hunk))
 
 (use-package neotree
   :config
