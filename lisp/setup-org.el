@@ -10,9 +10,14 @@
 ;;
 
 ;;; Code:
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c l") 'org-store-link)
-(add-hook 'org-mode-hook 'auto-fill-mode)
+(use-package org
+  :ensure org-bullets
+  :config
+  (add-hook 'org-mode-hook 'auto-fill-mode)
+  (add-hook 'org-mode-hook 'org-bullets-mode)
+  :bind
+  ("C-c c" . #'org-capture)
+  ("C-c l" . #'org-store-link))
 
 (use-package org-mobile
   :config
