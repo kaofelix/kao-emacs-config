@@ -41,6 +41,7 @@
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
+(add-hook 'prog-mode-hook 'dtrt-indent-mode)
 
 (provide 'setup-prog-mode)
 ;;; setup-prog-mode.el ends here

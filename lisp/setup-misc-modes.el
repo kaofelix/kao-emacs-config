@@ -18,7 +18,6 @@
 (require 'async-bytecomp)
 
 (desktop-save-mode 1)
-(dtrt-indent-mode 1)
 (global-paren-face-mode)
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
