@@ -1,5 +1,8 @@
 .cask/
 var/
+/auto-save-list/
+/eshell/
+recentf
 /projectile-bookmarks.eld
 /caches-and-saves/
 /projectile.cache
