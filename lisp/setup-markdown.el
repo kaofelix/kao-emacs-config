@@ -10,7 +10,15 @@
 ;;
 
 ;;; Code:
-(add-hook 'markdown-mode-hook 'auto-fill-mode)
+(use-package markdown-mode
+  :commands (markdown-mode gfm-mode)
+  :init  (setq markdown-command "multimarkdown")
+  :config
+  (add-hook 'markdown-mode-hook #'auto-fill-mode)
+  (add-hook 'markdown-mode-hook #'orgtbl-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
 
 (provide 'setup-markdown)
 ;;; setup-markdown.el ends here

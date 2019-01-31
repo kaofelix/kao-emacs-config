@@ -52,6 +52,7 @@
 (require 'setup-prog-mode)
 (require 'setup-emacs-lisp)
 ;; (require 'setup-ruby)
+(require 'setup-markdown)
 (require 'setup-python)
 (require 'setup-sml)
 (require 'setup-javascript)
