@@ -79,7 +79,14 @@
               (helm-do-ag (or dir (projectile-project-root)) (car (projectile-parse-dirconfig-file))))
           (error "You're not in a project")))
 
-  (fset #'helm-projectile-grep #'kao/helm-projectile-ag))
+  (defun kao/back-to-helm-projectile-switch-project ()
+    (interactive)
+    (helm-run-after-exit #'helm-projectile-switch-project))
+
+  (fset #'helm-projectile-grep #'kao/helm-projectile-ag)
+  :bind
+  (:map helm-projectile-find-file-map
+   ("C-l" . #'kao/back-to-helm-projectile-switch-project)))
 
 (use-package helm-descbinds
   :after (helm)
