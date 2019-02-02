@@ -42,26 +42,26 @@
   (show-smartparens-global-mode t)
   :bind
   (:map smartparens-mode-map
-        ("C-M-f" . #'sp-forward-sexp)
-        ("C-M-b" . #'sp-backward-sexp)
-        ("C-M-n" . #'sp-next-sexp)
-        ("C-M-p" . #'sp-previous-sexp)
-        ("C-M-u" . #'sp-backward-up-sexp)
-        ("C-M-d" . #'sp-down-sexp)
-        ("C-M-a" . #'sp-beginning-of-sexp)
-        ("C-M-e" . #'sp-end-of-sexp)
-        ("C-M-k" . #'sp-kill-sexp)
-        ("C-M-w" . #'sp-copy-sexp)
-        ("M-s" . #'sp-splice-sexp) ;; depth-changing commands
-        ("M-S" . #'sp-split-sexp)  ;; depth-changing commands
-        ("M-(" . #'kao/wrap-with-round-brackets)
-        ("C-)" . #'sp-forward-slurp-sexp) ;; barf/slurp
-        ("C-}" . #'sp-forward-barf-sexp)
-        ("C-(" . #'sp-backward-slurp-sexp)
-        ("C-{" . #'sp-backward-barf-sexp)
-        ("C-M-]" . #'sp-select-next-thing)
-        ("M-F" . #'sp-forward-symbol)
-        ("M-B" . #'sp-backward-symbol)))
+   ("C-M-f" . #'sp-forward-sexp)
+   ("C-M-b" . #'sp-backward-sexp)
+   ("C-M-n" . #'sp-next-sexp)
+   ("C-M-p" . #'sp-previous-sexp)
+   ("C-M-u" . #'sp-backward-up-sexp)
+   ("C-M-d" . #'sp-down-sexp)
+   ("C-M-a" . #'sp-beginning-of-sexp)
+   ("C-M-e" . #'sp-end-of-sexp)
+   ("C-M-k" . #'sp-kill-sexp)
+   ("C-M-w" . #'sp-copy-sexp)
+   ("M-s" . #'sp-splice-sexp) ;; depth-changing commands
+   ("M-S" . #'sp-split-sexp)  ;; depth-changing commands
+   ("M-(" . #'kao/wrap-with-round-brackets)
+   ("C-)" . #'sp-forward-slurp-sexp) ;; barf/slurp
+   ("C-}" . #'sp-forward-barf-sexp)
+   ("C-(" . #'sp-backward-slurp-sexp)
+   ("C-{" . #'sp-backward-barf-sexp)
+   ("C-M-]" . #'sp-select-next-thing)
+   ("M-F" . #'sp-forward-symbol)
+   ("M-B" . #'sp-backward-symbol)))
 
 ;;; Projectile
 (use-package projectile
@@ -69,7 +69,9 @@
   (projectile-mode +1)
   :bind
   (:map projectile-mode-map
-        ("C-c p" . #'projectile-command-map)))
+   ("C-c p" . #'projectile-command-map)
+   :map projectile-command-map
+   ("s" . helm-projectile-ag)))
 
 ;; Visual regexp
 (use-package visual-regexp
@@ -98,8 +100,8 @@
   :diminish undo-tree-mode
   :bind
   (:map undo-tree-map
-        ("C-?" . nil)
-        ("C-/" . nil)))
+   ("C-?" . nil)
+   ("C-/" . nil)))
 
 (use-package git-gutter
   :diminish git-gutter-mode

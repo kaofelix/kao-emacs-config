@@ -20,6 +20,7 @@
 (depends-on "discover")
 (depends-on "dockerfile-mode")
 (depends-on "dtrt-indent")
+(depends-on "el-patch")
 (depends-on "elisp-slime-nav")
 (depends-on "elpy")
 (depends-on "epl")
