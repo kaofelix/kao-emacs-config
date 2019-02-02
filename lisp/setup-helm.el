@@ -57,10 +57,29 @@
          :map isearch-mode-map
          ("C-c g" . helm-git-grep-from-isearch)))
 
+(use-package helm-ag)
+
 (use-package helm-projectile
-  :after (helm)
+  :after (helm helm-ag)
   :init
-  (helm-projectile-on))
+  (helm-projectile-on)
+  :config
+  (defun kao/helm-projectile-ag (&optional dir)
+    "A helm-projectile-ag function suitable for being used as an action."
+    (interactive)
+    (if (projectile-project-p)
+            (let* ((grep-find-ignored-files (cl-union (projectile-ignored-files-rel) grep-find-ignored-files))
+                   (grep-find-ignored-directories (cl-union (projectile-ignored-directories-rel) grep-find-ignored-directories))
+                   (ignored (mapconcat (lambda (i)
+                                         (concat "--ignore " i))
+                                       (append grep-find-ignored-files grep-find-ignored-directories (cadr (projectile-parse-dirconfig-file)))
+                                       " "))
+                   (helm-ag-base-command (concat helm-ag-base-command " " ignored))
+                   (current-prefix-arg nil))
+              (helm-do-ag (or dir (projectile-project-root)) (car (projectile-parse-dirconfig-file))))
+          (error "You're not in a project")))
+
+  (fset #'helm-projectile-grep #'kao/helm-projectile-ag))
 
 (use-package helm-descbinds
   :after (helm)
