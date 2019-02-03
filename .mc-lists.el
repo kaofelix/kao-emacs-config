@@ -20,9 +20,11 @@
         sp-backward-delete-char
         sp-backward-kill-word
         sp-delete-char
+        sp-forward-sexp
         sp-forward-slurp-sexp
         sp-kill-sexp
         sp-kill-word
+        sp-splice-sexp
         yas-expand
         ))
 
