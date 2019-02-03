@@ -123,5 +123,11 @@
   :bind
   (:map kao/toggle-map ("t" . #'neotree-toggle)))
 
+(use-package avy
+  :config
+  (avy-setup-default)
+  :bind
+  (("C-;" . #'avy-goto-word-or-subword-1)))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here

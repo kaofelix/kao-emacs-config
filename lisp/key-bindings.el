@@ -21,8 +21,6 @@
 (global-set-key (kbd "C-c e") 'eshell)
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
 (global-set-key [remap move-beginning-of-line] 'kao/move-beginning-of-line)
-(global-set-key (kbd "C-;") 'ace-jump-mode)
-(global-set-key (kbd "s-;") 'iy-go-up-to-char)
 (global-set-key [remap comment-dwim] 'comment-dwim-2)
 (global-set-key [remap just-one-space] 'cycle-spacing)
 

@@ -11,6 +11,7 @@
  '(ansi-color-names-vector
    ["#3c3836" "#fb4933" "#b8bb26" "#fabd2f" "#83a598" "#d3869b" "#8ec07c" "#ebdbb2"])
  '(auto-revert-check-vc-info t)
+ '(avy-background t)
  '(browse-kill-ring-display-duplicates nil)
  '(browse-kill-ring-highlight-current-entry t)
  '(browse-kill-ring-highlight-inserted-item (quote pulse))
@@ -77,7 +78,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (el-patch org-bullets org-tree-slide neotree helm-c-yasnippet cider company projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
+    (avy el-patch org-bullets org-tree-slide neotree helm-c-yasnippet cider company projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet nyan-mode multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
  '(paradox-execute-asynchronously nil)
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#32302f")))
@@ -129,6 +130,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(avy-lead-face ((t (:inherit font-lock-keyword-face))))
+ '(avy-lead-face-0 ((t (:inherit font-lock-keyword-face))))
  '(helm-ff-dotted-directory ((t (:inherit helm-ff-directory :weight bold))))
  '(helm-source-header ((t (:inherit variable-pitch :underline nil :weight semi-bold :height 1.3))))
  '(helm-swoop-line-number-face ((t (:inherit line-number))))

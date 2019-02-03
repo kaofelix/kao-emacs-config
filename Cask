@@ -1,9 +1,9 @@
 (source gnu)
 (source melpa)
 
-(depends-on "ace-jump-mode")
 (depends-on "ag")
 (depends-on "async")
+(depends-on "avy")
 (depends-on "browse-at-remote")
 (depends-on "browse-kill-ring")
 (depends-on "cargo")
@@ -54,7 +54,6 @@
 (depends-on "hydra")
 (depends-on "ido-completing-read+")
 (depends-on "inf-ruby")
-(depends-on "iy-go-to-char")
 (depends-on "js2-mode")
 (depends-on "js2-refactor")
 (depends-on "json-reformat")
