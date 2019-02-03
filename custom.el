@@ -42,6 +42,7 @@
  '(helm-quick-update t)
  '(helm-swoop-speed-or-color t)
  '(helm-swoop-split-direction (quote split-window-horizontally))
+ '(helm-swoop-use-line-number-face t)
  '(helm-truncate-lines t t)
  '(helm-window-prefer-horizontal-split t)
  '(helm-yas-display-key-on-candidate t)
@@ -130,6 +131,10 @@
  ;; If there is more than one, they won't work right.
  '(helm-ff-dotted-directory ((t (:inherit helm-ff-directory :weight bold))))
  '(helm-source-header ((t (:inherit variable-pitch :underline nil :weight semi-bold :height 1.3))))
+ '(helm-swoop-line-number-face ((t (:inherit line-number))))
+ '(helm-swoop-target-line-block-face ((t (:inherit helm-swoop-target-line-face))))
+ '(helm-swoop-target-line-face ((t (:inherit highlight))))
+ '(helm-swoop-target-word-face ((t (:inherit lazy-highlight))))
  '(org-level-1 ((t (:inherit default :height 1.1))))
  '(org-level-2 ((t (:inherit default :height 1.0))))
  '(org-level-3 ((t (:inherit default :height 1.0))))

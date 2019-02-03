@@ -36,9 +36,6 @@
   (setq helm-display-function 'pop-to-buffer)
   (setq shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.6)))
   (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
-
-  (setq helm-swoop-pre-input-function (lambda () ""))
-
   :bind (([remap execute-extended-command] . helm-M-x)
          ([remap find-file] . helm-find-files)
          ([remap switch-to-buffer] . helm-mini)
@@ -57,7 +54,11 @@
          :map isearch-mode-map
          ("C-c g" . helm-git-grep-from-isearch)))
 
-(use-package helm-ag)
+(use-package helm-ag
+  :after (helm))
+
+(use-package helm-swoop
+  :after (helm))
 
 (use-package helm-projectile
   :after (helm helm-ag)
