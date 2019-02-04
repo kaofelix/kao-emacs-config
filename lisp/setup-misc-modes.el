@@ -121,7 +121,8 @@
   (setq neo-smart-open t)
   (setq neo-show-hidden-files t)
   :bind
-  (:map kao/toggle-map ("t" . #'neotree-toggle)))
+  (:map kao/toggle-map
+   ("t" . #'neotree-toggle)))
 
 (use-package avy
   :config
