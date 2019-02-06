@@ -130,5 +130,9 @@
   :bind
   (("C-;" . #'avy-goto-word-or-subword-1)))
 
+(use-package docker
+  :bind
+  ("H-d" . 'docker))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here

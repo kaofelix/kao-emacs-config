@@ -18,6 +18,7 @@
 (depends-on "dash")
 (depends-on "diminish")
 (depends-on "discover")
+(depends-on "docker")
 (depends-on "dockerfile-mode")
 (depends-on "dtrt-indent")
 (depends-on "el-patch")
