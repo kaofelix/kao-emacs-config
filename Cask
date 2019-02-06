@@ -17,6 +17,7 @@
 (depends-on "company-terraform")
 (depends-on "dash")
 (depends-on "diminish")
+(depends-on "direnv")
 (depends-on "discover")
 (depends-on "docker")
 (depends-on "dockerfile-mode")

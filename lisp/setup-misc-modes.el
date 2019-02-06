@@ -130,6 +130,11 @@
   :bind
   (("C-;" . #'avy-goto-word-or-subword-1)))
 
+(use-package direnv
+  :config
+  (direnv-mode)
+  (add-to-list 'direnv-non-file-modes 'magit-status-mode))
+
 (use-package docker
   :bind
   ("H-d" . 'docker))
