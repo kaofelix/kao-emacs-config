@@ -34,6 +34,7 @@
  '(global-rbenv-mode nil)
  '(global-undo-tree-mode t)
  '(helm-M-x-always-save-history t)
+ '(helm-M-x-fuzzy-match t)
  '(helm-ack-grep-executable "ack")
  '(helm-buffer-max-length 45)
  '(helm-buffers-fuzzy-matching t)
@@ -52,6 +53,10 @@
  '(inhibit-startup-screen t)
  '(locate-command "mdfind")
  '(magit-diff-use-overlays nil)
+ '(magit-save-repository-buffers (quote dontask))
+ '(magit-status-headers-hook
+   (quote
+    (magit-insert-error-header magit-insert-diff-filter-header magit-insert-repo-header magit-insert-remote-header magit-insert-head-branch-header magit-insert-upstream-branch-header magit-insert-push-branch-header magit-insert-tags-header magithub-maybe-report-offline-mode magithub-maybe-insert-ci-status-header)))
  '(magit-use-overlays nil)
  '(mmm-parse-when-idle t)
  '(multi-term-program-switches "--login")
@@ -78,7 +83,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (magithub direnv docker helm-swoop dash flycheck helm inf-ruby ivy rust-mode avy el-patch org-bullets org-tree-slide neotree helm-c-yasnippet cider company projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
+    (org magithub direnv docker helm-swoop dash flycheck helm inf-ruby ivy rust-mode avy el-patch org-bullets org-tree-slide neotree helm-c-yasnippet cider company projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)
