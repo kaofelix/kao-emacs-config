@@ -21,6 +21,10 @@
 (global-paren-face-mode)
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
+(use-package paradox
+  :config
+  (paradox-enable))
+
 (use-package smart-mode-line
   :init
   (smart-mode-line-enable))
