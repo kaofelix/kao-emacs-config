@@ -83,7 +83,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (org magithub direnv docker helm-swoop dash flycheck helm inf-ruby ivy rust-mode avy el-patch org-bullets org-tree-slide neotree helm-c-yasnippet cider company projectile helm-dash dash-at-point transpose-frame which-key smart-mode-line gruvbox-theme shackle gitignore-templates helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode wgrep-ag web-mode visual-regexp visual-fill-column use-package undo-tree solarized-theme sml-mode smartparens slim-mode rbenv rainbow-mode rainbow-blocks pythonic projectile-rails popwin popup pcre2el pcmpl-homebrew pcache parent-mode paren-face paradox pallet multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
+    (org magithub direnv docker helm-swoop dash flycheck helm rust-mode avy el-patch org-bullets org-tree-slide neotree helm-c-yasnippet cider company projectile helm-dash dash-at-point which-key smart-mode-line gruvbox-theme shackle helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode web-mode visual-regexp use-package undo-tree sml-mode smartparens rainbow-mode rainbow-blocks popwin popup pcre2el pcache parent-mode paren-face paradox pallet multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)
@@ -96,15 +96,15 @@
  '(projectile-rails-keymap-prefix "" t)
  '(projectile-switch-project-action (quote helm-projectile-find-file))
  '(py-underscore-word-syntax-p nil)
- '(rbenv-installation-dir "/usr/local")
  '(register-preview-delay 0)
- '(rspec-use-rake-when-possible nil)
- '(rspec-use-spring-when-possible nil)
- '(rspec-use-vagrant-when-possible t)
- '(rspec-vagrant-cwd "/vagrant/transervicos/")
  '(safe-local-variable-values
    (quote
-    ((elpy-test-runner quote elpy-test-pytest-runner)
+    ((checkdoc-minor-mode . 1)
+     (eval when
+           (fboundp
+            (quote rainbow-mode))
+           (rainbow-mode 1))
+     (elpy-test-runner quote elpy-test-pytest-runner)
      (pyvenv-activate . "/Users/kaofelix/Library/Caches/pypoetry/virtualenvs/op1-py3.")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect" "angular")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect"))))
