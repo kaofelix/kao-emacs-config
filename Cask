@@ -63,6 +63,7 @@
 (depends-on "less-css-mode")
 (depends-on "magit")
 (depends-on "magit-popup")
+(depends-on "magithub")
 (depends-on "markdown-mode")
 (depends-on "mmm-mode")
 (depends-on "multi-term")

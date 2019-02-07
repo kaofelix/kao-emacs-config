@@ -139,5 +139,9 @@
   :bind
   ("H-d" . 'docker))
 
+(use-package magithub
+  :after magit
+  :config (magithub-feature-autoinject t))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
