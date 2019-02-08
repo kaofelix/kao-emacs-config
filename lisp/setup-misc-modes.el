@@ -170,6 +170,10 @@ already inside a project."
   :bind
   ("C-c g" . 'magit-status-project-dwim))
 
+(use-package git-timemachine
+  :bind (:map kao/toggle-map
+         ("g" . #'git-timemachine-toggle)))
+
 (use-package docker-compose-mode
   :config
   (add-hook 'docker-compose-mode-hook 'company-mode)

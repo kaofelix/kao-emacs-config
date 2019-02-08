@@ -20,6 +20,7 @@
 (depends-on "flycheck")
 (depends-on "flycheck-rust")
 (depends-on "git-gutter")
+(depends-on "git-timemachine")
 (depends-on "gitignore-mode")
 (depends-on "gruvbox-theme")
 (depends-on "helm")
