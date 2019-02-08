@@ -10,13 +10,16 @@
 ;;
 
 ;;; Code:
-(add-hook 'emacs-lisp-mode-hook 'elisp-slime-nav-mode)
+(use-package elisp-slime-nav
+  :hook (emacs-lisp-mode . elisp-slime-nav-mode))
+
+(use-package highlight-quoted
+  :hook ((emacs-lisp-mode lisp-interaction-mode) . highlight-quoted-mode))
+
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-(add-hook 'emacs-lisp-mode-hook 'highlight-quoted-mode)
 (add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode)
 (add-hook 'emacs-lisp-mode-hook (lambda () (dtrt-indent-mode -1)))
 
-(add-hook 'lisp-interaction-mode-hook 'elisp-slime-nav-mode)
 (add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
 
 (add-hook 'eval-expression-minibuffer-setup-hook 'eldoc-mode)

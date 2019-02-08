@@ -83,7 +83,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (org magithub direnv docker helm-swoop dash flycheck helm rust-mode avy el-patch org-bullets org-tree-slide neotree helm-c-yasnippet cider company projectile helm-dash dash-at-point which-key smart-mode-line gruvbox-theme shackle helm-ag elpy gitignore-mode yasnippet-snippets toml-mode pyvenv dtrt-indent yasnippet yaml-mode web-mode visual-regexp use-package undo-tree sml-mode smartparens rainbow-mode rainbow-blocks popwin popup pcre2el pcache parent-mode paren-face paradox pallet multiple-cursors magit idle-highlight-mode htmlize flycheck-cask expand-region exec-path-from-shell)))
+    (comment-dwim-2 yasnippet-snippets yaml-mode which-key web-mode visual-regexp use-package undo-tree toml-mode smartparens smart-mode-line shackle rainbow-mode racer paren-face paradox pallet org-tree-slide org-bullets neotree multiple-cursors magithub highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet helm-ag gruvbox-theme gitignore-mode git-gutter flycheck-rust expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)

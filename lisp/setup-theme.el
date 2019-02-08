@@ -45,7 +45,7 @@
   (kao/set-theme-and-save kao/current-theme)
 
   :bind
-  ("C-x C-t" . #'kao/theme-light-switch))
+  ("H-t" . #'kao/theme-light-switch))
 
 (provide 'setup-theme)
 ;;; setup-theme.el ends here

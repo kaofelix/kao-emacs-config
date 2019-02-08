@@ -10,6 +10,9 @@
 ;;
 
 ;;; Code:
+(use-package flycheck-rust)
+(use-package cargo)
+(use-package racer)
 (use-package rust-mode
   :diminish 'cargo-minor-mode
   :config

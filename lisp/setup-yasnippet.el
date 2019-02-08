@@ -11,14 +11,12 @@
 
 ;;; Code:
 
-(with-eval-after-load 'yasnippet
-  ;; Jump to end of snippet definition
-  (define-key yas-keymap (kbd "<return>") 'yas/exit-all-snippets)
-
+(use-package yasnippet
   ;; Inter-field navigation
+  :config
   (defun yas/goto-end-of-active-field ()
     (interactive)
-    (let* ((snippet (car (yas--snippets-at-point)))
+    (let* ((snippet (car (yas-active-snippets)))
            (position (yas--field-end (yas--snippet-active-field snippet))))
       (if (= (point) position)
           (move-end-of-line 1)
@@ -26,23 +24,21 @@
 
   (defun yas/goto-start-of-active-field ()
     (interactive)
-    (let* ((snippet (car (yas--snippets-at-point)))
+    (let* ((snippet (car (yas-active-snippets)))
            (position (yas--field-start (yas--snippet-active-field snippet))))
       (if (= (point) position)
           (move-beginning-of-line 1)
         (goto-char position))))
 
-  (define-key yas-keymap (kbd "C-e") 'yas/goto-end-of-active-field)
-  (define-key yas-keymap (kbd "C-a") 'yas/goto-start-of-active-field)
-
-  ;; No dropdowns please, yas
   (setq yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
-
-  ;; No need to be so verbose
   (setq yas-verbosity 1)
+  (setq yas-wrap-around-region t)
 
-  ;; Wrap around region
-  (setq yas-wrap-around-region t))
+  :bind
+  (:map yas-keymap
+   ("<return>" . #'yas-exit-all-snippets)
+   ("C-e" . #'yas/goto-end-of-active-field)
+   ("C-a" . #'yas/goto-start-of-active-field)))
 
 (provide 'setup-yasnippet)
 ;;; setup-yasnippet.el ends here

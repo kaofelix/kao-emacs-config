@@ -16,12 +16,8 @@
 (setq mac-option-modifier 'meta)
 (setq mac-right-option-modifier nil)
 
-
-(global-set-key (kbd "C-c g") 'magit-status-project-dwim)
-(global-set-key (kbd "C-c e") 'eshell)
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
 (global-set-key [remap move-beginning-of-line] 'kao/move-beginning-of-line)
-(global-set-key [remap comment-dwim] 'comment-dwim-2)
 (global-set-key [remap just-one-space] 'cycle-spacing)
 
 ;; C-h for backspace
@@ -29,19 +25,6 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 (define-key key-translation-map [?\M-\C-h] [?\M-\C-?])
 (global-set-key (kbd "C-?") 'help-command)
-
-;;; Expand region
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-;;; Multiple Cursors
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-*") 'mc/mark-all-dwim)
-(global-set-key (kbd "H-SPC") 'set-rectangular-region-anchor)
-
-;; Use cua mark
-(require 'cua-base)
-(global-set-key (kbd "C-SPC") 'cua-set-mark)
 
 ;; Use regex searches by default.
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
@@ -60,6 +43,27 @@
 ;; Windmove: Shift+direction
 (windmove-default-keybindings)
 
+;;; Expand region
+(use-package expand-region
+  :bind
+  ("C-=" . #'er/expand-region))
+
+(use-package comment-dwim-2
+  :bind
+  ([remap comment-dwim] . #'comment-dwim-2))
+
+;;; Multiple Cursors
+(use-package multiple-cursors
+  :bind
+  ("C-<" . 'mc/mark-previous-like-this)
+  ("C->" . 'mc/mark-next-like-this)
+  ("C-*" . 'mc/mark-all-dwim)
+  ("H-SPC" . 'set-rectangular-region-anchor))
+
+;; Use cua mark
+(require 'cua-base)
+(global-set-key (kbd "C-SPC") 'cua-set-mark)
+
 ;; Toggle Map
 (defvar kao/toggle-map)
 (define-prefix-command 'kao/toggle-map)
@@ -69,7 +73,6 @@
 (define-key kao/toggle-map "f" 'flycheck-mode)
 (define-key kao/toggle-map "l" 'toggle-truncate-lines)
 (define-key kao/toggle-map "w" 'whitespace-mode)
-(define-key kao/toggle-map "r" 'rainbow-blocks-mode)
 (define-key kao/toggle-map "n" 'global-display-line-numbers-mode)
 
 (provide 'key-bindings)

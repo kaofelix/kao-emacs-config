@@ -36,12 +36,8 @@
 (load custom-file)
 
 ;; Shell Path and Args
-(defvar explicit-zsh-args '("--login" "-i"))
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
-
-
-(require 'magit)
 
 ;; Load personal packages
 (require 'defuns)
@@ -51,11 +47,8 @@
 (require 'setup-yasnippet)
 (require 'setup-prog-mode)
 (require 'setup-emacs-lisp)
-;; (require 'setup-ruby)
 (require 'setup-markdown)
 (require 'setup-python)
-(require 'setup-sml)
-(require 'setup-javascript)
 (require 'setup-org)
 (require 'setup-helm)
 (require 'setup-terraform)
