@@ -56,7 +56,7 @@
  '(magit-save-repository-buffers (quote dontask))
  '(magit-status-headers-hook
    (quote
-    (magit-insert-error-header magit-insert-diff-filter-header magit-insert-repo-header magit-insert-remote-header magit-insert-head-branch-header magit-insert-upstream-branch-header magit-insert-push-branch-header magit-insert-tags-header magithub-maybe-report-offline-mode magithub-maybe-insert-ci-status-header)))
+    (magit-insert-error-header magit-insert-diff-filter-header magit-insert-repo-header magit-insert-remote-header magit-insert-head-branch-header magit-insert-upstream-branch-header magit-insert-push-branch-header magit-insert-tags-header)))
  '(magit-use-overlays nil)
  '(mmm-parse-when-idle t)
  '(multi-term-program-switches "--login")
@@ -83,7 +83,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (comment-dwim-2 yasnippet-snippets yaml-mode which-key web-mode visual-regexp use-package undo-tree toml-mode smartparens smart-mode-line shackle rainbow-mode racer paren-face paradox pallet org-tree-slide org-bullets neotree multiple-cursors magithub highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet helm-ag gruvbox-theme gitignore-mode git-gutter flycheck-rust expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
+    (delight comment-dwim-2 yasnippet-snippets yaml-mode which-key web-mode visual-regexp use-package undo-tree toml-mode smartparens smart-mode-line shackle rainbow-mode racer paren-face paradox pallet org-tree-slide org-bullets neotree multiple-cursors highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet helm-ag gruvbox-theme gitignore-mode git-gutter flycheck-rust expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)

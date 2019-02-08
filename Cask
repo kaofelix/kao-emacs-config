@@ -30,7 +30,6 @@
 (depends-on "highlight-numbers")
 (depends-on "highlight-quoted")
 (depends-on "magit")
-(depends-on "magithub")
 (depends-on "multiple-cursors")
 (depends-on "neotree")
 (depends-on "org")

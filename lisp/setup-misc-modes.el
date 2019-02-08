@@ -163,10 +163,6 @@ already inside a project."
   :bind
   ("C-c g" . 'magit-status-project-dwim))
 
-(use-package magithub
-  :after magit
-  :config (magithub-feature-autoinject t))
-
 (use-package docker-compose-mode
   :config
   (add-hook 'docker-compose-mode-hook 'company-mode)
