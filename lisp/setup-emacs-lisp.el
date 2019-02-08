@@ -17,25 +17,19 @@
   :hook ((emacs-lisp-mode lisp-interaction-mode) . highlight-quoted-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'eldoc-mode)
-(add-hook 'emacs-lisp-mode-hook 'smartparens-strict-mode)
-(add-hook 'emacs-lisp-mode-hook (lambda () (dtrt-indent-mode -1)))
-
 (add-hook 'lisp-interaction-mode-hook 'eldoc-mode)
-
 (add-hook 'eval-expression-minibuffer-setup-hook 'eldoc-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook 'smartparens-mode)
 
 ;; auto-modes
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
 (defface emacs-lisp-keyword-symbol-face
   '((t :inherit font-lock-variable-name-face))
-  "Face to highlight Lisp keyword symbols (starting with :)."
+  "Face to highlight Lisp keyword symbols (e.g. :foobar)."
   :group 'keyword-symbol)
 
-(font-lock-add-keywords
- 'emacs-lisp-mode
- '((":\\(\\sw\\|\\s_\\|\\\\.\\)+" . 'emacs-lisp-keyword-symbol-face)))
+(font-lock-add-keywords 'emacs-lisp-mode
+                        '((":\\(\\sw\\|\\s_\\|\\\\.\\)+" . 'emacs-lisp-keyword-symbol-face)))
 
 ;; Fix the indentation of keyword lists in Emacs Lisp. See [1] and [2].
 ;;

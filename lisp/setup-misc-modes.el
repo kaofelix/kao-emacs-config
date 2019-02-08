@@ -37,8 +37,7 @@
   (which-key-mode t))
 
 ;; Smart parens
-(use-package smartparens-config
-  :ensure smartparens
+(use-package smartparens
   :delight smartparens-mode
   :init
   (defun kao/wrap-with-round-brackets (&optional arg)
@@ -46,7 +45,10 @@
     (interactive "P")
     (sp-wrap-with-pair "("))
   :config
+  (require 'smartparens-config)
   (show-smartparens-global-mode t)
+  :hook ((emacs-lisp-mode . smartparens-strict-mode)
+         (eval-expression-minibuffer-setup . smartparens-mode))
   :bind
   (:map smartparens-mode-map
    ("C-M-f" . #'sp-forward-sexp)
@@ -88,13 +90,15 @@
   ("C-c m" . #'vr/mc-mark))
 
 (use-package rainbow-mode
-  :delight)
+  :delight
+  :hook prog-mode)
 
 (use-package yasnippet
   :delight yas-minor-mode)
 
 (use-package company
-  :delight company-mode
+  :delight
+  :hook (prog-mode . company-mode)
   :bind
   (("C-c C-M-i" . #'completion-at-point)
    :map company-mode-map
@@ -157,11 +161,11 @@ already inside a project."
     (interactive "P")
     (let ((project-root (projectile-project-p)))
       (if (and project-root (not always-prompt))
-          (magit-status project-root)
+          (magit-status-internal project-root)
         (let ((relevant-projects (projectile-relevant-known-projects)))
           (if relevant-projects
               (let ((target-project (projectile-completing-read "Magit status for project: " relevant-projects)))
-                (magit-status target-project))
+                (magit-status-internal target-project))
             (error "There are no known projects"))))))
   :bind
   ("C-c g" . 'magit-status-project-dwim))

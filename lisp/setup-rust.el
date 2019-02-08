@@ -10,7 +10,9 @@
 ;;
 
 ;;; Code:
-(use-package flycheck-rust)
+(use-package flycheck-rust
+  :after (flycheck))
+
 (use-package cargo)
 (use-package racer)
 (use-package rust-mode

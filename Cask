@@ -30,6 +30,7 @@
 (depends-on "helm-swoop" :git "git@github.com:ashiklom/helm-swoop.git")
 (depends-on "highlight-numbers")
 (depends-on "highlight-quoted")
+(depends-on "highlight-symbol")
 (depends-on "magit")
 (depends-on "multiple-cursors")
 (depends-on "neotree")

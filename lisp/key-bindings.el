@@ -70,7 +70,6 @@
 (define-key ctl-x-map "t" 'kao/toggle-map)
 
 (define-key kao/toggle-map "e" 'toggle-debug-on-error)
-(define-key kao/toggle-map "f" 'flycheck-mode)
 (define-key kao/toggle-map "l" 'toggle-truncate-lines)
 (define-key kao/toggle-map "w" 'whitespace-mode)
 (define-key kao/toggle-map "n" 'global-display-line-numbers-mode)

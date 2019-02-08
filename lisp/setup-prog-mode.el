@@ -10,38 +10,41 @@
 ;;
 
 ;;; Code:
-(defun turn-on-hl-line ()
-  (hl-line-mode 1))
+(use-package highlight-symbol
+  :delight
+  :bind
+  (:map prog-mode-map
+   ("C-," . #'highlight-symbol-prev)
+   ("C-." . #'highlight-symbol-next)))
 
-(defun turn-on-whitespace ()
-  (whitespace-mode 1))
+(use-package hideshow
+  :hook (prog-mode . hs-minor-mode)
+  :bind
+  (:map hs-minor-mode-map
+   ("C-c [ [" . #'hs-toggle-hiding)
+   ("C-c [ s" . #'hs-show-all)
+   ("C-c [ h" . #'hs-hide-all)))
 
-(defun turn-on-rainbow-mode ()
-  (rainbow-mode 1))
+(use-package highlight-numbers
+  :delight
+  :hook (prog-mode . highlight-numbers-mode))
 
-;; Temp fix for emacs bug where lisp-mode-shared-map doesn't inherit from
-;; prog-mode-map.
-(unless (keymap-parent lisp-mode-shared-map)
-  (set-keymap-parent lisp-mode-shared-map prog-mode-map))
+(use-package dtrt-indent
+  :after (parent-mode)
+  :delight
+  :config
+  (defun turn-on-dtrt-indent-mode-maybe ()
+    "Turn on dtrt if not elisp mode."
+    (unless (parent-mode-is-derived-p major-mode 'emacs-lisp-mode)
+      (dtrt-indent-mode)))
+  :hook (prog-mode . turn-on-dtrt-indent-mode-maybe))
 
-(define-key prog-mode-map (kbd "C-,") 'highlight-symbol-prev)
-(define-key prog-mode-map (kbd "C-.") 'highlight-symbol-next)
+(use-package flycheck
+  :hook (prog-mode . flycheck-mode))
 
-(require 'hideshow)
-(define-key hs-minor-mode-map (kbd "C-c [ [") 'hs-toggle-hiding)
-(define-key hs-minor-mode-map (kbd "C-c [ s") 'hs-show-all)
-(define-key hs-minor-mode-map (kbd "C-c [ h") 'hs-hide-all)
-
-(add-hook 'prog-mode-hook 'turn-on-hl-line)
-(add-hook 'prog-mode-hook 'turn-on-whitespace)
-(add-hook 'prog-mode-hook 'highlight-numbers-mode)
-(add-hook 'prog-mode-hook 'turn-on-rainbow-mode)
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'prog-mode-hook 'yas-minor-mode)
-(add-hook 'prog-mode-hook 'company-mode)
-(add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
+(add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
-(add-hook 'prog-mode-hook 'dtrt-indent-mode)
 
 (provide 'setup-prog-mode)
 ;;; setup-prog-mode.el ends here
