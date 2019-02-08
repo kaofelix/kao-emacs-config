@@ -6,6 +6,7 @@
 (depends-on "comment-dwim-2")
 (depends-on "company")
 (depends-on "company-terraform")
+(depends-on "delight")
 (depends-on "direnv")
 (depends-on "docker")
 (depends-on "docker-compose-mode")

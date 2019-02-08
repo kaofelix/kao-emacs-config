@@ -21,6 +21,8 @@
 (global-paren-face-mode)
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
+(use-package delight)
+
 (use-package paradox
   :config
   (paradox-enable))
@@ -30,13 +32,14 @@
   (smart-mode-line-enable))
 
 (use-package which-key
+  :delight
   :init
   (which-key-mode t))
 
 ;; Smart parens
 (use-package smartparens-config
   :ensure smartparens
-  :diminish smartparens-mode
+  :delight smartparens-mode
   :init
   (defun kao/wrap-with-round-brackets (&optional arg)
     "Wrap next ARG expressions with round brackets."
@@ -85,13 +88,13 @@
   ("C-c m" . #'vr/mc-mark))
 
 (use-package rainbow-mode
-  :diminish)
+  :delight)
 
 (use-package yasnippet
-  :diminish yas-minor-mode)
+  :delight yas-minor-mode)
 
 (use-package company
-  :diminish company-mode
+  :delight company-mode
   :bind
   (("C-c C-M-i" . #'completion-at-point)
    :map company-mode-map
@@ -101,14 +104,14 @@
    ("C-p" . #'company-select-previous-or-abort)))
 
 (use-package undo-tree
-  :diminish undo-tree-mode
+  :delight undo-tree-mode
   :bind
   (:map undo-tree-map
    ("C-?" . nil)
    ("C-/" . nil)))
 
 (use-package git-gutter
-  :diminish git-gutter-mode
+  :delight git-gutter-mode
   :bind
   ("C-x C-g" . #'git-gutter)
   ("C-x v =" . #'git-gutter:popup-hunk)
