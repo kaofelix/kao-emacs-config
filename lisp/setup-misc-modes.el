@@ -139,6 +139,8 @@
   (direnv-mode)
   (add-to-list 'direnv-non-file-modes 'magit-status-mode))
 
+(use-package dockerfile-mode)
+
 (use-package docker
   :bind
   ("H-d" . 'docker))
@@ -164,6 +166,12 @@ already inside a project."
 (use-package magithub
   :after magit
   :config (magithub-feature-autoinject t))
+
+(use-package docker-compose-mode
+  :config
+  (add-hook 'docker-compose-mode-hook 'company-mode)
+  (add-to-list 'auto-mode-alist
+               '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here

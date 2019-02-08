@@ -8,6 +8,8 @@
 (depends-on "company-terraform")
 (depends-on "direnv")
 (depends-on "docker")
+(depends-on "docker-compose-mode")
+(depends-on "dockerfile-mode")
 (depends-on "dtrt-indent")
 (depends-on "el-patch")
 (depends-on "elisp-slime-nav")
