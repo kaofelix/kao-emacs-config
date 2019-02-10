@@ -18,6 +18,7 @@
    ("C-." . #'highlight-symbol-next)))
 
 (use-package hideshow
+  :delight hs-minor-mode
   :hook (prog-mode . hs-minor-mode)
   :bind
   (:map hs-minor-mode-map
@@ -42,8 +43,11 @@
 (use-package flycheck
   :hook (prog-mode . flycheck-mode))
 
+(use-package whitespace
+  :delight
+  :hook (prog-mode . whitespace-mode))
+
 (add-hook 'prog-mode-hook 'hl-line-mode)
-(add-hook 'prog-mode-hook 'whitespace-mode)
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 
 (provide 'setup-prog-mode)
