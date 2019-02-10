@@ -12,7 +12,9 @@
 ;;; Code:
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
-  :init  (setq markdown-command "multimarkdown")
+  :init
+  (setq markdown-command "multimarkdown")
+  (setq markdown-open-command (expand-file-name "bin/mark" user-emacs-directory))
   :config
   (add-hook 'markdown-mode-hook #'auto-fill-mode)
   (add-hook 'markdown-mode-hook #'orgtbl-mode)
