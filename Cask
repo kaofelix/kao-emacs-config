@@ -33,6 +33,7 @@
 (depends-on "highlight-quoted")
 (depends-on "highlight-symbol")
 (depends-on "magit")
+(depends-on "multi-term")
 (depends-on "multiple-cursors")
 (depends-on "neotree")
 (depends-on "org")
