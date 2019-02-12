@@ -53,6 +53,19 @@
   :delight
   :hook (prog-mode . whitespace-mode))
 
+(use-package company
+  :delight
+  :hook (prog-mode . company-mode)
+  :config
+  (setq company-tooltip-align-annotations t)
+  :bind
+  (("C-c C-M-i" . #'completion-at-point)
+   :map company-mode-map
+   ("C-M-i" . #'company-complete-common)
+   :map company-active-map
+   ("C-n" . #'company-select-next-or-abort)
+   ("C-p" . #'company-select-previous-or-abort)))
+
 (add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 

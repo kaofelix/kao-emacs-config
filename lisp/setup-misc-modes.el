@@ -96,17 +96,6 @@
 (use-package yasnippet
   :delight yas-minor-mode)
 
-(use-package company
-  :delight
-  :hook (prog-mode . company-mode)
-  :bind
-  (("C-c C-M-i" . #'completion-at-point)
-   :map company-mode-map
-   ("C-M-i" . #'company-complete-common)
-   :map company-active-map
-   ("C-n" . #'company-select-next-or-abort)
-   ("C-p" . #'company-select-previous-or-abort)))
-
 (use-package undo-tree
   :delight undo-tree-mode
   :bind
@@ -179,6 +168,8 @@ already inside a project."
   (add-hook 'docker-compose-mode-hook 'company-mode)
   (add-to-list 'auto-mode-alist
                '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
+
+(use-package toml-mode)
 
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
