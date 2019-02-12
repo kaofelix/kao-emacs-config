@@ -40,6 +40,12 @@
       (dtrt-indent-mode)))
   :hook (prog-mode . turn-on-dtrt-indent-mode-maybe))
 
+(use-package drag-stuff
+  :delight
+  :config
+  (drag-stuff-define-keys)
+  :hook  (prog-mode . drag-stuff-mode))
+
 (use-package flycheck
   :hook (prog-mode . flycheck-mode))
 

@@ -11,6 +11,7 @@
 (depends-on "docker")
 (depends-on "docker-compose-mode")
 (depends-on "dockerfile-mode")
+(depends-on "drag-stuff")
 (depends-on "dtrt-indent")
 (depends-on "el-patch")
 (depends-on "elisp-slime-nav")
