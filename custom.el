@@ -93,6 +93,7 @@
  '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#32302f")))
  '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
+ '(projectile-mode-line-prefix " ")
  '(projectile-rails-keymap-prefix "" t)
  '(projectile-switch-project-action (quote helm-projectile-find-file))
  '(py-underscore-word-syntax-p nil)
