@@ -74,13 +74,32 @@
 
 ;;; Projectile
 (use-package projectile
+  :init
+  (projectile-mode)
   :config
-  (projectile-mode +1)
+  (defun projectile-run-multi-term (program)
+    "Invoke `multi-term' in the project's root.
+
+Switch to the project specific term buffer if it already exists."
+    (interactive (list nil))
+    (let* ((project (projectile-ensure-project (projectile-project-root)))
+           (multi-term-buffer-name (concat "terminal " (projectile-project-name project)))
+           (buffer (concat "*" multi-term-buffer-name "<1>*")))
+      (unless (get-buffer buffer)
+        (require 'multi-term)
+        (projectile-with-default-dir project
+          (setq term-buffer (multi-term-get-buffer current-prefix-arg))
+          (setq multi-term-buffer-list (nconc multi-term-buffer-list (list term-buffer)))
+          (set-buffer term-buffer)
+          ;; Internal handle for `multi-term' buffer.
+          (multi-term-internal)))
+      (switch-to-buffer buffer)))
   :bind
   (:map projectile-mode-map
    ("C-c p" . #'projectile-command-map)
    :map projectile-command-map
-   ("s" . helm-projectile-ag)))
+   ("x t" . #'projectile-run-multi-term)
+   ("s" . #'helm-projectile-ag)))
 
 ;; Visual regexp
 (use-package visual-regexp
