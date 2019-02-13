@@ -52,6 +52,9 @@
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(locate-command "mdfind")
+ '(lsp-prefer-flymake nil)
+ '(lsp-ui-sideline-show-hover nil)
+ '(lsp-ui-sideline-show-symbol nil)
  '(magit-diff-use-overlays nil)
  '(magit-save-repository-buffers (quote dontask))
  '(magit-status-headers-hook
@@ -84,7 +87,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (drag-stuff multi-term git-timemachine highlight-symbol delight comment-dwim-2 yasnippet-snippets yaml-mode which-key visual-regexp use-package undo-tree toml-mode smartparens smart-mode-line shackle rainbow-mode racer paren-face paradox pallet org-tree-slide org-bullets neotree multiple-cursors highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet helm-ag gruvbox-theme gitignore-mode git-gutter flycheck-rust expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
+    (flycheck-rust company-lsp lsp-ui lsp-mode drag-stuff multi-term git-timemachine highlight-symbol delight comment-dwim-2 yasnippet-snippets yaml-mode which-key visual-regexp use-package undo-tree toml-mode smartparens smart-mode-line shackle rainbow-mode paren-face paradox pallet org-tree-slide org-bullets neotree multiple-cursors highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet helm-ag gruvbox-theme gitignore-mode git-gutter expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)
