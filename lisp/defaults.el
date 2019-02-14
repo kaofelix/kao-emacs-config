@@ -32,6 +32,8 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(expand-file-name "auto-save-list/" cache-and-saves-dir) t)))
 
+(setq insert-directory-program "/usr/local/bin/gls")
+
 (setq apropos-do-all t
       require-final-newline t
       visible-bell t)
