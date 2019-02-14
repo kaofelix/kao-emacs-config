@@ -58,6 +58,7 @@
    (quote
     (magit-insert-error-header magit-insert-diff-filter-header magit-insert-repo-header magit-insert-remote-header magit-insert-head-branch-header magit-insert-upstream-branch-header magit-insert-push-branch-header magit-insert-tags-header)))
  '(magit-use-overlays nil)
+ '(magit-wip-mode t)
  '(mmm-parse-when-idle t)
  '(multi-term-program-switches "--login")
  '(neo-default-system-application "open")
