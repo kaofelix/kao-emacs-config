@@ -48,6 +48,7 @@
 (depends-on "paren-face")
 (depends-on "projectile")
 (depends-on "rainbow-mode")
+(depends-on "rjsx-mode")
 (depends-on "rust-mode")
 (depends-on "shackle")
 (depends-on "smart-mode-line")
