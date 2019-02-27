@@ -13,3 +13,4 @@ recentf
 .emacs.desktop*
 /magithub/cache
 /.lsp-session-v1
+/transient/history.el
