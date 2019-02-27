@@ -66,14 +66,6 @@
    ("C-n" . #'company-select-next-or-abort)
    ("C-p" . #'company-select-previous-or-abort)))
 
-(use-package lsp-mode
-  :commands lsp
-  :config
-  (remove-hook 'lsp-eldoc-hook 'lsp-document-highlight))
-
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package company-lsp :commands company-lsp)
-
 (add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 

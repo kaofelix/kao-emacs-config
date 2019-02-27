@@ -12,5 +12,4 @@ recentf
 .org-id-locations
 .emacs.desktop*
 /magithub/cache
-/.lsp-session-v1
 /transient/history.el
