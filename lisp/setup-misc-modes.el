@@ -190,6 +190,7 @@ already inside a project."
                '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
 (use-package toml-mode)
+(use-package nginx-mode)
 
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here

@@ -40,6 +40,7 @@
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
 (depends-on "neotree")
+(depends-on "nginx-mode")
 (depends-on "org")
 (depends-on "org-bullets")
 (depends-on "org-tree-slide")
