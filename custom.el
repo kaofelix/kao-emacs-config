@@ -40,6 +40,11 @@
  '(helm-buffers-fuzzy-matching t)
  '(helm-ff-file-name-history-use-recentf t)
  '(helm-ff-search-library-in-sexp t)
+ '(helm-grep-ag-command
+   "rg --color=always --smart-case --no-heading --line-number %s %s %s")
+ '(helm-grep-ag-pipe-cmd-switches
+   (quote
+    ("--colors 'match:fg:black'" "--colors 'match:bg:yellow'")))
  '(helm-locate-command "mdfind %s %s")
  '(helm-quick-update t)
  '(helm-swoop-speed-or-color t)

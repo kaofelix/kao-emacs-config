@@ -7,6 +7,7 @@ brew "direnv"
 brew "emacs", args: ["with-cocoa", "with-gnutls", "with-imagemagick@6", "with-librsvg"]
 brew "git"
 brew "multimarkdown"
+brew "rg"
 brew "shellcheck"
 brew "terraform"
 brew "terraform_landscape"
