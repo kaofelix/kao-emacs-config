@@ -59,6 +59,7 @@
 (depends-on "undo-tree")
 (depends-on "use-package")
 (depends-on "visual-regexp")
+(depends-on "wgrep-helm")
 (depends-on "which-key")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
