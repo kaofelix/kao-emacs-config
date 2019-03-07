@@ -100,6 +100,9 @@
  '(projectile-completion-system (quote helm))
  '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
  '(projectile-mode-line-prefix " ")
+ '(projectile-project-root-files
+   (quote
+    ("rebar.config" "project.clj" "build.boot" "deps.edn" "SConstruct" "pom.xml" "build.sbt" "gradlew" "build.gradle" ".ensime" "Gemfile" "requirements.txt" "setup.py" "pyproject.toml" "tox.ini" "composer.json" "Cargo.toml" "mix.exs" "stack.yaml" "info.rkt" "DESCRIPTION" "TAGS" "GTAGS" "configure.in" "configure.ac" "cscope.out")))
  '(projectile-rails-keymap-prefix "" t)
  '(projectile-switch-project-action (quote helm-projectile-find-file))
  '(py-underscore-word-syntax-p nil)
