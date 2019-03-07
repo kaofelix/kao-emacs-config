@@ -32,6 +32,7 @@
 (depends-on "highlight-numbers")
 (depends-on "highlight-quoted")
 (depends-on "highlight-symbol")
+(depends-on "hydra")
 (depends-on "magit")
 (depends-on "multi-term")
 (depends-on "multiple-cursors")
