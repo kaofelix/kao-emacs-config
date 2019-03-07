@@ -162,6 +162,8 @@ Switch to the project specific term buffer if it already exists."
   ("H-d" . 'docker))
 
 (use-package magit
+  :after (git-gutter)
+  :hook (magit-post-refresh . #'git-gutter:update-all-windows)
   :config
   (defun magit-status-project-dwim (always-prompt)
     "Run magit-status for current project or prompts for project.
