@@ -98,8 +98,7 @@ Switch to the project specific term buffer if it already exists."
   (:map projectile-mode-map
    ("C-c p" . #'projectile-command-map)
    :map projectile-command-map
-   ("x t" . #'projectile-run-multi-term)
-   ("s" . #'helm-projectile-ag)))
+   ("x t" . #'projectile-run-multi-term)))
 
 ;; Visual regexp
 (use-package visual-regexp

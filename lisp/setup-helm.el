@@ -55,9 +55,6 @@
          :map isearch-mode-map
          ("C-c g" . helm-git-grep-from-isearch)))
 
-(use-package helm-ag
-  :after (helm))
-
 (use-package wgrep-helm
   :after (helm))
 
@@ -65,33 +62,34 @@
   :after (helm))
 
 (use-package helm-projectile
-  :after (helm helm-ag)
+  :after (helm)
   :init
   (helm-projectile-on)
   :config
-  (defun kao/helm-projectile-ag (&optional dir)
-    "A helm-projectile-ag function suitable for being used as an action."
-    (interactive)
+  (defun kao/helm-projectile-ag (arg &optional dir)
+    "Runs standard helm-do-grep-ag over a project as an action"
+    (interactive "P")
     (if (projectile-project-p)
-            (let* ((grep-find-ignored-files (cl-union (projectile-ignored-files-rel) grep-find-ignored-files))
-                   (grep-find-ignored-directories (cl-union (projectile-ignored-directories-rel) grep-find-ignored-directories))
-                   (ignored (mapconcat (lambda (i)
-                                         (concat "--ignore " i))
-                                       (append grep-find-ignored-files grep-find-ignored-directories (cadr (projectile-parse-dirconfig-file)))
-                                       " "))
-                   (helm-ag-base-command (concat helm-ag-base-command " " ignored))
-                   (current-prefix-arg nil))
-              (helm-do-ag (or dir (projectile-project-root)) (car (projectile-parse-dirconfig-file))))
-          (error "You're not in a project")))
+        (let ((default-directory (or dir (projectile-project-root))))
+          (helm-do-grep-ag arg))
+      (error "You're not in a project")))
+
+  (defun kao/helm-projectile-ag-action (&optional dir)
+    "Runs standard helm-do-grep-ag over a project as an action"
+    (interactive)
+    (kao/helm-projectile-ag nil dir))
 
   (defun kao/back-to-helm-projectile-switch-project ()
     (interactive)
     (helm-run-after-exit #'helm-projectile-switch-project))
 
-  (fset #'helm-projectile-grep #'kao/helm-projectile-ag)
+  (fset #'helm-projectile-grep #'kao/helm-projectile-ag-action)
+
   :bind
   (:map helm-projectile-find-file-map
-   ("C-l" . #'kao/back-to-helm-projectile-switch-project)))
+   ("C-l" . #'kao/back-to-helm-projectile-switch-project))
+  (:map projectile-command-map
+   ("s" . #'kao/helm-projectile-ag)))
 
 (use-package helm-descbinds
   :after (helm)
