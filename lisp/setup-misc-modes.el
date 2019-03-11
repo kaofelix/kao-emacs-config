@@ -95,7 +95,7 @@ Switch to the project specific term buffer if it already exists."
           (set-buffer term-buffer)
           ;; Internal handle for `multi-term' buffer.
           (multi-term-internal)))
-      (switch-to-buffer buffer)))
+      (switch-to-buffer-other-window buffer)))
   :bind
   (:map projectile-mode-map
    ("C-c p" . #'projectile-command-map)
