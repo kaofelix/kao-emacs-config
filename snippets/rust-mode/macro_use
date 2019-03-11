@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : macro_use
+#key : mu
+#contributor : Kao Felix
+# --
+#[macro_use]
+extern crate ${0:name};
