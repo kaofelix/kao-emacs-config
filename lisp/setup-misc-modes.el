@@ -148,7 +148,12 @@ Switch to the project specific term buffer if it already exists."
   (setq neo-show-hidden-files t)
   :bind
   (:map kao/toggle-map
-   ("t" . #'neotree-toggle)))
+   ("t" . #'neotree-toggle)
+   :map neotree-mode-map
+   ("C" . #'neotree-copy-node)
+   ("D" . #'neotree-delete-node)
+   ("R" . #'neotree-rename-node)
+   ("+" . #'neotree-create-node)))
 
 (use-package avy
   :config
