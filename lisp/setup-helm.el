@@ -69,7 +69,7 @@
   (defun kao/helm-projectile-ag (arg &optional dir)
     "Runs standard helm-do-grep-ag over a project as an action"
     (interactive "P")
-    (if (projectile-project-p)
+    (if (or dir (projectile-project-p))
         (let ((default-directory (or dir (projectile-project-root))))
           (helm-do-grep-ag arg))
       (error "You're not in a project")))
