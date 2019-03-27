@@ -52,8 +52,8 @@
          ("o" . helm-occur)
          ("SPC" . helm-all-mark-rings)
          ("g" . helm-git-grep)
-         :map isearch-mode-map
-         ("C-c g" . helm-git-grep-from-isearch)))
+         :map helm-find-files-map
+         ("C-s" . helm-ff-run-grep-ag)))
 
 (use-package wgrep-helm
   :after (helm))
