@@ -95,7 +95,7 @@
  '(helm-swoop-speed-or-color t)
  '(helm-swoop-split-direction (quote split-window-horizontally))
  '(helm-swoop-use-line-number-face t)
- '(helm-truncate-lines t t)
+ '(helm-truncate-lines t)
  '(helm-window-prefer-horizontal-split t)
  '(helm-yas-display-key-on-candidate t)
  '(helm-yas-display-msg-after-complete nil)
