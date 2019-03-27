@@ -1,6 +1,7 @@
 (source gnu)
 (source melpa)
 
+(depends-on "ace-window")
 (depends-on "avy")
 (depends-on "cargo")
 (depends-on "comment-dwim-2")

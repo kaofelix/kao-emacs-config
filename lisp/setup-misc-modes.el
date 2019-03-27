@@ -174,6 +174,10 @@ Switch to the project specific term buffer if it already exists."
   :bind
   (("C-;" . #'avy-goto-word-or-subword-1)))
 
+(use-package ace-window
+  :bind
+  (("C-x o" . #'ace-window)))
+
 (use-package direnv
   :config
   (direnv-mode)
