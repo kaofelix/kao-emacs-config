@@ -109,6 +109,18 @@ Switch to the project specific term buffer if it already exists."
   ("C-c q" . #'vr/query-replace)
   ("C-c m" . #'vr/mc-mark))
 
+(use-package anzu
+  :delight
+  :init
+  (global-anzu-mode 1)
+  :bind
+  (([remap query-replace] . #'anzu-query-replace)
+   ([remap query-replace-regexp] . #'anzu-query-replace-regexp)
+   ("S-<f6>" . #'anzu-replace-at-cursor-thing)
+   :map isearch-mode-map
+   ([remap isearch-query-replace] .  #'anzu-isearch-query-replace)
+   ([remap isearch-query-replace-regexp] . #'anzu-isearch-query-replace-regexp)))
+
 (use-package rainbow-mode
   :delight
   :hook prog-mode)

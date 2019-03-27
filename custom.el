@@ -10,6 +10,7 @@
     (font-lock-comment-delimiter-face font-lock-comment-face font-lock-doc-face font-lock-doc-string-face font-lock-string-face font-lock-keyword-face)))
  '(ansi-color-names-vector
    ["#3c3836" "#fb4933" "#b8bb26" "#fabd2f" "#83a598" "#d3869b" "#8ec07c" "#ebdbb2"])
+ '(anzu-replace-to-string-separator " => ")
  '(auto-revert-check-vc-info t)
  '(avy-background t)
  '(browse-kill-ring-display-duplicates nil)
@@ -133,7 +134,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (wgrep-helm nginx-mode rjsx-mode flycheck-rust drag-stuff multi-term git-timemachine highlight-symbol delight comment-dwim-2 yasnippet-snippets yaml-mode which-key visual-regexp use-package undo-tree toml-mode smartparens smart-mode-line shackle rainbow-mode racer paren-face paradox pallet org-tree-slide org-bullets neotree multiple-cursors highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet hydra gruvbox-theme gitignore-mode git-gutter expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
+    (anzu wgrep-helm nginx-mode rjsx-mode flycheck-rust drag-stuff multi-term git-timemachine highlight-symbol delight comment-dwim-2 yasnippet-snippets yaml-mode which-key visual-regexp use-package undo-tree toml-mode smartparens smart-mode-line shackle rainbow-mode racer paren-face paradox pallet org-tree-slide org-bullets neotree multiple-cursors highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet hydra gruvbox-theme gitignore-mode git-gutter expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)
