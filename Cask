@@ -2,6 +2,7 @@
 (source melpa)
 
 (depends-on "ace-window")
+(depends-on "anzu")
 (depends-on "avy")
 (depends-on "cargo")
 (depends-on "comment-dwim-2")
