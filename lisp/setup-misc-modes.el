@@ -21,19 +21,20 @@
 (global-paren-face-mode)
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
-(use-package minions
-  :init
-  (minions-mode))
-
 (use-package hydra)
 
 (use-package paradox
   :config
   (paradox-enable))
 
-(use-package smart-mode-line
+(use-package minions
   :init
-  (smart-mode-line-enable))
+  (minions-mode))
+
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode)
+  :config
+  (setq doom-modeline-minor-modes t))
 
 (use-package which-key
   :init
