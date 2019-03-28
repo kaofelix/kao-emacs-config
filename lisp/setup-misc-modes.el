@@ -21,7 +21,9 @@
 (global-paren-face-mode)
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
-(use-package delight)
+(use-package minions
+  :init
+  (minions-mode))
 
 (use-package hydra)
 
@@ -34,13 +36,11 @@
   (smart-mode-line-enable))
 
 (use-package which-key
-  :delight
   :init
   (which-key-mode t))
 
 ;; Smart parens
 (use-package smartparens
-  :delight smartparens-mode
   :init
   (defun kao/wrap-with-round-brackets (&optional arg)
     "Wrap next ARG expressions with round brackets."
@@ -110,7 +110,6 @@ Switch to the project specific term buffer if it already exists."
   ("C-c m" . #'vr/mc-mark))
 
 (use-package anzu
-  :delight
   :init
   (global-anzu-mode 1)
   :bind
@@ -122,14 +121,11 @@ Switch to the project specific term buffer if it already exists."
    ([remap isearch-query-replace-regexp] . #'anzu-isearch-query-replace-regexp)))
 
 (use-package rainbow-mode
-  :delight
   :hook prog-mode)
 
-(use-package yasnippet
-  :delight yas-minor-mode)
+(use-package yasnippet)
 
 (use-package undo-tree
-  :delight undo-tree-mode
   :bind
   (:map undo-tree-map
    ("C-?" . nil)
@@ -137,7 +133,6 @@ Switch to the project specific term buffer if it already exists."
 
 (use-package git-gutter
   :after (hydra)
-  :delight git-gutter-mode
   :config
   (defhydra hydra-zoom (global-map "C-x v")
     "next/previous hunk"

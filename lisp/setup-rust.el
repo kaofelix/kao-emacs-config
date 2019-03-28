@@ -16,7 +16,6 @@
 (use-package cargo)
 (use-package racer)
 (use-package rust-mode
-  :delight 'cargo-minor-mode
   :config
   (setq rust-format-on-save t)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)

@@ -16,8 +16,6 @@
 
 (use-package helm
   :after shackle
-  :delight helm-mode
-
   :init
   (require 'helm-config)
   (helm-mode 1)
