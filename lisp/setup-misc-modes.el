@@ -102,13 +102,6 @@ Switch to the project specific term buffer if it already exists."
    :map projectile-command-map
    ("x t" . #'projectile-run-multi-term)))
 
-;; Visual regexp
-(use-package visual-regexp
-  :bind
-  ("C-c r" . #'vr/replace)
-  ("C-c q" . #'vr/query-replace)
-  ("C-c m" . #'vr/mc-mark))
-
 (use-package anzu
   :delight
   :init
