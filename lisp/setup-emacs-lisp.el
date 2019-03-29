@@ -11,6 +11,7 @@
 
 ;;; Code:
 (use-package elisp-slime-nav
+  :delight
   :hook (emacs-lisp-mode . elisp-slime-nav-mode))
 
 (use-package highlight-quoted

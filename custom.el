@@ -109,7 +109,6 @@
     (magit-insert-error-header magit-insert-diff-filter-header magit-insert-repo-header magit-insert-remote-header magit-insert-head-branch-header magit-insert-upstream-branch-header magit-insert-push-branch-header magit-insert-tags-header)))
  '(magit-use-overlays nil)
  '(magit-wip-mode t)
- '(minions-mode-line-lighter "▲")
  '(mmm-parse-when-idle t)
  '(multi-term-program-switches "--login")
  '(neo-default-system-application "open")
@@ -135,7 +134,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (paradox doom-modeline minions ace-window anzu wgrep-helm nginx-mode rjsx-mode flycheck-rust drag-stuff multi-term git-timemachine highlight-symbol comment-dwim-2 yasnippet-snippets yaml-mode which-key visual-regexp use-package undo-tree toml-mode smartparens shackle rainbow-mode racer paren-face pallet org-tree-slide org-bullets neotree multiple-cursors highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet hydra gruvbox-theme gitignore-mode git-gutter expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
+    (ace-window anzu wgrep-helm nginx-mode rjsx-mode flycheck-rust drag-stuff multi-term git-timemachine highlight-symbol delight comment-dwim-2 yasnippet-snippets yaml-mode which-key visual-regexp use-package undo-tree toml-mode smartparens smart-mode-line shackle rainbow-mode racer paren-face paradox pallet org-tree-slide org-bullets neotree multiple-cursors highlight-quoted highlight-numbers helm-swoop helm-projectile helm-descbinds helm-c-yasnippet hydra gruvbox-theme gitignore-mode git-gutter expand-region exec-path-from-shell elpy elisp-slime-nav el-patch dtrt-indent docker direnv company-terraform cargo avy)))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)
@@ -197,7 +196,6 @@
  ;; If there is more than one, they won't work right.
  '(avy-lead-face ((t (:inherit font-lock-keyword-face))))
  '(avy-lead-face-0 ((t (:inherit font-lock-keyword-face))))
- '(doom-modeline-panel ((t (:inherit (anzu-mode-line default) :inverse-video t))))
  '(helm-ff-dotted-directory ((t (:inherit helm-ff-directory :weight bold))))
  '(helm-source-header ((t (:inherit variable-pitch :underline nil :weight semi-bold :height 1.3))))
  '(helm-swoop-line-number-face ((t (:inherit line-number))))
