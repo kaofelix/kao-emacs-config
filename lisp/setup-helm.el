@@ -42,7 +42,7 @@
          ([remap switch-to-buffer] . helm-mini)
          ([remap yank-pop] . helm-show-kill-ring)
          ([remap list-buffers] . helm-buffers-list)
-         ([remap tab-to-tab-stop] . helm-swoop)
+
          ("C-c h" . helm-command-prefix)
          :map helm-map
          ("C-c g" . helm-git-grep-from-helm)
@@ -56,9 +56,6 @@
          ("C-s" . helm-ff-run-grep-ag)))
 
 (use-package wgrep-helm
-  :after (helm))
-
-(use-package helm-swoop
   :after (helm))
 
 (use-package helm-projectile
