@@ -181,6 +181,8 @@
      ("M-," . term-send-raw)
      ("M-." . comint-dynamic-complete))))
  '(term-unbind-key-list (quote ("C-x" "C-c" "C-h" "C-y" "C-d" "<ESC>")))
+ '(wgrep-auto-save-buffer t)
+ '(wgrep-enable-key "e")
  '(which-key-idle-secondary-delay 0.0)
  '(whitespace-action (quote (auto-cleanup)))
  '(whitespace-global-modes nil)
