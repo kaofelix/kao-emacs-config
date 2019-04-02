@@ -92,6 +92,7 @@
     ("--colors 'match:fg:black'" "--colors 'match:bg:yellow'")))
  '(helm-locate-command "mdfind %s %s")
  '(helm-quick-update t)
+ '(helm-split-window-default-side (quote right))
  '(helm-truncate-lines t)
  '(helm-window-prefer-horizontal-split t)
  '(helm-yas-display-key-on-candidate t)

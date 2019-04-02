@@ -34,7 +34,8 @@
         (setq-local cursor-type nil))))
   (setq helm-echo-input-in-header-line t)
   (setq helm-display-function 'pop-to-buffer)
-  (setq shackle-rules '(("\\`\\*helm.*?\\*\\'" :regexp t :align t :size 0.6)))
+  (setq shackle-rules '(("\\`\\*helm m?occur\\*\\'" :regexp t :other t)
+                        ("\\`\\*helm.*?\\*\\'" :regexp t :align below :size 0.6)))
   (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
 
   :bind (([remap execute-extended-command] . helm-M-x)
