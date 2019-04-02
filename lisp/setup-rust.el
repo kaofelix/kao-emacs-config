@@ -13,10 +13,11 @@
 (use-package flycheck-rust
   :after (flycheck))
 
-(use-package cargo)
-(use-package racer)
+(use-package cargo
+  :delight cargo-minor-mode)
+(use-package racer
+  :delight)
 (use-package rust-mode
-  :delight 'cargo-minor-mode
   :config
   (setq rust-format-on-save t)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)

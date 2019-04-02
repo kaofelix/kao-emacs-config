@@ -81,7 +81,6 @@
 (setq history-length 1000)
 
 (winner-mode 1)
-(global-subword-mode 1)
 
 (setq-default truncate-lines t)
 (setq gc-cons-threshold 20000000)

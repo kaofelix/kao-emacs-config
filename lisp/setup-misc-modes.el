@@ -21,6 +21,11 @@
 (global-paren-face-mode)
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
+(use-package emacs
+  :delight subword-mode
+  :config
+  (global-subword-mode 1))
+
 (use-package delight)
 
 (use-package hydra)
@@ -76,6 +81,7 @@
 
 ;;; Projectile
 (use-package projectile
+  :delight
   :init
   (projectile-mode)
   :config
@@ -184,6 +190,7 @@ Switch to the project specific term buffer if it already exists."
 
 (use-package magit
   :after (git-gutter)
+  :delight magit-wip-mode
   :config
   (defun magit-status-project-dwim (always-prompt)
     "Run magit-status for current project or prompts for project.
