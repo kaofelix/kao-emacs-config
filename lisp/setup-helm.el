@@ -42,18 +42,15 @@
          ([remap switch-to-buffer] . helm-mini)
          ([remap yank-pop] . helm-show-kill-ring)
          ([remap list-buffers] . helm-buffers-list)
-
-         ("C-c h" . helm-command-prefix)
-         :map helm-map
-         ("C-c g" . helm-git-grep-from-helm)
          :map helm-command-map
-         ("h o" . helm-info-org)
          ("h l" . helm-info-elisp)
-         ("o" . helm-occur)
          ("SPC" . helm-all-mark-rings)
-         ("g" . helm-git-grep)
+         ("M-i" . #'helm-occur)
+         ("C-c h" . #'helm-command-prefix)
          :map helm-find-files-map
-         ("C-s" . helm-ff-run-grep-ag)))
+         ("C-s" . #'helm-ff-run-grep-ag)
+         :map isearch-mode-map
+         ("M-i" . #'helm-occur-from-isearch)))
 
 (use-package wgrep-helm
   :after (helm))
