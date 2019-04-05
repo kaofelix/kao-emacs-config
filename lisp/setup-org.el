@@ -11,19 +11,21 @@
 
 ;;; Code:
 (use-package org
-  :ensure org-bullets
+  :pin org
   :config
   (add-hook 'org-mode-hook 'auto-fill-mode)
-  (add-hook 'org-mode-hook 'org-bullets-mode)
+  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg/")
   :bind
   ("C-c c" . #'org-capture)
   ("C-c l" . #'org-store-link))
 
-(use-package org-mobile
+(use-package org-bullets
+  :after (org)
   :config
-  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg/"))
+  (add-hook 'org-mode-hook 'org-bullets-mode))
 
 (use-package org-tree-slide
+  :after (org)
   :bind
   (:map org-mode-map
         ("<f8>" . #'org-tree-slide-mode)

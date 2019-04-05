@@ -12,23 +12,35 @@
 ;;; Code:
 
 ;; Dependencies requires
-(require 'f)
+(use-package f)
 
 ;; Compile packages asynchronously
-(require 'async-bytecomp)
+(use-package async
+  :config
+  (async-bytecomp-package-mode 1))
 
-(desktop-save-mode 1)
-(global-paren-face-mode)
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
 (use-package emacs
   :delight subword-mode
   :config
-  (global-subword-mode 1))
+  (global-subword-mode 1)
+  (desktop-save-mode 1))
+
+(use-package exec-path-from-shell
+  :init
+  (when (memq window-system '(mac ns))
+    (exec-path-from-shell-initialize)))
+
+(use-package el-patch)
 
 (use-package delight)
 
 (use-package hydra)
+
+(use-package paren-face
+  :config
+  (global-paren-face-mode))
 
 (use-package paradox
   :config
@@ -79,9 +91,12 @@
    ("M-F" . #'sp-forward-symbol)
    ("M-B" . #'sp-backward-symbol)))
 
+(use-package multi-term)
+
 ;;; Projectile
 (use-package projectile
   :delight
+  :after (multi-term)
   :init
   (projectile-mode)
   :config
@@ -123,9 +138,6 @@ Switch to the project specific term buffer if it already exists."
 (use-package rainbow-mode
   :delight
   :hook prog-mode)
-
-(use-package yasnippet
-  :delight yas-minor-mode)
 
 (use-package undo-tree
   :delight undo-tree-mode
@@ -211,6 +223,8 @@ already inside a project."
   :bind
   ("C-c g" . 'magit-status-project-dwim))
 
+(use-package gitignore-mode)
+
 (use-package git-timemachine
   :bind (:map kao/toggle-map
          ("g" . #'git-timemachine-toggle)))
@@ -222,6 +236,7 @@ already inside a project."
                '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
 (use-package toml-mode)
+(use-package yaml-mode)
 (use-package nginx-mode)
 
 (provide 'setup-misc-modes)

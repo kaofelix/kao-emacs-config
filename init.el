@@ -16,15 +16,20 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory) t)
 (setq user-mail-address "kcfelix@gmail.com")
 
-;; Defaults
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+(package-initialize)
+
+(eval-when-compile
+  (add-to-list 'load-path (expand-file-name "use-package" user-emacs-directory) t)
+  (require 'use-package))
+
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+
 (require 'defaults)
-
-;; Initialize Cask and Pallet
-(require 'cask "/usr/local/Cellar/cask/0.8.4/cask.el")
-(cask-initialize)
-(require 'pallet)
-(pallet-mode t)
-
 (require 'setup-theme)
 
 (when (eq window-system 'ns)
@@ -34,10 +39,6 @@
 ;; Setup custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
-
-;; Shell Path and Args
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 
 ;; Load personal packages
 (require 'defuns)

@@ -12,8 +12,9 @@
 ;;; Code:
 
 (use-package yasnippet
-  ;; Inter-field navigation
+  :delight  yas-minor-mode
   :config
+  ;; Inter-field navigation
   (defun yas/goto-end-of-active-field ()
     (interactive)
     (let* ((snippet (car (yas-active-snippets)))
@@ -39,6 +40,8 @@
    ("<return>" . #'yas-exit-all-snippets)
    ("C-e" . #'yas/goto-end-of-active-field)
    ("C-a" . #'yas/goto-start-of-active-field)))
+
+(use-package yasnippet-snippets)
 
 (provide 'setup-yasnippet)
 ;;; setup-yasnippet.el ends here
