@@ -13,3 +13,4 @@ recentf
 .emacs.desktop*
 /magithub/cache
 /transient/history.el
+/.last-package-update-day
