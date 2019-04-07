@@ -11,7 +11,24 @@
 
 ;;; Code:
 
-;; Interactive commands
+(defmacro kao/type-last-key-to-repeat (&rest body)
+  "Repeat BODY when typing the last key on the key sequence typed."
+  (declare (indent defun))
+  `(progn
+     (progn ,@body)
+     (let* ((repeat-key last-input-event)
+            (repeat-key-str (format-kbd-macro (vector repeat-key) nil)))
+       (while repeat-key
+         (message "(Type %s to repeat.)" repeat-key-str)
+         (if (equal repeat-key (read-event))
+             (progn
+               (clear-this-command-keys t)
+               (progn ,@body)
+               (setq last-input-event nil))
+           (setq repeat-key nil)))
+       (when last-input-event
+         (clear-this-command-keys t)
+         (setq unread-command-events (list last-input-event))))))
 
 (defun kao/duplicate-line (times)
   "Duplicate the current line TIMES times."
@@ -85,26 +102,18 @@ point reaches the beginning or end of the buffer, stop there."
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
-;; Utility functions and macros
-
-(defmacro kao/type-last-key-to-repeat (&rest body)
-  "Repeat BODY when typing the last key on the key sequence typed."
-  (declare (indent defun))
-  `(progn
-     (progn ,@body)
-     (let* ((repeat-key last-input-event)
-            (repeat-key-str (format-kbd-macro (vector repeat-key) nil)))
-       (while repeat-key
-         (message "(Type %s to repeat.)" repeat-key-str)
-         (if (equal repeat-key (read-event))
-             (progn
-               (clear-this-command-keys t)
-               (progn ,@body)
-               (setq last-input-event nil))
-           (setq repeat-key nil)))
-       (when last-input-event
-         (clear-this-command-keys t)
-         (setq unread-command-events (list last-input-event))))))
+(defun kao/open-next-line (arg)
+  "Open `ARG' lines under current point position.
+Leave point on the first line and indent according to mode. When
+before a closing delimiter, will open a new line between both
+delimiters."
+  (interactive "p")
+  (if (looking-at "\\s)\\s-*$")
+      (open-line 1)
+    (end-of-line))
+  (open-line arg)
+  (forward-line 1)
+  (indent-according-to-mode))
 
 (provide 'defuns)
 ;;; defuns.el ends here
