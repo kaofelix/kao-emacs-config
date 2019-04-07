@@ -1,27 +1,25 @@
 Kao's Emacs Config Files
 ========================
 
-This README file is to serve as a reminder to myself on how to setup Emacs on a
-new machine and also hopefully to help people interested in trying out my
-config.
+My config is currently using `use-package` with
+`use-package-always-ensure` set to `t` so all configured packages get
+automatically installed.
 
-Setup
------
-
-Currently I'm using macOS with the latest stable emacs from
-[brew](http://brew.sh).
-
-This repository lives locally on my machine in the `~/.emacs.d/`
-directory. Package manager dependencies are managed by
-[cask](https://github.com/cask/cask) and
-[pallet](https://github.com/rdallasgray/pallet).
-
-Current installation steps from shell are as follows:
+Have a recent version of Emacs installed and clone this repo to
+.emacs.d:
 
 ``` shell
-$ brew install emacs --with-cocoa --with-imagemagick@6 --with-librsvg
-$ brew install cask
 $ git clone https://github.com/kaofelix/kao-emacs-config ~/.emacs.d/
-$ cd ~/.emacs.d
-$ cask install
 ```
+
+Start Emacs and let
+`[use-package](https://github.com/jwiegley/use-package)` work its
+magic.
+
+org-mode
+--------
+
+Org has a built-in version and `package.el` (which also means
+`use-package` ensure) won't install the latest from the org repo over
+it. Need to manually select it and install it from the package list
+first.

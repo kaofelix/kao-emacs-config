@@ -42,7 +42,6 @@
   (menu-bar-mode t)
   (add-hook 'after-init-hook 'toggle-frame-fullscreen))
 
-;; Setup custom.el
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
 
