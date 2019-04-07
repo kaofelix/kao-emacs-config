@@ -27,7 +27,7 @@
   (global-subword-mode 1)
   (desktop-save-mode 1)
   :bind
-  ([remap open-line] . #'kao/open-next-line))
+  ([remap open-line] . #'kao/open-line))
 
 (use-package exec-path-from-shell
   :init

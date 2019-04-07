@@ -102,18 +102,20 @@ point reaches the beginning or end of the buffer, stop there."
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
-(defun kao/open-next-line (arg)
+(defun kao/open-line (arg)
   "Open `ARG' lines under current point position.
-Leave point on the first line and indent according to mode. When
-before a closing delimiter, will open a new line between both
-delimiters."
+If point is on beggining of line, open lines above the current
+one. Otherwise, open a line under the next one. When before
+closing delimiter, will open a new line between both delimiters."
   (interactive "p")
-  (if (looking-at "\\s)\\s-*$")
-      (open-line 1)
-    (end-of-line))
-  (open-line arg)
-  (forward-line 1)
-  (indent-according-to-mode))
+  (if (bolp)
+      (open-line arg)
+    (if (looking-at "\\s)\\s-*$")
+          (open-line 1)
+        (end-of-line))
+    (open-line arg)
+    (forward-line 1)
+    (indent-according-to-mode)))
 
 (provide 'defuns)
 ;;; defuns.el ends here
