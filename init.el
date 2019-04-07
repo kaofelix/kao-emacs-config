@@ -19,11 +19,13 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-
 (package-initialize)
 
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
 (eval-when-compile
-  (add-to-list 'load-path (expand-file-name "use-package" user-emacs-directory) t)
   (require 'use-package))
 
 (require 'use-package-ensure)
