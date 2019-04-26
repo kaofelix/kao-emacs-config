@@ -108,14 +108,21 @@ If point is on beggining of line, open lines above the current
 one. Otherwise, open a line under the next one. When before
 closing delimiter, will open a new line between both delimiters."
   (interactive "p")
-  (if (bolp)
-      (open-line arg)
-    (if (looking-at "\\s)\\s-*$")
+  (let ((bol-or-empy-before-point (save-excursion
+                                    (skip-syntax-backward " ")
+                                    (bolp))))
+    (if bol-or-empy-before-point
+        (progn
+          (open-line arg)
+          (save-excursion
+            (forward-line 1)
+            (indent-according-to-mode)))
+      (if (looking-at "\\s)\\s-*$")
           (open-line 1)
         (end-of-line))
-    (open-line arg)
-    (forward-line 1)
-    (indent-according-to-mode)))
+      (open-line arg)
+      (forward-line 1)
+      (indent-according-to-mode))))
 
 (provide 'defuns)
 ;;; defuns.el ends here
