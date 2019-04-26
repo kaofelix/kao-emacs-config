@@ -154,8 +154,8 @@ Switch to the project specific term buffer if it already exists."
   :config
   (defhydra hydra-zoom (global-map "C-x v")
     "next/previous hunk"
-    ("n" #'git-gutter:previous-hunk "next")
-    ("p" #'git-gutter:next-hunk "previous"))
+    ("n" #'git-gutter:next-hunk "next")
+    ("p" #'git-gutter:previous-hunk "previous"))
 
   :bind
   ("C-x C-g" . #'git-gutter)
