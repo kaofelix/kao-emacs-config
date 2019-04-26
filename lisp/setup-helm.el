@@ -43,11 +43,11 @@
          ([remap switch-to-buffer] . helm-mini)
          ([remap yank-pop] . helm-show-kill-ring)
          ([remap list-buffers] . helm-buffers-list)
+         ("C-c h" . #'helm-command-prefix)
          :map helm-command-map
          ("h l" . helm-info-elisp)
          ("SPC" . helm-all-mark-rings)
          ("M-i" . #'helm-occur)
-         ("C-c h" . #'helm-command-prefix)
          :map helm-find-files-map
          ("C-s" . #'helm-ff-run-grep-ag)
          :map isearch-mode-map
