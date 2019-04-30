@@ -17,7 +17,6 @@
   (setq markdown-open-command (expand-file-name "bin/mark" user-emacs-directory))
   :config
   (add-hook 'markdown-mode-hook #'auto-fill-mode)
-  (add-hook 'markdown-mode-hook #'orgtbl-mode)
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
