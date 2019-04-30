@@ -14,3 +14,4 @@ recentf
 /magithub/cache
 /transient/history.el
 /.last-package-update-day
+/local.el

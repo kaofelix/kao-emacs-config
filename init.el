@@ -62,5 +62,10 @@
 (require 'setup-terraform)
 (require 'setup-rust)
 
+(let ((local-elisp (expand-file-name  "local.el" user-emacs-directory)))
+  (when (file-exists-p local-elisp)
+    (message "Local file '%s' found" local-elisp)
+    (load-file local-elisp)))
+
 (server-start)
 ;;; init.el ends here
