@@ -48,6 +48,9 @@
   :config
   (paradox-enable))
 
+(use-package try
+  :commands #'try)
+
 (use-package smart-mode-line
   :init
   (smart-mode-line-enable))
