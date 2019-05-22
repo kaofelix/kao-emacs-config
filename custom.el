@@ -90,6 +90,7 @@
  '(helm-grep-ag-pipe-cmd-switches
    (quote
     ("--colors 'match:fg:black'" "--colors 'match:bg:yellow'")))
+ '(helm-grep-file-path-style (quote relative))
  '(helm-locate-command "mdfind %s %s")
  '(helm-quick-update t)
  '(helm-split-window-default-side (quote right))
