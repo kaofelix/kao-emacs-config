@@ -240,6 +240,11 @@ already inside a project."
   (add-to-list 'auto-mode-alist
                '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
+(use-package origami
+  :hook (yaml-mode . origami-mode)
+  :bind (:map origami-mode-map
+         ("C-c [ [" . #'origami-toggle-node)))
+
 (use-package toml-mode)
 (use-package yaml-mode)
 (use-package nginx-mode)

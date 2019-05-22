@@ -133,7 +133,7 @@
  '(org-src-fontify-natively t)
  '(package-selected-packages
    (quote
-    (try auto-package-update org racer cargo flycheck-rust company-terraform helm-c-yasnippet helm-descbinds helm-projectile wgrep-helm helm shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme)))
+    (origami try auto-package-update org racer cargo flycheck-rust company-terraform helm-c-yasnippet helm-descbinds helm-projectile wgrep-helm helm shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme)))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)
