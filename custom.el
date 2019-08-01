@@ -30,6 +30,7 @@
  '(exec-path-from-shell-arguments (quote ("-l")))
  '(flycheck-indication-mode nil)
  '(git-commit-post-finish-hook (quote (git-gutter:update-all-windows)))
+ '(git-gutter:update-interval 2)
  '(global-git-gutter-mode t)
  '(global-rbenv-mode nil)
  '(global-undo-tree-mode t)
