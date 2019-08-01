@@ -25,7 +25,6 @@
   :delight subword-mode
   :config
   (global-subword-mode 1)
-  (desktop-save-mode 1)
   :bind
   ([remap open-line] . #'kao/open-line))
 
