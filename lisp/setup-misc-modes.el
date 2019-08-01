@@ -186,6 +186,8 @@ Switch to the project specific term buffer if it already exists."
 (use-package avy
   :config
   (avy-setup-default)
+  ;; Any lower-case letter a-z.
+  (setq avy-keys (number-sequence ?a ?z))
   :bind
   (("C-;" . #'avy-goto-word-or-subword-1)))
 
