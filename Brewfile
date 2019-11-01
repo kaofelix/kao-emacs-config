@@ -1,16 +1,17 @@
 brew "aspell"
 brew "awscli"
 brew "bash"
-brew "cask"
 brew "coreutils"
 brew "direnv"
-brew "emacs", args: ["with-cocoa", "with-gnutls", "with-imagemagick@6", "with-librsvg"]
 brew "git"
 brew "multimarkdown"
-brew "rg"
+brew "ripgrep"
 brew "shellcheck"
 brew "terraform"
 brew "terraform_landscape"
 brew "the_silver_searcher"
 brew "tidy-html5"
 brew "zsh"
+
+tap "d12frosted/emacs-plus"
+brew "emacs-plus", fetch_HEAD: true,  args:  ["without-spacemacs-icon", "HEAD", "without-multicolor-fonts", "with-no-frame-refocus", "with-jansson"]
