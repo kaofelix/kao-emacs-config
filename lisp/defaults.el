@@ -65,6 +65,7 @@
 (set-keyboard-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+(setenv "LC_ALL" "en_US.UTF-8")
 
 (delete-selection-mode 1)
 (setq line-number-mode t)
