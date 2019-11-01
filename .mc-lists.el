@@ -3,19 +3,26 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        anzu-replace-at-cursor-thing
         helm-M-x
         hippie-expand-no-case-fold
         hungry-delete-backward
         hungry-delete-forward
+        isearch-abort
         isearch-forward-regexp
         isearch-printing-char
         iy-go-to-char--command
         kao/move-beginning-of-line
         kill-region
+        markdown-cycle
+        markdown-outdent-or-delete
+        org-cycle
         org-delete-char
+        org-meta-return
         org-metaleft
         org-metaright
         org-self-insert-command
+        org-todo
         sp--self-insert-command
         sp-backward-delete-char
         sp-backward-kill-word
@@ -33,6 +40,7 @@
       '(
         ace-window
         helm-confirm-and-exit-minibuffer
+        highlight-symbol-next
         magit-goto-next-section
         wgrep-finish-edit
         ))
