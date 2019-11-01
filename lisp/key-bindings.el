@@ -19,6 +19,7 @@
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
 (global-set-key [remap move-beginning-of-line] 'kao/move-beginning-of-line)
 (global-set-key [remap just-one-space] 'cycle-spacing)
+(global-set-key (kbd "C-c r") 'replace-string)
 
 ;; C-h for backspace
 (global-unset-key [?\C-h])
