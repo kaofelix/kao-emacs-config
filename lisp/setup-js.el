@@ -11,6 +11,13 @@
 
 ;;; Code:
 
+(use-package tide
+  :after (rjsx-mode company flycheck)
+  :hook ((rjsx-mode . tide-setup)))
+
+(use-package prettier-js
+  :hook (rjsx-mode . prettier-js-mode))
+
 (use-package rjsx-mode
   :mode "\\.js\\'")
 
