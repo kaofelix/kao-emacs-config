@@ -60,7 +60,6 @@
 (require 'setup-prog-mode)
 (require 'setup-python)
 (require 'setup-rust)
-(require 'setup-stylesheet-modes)
 (require 'setup-terraform)
 (require 'setup-yasnippet)
 

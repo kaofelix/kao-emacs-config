@@ -142,7 +142,7 @@ Switch to the project specific term buffer if it already exists."
 
 (use-package rainbow-mode
   :delight
-  :hook prog-mode)
+  :hook (prog-mode css-mode))
 
 (use-package undo-tree
   :delight undo-tree-mode
