@@ -251,5 +251,12 @@ already inside a project."
 (use-package yaml-mode)
 (use-package nginx-mode)
 
+(use-package restclient
+  :mode ("\\.http\\'" . restclient-mode))
+
+(use-package company-restclient
+  :after (company)
+  :hook (restclient-mode . company-mode))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
