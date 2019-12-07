@@ -125,7 +125,7 @@
  '(org-special-ctrl-k t)
  '(org-src-fontify-natively t)
  '(package-selected-packages
-   '(rjsx-mode origami try auto-package-update org racer cargo flycheck-rust company-terraform helm-c-yasnippet helm-descbinds helm-projectile wgrep-helm helm shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme))
+   '(yasnippet-snippets elpy drag-stuff dtrt-indent highlight-numbers highlight-symbol org-bullets company-restclient restclient nginx-mode toml-mode goto-line-preview docker-compose-mode git-timemachine gitignore-mode magit docker dockerfile-mode direnv ace-window avy neotree git-gutter undo-tree rainbow-mode anzu multi-term smartparens which-key smart-mode-line paradox paren-face hydra delight exec-path-from-shell f markdown-mode prettier-js tide highlight-quoted elisp-slime-nav rjsx-mode origami try auto-package-update org racer cargo flycheck-rust company-terraform helm-c-yasnippet helm-descbinds helm-projectile wgrep-helm helm shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme bind-key el-patch use-package))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)
