@@ -14,4 +14,4 @@ brew "tidy-html5"
 brew "zsh"
 
 tap "d12frosted/emacs-plus"
-brew "emacs-plus", fetch_HEAD: true,  args:  ["without-spacemacs-icon", "HEAD", "without-multicolor-fonts", "with-no-frame-refocus", "with-jansson"]
+brew "emacs-plus", fetch_HEAD: true,  args:  ["without-spacemacs-icon", "HEAD", "without-multicolor-fonts", "with-jansson"]
