@@ -33,8 +33,6 @@
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)))
 
-(use-package el-patch)
-
 (use-package delight)
 
 (use-package hydra)

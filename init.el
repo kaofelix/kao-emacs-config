@@ -37,6 +37,8 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
+(use-package el-patch)
+
 (require 'defaults)
 (require 'setup-theme)
 
