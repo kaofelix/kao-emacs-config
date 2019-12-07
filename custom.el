@@ -7,8 +7,7 @@
  '(ahs-face-check-include-overlay t)
  '(ahs-idle-interval 0.5)
  '(ahs-inhibit-face-list
-   (quote
-    (font-lock-comment-delimiter-face font-lock-comment-face font-lock-doc-face font-lock-doc-string-face font-lock-string-face font-lock-keyword-face)))
+   '(font-lock-comment-delimiter-face font-lock-comment-face font-lock-doc-face font-lock-doc-string-face font-lock-string-face font-lock-keyword-face))
  '(ansi-color-names-vector
    ["#3c3836" "#fb4933" "#b8bb26" "#fabd2f" "#83a598" "#d3869b" "#8ec07c" "#ebdbb2"])
  '(anzu-replace-to-string-separator " => ")
@@ -16,20 +15,18 @@
  '(avy-background t)
  '(browse-kill-ring-display-duplicates nil)
  '(browse-kill-ring-highlight-current-entry t)
- '(browse-kill-ring-highlight-inserted-item (quote pulse))
+ '(browse-kill-ring-highlight-inserted-item 'pulse)
  '(coffee-tab-width 2)
  '(custom-safe-themes
-   (quote
-    ("595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "a622aaf6377fe1cd14e4298497b7b2cae2efc9e0ce362dade3a58c16c89e089c" default)))
+   '("595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "a622aaf6377fe1cd14e4298497b7b2cae2efc9e0ce362dade3a58c16c89e089c" default))
  '(custom-search-field nil)
  '(dired-dwim-target t)
  '(elpy-modules
-   (quote
-    (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
+   '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
  '(eshell-aliases-file "/Users/kaofelix/.emacs.d/eshell-aliases")
- '(exec-path-from-shell-arguments (quote ("-l")))
+ '(exec-path-from-shell-arguments '("-l"))
  '(flycheck-indication-mode nil)
- '(git-commit-post-finish-hook (quote (git-gutter:update-all-windows)))
+ '(git-commit-post-finish-hook '(git-gutter:update-all-windows))
  '(git-gutter:update-interval 2)
  '(global-git-gutter-mode t)
  '(global-rbenv-mode nil)
@@ -42,8 +39,7 @@
  '(helm-ff-file-name-history-use-recentf t)
  '(helm-ff-search-library-in-sexp t)
  '(helm-find-files-actions
-   (quote
-    (("Find File" . helm-find-file-or-marked)
+   '(("Find File" . helm-find-file-or-marked)
      ("Find file in Dired" . helm-point-file-in-dired)
      ("View file" . view-file)
      ("Query replace fnames on marked `M-@'" . helm-ff-query-replace-fnames-on-marked)
@@ -85,16 +81,14 @@
      ("Find file other window `C-c o'" . helm-find-files-other-window)
      ("Find file other frame `C-c C-o'" . find-file-other-frame)
      ("Print File `C-c p, C-u to refresh'" . helm-ff-print)
-     ("Locate `C-x C-f, C-u to specify locate db'" . helm-ff-locate))))
+     ("Locate `C-x C-f, C-u to specify locate db'" . helm-ff-locate)))
  '(helm-grep-ag-command
    "rg --color=always --smart-case --no-heading --line-number %s %s %s")
- '(helm-grep-ag-pipe-cmd-switches
-   (quote
-    ("--colors 'match:fg:black'" "--colors 'match:bg:yellow'")))
- '(helm-grep-file-path-style (quote relative))
+ '(helm-grep-ag-pipe-cmd-switches '("--colors 'match:fg:black'" "--colors 'match:bg:yellow'"))
+ '(helm-grep-file-path-style 'relative)
  '(helm-locate-command "mdfind %s %s")
  '(helm-quick-update t)
- '(helm-split-window-default-side (quote right))
+ '(helm-split-window-default-side 'right)
  '(helm-truncate-lines t)
  '(helm-window-prefer-horizontal-split t)
  '(helm-yas-display-key-on-candidate t)
@@ -103,10 +97,9 @@
  '(inhibit-startup-screen t)
  '(locate-command "mdfind")
  '(magit-diff-use-overlays nil)
- '(magit-save-repository-buffers (quote dontask))
+ '(magit-save-repository-buffers 'dontask)
  '(magit-status-headers-hook
-   (quote
-    (magit-insert-error-header magit-insert-diff-filter-header magit-insert-repo-header magit-insert-remote-header magit-insert-head-branch-header magit-insert-upstream-branch-header magit-insert-push-branch-header magit-insert-tags-header)))
+   '(magit-insert-error-header magit-insert-diff-filter-header magit-insert-repo-header magit-insert-remote-header magit-insert-head-branch-header magit-insert-upstream-branch-header magit-insert-push-branch-header magit-insert-tags-header))
  '(magit-use-overlays nil)
  '(magit-wip-mode t)
  '(mmm-parse-when-idle t)
@@ -115,16 +108,15 @@
  '(neo-hide-cursor t)
  '(neo-window-fixed-size nil)
  '(neo-window-width 35)
- '(org-agenda-files (quote ("~/org/notes.org")))
+ '(org-agenda-files '("~/org/notes.org"))
  '(org-capture-templates
-   (quote
-    (("t" "Todo" entry
+   '(("t" "Todo" entry
       (file+headline "~/org/notes.org" "Inbox")
       "* TODO %?" :prepend t)
      ("e" "Emacs Idea" entry
       (file+headline "~/org/notes.org" "Emacs Config")
-      "* TODO %?" :prepend t))))
- '(org-catch-invisible-edits (quote error))
+      "* TODO %?" :prepend t)))
+ '(org-catch-invisible-edits 'error)
  '(org-hide-leading-stars t)
  '(org-mobile-directory "~/Dropbox/MobileOrg/" t)
  '(org-replace-disputed-keys t)
@@ -133,41 +125,36 @@
  '(org-special-ctrl-k t)
  '(org-src-fontify-natively t)
  '(package-selected-packages
-   (quote
-    (rjsx-mode origami try auto-package-update org racer cargo flycheck-rust company-terraform helm-c-yasnippet helm-descbinds helm-projectile wgrep-helm helm shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme)))
+   '(rjsx-mode origami try auto-package-update org racer cargo flycheck-rust company-terraform helm-c-yasnippet helm-descbinds helm-projectile wgrep-helm helm shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)
  '(paradox-github-token t)
  '(paradox-hide-wiki-packages t)
  '(paradox-lines-per-entry 1)
- '(pdf-view-midnight-colors (quote ("#fdf4c1" . "#32302f")))
- '(projectile-completion-system (quote helm))
- '(projectile-mode-line (quote (:eval (format " P[%s]" (projectile-project-name)))))
+ '(pdf-view-midnight-colors '("#fdf4c1" . "#32302f"))
+ '(projectile-completion-system 'helm)
+ '(projectile-mode-line '(:eval (format " P[%s]" (projectile-project-name))))
  '(projectile-mode-line-prefix " ")
  '(projectile-project-root-files
-   (quote
-    ("rebar.config" "project.clj" "build.boot" "deps.edn" "SConstruct" "pom.xml" "build.sbt" "gradlew" "build.gradle" ".ensime" "Gemfile" "requirements.txt" "setup.py" "pyproject.toml" "tox.ini" "composer.json" "Cargo.toml" "mix.exs" "stack.yaml" "info.rkt" "DESCRIPTION" "TAGS" "GTAGS" "configure.in" "configure.ac" "cscope.out")))
+   '("rebar.config" "project.clj" "build.boot" "deps.edn" "SConstruct" "pom.xml" "build.sbt" "gradlew" "build.gradle" ".ensime" "Gemfile" "requirements.txt" "setup.py" "pyproject.toml" "tox.ini" "composer.json" "Cargo.toml" "mix.exs" "stack.yaml" "info.rkt" "DESCRIPTION" "TAGS" "GTAGS" "configure.in" "configure.ac" "cscope.out"))
  '(projectile-rails-keymap-prefix "" t)
- '(projectile-switch-project-action (quote helm-projectile-find-file))
+ '(projectile-switch-project-action 'helm-projectile-find-file)
  '(py-underscore-word-syntax-p nil)
  '(register-preview-delay 0)
  '(safe-local-variable-values
-   (quote
-    ((checkdoc-minor-mode . 1)
+   '((checkdoc-minor-mode . 1)
      (eval when
-           (fboundp
-            (quote rainbow-mode))
+           (fboundp 'rainbow-mode)
            (rainbow-mode 1))
      (elpy-test-runner quote elpy-test-pytest-runner)
      (pyvenv-activate . "/Users/kaofelix/Library/Caches/pypoetry/virtualenvs/op1-py3.")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect" "angular")
-     (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect"))))
+     (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect")))
  '(smartparens-global-mode t)
  '(sp-navigate-interactive-always-progress-point t)
  '(term-bind-key-alist
-   (quote
-    (("C-c C-c" . term-interrupt-subjob)
+   '(("C-c C-c" . term-interrupt-subjob)
      ("C-c C-d" . term-send-eof)
      ("C-c C-e" . term-send-esc)
      ("C-c C-j" . term-line-mode)
@@ -182,15 +169,15 @@
      ("M-d" . term-send-forward-kill-word)
      ("M-DEL" . term-send-backward-kill-word)
      ("M-," . term-send-raw)
-     ("M-." . comint-dynamic-complete))))
- '(term-unbind-key-list (quote ("C-x" "C-c" "C-h" "C-y" "C-d" "<ESC>")))
+     ("M-." . comint-dynamic-complete)))
+ '(term-unbind-key-list '("C-x" "C-c" "C-h" "C-y" "C-d" "<ESC>"))
  '(wgrep-auto-save-buffer t)
  '(wgrep-enable-key "e")
  '(which-key-idle-secondary-delay 0.0)
- '(whitespace-action (quote (auto-cleanup)))
+ '(whitespace-action '(auto-cleanup))
  '(whitespace-global-modes nil)
- '(whitespace-style (quote (face trailing tabs)))
- '(whitespace-trailing (quote whitespace-space-before-tab) t))
+ '(whitespace-style '(face trailing tabs))
+ '(whitespace-trailing 'whitespace-space-before-tab t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
