@@ -14,6 +14,10 @@
   :config
   (elpy-enable))
 
+(use-package blacken
+  :hook
+  (python-mode . blacken-mode))
+
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
 
