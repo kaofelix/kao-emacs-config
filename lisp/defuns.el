@@ -115,8 +115,12 @@ closing delimiter, will open a new line between both delimiters."
           (save-excursion
             (forward-line 1)
             (indent-according-to-mode)))
-      (if (looking-at "\\s)\\s-*$")
-          (open-line 1)
+      (if (looking-at "\\s);?\\s-*$")
+          (progn
+            (open-line 1)
+            (save-excursion
+              (forward-line 1)
+              (indent-according-to-mode)))
         (end-of-line))
       (open-line arg)
       (forward-line 1)
