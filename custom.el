@@ -21,6 +21,7 @@
    '("595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "a622aaf6377fe1cd14e4298497b7b2cae2efc9e0ce362dade3a58c16c89e089c" default))
  '(custom-search-field nil)
  '(dired-dwim-target t)
+ '(dtrt-indent-max-merge-deviation 15.0)
  '(elpy-modules
    '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
  '(eshell-aliases-file "/Users/kaofelix/.emacs.d/eshell-aliases")
@@ -125,7 +126,7 @@
  '(org-special-ctrl-k t)
  '(org-src-fontify-natively t)
  '(package-selected-packages
-   '(blacken yasnippet-snippets elpy drag-stuff dtrt-indent highlight-numbers highlight-symbol org-bullets company-restclient restclient nginx-mode toml-mode goto-line-preview docker-compose-mode git-timemachine gitignore-mode magit docker dockerfile-mode direnv ace-window avy neotree git-gutter undo-tree rainbow-mode anzu multi-term smartparens which-key smart-mode-line paradox paren-face hydra delight exec-path-from-shell f markdown-mode prettier-js tide highlight-quoted elisp-slime-nav rjsx-mode origami try auto-package-update org racer cargo flycheck-rust company-terraform helm-c-yasnippet helm-descbinds helm-projectile wgrep-helm helm shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme bind-key el-patch use-package))
+   '(emojify blacken yasnippet-snippets elpy drag-stuff dtrt-indent highlight-numbers highlight-symbol org-bullets company-restclient restclient nginx-mode toml-mode goto-line-preview docker-compose-mode git-timemachine gitignore-mode magit docker dockerfile-mode direnv ace-window avy neotree git-gutter undo-tree rainbow-mode anzu multi-term smartparens which-key smart-mode-line paradox paren-face hydra delight exec-path-from-shell f markdown-mode prettier-js tide highlight-quoted elisp-slime-nav rjsx-mode origami try auto-package-update org racer cargo flycheck-rust company-terraform helm-c-yasnippet helm-descbinds helm-projectile wgrep-helm helm shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme bind-key el-patch use-package))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)

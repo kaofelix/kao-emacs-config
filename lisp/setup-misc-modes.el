@@ -259,5 +259,9 @@ already inside a project."
   :after (company)
   :hook (restclient-mode . company-mode))
 
+(use-package emojify
+  :init
+  (add-hook 'after-init-hook #'global-emojify-mode))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
