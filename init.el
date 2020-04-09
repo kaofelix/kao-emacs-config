@@ -56,6 +56,7 @@
 (require 'setup-helm)
 (require 'setup-hippie)
 (require 'setup-js)
+(require 'setup-lsp)
 (require 'setup-markdown)
 (require 'setup-misc-modes)
 (require 'setup-org)

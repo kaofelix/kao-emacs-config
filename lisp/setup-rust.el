@@ -10,20 +10,13 @@
 ;;
 
 ;;; Code:
-(use-package flycheck-rust
-  :after (flycheck))
-
 (use-package cargo
   :delight cargo-minor-mode)
-(use-package racer
-  :delight)
+
 (use-package rust-mode
   :config
   (setq rust-format-on-save t)
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-  (add-hook 'rust-mode-hook #'cargo-minor-mode)
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode))
+  (add-hook 'rust-mode-hook #'cargo-minor-mode))
 
 (provide 'setup-rust)
 ;;; setup-rust.el ends here
