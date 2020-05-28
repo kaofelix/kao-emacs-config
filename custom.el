@@ -174,6 +174,7 @@
  '(term-unbind-key-list '("C-x" "C-c" "C-h" "C-y" "C-d" "<ESC>"))
  '(wgrep-auto-save-buffer t)
  '(wgrep-enable-key "e")
+ '(which-key-idle-delay 0.2)
  '(which-key-idle-secondary-delay 0.0)
  '(whitespace-action '(auto-cleanup))
  '(whitespace-global-modes nil)
