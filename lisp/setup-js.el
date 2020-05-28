@@ -10,16 +10,28 @@
 ;;
 
 ;;; Code:
-
-(use-package tide
-  :after (rjsx-mode company flycheck)
-  :hook ((rjsx-mode . tide-setup)))
-
 (use-package prettier-js
-  :hook (rjsx-mode . prettier-js-mode))
+  :after (web-mode)
+  :hook (web-mode . prettier-js-mode))
 
-(use-package rjsx-mode
-  :mode "\\.js\\'")
+(use-package add-node-modules-path
+  :after (web-mode)
+  :hook (web-mode . add-node-modules-path))
+
+(use-package web-mode
+  :mode
+  ("\\.ejs\\'" "\\.hbs\\'" "\\.html\\'" "\\.php\\'" "\\.[jt]sx?\\'")
+  :config
+  (setq web-mode-content-types-alist '(("jsx" . "\\.[jt]sx?\\'")))
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-script-padding 2)
+  (setq web-mode-block-padding 2)
+  (setq web-mode-style-padding 2)
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-auto-closing t)
+  (setq web-mode-enable-current-element-highlight t))
 
 (provide 'setup-js)
 ;;; setup-js.el ends here

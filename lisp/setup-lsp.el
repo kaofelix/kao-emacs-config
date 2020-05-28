@@ -5,6 +5,8 @@
 
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
+         (typescript-mode . lsp)
+         (web-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 
