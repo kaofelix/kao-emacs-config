@@ -61,6 +61,7 @@
 (require 'setup-prog-mode)
 (require 'setup-python)
 (require 'setup-rust)
+(require 'setup-scala)
 (require 'setup-terraform)
 (require 'setup-yasnippet)
 
