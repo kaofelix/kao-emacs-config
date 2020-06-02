@@ -263,5 +263,7 @@ already inside a project."
   :init
   (add-hook 'after-init-hook #'global-emojify-mode))
 
+(use-package sudo-edit)
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
