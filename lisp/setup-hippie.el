@@ -165,13 +165,6 @@ string).  It returns t if a new completion is found, nil otherwise."
                                          try-complete-lisp-symbol-partially
                                          try-complete-lisp-symbol))
 
-;; Create own function to expand lines (C-S-.)
-(defun hippie-expand-lines ()
-  (interactive)
-  (let ((hippie-expand-try-functions-list '(try-expand-line-closest-first
-                                            try-expand-line-all-buffers)))
-    (end-of-line)
-    (hippie-expand nil)))
 
 ;; Don't case-fold when expanding with hippe
 (defun hippie-expand-no-case-fold ()

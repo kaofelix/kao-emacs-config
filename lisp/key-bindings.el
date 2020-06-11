@@ -39,7 +39,6 @@
 
 ;; Completion that uses many different methods to find options.
 (global-set-key (kbd "M-/") 'hippie-expand-no-case-fold)
-(global-set-key (kbd "M-?") 'hippie-expand-lines)
 
 ;; Windmove: Shift+direction
 (windmove-default-keybindings)
