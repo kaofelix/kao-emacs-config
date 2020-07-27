@@ -72,7 +72,6 @@
    ("C-p" . #'company-select-previous-or-abort)))
 
 (add-hook 'prog-mode-hook 'hl-line-mode)
-(add-hook 'prog-mode-hook 'prettify-symbols-mode)
 
 (provide 'setup-prog-mode)
 ;;; setup-prog-mode.el ends here
