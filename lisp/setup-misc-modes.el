@@ -259,10 +259,6 @@ already inside a project."
   :after (company)
   :hook (restclient-mode . company-mode))
 
-(use-package emojify
-  :init
-  (add-hook 'after-init-hook #'global-emojify-mode))
-
 (use-package sudo-edit)
 
 (provide 'setup-misc-modes)
