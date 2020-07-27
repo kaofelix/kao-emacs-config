@@ -8,6 +8,7 @@
         hippie-expand-no-case-fold
         hungry-delete-backward
         hungry-delete-forward
+        indent-for-tab-command
         isearch-abort
         isearch-forward-regexp
         isearch-printing-char
@@ -18,6 +19,7 @@
         markdown-outdent-or-delete
         org-cycle
         org-delete-char
+        org-end-of-line
         org-meta-return
         org-metaleft
         org-metaright
