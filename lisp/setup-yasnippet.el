@@ -31,10 +31,10 @@
           (move-beginning-of-line 1)
         (goto-char position))))
 
-  (setq yas-prompt-functions '(yas/ido-prompt yas/completing-prompt))
+  (setq yas-prompt-functions '(yas/completing-prompt))
   (setq yas-verbosity 1)
   (setq yas-wrap-around-region t)
-  :hook (prog-mode . yas-minor-mode)
+  :hook (prog-mode . #'yas-minor-mode)
   :bind
   (:map yas-keymap
    ("<return>" . #'yas-exit-all-snippets)
