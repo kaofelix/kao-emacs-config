@@ -19,6 +19,10 @@
   :config
   (async-bytecomp-package-mode 1))
 
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t))
+
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
 (use-package emacs

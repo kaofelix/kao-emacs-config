@@ -15,12 +15,15 @@
 ;;; Code:
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory) t)
 (setq user-mail-address "kcfelix@gmail.com")
+;;
+(require 'minimal-gui)
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
+;; use-package setup
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -30,10 +33,7 @@
 
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
-
-(use-package auto-package-update
-  :config
-  (setq auto-package-update-delete-old-versions t))
+;; end use-package setup
 
 (use-package el-patch)
 

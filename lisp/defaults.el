@@ -7,15 +7,7 @@
 ;;
 
 ;;; Code:
-
-;; GUI
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(blink-cursor-mode -1)
 (setq ring-bell-function 'ignore)
-(setq-default indicate-empty-lines t)
-(set-frame-font "Source Code Pro-13" t t)
 (require 'pixel-scroll)
 (pixel-scroll-mode 1)
 
@@ -72,7 +64,6 @@
 (setq column-number-mode t)
 (setq fill-column 80)
 (set-default 'indent-tabs-mode nil)
-(set-default 'indicate-empty-lines t)
 
 (recentf-mode 1)
 (setq recentf-max-saved-items 100) ;; just 20 is too recent
