@@ -11,6 +11,7 @@
 
 ;;; Code:
 (use-package wgrep)
+(use-package amx)
 (use-package flx)
 
 (use-package counsel
