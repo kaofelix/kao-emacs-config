@@ -71,10 +71,6 @@
    ("C-n" . #'company-select-next-or-abort)
    ("C-p" . #'company-select-previous-or-abort)))
 
-(use-package company-box
-  :after company
-  :hook (company-mode . company-box-mode))
-
 (add-hook 'prog-mode-hook 'hl-line-mode)
 
 (provide 'setup-prog-mode)
