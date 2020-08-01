@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name:args
+# key: args
+# --
+if [ $# -lt ${1:1} ]; then
+   $0
+fi
