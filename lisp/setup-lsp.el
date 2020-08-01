@@ -1,14 +1,14 @@
 ;;; setup-lsp.el --- configure LSP
 ;;; Commentary:
 ;;; Code:
-(setq lsp-keymap-prefix "s-l")
-
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
          (typescript-mode . lsp)
          (web-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
+  :commands lsp
+  :config
+  (setq lsp-keymap-prefix "s-l"))
 
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
