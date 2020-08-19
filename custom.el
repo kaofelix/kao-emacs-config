@@ -34,6 +34,19 @@
  '(global-undo-tree-mode t)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
+ '(ivy-format-functions-alist
+   '((counsel-compile-env . counsel-compile-env--format-hint)
+     (counsel-kmacro . counsel--kmacro-format-function)
+     (counsel-colors-web . counsel--colors-web-format-function)
+     (counsel-colors-emacs . counsel--colors-emacs-format-function)
+     (counsel-evil-registers . counsel--yank-pop-format-function)
+     (counsel-yank-pop . counsel--yank-pop-format-function)
+     (counsel-git-log . counsel--git-log-format-function)
+     (counsel-faces . counsel--faces-format-function)
+     (swiper-isearch . swiper-isearch-format-function)
+     (swiper-all . swiper--all-format-function)
+     (swiper-multi . swiper--all-format-function)
+     (t . ivy-format-function-line)))
  '(ivy-sort-matches-functions-alist
    '((t)
      (ivy-completion-in-region . ivy--shorter-matches-first)
@@ -126,4 +139,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ivy-current-match ((t (:inherit highlight :underline nil :weight normal))))
+ '(ivy-highlight-face ((t (:inherit lazy-highlight))))
  '(markdown-table-face ((t (:inherit org-table)))))
