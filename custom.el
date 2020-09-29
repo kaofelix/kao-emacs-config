@@ -24,6 +24,7 @@
  '(dtrt-indent-max-merge-deviation 15.0)
  '(elpy-modules
    '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
+ '(elpy-test-runner 'elpy-test-pytest-runner)
  '(eshell-aliases-file "/Users/kaofelix/.emacs.d/eshell-aliases")
  '(exec-path-from-shell-arguments '("-l"))
  '(flycheck-indication-mode nil)
@@ -81,7 +82,7 @@
  '(org-special-ctrl-k t)
  '(org-src-fontify-natively t)
  '(package-selected-packages
-   '(amx company-box flx counsel-projectile counsel lsp-metals sbt-mode nvm sudo-edit add-node-modules-path web-mode scala-mode lsp-treemacs lsp-ivy company-lsp lsp-ui lsp-mode blacken elpy drag-stuff dtrt-indent highlight-numbers highlight-symbol org-bullets company-restclient restclient nginx-mode toml-mode goto-line-preview docker-compose-mode git-timemachine gitignore-mode magit docker dockerfile-mode direnv ace-window avy neotree git-gutter undo-tree rainbow-mode anzu multi-term smartparens which-key smart-mode-line paradox paren-face hydra delight exec-path-from-shell f markdown-mode prettier-js highlight-quoted elisp-slime-nav origami try auto-package-update org racer cargo flycheck-rust company-terraform shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme bind-key el-patch use-package))
+   '(poetry amx company-box flx counsel-projectile counsel lsp-metals sbt-mode nvm sudo-edit add-node-modules-path web-mode scala-mode lsp-treemacs lsp-ivy company-lsp lsp-ui lsp-mode blacken elpy drag-stuff dtrt-indent highlight-numbers highlight-symbol org-bullets company-restclient restclient nginx-mode toml-mode goto-line-preview docker-compose-mode git-timemachine gitignore-mode magit docker dockerfile-mode direnv ace-window avy neotree git-gutter undo-tree rainbow-mode anzu multi-term smartparens which-key smart-mode-line paradox paren-face hydra delight exec-path-from-shell f markdown-mode prettier-js highlight-quoted elisp-slime-nav origami try auto-package-update org racer cargo flycheck-rust company-terraform shackle org-tree-slide multiple-cursors comment-dwim-2 expand-region gruvbox-theme bind-key el-patch use-package))
  '(paradox-column-width-package 25)
  '(paradox-column-width-version 13)
  '(paradox-execute-asynchronously t)

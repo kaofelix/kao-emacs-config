@@ -11,8 +11,12 @@
 
 ;;; Code:
 (use-package elpy
-  :config
+  :init
   (elpy-enable))
+
+
+(use-package poetry
+ :ensure t)
 
 (use-package blacken
   :hook
