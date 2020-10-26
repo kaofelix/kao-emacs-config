@@ -19,6 +19,7 @@
 (require 'minimal-gui)
 
 (require 'package)
+(defun package--save-selected-packages (&rest opt) nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
