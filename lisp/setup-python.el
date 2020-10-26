@@ -11,12 +11,13 @@
 
 ;;; Code:
 (use-package elpy
-  :init
-  (elpy-enable))
+  :after poetry
+  :config
+  (elpy-enable)
+  (add-hook 'elpy-mode-hook 'poetry-tracking-mode)
+  (setq elpy-rpc-virtualenv-path 'current))
 
-
-(use-package poetry
- :ensure t)
+(use-package poetry)
 
 (use-package blacken
   :hook
@@ -25,5 +26,11 @@
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
 
+(use-package flycheck-pycheckers
+  :after flycheck
+  :hook
+  (flycheck-mode . flycheck-pycheckers-setup))
+
 (provide 'setup-python)
 ;;; setup-python.el ends here
+

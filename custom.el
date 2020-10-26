@@ -28,6 +28,7 @@
  '(eshell-aliases-file "/Users/kaofelix/.emacs.d/eshell-aliases")
  '(exec-path-from-shell-arguments '("-l"))
  '(flycheck-indication-mode nil)
+ '(flycheck-pycheckers-checkers '(flake8 mypy3))
  '(git-commit-post-finish-hook '(git-gutter:update-all-windows))
  '(git-gutter:update-interval 2)
  '(global-git-gutter-mode t)
