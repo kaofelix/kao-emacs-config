@@ -3,6 +3,7 @@
 ;;; Code:
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
+         (go-mode . lsp)
          (typescript-mode . lsp)
          (web-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))

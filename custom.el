@@ -33,6 +33,7 @@
  '(global-git-gutter-mode t)
  '(global-rbenv-mode nil)
  '(global-undo-tree-mode t)
+ '(gofmt-command "goimports")
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(ivy-format-functions-alist
