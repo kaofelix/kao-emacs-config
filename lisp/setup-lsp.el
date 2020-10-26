@@ -8,10 +8,13 @@
          (web-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
+  :init
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
   :config
-  (setq lsp-keymap-prefix "s-l"))
+  (setq lsp-keymap-prefix "s-l")
+  (setq lsp-modeline-diagnostics-enable t)
+  (lsp-modeline-code-actions-mode))
 
-(use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 (use-package lsp-ivy
