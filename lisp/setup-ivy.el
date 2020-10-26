@@ -19,7 +19,10 @@
   :delight
   :config
   (setq ivy-initial-inputs-alist nil)
-  (counsel-mode))
+  (counsel-mode)
+  :custom
+  (counsel-yank-pop-preselect-last t)
+  (counsel-yank-pop-separator "\n---\n"))
 
 (use-package counsel-projectile
   :after counsel
