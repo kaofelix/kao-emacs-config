@@ -43,6 +43,7 @@
         ace-window
         helm-confirm-and-exit-minibuffer
         highlight-symbol-next
+        highlight-symbol-prev
         magit-goto-next-section
         wgrep-finish-edit
         ))
