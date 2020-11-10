@@ -27,12 +27,6 @@
 (define-key key-translation-map [?\M-\C-h] [?\M-\C-?])
 (global-set-key (kbd "C-?") 'help-command)
 
-;; Use regex searches by default.
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "\C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-M-s") 'isearch-forward)
-(global-set-key (kbd "C-M-r") 'isearch-backward)
-
 ;; Change quit keybing
 (global-unset-key (kbd "C-x C-c"))
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-emacs)
