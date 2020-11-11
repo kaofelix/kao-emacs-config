@@ -265,5 +265,7 @@ already inside a project."
 
 (use-package sudo-edit)
 
+(use-package vterm)
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
