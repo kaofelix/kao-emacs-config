@@ -97,37 +97,13 @@
    ("M-F" . #'sp-forward-symbol)
    ("M-B" . #'sp-backward-symbol)))
 
-(use-package multi-term)
-
 ;;; Projectile
 (use-package projectile
-  :delight
-  :after (multi-term)
-  :init
-  (projectile-mode)
+  :ensure t
   :config
-  (defun projectile-run-multi-term (program)
-    "Invoke `multi-term' in the project's root.
-
-Switch to the project specific term buffer if it already exists."
-    (interactive (list nil))
-    (let* ((project (projectile-ensure-project (projectile-project-root)))
-           (multi-term-buffer-name (concat "terminal " (projectile-project-name project)))
-           (buffer (concat "*" multi-term-buffer-name "<1>*")))
-      (unless (get-buffer buffer)
-        (require 'multi-term)
-        (projectile-with-default-dir project
-          (setq term-buffer (multi-term-get-buffer current-prefix-arg))
-          (setq multi-term-buffer-list (nconc multi-term-buffer-list (list term-buffer)))
-          (set-buffer term-buffer)
-          ;; Internal handle for `multi-term' buffer.
-          (multi-term-internal)))
-      (switch-to-buffer-other-window buffer)))
-  :bind
-  (:map projectile-mode-map
-   ("C-c p" . #'projectile-command-map)
-   :map projectile-command-map
-   ("x t" . #'projectile-run-multi-term)))
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
 
 (use-package anzu
   :delight

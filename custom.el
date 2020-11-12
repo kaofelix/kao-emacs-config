@@ -93,8 +93,6 @@
  '(projectile-completion-system 'ivy)
  '(projectile-mode-line '(:eval (format " P[%s]" (projectile-project-name))))
  '(projectile-mode-line-prefix " ")
- '(projectile-project-root-files
-   '("rebar.config" "project.clj" "build.boot" "deps.edn" "SConstruct" "pom.xml" "build.sbt" "gradlew" "build.gradle" ".ensime" "Gemfile" "requirements.txt" "setup.py" "pyproject.toml" "tox.ini" "composer.json" "Cargo.toml" "mix.exs" "stack.yaml" "info.rkt" "DESCRIPTION" "TAGS" "GTAGS" "configure.in" "configure.ac" "cscope.out"))
  '(projectile-rails-keymap-prefix "" t)
  '(py-underscore-word-syntax-p nil)
  '(register-preview-delay 0)
