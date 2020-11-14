@@ -11,6 +11,9 @@
 ;;; Code:
 
 (use-package gruvbox-theme
+  :straight (gruvbox-theme :host github :repo "greduan/emacs-theme-gruvbox"
+                           :fork (:host github
+                                  :repo "kaofelix/emacs-theme-gruvbox"))
   :config
   (defvar kao/current-theme-file (expand-file-name "current-theme" cache-and-saves-dir))
   (defvar kao/current-theme 'gruvbox-dark-soft)
