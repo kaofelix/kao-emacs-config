@@ -10,6 +10,11 @@
 ;;
 
 ;;; Code:
+(use-package apheleia
+  :straight (:host github :repo "raxod502/apheleia")
+  :config
+  (apheleia-global-mode +1))
+
 (use-package highlight-symbol
   :delight
   :bind

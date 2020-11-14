@@ -10,11 +10,6 @@
 ;;
 
 ;;; Code:
-(use-package prettier-js
-  :after (web-mode)
-  :hook ((web-mode . prettier-js-mode)
-         (scss-mode . prettier-js-mode)))
-
 (use-package nvm
   :after (web-mode)
   :hook (web-mode . nvm-use-for-buffer))

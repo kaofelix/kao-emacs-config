@@ -13,8 +13,7 @@
 (use-package go-mode
   :hook
   (go-mode . (lambda ()
-               (setq tab-width 4)
-               (add-hook 'before-save-hook #'gofmt-before-save nil t))))
+               (setq tab-width 4))))
 
 (provide 'setup-go)
 ;;; setup-go.el ends here
