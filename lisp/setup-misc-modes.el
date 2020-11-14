@@ -45,10 +45,6 @@
   :config
   (global-paren-face-mode))
 
-(use-package paradox
-  :config
-  (paradox-enable))
-
 (use-package try
   :commands #'try)
 
