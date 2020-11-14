@@ -12,7 +12,7 @@
 ;;; Code:
 (use-package wgrep)
 (use-package amx)
-(use-package flx)
+(use-package orderless)
 
 (use-package counsel
   :after ivy
@@ -40,9 +40,9 @@
   (ivy-height 20)
   :config
   (setq ivy-re-builders-alist
-        '((swiper . ivy--regex-plus)
-          (counsel-rg . ivy--regex-plus)
-          (t . ivy--regex-fuzzy)))
+        '((counsel-rg . ivy--regex-plus)
+          (t . orderless-ivy-re-builder)))
+
   (ivy-mode))
 
 (use-package swiper
