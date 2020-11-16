@@ -37,7 +37,7 @@
 (eval-when-compile
   (require 'use-package))
 ;; end straight.el + use-package setup
-
+(use-package delight)
 (use-package el-patch)
 
 (require 'defaults)
