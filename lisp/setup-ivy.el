@@ -11,8 +11,6 @@
 
 ;;; Code:
 (use-package wgrep)
-(use-package amx)
-(use-package orderless)
 
 (use-package counsel
   :after ivy
@@ -40,14 +38,14 @@
   (ivy-height 20)
   :config
   (setq ivy-re-builders-alist
-        '((counsel-rg . ivy--regex-plus)
-          (t . orderless-ivy-re-builder)))
-
+        '((counsel-rg . ivy--regex-plus)))
   (ivy-mode))
 
-(use-package swiper
-  :after ivy
-  :bind (("M-i" . swiper)))
+(use-package ivy-prescient
+  :after (ivy counsel)
+  :config
+  (ivy-prescient-mode)
+  (prescient-persist-mode))
 
 (provide 'setup-ivy)
 ;;; setup-ivy.el ends here

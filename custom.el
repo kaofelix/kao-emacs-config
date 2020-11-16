@@ -50,10 +50,6 @@
      (swiper-all . swiper--all-format-function)
      (swiper-multi . swiper--all-format-function)
      (t . ivy-format-function-line)))
- '(ivy-sort-matches-functions-alist
-   '((t)
-     (ivy-completion-in-region . ivy--shorter-matches-first)
-     (ivy-switch-buffer . ivy-sort-function-buffer)))
  '(locate-command "mdfind")
  '(magit-diff-use-overlays nil)
  '(magit-save-repository-buffers 'dontask)
