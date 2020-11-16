@@ -17,6 +17,23 @@
  '(browse-kill-ring-highlight-current-entry t)
  '(browse-kill-ring-highlight-inserted-item 'pulse)
  '(coffee-tab-width 2)
+ '(counsel-projectile-switch-project-action
+   '(1
+     ("o" counsel-projectile-switch-project-action "jump to a project buffer or file")
+     ("f" counsel-projectile-switch-project-action-find-file "jump to a project file")
+     ("d" counsel-projectile-switch-project-action-find-dir "jump to a project directory")
+     ("D" counsel-projectile-switch-project-action-dired "open project in dired")
+     ("b" counsel-projectile-switch-project-action-switch-to-buffer "jump to a project buffer")
+     ("m" counsel-projectile-switch-project-action-find-file-manually "find file manually from project root")
+     ("S" counsel-projectile-switch-project-action-save-all-buffers "save all project buffers")
+     ("k" counsel-projectile-switch-project-action-kill-buffers "kill all project buffers")
+     ("K" counsel-projectile-switch-project-action-remove-known-project "remove project from known projects")
+     ("c" counsel-projectile-switch-project-action-compile "run project compilation command")
+     ("C" counsel-projectile-switch-project-action-configure "run project configure command")
+     ("E" counsel-projectile-switch-project-action-edit-dir-locals "edit project dir-locals")
+     ("v" counsel-projectile-switch-project-action-vc "open project in vc-dir / magit / monky")
+     ("s" counsel-projectile-switch-project-action-rg "search project with rg")
+     ("x" counsel-projectile-switch-project-action-run-vterm "invoke vterm from project root")))
  '(custom-safe-themes
    '("595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "a622aaf6377fe1cd14e4298497b7b2cae2efc9e0ce362dade3a58c16c89e089c" default))
  '(custom-search-field nil)
