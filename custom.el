@@ -100,7 +100,6 @@
      (pyvenv-activate . "/Users/kaofelix/Library/Caches/pypoetry/virtualenvs/op1-py3.")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect" "angular")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect")))
- '(smartparens-global-mode t)
  '(sp-navigate-interactive-always-progress-point t)
  '(term-bind-key-alist
    '(("C-c C-c" . term-interrupt-subjob)

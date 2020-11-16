@@ -64,6 +64,7 @@
   :config
   (require 'smartparens-config)
   (show-smartparens-global-mode t)
+  (smartparens-global-mode t)
   :hook ((emacs-lisp-mode . smartparens-strict-mode)
          (eval-expression-minibuffer-setup . smartparens-mode))
   :bind
