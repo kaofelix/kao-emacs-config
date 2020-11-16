@@ -128,7 +128,7 @@
     "next/previous hunk"
     ("n" #'git-gutter:next-hunk "next")
     ("p" #'git-gutter:previous-hunk "previous"))
-
+  (global-git-gutter-mode t)
   :bind
   ("C-x C-g" . #'git-gutter)
   ("C-x v =" . #'git-gutter:popup-hunk)

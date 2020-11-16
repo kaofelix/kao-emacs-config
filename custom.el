@@ -31,7 +31,6 @@
  '(flycheck-pycheckers-checkers '(flake8 mypy3))
  '(git-commit-post-finish-hook '(git-gutter:update-all-windows))
  '(git-gutter:update-interval 2)
- '(global-git-gutter-mode t)
  '(global-rbenv-mode nil)
  '(global-undo-tree-mode t)
  '(gofmt-command "goimports")
