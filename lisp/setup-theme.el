@@ -15,7 +15,7 @@
                            :fork (:host github
                                   :repo "kaofelix/emacs-theme-gruvbox"))
   :config
-  (defvar kao/current-theme-file (expand-file-name "current-theme" cache-and-saves-dir))
+  (defvar kao/current-theme-file (no-littering-expand-var-file-name "current-theme"))
   (defvar kao/current-theme 'gruvbox-dark-soft)
 
   (defvar kao/light-theme 'gruvbox-light-hard)

@@ -36,10 +36,17 @@
 
 (eval-when-compile
   (require 'use-package))
-;; end straight.el + use-package setup
 (use-package delight)
-(use-package el-patch)
+;; end straight.el + use-package setup
+(use-package no-littering
+  :after (recentf)
+  :config
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
+  (setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
+(use-package el-patch)
 (require 'defaults)
 (require 'setup-theme)
 
