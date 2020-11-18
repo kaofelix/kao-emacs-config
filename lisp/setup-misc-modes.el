@@ -248,5 +248,8 @@ already inside a project."
 
 (use-package vterm)
 
+(use-package pico8-mode
+  :straight (:host github :repo "Kaali/pico8-mode"))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here

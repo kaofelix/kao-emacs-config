@@ -97,6 +97,7 @@
  '(org-special-ctrl-k t)
  '(org-src-fontify-natively t)
  '(pdf-view-midnight-colors '("#fdf4c1" . "#32302f"))
+ '(pico8-documentation-file "~/.emacs.d/etc/pico8/pico8_manual.txt")
  '(projectile-completion-system 'ivy)
  '(projectile-mode-line '(:eval (format " P[%s]" (projectile-project-name))))
  '(projectile-mode-line-prefix " ")
