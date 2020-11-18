@@ -42,7 +42,6 @@
  '(elpy-modules
    '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
  '(elpy-test-runner 'elpy-test-pytest-runner)
- '(eshell-aliases-file "/Users/kaofelix/.emacs.d/eshell-aliases")
  '(exec-path-from-shell-arguments '("-l"))
  '(flycheck-indication-mode nil)
  '(flycheck-pycheckers-checkers '(flake8 mypy3))
