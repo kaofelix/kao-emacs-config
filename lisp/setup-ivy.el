@@ -52,5 +52,9 @@
   (ivy-prescient-mode)
   (prescient-persist-mode))
 
+(use-package swiper
+  :after ivy
+  :bind (("M-i" . swiper)))
+
 (provide 'setup-ivy)
 ;;; setup-ivy.el ends here
