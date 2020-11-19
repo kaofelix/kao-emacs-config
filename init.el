@@ -17,6 +17,7 @@
 (setq user-mail-address "kcfelix@gmail.com")
 ;;
 (require 'minimal-gui)
+(require 'emoji)
 
 ;; straight.el + use-package setup
 (set-default 'straight-use-package-by-default t)
@@ -38,6 +39,7 @@
   (require 'use-package))
 (use-package delight)
 ;; end straight.el + use-package setup
+
 (use-package no-littering
   :after (recentf)
   :config
