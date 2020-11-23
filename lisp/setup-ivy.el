@@ -19,16 +19,17 @@
   :delight
   :config
   (setq ivy-initial-inputs-alist nil)
-  (counsel-mode)
   :custom
   (counsel-yank-pop-preselect-last t)
   (counsel-yank-pop-separator "\n---\n"))
 
 (use-package counsel-projectile
   :after counsel
-  :bind (:map projectile-command-map
-         ("s" . #'counsel-projectile-rg))
-  :config (counsel-projectile-mode))
+  :bind
+  (:map projectile-command-map
+   ("s" . #'counsel-projectile-rg))
+  :config
+  (add-to-list 'counsel-projectile-key-bindings '("s" . counsel-projectile-rg) t))
 
 (use-package ivy
   :defer 0.1
@@ -44,8 +45,10 @@
   (ivy-mode))
 
 (use-package ivy-prescient
-  :after (ivy counsel)
+  :after (ivy counsel counsel-projectile)
   :config
+  (counsel-mode)
+  (counsel-projectile-mode)
   (ivy-prescient-mode)
   (prescient-persist-mode))
 
