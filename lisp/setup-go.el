@@ -10,6 +10,8 @@
 ;;
 
 ;;; Code:
+(require 'use-package)
+
 (use-package go-mode
   :hook
   (go-mode . (lambda ()

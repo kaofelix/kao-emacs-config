@@ -10,6 +10,8 @@
 ;;
 
 ;;; Code:
+(require 'use-package)
+
 (use-package cargo
   :delight cargo-minor-mode)
 

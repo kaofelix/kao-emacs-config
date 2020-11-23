@@ -10,6 +10,8 @@
 ;;
 
 ;;; Code:
+(require 'use-package)
+
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :init

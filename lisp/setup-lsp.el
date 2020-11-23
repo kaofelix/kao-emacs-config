@@ -1,6 +1,8 @@
 ;;; setup-lsp.el --- configure LSP
 ;;; Commentary:
 ;;; Code:
+(require 'use-package)
+
 (use-package lsp-mode
   :hook ((rust-mode . lsp)
          (go-mode . lsp)

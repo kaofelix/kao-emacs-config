@@ -10,6 +10,7 @@
 ;;
 
 ;;; Code:
+(require 'use-package)
 
 (use-package company-terraform
   :init

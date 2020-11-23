@@ -10,6 +10,8 @@
 ;;
 
 ;;; Code:
+(require 'use-package)
+
 (use-package nvm
   :after (web-mode)
   :hook (web-mode . nvm-use-for-buffer))

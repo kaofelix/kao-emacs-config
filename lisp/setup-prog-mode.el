@@ -10,6 +10,8 @@
 ;;
 
 ;;; Code:
+(require 'use-package)
+
 (use-package apheleia
   :straight (:host github :repo "raxod502/apheleia")
   :delight

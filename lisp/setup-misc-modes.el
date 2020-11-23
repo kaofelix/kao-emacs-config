@@ -12,6 +12,8 @@
 ;;; Code:
 
 ;; Dependencies requires
+(require 'use-package)
+
 (use-package f)
 
 ;; Compile packages asynchronously
