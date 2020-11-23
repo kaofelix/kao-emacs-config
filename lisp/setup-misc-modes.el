@@ -44,9 +44,13 @@
 (use-package try
   :commands #'try)
 
-(use-package smart-mode-line
-  :init
-  (smart-mode-line-enable))
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode)
+  :config
+  (defun my-doom-modeline--font-height ()
+    "Calculate the actual char height of the mode-line."
+    (+ (frame-char-height) 2))
+  (advice-add #'doom-modeline--font-height :override #'my-doom-modeline--font-height))
 
 (use-package which-key
   :delight
