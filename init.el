@@ -40,6 +40,7 @@
 (use-package delight)
 ;; end straight.el + use-package setup
 
+(require 'defaults)
 (use-package no-littering
   :after (recentf)
   :config
@@ -49,7 +50,6 @@
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (use-package el-patch)
-(require 'defaults)
 (require 'setup-theme)
 
 (when (eq window-system 'ns)
