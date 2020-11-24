@@ -19,6 +19,8 @@
   :delight
   :config
   (setq ivy-initial-inputs-alist nil)
+  :bind
+  (("C-c i" . counsel-imenu))
   :custom
   (counsel-yank-pop-preselect-last t)
   (counsel-yank-pop-separator "\n---\n"))
