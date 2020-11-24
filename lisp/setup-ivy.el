@@ -43,7 +43,8 @@
   (ivy-height 20)
   :config
   (setq ivy-re-builders-alist
-        '((counsel-rg . ivy--regex-plus)))
+        '((counsel-rg . ivy--regex-plus)
+          (t . ivy--regex-plus)))
   (ivy-mode))
 
 (use-package ivy-prescient
