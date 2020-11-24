@@ -11,6 +11,7 @@
 
 ;;; Code:
 (require 'use-package)
+(require 'cl-lib)
 
 (use-package wgrep)
 
@@ -31,6 +32,11 @@
   (:map projectile-command-map
    ("s" . #'counsel-projectile-rg))
   :config
+  (setq counsel-projectile-key-bindings
+      (cl-remove-if (lambda (kb)
+		      (and (stringp (car kb))
+			   (string-prefix-p "s" (car kb))))
+		    counsel-projectile-key-bindings))
   (add-to-list 'counsel-projectile-key-bindings '("s" . counsel-projectile-rg) t))
 
 (use-package ivy
