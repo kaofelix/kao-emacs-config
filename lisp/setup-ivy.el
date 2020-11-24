@@ -41,6 +41,8 @@
   (ivy-count-format "(%d/%d) ")
   (ivy-use-virtual-buffers t)
   (ivy-height 20)
+  (ivy-wrap t)
+  (ivy-use-selectable-prompt t)
   :config
   (setq ivy-re-builders-alist
         '((counsel-rg . ivy--regex-plus)
