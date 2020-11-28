@@ -15,32 +15,8 @@
 
 (use-package wgrep)
 
-(use-package counsel
-  :after ivy
-  :delight
-  :config
-  (setq ivy-initial-inputs-alist nil)
-  :bind
-  (("C-c i" . counsel-imenu))
-  :custom
-  (counsel-yank-pop-preselect-last t)
-  (counsel-yank-pop-separator "\n---\n"))
-
-(use-package counsel-projectile
-  :after counsel
-  :bind
-  (:map projectile-command-map
-   ("s" . #'counsel-projectile-rg))
-  :config
-  (setq counsel-projectile-key-bindings
-      (cl-remove-if (lambda (kb)
-		      (and (stringp (car kb))
-			   (string-prefix-p "s" (car kb))))
-		    counsel-projectile-key-bindings))
-  (add-to-list 'counsel-projectile-key-bindings '("s" . counsel-projectile-rg) t))
-
 (use-package ivy
-  :defer 0.1
+  :demand t
   :delight
   :bind (("C-c C-r" . ivy-resume))
   :custom
@@ -55,11 +31,37 @@
           (t . ivy--regex-plus)))
   (ivy-mode))
 
+(use-package counsel
+  :after ivy
+  :demand t
+  :delight
+  :bind
+  (("C-c i" . counsel-imenu))
+  :custom
+  (counsel-yank-pop-preselect-last t)
+  (counsel-yank-pop-separator "\n---\n")
+  :config
+  (setq ivy-initial-inputs-alist nil)
+  (counsel-mode))
+
+(use-package counsel-projectile
+  :after counsel
+  :demand t
+  :bind
+  (:map projectile-command-map
+   ("s" . #'counsel-projectile-rg))
+  :config
+  (setq counsel-projectile-key-bindings
+      (cl-remove-if (lambda (kb)
+		      (and (stringp (car kb))
+			   (string-prefix-p "s" (car kb))))
+		    counsel-projectile-key-bindings))
+  (add-to-list 'counsel-projectile-key-bindings '("s" . counsel-projectile-rg) t)
+  (counsel-projectile-mode))
+
 (use-package ivy-prescient
   :after (ivy counsel counsel-projectile)
   :config
-  (counsel-mode)
-  (counsel-projectile-mode)
   (ivy-prescient-mode)
   (prescient-persist-mode))
 
