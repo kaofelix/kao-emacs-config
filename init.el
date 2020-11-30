@@ -41,13 +41,6 @@
 ;; end straight.el + use-package setup
 
 (require 'defaults)
-(use-package no-littering
-  :after (recentf)
-  :config
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory)
-  (setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (use-package el-patch)
 (require 'setup-theme)

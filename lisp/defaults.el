@@ -54,9 +54,6 @@
 (setq fill-column 80)
 (set-default 'indent-tabs-mode nil)
 
-(recentf-mode 1)
-(setq recentf-max-saved-items 100) ;; just 20 is too recent
-
 (savehist-mode 1)
 (setq history-length 1000)
 
@@ -72,6 +69,17 @@
 (setq ediff-diff-options "-w")
 (setq ediff-split-window-function 'split-window-horizontally)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
+(use-package recentf)
+(use-package no-littering
+  :after recentf
+  :config
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
+  (recentf-mode 1)
+  (setq recentf-max-saved-items 100) ;; just 20 is too recent
+  (setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (provide 'defaults)
 ;;; defaults.el ends here
