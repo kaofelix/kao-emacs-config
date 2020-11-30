@@ -8,8 +8,6 @@
 
 ;;; Code:
 (setq ring-bell-function 'ignore)
-(require 'pixel-scroll)
-(pixel-scroll-mode 1)
 
 (require 'saveplace)
 
