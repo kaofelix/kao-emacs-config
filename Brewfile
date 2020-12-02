@@ -1,5 +1,4 @@
 brew "aspell"
-brew "awscli"
 brew "bash"
 brew "coreutils"
 brew "direnv"
@@ -7,11 +6,8 @@ brew "git"
 brew "multimarkdown"
 brew "ripgrep"
 brew "shellcheck"
-brew "terraform"
-brew "terraform_landscape"
-brew "the_silver_searcher"
 brew "tidy-html5"
 brew "zsh"
 
 tap "d12frosted/emacs-plus"
-brew "emacs-plus@27", fetch_HEAD: true,  args:  ["HEAD", "with-jansson"]
+brew "emacs-plus@27", fetch_HEAD: true
