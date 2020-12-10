@@ -43,6 +43,7 @@
    '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
  '(elpy-test-runner 'elpy-test-pytest-runner)
  '(exec-path-from-shell-arguments '("-l"))
+ '(exec-path-from-shell-shell-name "/bin/zsh")
  '(flycheck-indication-mode nil)
  '(flycheck-pycheckers-checkers '(flake8 mypy3))
  '(git-commit-post-finish-hook '(git-gutter:update-all-windows))
