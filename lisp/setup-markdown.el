@@ -19,7 +19,8 @@
   (setq markdown-open-command (expand-file-name "bin/mark" user-emacs-directory))
   :config
   (add-hook 'markdown-mode-hook #'auto-fill-mode)
-  :mode (("\\.md\\'" . gfm-mode))
+  :mode (("\\.md\\'" . gfm-mode)
+         ("\\.mdx\\'" . markdown-mode))
   :bind
   (:map markdown-mode-map
    ("M-<up>" . #'markdown-move-up)
