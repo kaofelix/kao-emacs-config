@@ -149,6 +149,7 @@
   (setq neo-theme 'nerd)
   (setq neo-smart-open t)
   (setq neo-show-hidden-files t)
+  (setq neo-autorefresh nil)
 
   (defun neotree-project-dir ()
     "Open NeoTree using projectile project root."
