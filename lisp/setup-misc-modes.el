@@ -97,13 +97,20 @@
 ;;; Projectile
 (use-package projectile
   :ensure t
-  :bind
-   (:map projectile-mode-map
-    ("s-p" . #'projectile-command-map)
-    ("C-c p" . #'projectile-command-map)
-    ("s-;" . #'projectile-run-vterm))
   :config
-  (projectile-mode +1))
+  (projectile-mode +1)
+  (defun projectile-toggle-vterm (&optional arg)
+    (interactive "P")
+    (if (derived-mode-p 'vterm-mode)
+        (if (projectile-project-p)
+            (projectile-previous-project-buffer)
+          (previous-buffer))
+      (projectile-run-vterm arg)))
+  :bind
+  (:map projectile-mode-map
+   ("s-p" . #'projectile-command-map)
+   ("C-c p" . #'projectile-command-map)
+   ("s-;" . #'projectile-toggle-vterm)))
 
 (use-package anzu
   :delight
