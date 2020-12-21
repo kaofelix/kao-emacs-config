@@ -59,6 +59,14 @@
   (add-to-list 'counsel-projectile-key-bindings '("s" . counsel-projectile-rg) t)
   (counsel-projectile-mode))
 
+(use-package counsel-web
+  :bind
+  ("C-c w" . #'counsel-web-search)
+  :custom
+  (counsel-web-search-action 'browse-url-default-browser)
+  (counsel-web-search-alternate-action 'eww)
+  (counsel-web-search-dynamic-update nil))
+
 (use-package ivy-prescient
   :after (ivy counsel counsel-projectile)
   :config
