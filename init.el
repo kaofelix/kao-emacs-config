@@ -62,6 +62,7 @@
 (require 'setup-lsp)
 (require 'setup-markdown)
 (require 'setup-misc-modes)
+(require 'setup-magit)
 (require 'setup-prog-mode)
 (require 'setup-python)
 (require 'setup-rust)

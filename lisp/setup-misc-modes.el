@@ -197,29 +197,6 @@
   :bind
   ("H-d" . 'docker))
 
-(use-package magit
-  :after (git-gutter)
-  :delight magit-wip-mode
-  :config
-  (defun magit-status-project-dwim (always-prompt)
-    "Run magit-status for current project or prompts for project.
-When ALWAYS-PROMPT is passed, prompts for project even if it's
-already inside a project."
-    (interactive "P")
-    (let ((project-root (projectile-project-p)))
-      (if (and project-root (not always-prompt))
-          (magit-status-internal project-root)
-        (let ((relevant-projects (projectile-relevant-known-projects)))
-          (if relevant-projects
-              (let ((target-project (projectile-completing-read "Magit status for project: " relevant-projects)))
-                (magit-status-internal target-project))
-            (error "There are no known projects"))))))
-
-  (add-hook 'magit-post-refresh-hook #'git-gutter:update-all-windows)
-
-  :bind
-  ("C-c g" . 'magit-status-project-dwim))
-
 (use-package gitignore-mode)
 
 (use-package git-timemachine
@@ -261,6 +238,12 @@ already inside a project."
 (use-package dumb-jump
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
+(use-package emojify
+  :hook (after-init . global-emojify-mode)
+  :custom
+  (emojify-emoji-styles '(github unicode))
+  (emojify-display-style 'unicode))
 
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
