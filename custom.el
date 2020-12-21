@@ -49,7 +49,6 @@
  '(git-commit-post-finish-hook '(git-gutter:update-all-windows))
  '(git-gutter:update-interval 2)
  '(global-rbenv-mode nil)
- '(global-undo-tree-mode t)
  '(gofmt-command "goimports")
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
