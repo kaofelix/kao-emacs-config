@@ -14,7 +14,6 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   :config
   (setq lsp-keymap-prefix "s-l")
-  (setq lsp-modeline-diagnostics-enable t)
   (lsp-modeline-code-actions-mode))
 
 (use-package company-lsp :commands company-lsp)
