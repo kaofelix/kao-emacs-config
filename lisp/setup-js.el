@@ -34,7 +34,9 @@
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-auto-closing t)
   (setq web-mode-enable-auto-quoting nil)
-  (setq web-mode-enable-current-element-highlight t))
+  (setq web-mode-enable-current-element-highlight t)
+  (setq web-mode-enable-comment-annotation t)
+  (setq web-mode-enable-comment-interpolation t))
 
 (provide 'setup-js)
 ;;; setup-js.el ends here
