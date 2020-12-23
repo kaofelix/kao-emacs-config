@@ -29,7 +29,9 @@ already inside a project."
   (magit-status-margin '(nil age-abbreviated magit-log-margin-width t 18))
 
   :bind
-  ("C-c g" . 'magit-status-project-dwim))
+  ("C-c g" . #'magit-status-project-dwim)
+  (:map magit-mode-map
+   ("C-M-u" . #'magit-section-up)))
 
 (use-package forge
   :after magit
