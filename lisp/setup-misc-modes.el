@@ -242,7 +242,9 @@
 
 (use-package sudo-edit)
 
-(use-package vterm)
+(use-package vterm
+  :custom
+  (vterm-shell "/bin/zsh -l"))
 
 (use-package pico8-mode
   :straight (:host github :repo "Kaali/pico8-mode"))
