@@ -57,7 +57,7 @@
 (require 'defuns)
 (require 'key-bindings)
 (require 'setup-emacs-lisp)
-(require 'setup-ivy)
+(require 'setup-completion)
 (require 'setup-hippie)
 (require 'setup-js)
 (require 'setup-lsp)

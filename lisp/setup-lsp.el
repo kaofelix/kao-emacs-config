@@ -18,9 +18,6 @@
 
 (use-package company-lsp :commands company-lsp)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-(use-package lsp-ivy
-  :after (ivy)
-  :bind (("s-o" . lsp-ivy-workspace-symbol)))
 
 (provide 'setup-lsp)
 ;;; setup-lsp ends here
