@@ -65,6 +65,7 @@
 (require 'setup-misc-modes)
 (require 'setup-magit)
 (require 'setup-prog-mode)
+(require 'setup-project)
 (require 'setup-python)
 (require 'setup-rust)
 (require 'setup-terraform)

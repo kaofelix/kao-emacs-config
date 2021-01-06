@@ -98,7 +98,11 @@
   (fset 'multi-occur #'consult-multi-occur)
 
   :config
-  (setq consult-project-root-function #'projectile-project-root))
+  (defun consult-project-root ()
+    (let ((pr (project-current)))
+      (when pr (project-root pr))))
+
+  (setq consult-project-root-function #'consult-project-root))
 
 (use-package consult-selectrum
   :after selectrum)

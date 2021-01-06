@@ -84,10 +84,6 @@
  '(pdf-view-midnight-colors '("#fdf4c1" . "#32302f"))
  '(pico8-create-images nil)
  '(pico8-documentation-file "~/.emacs.d/etc/pico8/pico8_manual.txt")
- '(projectile-completion-system 'default)
- '(projectile-mode-line '(:eval (format " P[%s]" (projectile-project-name))))
- '(projectile-mode-line-prefix " ")
- '(projectile-rails-keymap-prefix "" t)
  '(py-underscore-word-syntax-p nil)
  '(register-preview-delay 0)
  '(safe-local-variable-values

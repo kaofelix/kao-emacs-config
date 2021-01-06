@@ -92,25 +92,8 @@
    ("C-{" . #'sp-backward-barf-sexp)
    ("C-M-]" . #'sp-select-next-thing)
    ("M-F" . #'sp-forward-symbol)
-   ("M-B" . #'sp-backward-symbol)))
-
-;;; Projectile
-(use-package projectile
-  :ensure t
-  :config
-  (projectile-mode +1)
-  (defun projectile-toggle-vterm (&optional arg)
-    (interactive "P")
-    (if (derived-mode-p 'vterm-mode)
-        (if (projectile-project-p)
-            (projectile-previous-project-buffer)
-          (previous-buffer))
-      (projectile-run-vterm arg)))
-  :bind
-  (:map projectile-mode-map
-   ("s-p" . #'projectile-command-map)
-   ("C-c p" . #'projectile-command-map)
-   ("s-;" . #'projectile-toggle-vterm)))
+   ("M-B" . #'sp-backward-symbol)
+   ("s-'" . #'sp-rewrap-sexp)))
 
 (use-package anzu
   :delight
@@ -158,28 +141,25 @@
 
 (use-package neotree
   :config
-  (setq neo-theme 'nerd)
-  (setq neo-smart-open t)
-  (setq neo-show-hidden-files t)
-  (setq neo-autorefresh nil)
-
-  (defun neotree-project-dir ()
-    "Open NeoTree using projectile project root."
+  (defun neotree-project ()
+    "Open NeoTree in project root."
     (interactive)
-    (let ((project-dir (projectile-project-root))
+    (let ((project-dir (project-root (project-current t)))
           (file-name (buffer-file-name)))
       (neotree-toggle)
-      (if project-dir
-          (if (neo-global--window-exists-p)
-              (progn
-                (neotree-dir project-dir)
-                (neotree-find file-name)))
-        (message "Could not find git projectile project root."))))
+      (if (neo-global--window-exists-p)
+          (progn
+            (neotree-dir project-dir)
+            (neotree-find file-name)))))
+
+  (setq neo-theme 'nerd
+        neo-smart-open t
+        neo-show-hidden-files t
+        neo-autorefresh nil
+        neo-mode-line-type 'none)
 
   :bind
-  (("s-1" . #'neotree-project-dir)
-   :map kao/toggle-map
-   ("t" . #'neotree-toggle)
+  (("s-1" . #'neotree-project)
    :map neotree-mode-map
    ("C" . #'neotree-copy-node)
    ("D" . #'neotree-delete-node)
@@ -247,9 +227,11 @@
   (vterm-shell "/bin/zsh -l"))
 
 (use-package pico8-mode
+  :after (project)
   :straight (:host github :repo "Kaali/pico8-mode"))
 
 (use-package dumb-jump
+  :after (project)
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
