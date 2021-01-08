@@ -17,8 +17,6 @@
  '(browse-kill-ring-highlight-current-entry t)
  '(browse-kill-ring-highlight-inserted-item 'pulse)
  '(coffee-tab-width 2)
- '(custom-safe-themes
-   '("595617a3c537447aa7e76ce05c8d43146a995296ea083211225e7efc069c598f" "a622aaf6377fe1cd14e4298497b7b2cae2efc9e0ce362dade3a58c16c89e089c" default))
  '(custom-search-field nil)
  '(dired-dwim-target t)
  '(dtrt-indent-max-merge-deviation 15.0)
