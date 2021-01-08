@@ -152,11 +152,16 @@
             (neotree-dir project-dir)
             (neotree-find file-name)))))
 
-  (setq neo-theme 'nerd
+  (setq neo-theme 'icons
         neo-smart-open t
         neo-show-hidden-files t
         neo-autorefresh nil
-        neo-mode-line-type 'none)
+        neo-show-updir-line nil
+        neo-mode-line-type 'none
+        neo-default-system-application "open"
+        neo-hide-cursor t
+        neo-window-fixed-size nil
+        neo-window-width 35)
 
   :bind
   (("s-1" . #'neotree-project)

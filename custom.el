@@ -60,10 +60,6 @@
  '(magit-wip-mode t)
  '(mmm-parse-when-idle t)
  '(multi-term-program-switches "--login")
- '(neo-default-system-application "open")
- '(neo-hide-cursor t)
- '(neo-window-fixed-size nil)
- '(neo-window-width 35)
  '(orderless-matching-styles '(orderless-regexp orderless-initialism orderless-flex))
  '(org-agenda-files '("~/org/notes.org"))
  '(org-capture-templates
