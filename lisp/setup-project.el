@@ -13,27 +13,11 @@
 (require 'use-package)
 
 (use-package project
-  :after (vterm magit)
-  :config
-  (defun project-vterm ()
-    (interactive)
-    (let* ((project (project-current t))
-           (buffer (format "*%s %s*" "vterm" (project-root project))))
-      (unless (buffer-live-p (get-buffer buffer))
-        (let ((default-directory (project-root project)))
-          (vterm buffer)))
-      (switch-to-buffer buffer)))
-
-  (defun project-toggle-vterm ()
-    (interactive)
-    (if (derived-mode-p 'vterm-mode)
-        (previous-buffer)
-      (project-vterm)))
-
+  :after (multi-vterm magit)
   :bind
-  (("s-;" . #'project-toggle-vterm)
+  (("s-;" . #'multi-vterm-project)
    :map project-prefix-map
-   ("t" . #'project-vterm)
+   ("t" . #'multi-vterm-project)
    ("m" . #'magit-project-status))
   :custom
   (project-switch-commands '((project-find-file "Find file")
