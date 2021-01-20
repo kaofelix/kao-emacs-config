@@ -218,11 +218,18 @@
 (use-package yaml-mode)
 (use-package nginx-mode)
 
+(use-package jq-mode)
+
 (use-package restclient
-  :mode ("\\.http\\'" . restclient-mode))
+  :after (jq-mode)
+  :commands (restclient-jq-interactive-result)
+  :straight (restclient :type git :host github
+                        :repo "pashky/restclient.el"
+                        :files ("restclient*.el"))
+  :mode  ("\\.http\\'" . restclient-mode))
 
 (use-package company-restclient
-  :after (company)
+  :after (company restclient)
   :hook (restclient-mode . company-mode))
 
 (use-package sudo-edit)
