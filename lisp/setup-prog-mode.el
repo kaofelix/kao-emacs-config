@@ -79,6 +79,8 @@
    ("C-n" . #'company-select-next-or-abort)
    ("C-p" . #'company-select-previous-or-abort)))
 
+(use-package dash-at-point)
+
 (add-hook 'prog-mode-hook 'hl-line-mode)
 
 (provide 'setup-prog-mode)
