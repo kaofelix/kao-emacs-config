@@ -14,7 +14,10 @@
 
 (use-package wgrep
   :custom
-  (wgrep-enable-key "e"))
+  (wgrep-enable-key "e")
+  :bind
+  (:map grep-mode-map
+   ("e" . #'wgrep-change-to-wgrep-mode)))
 
 (use-package selectrum
   :config
@@ -77,21 +80,23 @@
    ("M-g M-g" . consult-goto-line)
    ("M-g o" . consult-outline)
    ("M-g l" . consult-line)
-   ("M-g m" . consult-mark) ;; I recommend to bind Consult navigation
-   ("M-g k" . consult-global-mark) ;; commands under the "M-g" prefix.
-   ("M-g r" . consult-ripgrep)     ;; or consult-grep, consult-ripgrep
-   ("M-g f" . consult-find)        ;; or consult-locate, my-fdfind
-   ("M-g i" . consult-project-imenu) ;; or consult-imenu
+   ("M-g m" . consult-mark)
+   ("M-g k" . consult-global-mark)
+   ("M-g r" . consult-ripgrep)
+   ("M-g f" . consult-fd)
+   ("M-g i" . consult-project-imenu)
    ("M-g e" . consult-error)
    ("M-s m" . consult-multi-occur)
    ("M-y" . consult-yank-pop)
    ("<help> a" . consult-apropos)
    :map project-prefix-map
    ("s" . #'consult-ripgrep))
+
   :init
-  (defun my-fdfind (&optional dir)
+  (defun consult-fd (&optional dir)
+    "Find with fd"
     (interactive "P")
-    (let ((consult-find-command '("fdfind" "--color=never" "--full-path")))
+    (let ((consult-find-command '("fd" "--color=never" "--full-path")))
       (consult-find dir)))
 
   ;; Replace `multi-occur' with `consult-multi-occur', which is a drop-in replacement.
