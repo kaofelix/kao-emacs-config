@@ -14,10 +14,11 @@
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   :config
   (setq lsp-keymap-prefix "s-l")
-  (lsp-modeline-code-actions-mode))
+  (lsp-modeline-code-actions-mode)
+  :custom
+  (lsp-headerline-breadcrumb-enable nil))
 
 (use-package company-lsp :commands company-lsp)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 (provide 'setup-lsp)
 ;;; setup-lsp ends here
