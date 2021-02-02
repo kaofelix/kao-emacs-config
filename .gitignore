@@ -22,4 +22,6 @@ recentf
 /.lsp-session-v1
 /.cache/
 /amx-items
-/straight/
+/straight/*
+!straight/versions
+!straight/versions/default.el
