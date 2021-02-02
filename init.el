@@ -18,6 +18,8 @@
 ;;
 (require 'minimal-gui)
 (require 'emoji)
+(when (version<= "28" emacs-version)
+    (require 'make-obsolete-workaround))
 
 ;; straight.el + use-package setup
 (set-default 'straight-use-package-by-default t)
