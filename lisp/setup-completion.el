@@ -40,7 +40,17 @@
   (("M-o" . #'embark-act)
    :map minibuffer-local-map
    ("C-M-o" . #'embark-act-noexit))
+
   :config
+  (add-to-list 'embark-keymap-alist '(project-file . embark-file-map) t)
+  (add-to-list 'embark-transformer-alist'(project-file . kao/embark-project-file-absolute-path) t)
+
+  (defun kao/embark-project-file-absolute-path(target)
+    (let* ((project (project-current))
+           (root (project-root project)))
+      (cons 'project-file (expand-file-name target root))))
+
+
   (setq embark-action-indicator
         (lambda (map)
           (which-key--show-keymap "Embark" map nil nil 'no-paging)
@@ -48,22 +58,28 @@
         embark-become-indicator embark-action-indicator)
 
   ;; For Selectrum users:
-  (add-hook 'embark-target-finders
-            (defun current-candidate+category ()
-              (when selectrum-active-p
-                (cons (selectrum--get-meta 'category)
-                      (selectrum-get-current-candidate)))))
+  (defun refresh-selectrum ()
+    (setq selectrum--previous-input-string nil))
 
-  (add-hook 'embark-candidate-collectors
-            (defun current-candidates+category ()
-              (when selectrum-active-p
-                (cons (selectrum--get-meta 'category)
-                      (selectrum-get-current-candidates
-                       ;; Pass relative file names for dired.
-                       minibuffer-completing-file-name)))))
+  (add-hook 'embark-pre-action-hook #'refresh-selectrum)
 
-  ;; No unnecessary computation delay after injection.
-  (add-hook 'embark-setup-hook 'selectrum-set-selected-candidate))
+  (defun shrink-selectrum ()
+    (when (eq embark-collect--kind :live)
+      (with-selected-window (active-minibuffer-window)
+        (setq-local selectrum-num-candidates-displayed 1)
+        (setq-local selectrum-display-style
+                    '(horizontal :before-candidates "[" :after-candidates "]"
+                                 :more-candidates "" :candidates-separator "")))))
+
+  (add-hook 'embark-collect-mode-hook #'shrink-selectrum))
+
+(use-package embark-consult
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  :hook
+  (embark-collect-mode . embark-consult-preview-minor-mode))
 
 (use-package consult
   :after (project)
@@ -109,13 +125,9 @@
 
   (setq consult-project-root-function #'consult-project-root))
 
-(use-package consult-selectrum
-  :after selectrum)
-
-;; Optionally add the `consult-flycheck' command.
 (use-package consult-flycheck
   :bind (:map flycheck-command-map
-              ("!" . consult-flycheck)))
+         ("!" . consult-flycheck)))
 
 (provide 'setup-completion)
 ;;; setup-completion.el ends here
