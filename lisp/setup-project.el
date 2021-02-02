@@ -24,7 +24,7 @@
                              (consult-ripgrep "Find regexp")
                              (project-dired "Dired")
                              (magit-project-status "Magit")
-                             (project-vterm "VTerm"))))
+                             (project-vterm "VTerm" ?t))))
 
 (provide 'setup-project)
 ;;; setup-project.el ends here
