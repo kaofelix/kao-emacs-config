@@ -16,6 +16,7 @@
   (setq lsp-keymap-prefix "s-l")
   (lsp-modeline-code-actions-mode)
   :custom
+  (lsp-modeline-diagnostics-enable nil)
   (lsp-headerline-breadcrumb-enable nil))
 
 (use-package company-lsp :commands company-lsp)
