@@ -22,6 +22,9 @@
 (use-package selectrum
   :config
   (selectrum-mode +1)
+  (setq file-name-shadow-properties
+        '(invisible t))
+  (file-name-shadow-mode +1)
   :custom
   (selectrum-num-candidates-displayed 20)
   (selectrum-extend-current-candidate-highlight t))
