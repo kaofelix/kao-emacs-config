@@ -238,8 +238,6 @@
   :custom
   (vterm-shell "/bin/zsh -l"))
 
-(use-package multi-vterm)
-
 (use-package pico8-mode
   :after (project)
   :straight (:host github :repo "Kaali/pico8-mode"))

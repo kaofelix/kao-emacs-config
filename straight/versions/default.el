@@ -74,7 +74,6 @@
  ("marginalia" . "7df0e53ab99e22c631cd860aea38b5e96b065914")
  ("markdown-mode" . "e250a8465f805644d372c264eb0572f569d7f2a1")
  ("melpa" . "8d08307e483c328075bbf933b2ea0c03bffe8b7c")
- ("multi-vterm" . "8f385a0aa1ad7a279acc9276913955ef165e7ac7")
  ("multiple-cursors.el" . "a9d7764f80b241978f3d4e76bc981ef10bab5d70")
  ("nginx-mode" . "a2bab83c2eb233d57d76b236e7c141c2ccc97005")
  ("no-littering" . "96ed5b8ecad8bcdcd212aacd9957276be3cf128e")

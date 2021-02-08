@@ -12,12 +12,27 @@
 ;;; Code:
 (require 'use-package)
 
+(defun kao/vterm-project-dwim()
+  "Opens a vterm with or without a project."
+  (interactive)
+  (let ((project-name (cond ((project-current) (project-root (project-current)))
+                            (t "no-project"))))
+    (if-let* ((buffer-name (format "*vterm - %s*"  project-name))
+              (buffer-live-p (get-buffer buffer-name)))
+        (if (string-equal (buffer-name (current-buffer)) buffer-name)
+            (delete-window (selected-window))
+          (switch-to-buffer-other-window buffer-name))
+      (let* ((vterm-buffer (generate-new-buffer buffer-name)))
+        (set-buffer vterm-buffer)
+        (vterm-mode)
+        (switch-to-buffer-other-window vterm-buffer)))))
+
 (use-package project
-  :after (multi-vterm magit)
+  :after (magit)
   :bind
-  (("s-;" . #'multi-vterm-project)
+  (("s-;" . #'kao/vterm-project-dwim)
    :map project-prefix-map
-   ("t" . #'multi-vterm-project)
+   ("t" . #'kao/vterm-project-dwim)
    ("m" . #'magit-project-status))
   :custom
   (project-switch-commands '((project-find-file "Find file")
