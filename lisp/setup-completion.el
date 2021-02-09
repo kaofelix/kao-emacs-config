@@ -27,6 +27,7 @@
   (file-name-shadow-mode +1)
   :custom
   (selectrum-num-candidates-displayed 20)
+  (selectrum-max-window-height 20)
   (selectrum-extend-current-candidate-highlight t))
 
 (use-package selectrum-prescient
@@ -123,12 +124,13 @@
 
   :config
   (defun consult-project-root ()
-    (let ((pr (project-current)))
-      (when pr (project-root pr))))
+    (when-let (pr (project-current))
+      (project-root pr)))
 
   (setq consult-project-root-function #'consult-project-root))
 
 (use-package consult-flycheck
+  :after (flycheck)
   :bind (:map flycheck-command-map
          ("!" . consult-flycheck)))
 
