@@ -24,6 +24,8 @@
   :custom
   (forge-owned-accounts '(("kaofelix"))))
 
+(use-package browse-at-remote)
+
 (provide 'setup-magit)
 
 ;;; setup-magit.el ends here
