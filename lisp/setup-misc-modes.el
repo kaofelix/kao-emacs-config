@@ -215,7 +215,6 @@
   :bind (([remap goto-line] . #'goto-line-preview)))
 
 (use-package toml-mode)
-(use-package yaml-mode)
 (use-package nginx-mode)
 
 (use-package jq-mode)

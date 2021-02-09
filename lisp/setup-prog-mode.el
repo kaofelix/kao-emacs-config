@@ -60,7 +60,8 @@
   :hook  (prog-mode . drag-stuff-mode))
 
 (use-package flycheck
-  :hook (prog-mode . flycheck-mode))
+  :hook ((prog-mode . flycheck-mode)
+         (yaml-mode . flycheck-mode)))
 
 (use-package whitespace
   :delight
@@ -80,6 +81,8 @@
    ("C-p" . #'company-select-previous-or-abort)))
 
 (use-package dash-at-point)
+
+(use-package yaml-mode)
 
 (add-hook 'prog-mode-hook 'hl-line-mode)
 
