@@ -22,10 +22,14 @@
         (if (string-equal (buffer-name (current-buffer)) buffer-name)
             (delete-window (selected-window))
           (switch-to-buffer-other-window buffer-name))
-      (let* ((vterm-buffer (generate-new-buffer buffer-name)))
-        (set-buffer vterm-buffer)
-        (vterm-mode)
-        (switch-to-buffer-other-window vterm-buffer)))))
+      (with-temp-buffer
+        (setq default-directory
+              (project-root
+               (or (project-current) `(transient . ,default-directory))))
+        (let* ((vterm-buffer (generate-new-buffer buffer-name)))
+          (set-buffer vterm-buffer)
+          (vterm-mode)
+          (switch-to-buffer-other-window vterm-buffer))))))
 
 (use-package project
   :after (magit)
