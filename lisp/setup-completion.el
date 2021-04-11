@@ -52,9 +52,10 @@
   (add-to-list 'embark-transformer-alist'(project-file . kao/embark-project-file-absolute-path) t)
 
   (defun kao/embark-project-file-absolute-path(target)
-    (let* ((project (project-current))
-           (root (project-root project)))
-      (cons 'project-file (expand-file-name target root))))
+    (if-let* ((project (project-current))
+                (root (project-root project)))
+        (cons 'project-file (expand-file-name target root))
+      target))
 
 
   (setq embark-action-indicator
