@@ -43,6 +43,10 @@
   :bind
   ("C-=" . #'er/expand-region))
 
+(use-package change-inner
+  :bind
+  ("M-i" . #'change-inner))
+
 (use-package comment-dwim-2
   :bind
   ([remap comment-dwim] . #'comment-dwim-2))
