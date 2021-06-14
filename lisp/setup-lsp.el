@@ -19,6 +19,8 @@
   (lsp-modeline-diagnostics-enable nil)
   (lsp-headerline-breadcrumb-enable nil))
 
+(use-package lsp-ui)
+
 (use-package company-lsp :commands company-lsp)
 
 (use-package dap-mode

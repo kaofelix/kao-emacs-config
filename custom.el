@@ -37,6 +37,8 @@
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(locate-command "mdfind")
+ '(lsp-enable-indentation nil)
+ '(lsp-enable-on-type-formatting nil)
  '(magit-diff-use-overlays nil)
  '(magit-save-repository-buffers 'dontask)
  '(magit-status-headers-hook
