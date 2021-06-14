@@ -146,11 +146,13 @@
     (interactive)
     (let ((project-dir (project-root (project-current t)))
           (file-name (buffer-file-name)))
-      (neotree-toggle)
-      (if (neo-global--window-exists-p)
-          (progn
-            (neotree-dir project-dir)
-            (neotree-find file-name)))))
+      (if (and (neo-global--window-exists-p)
+               (eq major-mode 'neotree-mode))
+          (neotree-hide)
+        (progn
+          (neotree-show)
+          (neotree-dir project-dir)
+          (neotree-find file-name)))))
 
   (setq neo-theme 'icons
         neo-smart-open t
