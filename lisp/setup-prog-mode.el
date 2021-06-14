@@ -59,9 +59,23 @@
   (drag-stuff-define-keys)
   :hook  (prog-mode . drag-stuff-mode))
 
+(use-package flycheck-pos-tip
+  :after (flycheck)
+  :config
+  (flycheck-pos-tip-mode)
+  :custom
+  (flycheck-pos-tip-max-width 80)
+  (flycheck-pos-tip-mode t)
+  (flycheck-pos-tip-timeout 60))
+
 (use-package flycheck
   :hook ((prog-mode . flycheck-mode)
-         (yaml-mode . flycheck-mode)))
+         (yaml-mode . flycheck-mode))
+  :custom
+  (flycheck-keymap-prefix (kbd "s-f"))
+  (flycheck-display-errors-delay 60)
+  (flycheck-indication-mode nil)
+  (flycheck-pycheckers-checkers '(flake8 mypy3)))
 
 (use-package whitespace
   :delight

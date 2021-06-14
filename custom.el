@@ -67,6 +67,8 @@
  '(pdf-view-midnight-colors '("#fdf4c1" . "#32302f"))
  '(pico8-create-images nil)
  '(pico8-documentation-file "~/.emacs.d/etc/pico8/pico8_manual.txt")
+ '(pos-tip-border-width 3)
+ '(pos-tip-internal-border-width 8)
  '(py-underscore-word-syntax-p nil)
  '(register-preview-delay 0)
  '(safe-local-variable-values
