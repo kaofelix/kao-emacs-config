@@ -118,7 +118,7 @@
  ("terraform-mode" . "a9fa5bdaf58e9cae32ee44b7d0883f5600441b05")
  ("toml-mode.el" . "f6c61817b00f9c4a3cab1bae9c309e0fc45cdd06")
  ("transient" . "cc16a5eaa73617a281b0bbf71b24432c38994e30")
- ("treemacs" . "9eaef270de9fde50ef029c12db6d8b89cc4580d8")
+ ("treemacs" . "c2b0beaeb0383c3e6cbc453d6c42cdbc87c6da5e")
  ("treepy.el" . "3ac940e97f3d03e48ca9d7fcd74916a9b01c72f3")
  ("undo-tree" . "e326c6135e62f5fe8536528d3acd5e798f847407")
  ("use-package" . "a7422fb8ab1baee19adb2717b5b47b9c3812a84c")
