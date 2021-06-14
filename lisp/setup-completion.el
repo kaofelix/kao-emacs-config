@@ -36,12 +36,14 @@
   (prescient-persist-mode))
 
 (use-package marginalia
-  :config
+  :init
   (marginalia-mode))
 
 (use-package embark
   :bind
   (("M-o" . #'embark-act)
+   :map embark-general-map
+   ("L" . nil)
    :map minibuffer-local-map
    ("C-M-o" . #'embark-act-noexit))
 
@@ -65,17 +67,7 @@
   (defun refresh-selectrum ()
     (setq selectrum--previous-input-string nil))
 
-  (add-hook 'embark-pre-action-hook #'refresh-selectrum)
-
-  (defun shrink-selectrum ()
-    (when (eq embark-collect--kind :live)
-      (with-selected-window (active-minibuffer-window)
-        (setq-local selectrum-num-candidates-displayed 1)
-        (setq-local selectrum-display-style
-                    '(horizontal :before-candidates "[" :after-candidates "]"
-                                 :more-candidates "" :candidates-separator "")))))
-
-  (add-hook 'embark-collect-mode-hook #'shrink-selectrum))
+  (add-hook 'embark-pre-action-hook #'refresh-selectrum))
 
 (use-package embark-consult
   :after (embark consult)
@@ -127,12 +119,22 @@
     (when-let (pr (project-current))
       (project-root pr)))
 
+  (setq consult-config '((consult-buffer :preview-key nil)))
   (setq consult-project-root-function #'consult-project-root))
 
 (use-package consult-flycheck
   :after (flycheck)
   :bind (:map flycheck-command-map
          ("!" . consult-flycheck)))
+
+;; (use-package mini-frame
+;;   :config
+;;   (mini-frame-mode +1)
+;;   :custom
+;;   (mini-frame-show-parameters '((top . 0.54)
+;;                                 (left . 0.5)
+;;                                 (width . 0.9)))
+;;   (mini-frame))
 
 (provide 'setup-completion)
 ;;; setup-completion.el ends here
