@@ -18,6 +18,8 @@
  '(browse-kill-ring-highlight-inserted-item 'pulse)
  '(coffee-tab-width 2)
  '(custom-search-field nil)
+ '(dap-auto-configure-features '(controls tooltip))
+ '(dap-internal-terminal 'dap-internal-terminal-vterm)
  '(dired-dwim-target t)
  '(dtrt-indent-max-merge-deviation 15.0)
  '(elpy-modules

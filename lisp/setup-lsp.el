@@ -21,5 +21,9 @@
 
 (use-package company-lsp :commands company-lsp)
 
+(use-package dap-mode
+  :config
+  (require 'dap-node))
+
 (provide 'setup-lsp)
 ;;; setup-lsp ends here
