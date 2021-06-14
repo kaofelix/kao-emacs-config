@@ -12,6 +12,7 @@
  ("bui.el" . "f3a137628e112a91910fd33c0cff0948fa58d470")
  ("cargo.el" . "9442af81d64f73935d3590948c97594f0bc79d4a")
  ("cfrs" . "7c42f2c82c7ae689f3ef291b066688c58ab96298")
+ ("change-inner.el" . "42cad58aed2caec260f8e8ff61f78a7d3db72d1b")
  ("closql" . "1d5e9cbb69bc2992eaafa1bc084343efbd3e0c4c")
  ("comment-dwim-2" . "7cdafd6d98234a7402865b8abdae54a2f2551c94")
  ("company-lsp" . "f921ffa0cdc542c21dc3dd85f2c93df4288e83bd")
