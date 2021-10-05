@@ -25,6 +25,7 @@
   (forge-owned-accounts '(("kaofelix"))))
 
 (use-package browse-at-remote)
+(use-package gist)
 
 (provide 'setup-magit)
 
