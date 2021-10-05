@@ -62,6 +62,7 @@
 (require 'setup-emacs-lisp)
 (require 'setup-completion)
 (require 'setup-hippie)
+(require 'setup-groovy)
 (require 'setup-js)
 (require 'setup-lsp)
 (require 'setup-markdown)
