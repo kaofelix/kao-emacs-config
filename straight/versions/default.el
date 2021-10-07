@@ -40,7 +40,7 @@
  ("emacs-direnv" . "381176f301dea8414a5a395c0d6546507838f6ce")
  ("emacs-emojify" . "1b726412f19896abf5e4857d4c32220e33400b55")
  ("emacs-hcl-mode" . "e12b1df2ca28d2b06c471cd709c038a2dc0bcdbd")
- ("emacs-libvterm" . "98179e129544bdee7d78fc095098971eeb72428d")
+ ("emacs-libvterm" . "2681120b770573044832ba8c22ccbac192e1a294")
  ("emacs-neotree" . "98fe21334affaffe2334bf7c987edaf1980d2d0b")
  ("emacs-theme-gruvbox" . "afa2fefaea38ef22f17304ec2adbadb591a8f0eb")
  ("emacs-which-key" . "c632dbf27a77c1c73ce559041b3a78ec5f78b187")
