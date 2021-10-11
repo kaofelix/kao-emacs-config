@@ -61,6 +61,7 @@
 (require 'key-bindings)
 (require 'setup-emacs-lisp)
 (require 'setup-completion)
+(require 'setup-gdscript)
 (require 'setup-hippie)
 (require 'setup-groovy)
 (require 'setup-js)

@@ -100,6 +100,7 @@
      ("M-." . comint-dynamic-complete)))
  '(term-unbind-key-list '("C-x" "C-c" "C-h" "C-y" "C-d" "<ESC>"))
  '(vc-follow-symlinks t)
+ '(warning-suppress-types '((lsp-mode)))
  '(wgrep-auto-save-buffer t)
  '(which-key-idle-delay 0.2)
  '(which-key-idle-secondary-delay 0.0)

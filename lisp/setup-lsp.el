@@ -8,6 +8,7 @@
          (go-mode . lsp)
          (typescript-mode . lsp)
          (web-mode . lsp)
+         (gdscript-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp
   :init
