@@ -25,3 +25,4 @@ recentf
 /straight/*
 !straight/versions
 !straight/versions/default.el
+/eln-cache/
