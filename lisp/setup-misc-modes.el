@@ -159,7 +159,7 @@
         neo-show-hidden-files t
         neo-autorefresh nil
         neo-show-updir-line nil
-        neo-mode-line-type 'none
+        neo-mode-line-type 'neotree
         neo-default-system-application "open"
         neo-hide-cursor t
         neo-window-fixed-size nil
