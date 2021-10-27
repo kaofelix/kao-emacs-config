@@ -47,10 +47,6 @@
     (unless (parent-mode-is-derived-p major-mode 'emacs-lisp-mode)
       (dtrt-indent-mode)))
 
-  (add-to-list 'dtrt-indent-hook-mapping-list
-               ;; Mode      Syntax     Variable
-               '(nginx-mode default nginx-indent-level))
-
   :hook (prog-mode . turn-on-dtrt-indent-mode-maybe))
 
 (use-package drag-stuff

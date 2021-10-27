@@ -211,7 +211,10 @@
   :bind (([remap goto-line] . #'goto-line-preview)))
 
 (use-package toml-mode)
-(use-package nginx-mode)
+(use-package nginx-mode
+  :after (dtrt-indent)
+  :config
+  (add-to-list 'dtrt-indent-hook-mapping-list '(nginx-mode default nginx-indent-level)))
 
 (use-package jq-mode)
 

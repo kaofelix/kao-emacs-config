@@ -12,7 +12,10 @@
 ;;; Code:
 (require 'use-package)
 
-(use-package groovy-mode)
+(use-package groovy-mode
+  :after (dtrt-indent)
+  :config
+  (add-to-list 'dtrt-indent-hook-mapping-list '(groovy-mode default groovy-indent-offset)))
 (use-package jenkinsfile-mode)
 
 (provide 'setup-groovy)
