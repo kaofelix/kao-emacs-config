@@ -37,7 +37,8 @@
   (("s-;" . #'kao/vterm-project-dwim)
    :map project-prefix-map
    ("t" . #'kao/vterm-project-dwim)
-   ("m" . #'magit-project-status))
+   ("m" . #'magit-project-status)
+   ("o" . #'ff-find-other-file))
   :custom
   (project-switch-commands '((project-find-file "Find file")
                              (consult-ripgrep "Find regexp")

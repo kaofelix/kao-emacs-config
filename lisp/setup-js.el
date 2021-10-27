@@ -36,7 +36,20 @@
   (setq web-mode-enable-auto-quoting nil)
   (setq web-mode-enable-current-element-highlight t)
   (setq web-mode-enable-comment-annotation t)
-  (setq web-mode-enable-comment-interpolation t))
+  (setq web-mode-enable-comment-interpolation t)
+
+  (defun setup-web-mode-ff-other-file()
+    (setq ff-search-directories '(".")
+          ff-other-file-alist '(("\\.spec\\.ts$" (".ts"))
+                                ("\\.ts$" (".spec.ts"))
+                                ("\\.test\\.ts$" (".ts"))
+                                ("\\.ts$" (".test.ts"))
+                                ("\\.spec\\.js$" (".js"))
+                                ("\\.js$" (".spec.js"))
+                                ("\\.test\\.js$" (".js"))
+                                ("\\.js$" (".test.js")))))
+  :hook
+  (web-mode . setup-web-mode-ff-other-file))
 
 (provide 'setup-js)
 ;;; setup-js.el ends here
