@@ -22,11 +22,11 @@
 (global-set-key [remap just-one-space] 'cycle-spacing)
 (global-set-key (kbd "C-c r") 'replace-string)
 
-;; C-h for backspace
-(global-unset-key [?\C-h])
+;; Make C-h act like backspace and C-/ or C-? as help key
 (define-key key-translation-map [?\C-h] [?\C-?])
 (define-key key-translation-map [?\M-\C-h] [?\M-\C-?])
-(global-set-key (kbd "C-?") 'help-command)
+(define-key key-translation-map (kbd "C-/") (kbd "C-h"))
+(define-key key-translation-map (kbd "C-?") (kbd "C-h"))
 
 ;; Change quit keybing
 (global-unset-key (kbd "C-x C-c"))
