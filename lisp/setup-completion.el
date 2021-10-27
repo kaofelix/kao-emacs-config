@@ -45,11 +45,17 @@
    :map embark-general-map
    ("L" . nil)
    :map minibuffer-local-map
-   ("C-M-o" . #'embark-act-noexit))
+   ("C-M-o" . #'embark-act-noquit))
 
   :config
   (add-to-list 'embark-keymap-alist '(project-file . embark-file-map) t)
   (add-to-list 'embark-transformer-alist'(project-file . kao/embark-project-file-absolute-path) t)
+
+  (defun embark-act-noquit ()
+    "Run action but don't quit the minibuffer afterwards."
+    (interactive)
+    (let ((embark-quit-after-action nil))
+      (embark-act)))
 
   (defun kao/embark-project-file-absolute-path(target)
     (if-let* ((project (project-current))
