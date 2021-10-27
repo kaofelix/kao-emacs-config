@@ -190,12 +190,6 @@
   (direnv-mode)
   (add-to-list 'direnv-non-file-modes 'magit-status-mode))
 
-(use-package dockerfile-mode)
-
-(use-package docker
-  :bind
-  ("H-d" . 'docker))
-
 (use-package gitignore-mode)
 
 (use-package git-timemachine

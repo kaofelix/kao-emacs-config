@@ -59,6 +59,7 @@
 ;; Load personal packages
 (require 'defuns)
 (require 'key-bindings)
+(require 'setup-docker)
 (require 'setup-emacs-lisp)
 (require 'setup-completion)
 (require 'setup-gdscript)
