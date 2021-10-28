@@ -31,6 +31,15 @@
           (vterm-mode)
           (switch-to-buffer-other-window vterm-buffer))))))
 
+(defun kao/project-start-branch()
+  (interactive)
+  (magit-project-status)
+  (ignore-error
+      (magit-stash-both "changes before new branch"))
+  (magit-branch-checkout (magit-main-branch))
+  (call-interactively 'magit-pull-from-pushremote)
+  (call-interactively 'magit-branch-spinoff))
+
 (use-package project
   :after (magit)
   :bind
@@ -38,12 +47,14 @@
    :map project-prefix-map
    ("t" . #'kao/vterm-project-dwim)
    ("m" . #'magit-project-status)
+   ("b" . #'kao/project-start-branch)
    ("o" . #'ff-find-other-file))
   :custom
   (project-switch-commands '((project-find-file "Find file")
                              (consult-ripgrep "Find regexp")
                              (project-dired "Dired")
                              (magit-project-status "Magit")
+                             (kao/project-start-branch "Create new branch" ?b)
                              (kao/vterm-project-dwim "VTerm" ?t))))
 
 (provide 'setup-project)
