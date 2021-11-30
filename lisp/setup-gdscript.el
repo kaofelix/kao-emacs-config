@@ -24,7 +24,9 @@
   (load-library "gdscript-hydra")
 
   :bind (:map gdscript-mode-map
-         ("s-/" . gdscript-hydra-show)))
+         ("s-/" . #'gdscript-hydra-show)
+         ("s-r" . #'gdscript-godot-run-current-scene-debug)
+         ("s-b" . #'gdscript-godot-run-project-debug)))
 
 (provide 'setup-gdscript)
 ;;; setup-gdscript.el ends here
