@@ -94,6 +94,11 @@
 
 (use-package yaml-mode)
 
+(use-package json-mode
+  :after (dtrt-indent)
+  :config
+  (add-to-list 'dtrt-indent-hook-mapping-list '(json-mode default js-indent-level)))
+
 (add-hook 'prog-mode-hook 'hl-line-mode)
 
 (provide 'setup-prog-mode)
