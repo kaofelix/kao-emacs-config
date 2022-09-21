@@ -24,11 +24,6 @@
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
 
-(use-package flycheck-pycheckers
-  :after flycheck
-  :hook
-  (flycheck-mode . flycheck-pycheckers-setup))
-
 (provide 'setup-python)
 ;;; setup-python.el ends here
 

@@ -149,11 +149,6 @@ targets."
   (setq consult-config '((consult-buffer :preview-key nil)))
   (setq consult-project-root-function #'consult-project-root))
 
-(use-package consult-flycheck
-  :after (flycheck)
-  :bind (:map flycheck-command-map
-         ("!" . consult-flycheck)))
-
 ;; (use-package mini-frame
 ;;   :config
 ;;   (mini-frame-mode +1)

@@ -28,8 +28,6 @@
  '(enable-recursive-minibuffers t)
  '(exec-path-from-shell-arguments '("-l"))
  '(exec-path-from-shell-shell-name "/bin/zsh")
- '(flycheck-indication-mode nil)
- '(flycheck-pycheckers-checkers '(flake8 mypy3))
  '(git-commit-post-finish-hook '(git-gutter:update-all-windows))
  '(git-gutter:update-interval 2)
  '(global-rbenv-mode nil)
