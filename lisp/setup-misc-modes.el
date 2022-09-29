@@ -190,7 +190,7 @@
   (direnv-mode)
   (add-to-list 'direnv-non-file-modes 'magit-status-mode))
 
-(use-package gitignore-mode)
+(use-package git-modes)
 
 (use-package git-timemachine
   :bind (:map kao/toggle-map
