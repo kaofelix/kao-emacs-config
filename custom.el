@@ -22,9 +22,6 @@
  '(dap-internal-terminal 'dap-internal-terminal-vterm)
  '(dired-dwim-target t)
  '(dtrt-indent-max-merge-deviation 15.0)
- '(elpy-modules
-   '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
- '(elpy-test-runner 'elpy-test-pytest-runner)
  '(enable-recursive-minibuffers t)
  '(exec-path-from-shell-arguments '("-l"))
  '(exec-path-from-shell-shell-name "/bin/zsh")
@@ -72,7 +69,6 @@
      (eval when
            (fboundp 'rainbow-mode)
            (rainbow-mode 1))
-     (elpy-test-runner quote elpy-test-pytest-runner)
      (pyvenv-activate . "/Users/kaofelix/Library/Caches/pypoetry/virtualenvs/op1-py3.")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect" "angular")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect")))

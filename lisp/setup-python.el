@@ -12,14 +12,17 @@
 ;;; Code:
 (require 'use-package)
 
-(use-package elpy
-  :after poetry
-  :config
-  (elpy-enable)
-  (add-hook 'elpy-mode-hook 'poetry-tracking-mode)
-  (setq elpy-rpc-virtualenv-path 'current))
+(use-package python
+  :hook
+  (python-mode . eglot-ensure))
 
-(use-package poetry)
+(use-package poetry
+  :hook
+  (python-mode . poetry-tracking-mode))
+
+(use-package pyvenv
+  :config
+  (pyvenv-mode 1))
 
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
