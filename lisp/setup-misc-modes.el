@@ -259,5 +259,8 @@
   (emojify-emoji-styles '(github unicode))
   (emojify-display-style 'unicode))
 
+(use-package tree-sitter)
+(use-package tree-sitter-langs)
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
