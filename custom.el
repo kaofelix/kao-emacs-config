@@ -42,6 +42,7 @@
  '(magit-wip-mode t)
  '(minibuffer-depth-indicate-mode t)
  '(mmm-parse-when-idle t)
+ '(native-comp-async-report-warnings-errors 'silent)
  '(orderless-matching-styles '(orderless-regexp orderless-initialism orderless-flex))
  '(org-agenda-files '("~/org/notes.org"))
  '(org-capture-templates
