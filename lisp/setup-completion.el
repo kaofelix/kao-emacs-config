@@ -1,4 +1,4 @@
-;;; setup-completion.el --- selectrum+consult+embark
+;;; setup-completion.el --- vertico+consult+embark
 
 ;; Copyright (C) 2020  Kao Felix
 
@@ -19,21 +19,24 @@
   (:map grep-mode-map
    ("e" . #'wgrep-change-to-wgrep-mode)))
 
-(use-package selectrum
-  :config
-  (selectrum-mode +1)
-  (setq file-name-shadow-properties
-        '(invisible t))
-  (file-name-shadow-mode +1)
-  :custom
-  (selectrum-num-candidates-displayed 20)
-  (selectrum-max-window-height 20)
-  (selectrum-extend-current-candidate-highlight t))
+(use-package vertico
+  :init
+  (vertico-mode)
+  (setq vertico-count 20)
+  (setq vertico-cycle t))
 
-(use-package selectrum-prescient
-  :config
-  (selectrum-prescient-mode +1)
-  (prescient-persist-mode))
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion))
+                                         ;; enable initialism by default for symbols
+                                        (command (styles +orderless-with-initialism))
+                                        (variable (styles +orderless-with-initialism))
+                                        (symbol (styles +orderless-with-initialism)))))
 
 (use-package marginalia
   :init
@@ -88,13 +91,7 @@ targets."
   (setq embark-indicators
         '(embark-which-key-indicator
           embark-highlight-indicator
-          embark-isearch-highlight-indicator))
-
-  ;; For Selectrum users:
-  (defun refresh-selectrum ()
-    (setq selectrum--previous-input-string nil))
-
-  (add-hook 'embark-pre-action-hook #'refresh-selectrum))
+          embark-isearch-highlight-indicator)))
 
 (use-package embark-consult
   :after (embark consult)
@@ -148,15 +145,6 @@ targets."
 
   (setq consult-config '((consult-buffer :preview-key nil)))
   (setq consult-project-root-function #'consult-project-root))
-
-;; (use-package mini-frame
-;;   :config
-;;   (mini-frame-mode +1)
-;;   :custom
-;;   (mini-frame-show-parameters '((top . 0.54)
-;;                                 (left . 0.5)
-;;                                 (width . 0.9)))
-;;   (mini-frame))
 
 (provide 'setup-completion)
 ;;; setup-completion.el ends here

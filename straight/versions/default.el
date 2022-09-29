@@ -98,7 +98,6 @@
  ("restclient.el" . "94d2e8421fa14d0e3307d70e1d1e2db9d43b2f95")
  ("rust-mode" . "494d59f92cbe12533eb89b202fc4f5342afcd543")
  ("s.el" . "08661efb075d1c6b4fa812184c1e5e90c08795a9")
- ("selectrum" . "97693d0aea2c548197e9d1de3bdedf8e703775a4")
  ("shrink-path.el" . "c14882c8599aec79a6e8ef2d06454254bb3e1e41")
  ("smartparens" . "2834c66c4f09778d0c57e99886c329188eed591a")
  ("spinner" . "34905eae12a236753fa88abc831eff1e41e8576e")
@@ -117,5 +116,6 @@
  ("xref" . "a82f459b37b31546bf274388baf8aca79e9c30d9")
  ("yaml-mode" . "63b637f846411806ae47e63adc06fe9427be1131")
  ("yaml.el" . "84b88c9ed178af16da18b230c1f61c57cefedf28")
+ ("vertico" . "5b9f9e6116bfa511fece498564709070436953a7")
  ("yasnippet" . "5cbdbf0d2015540c59ed8ee0fcf4788effdf75b6"))
 :beta
