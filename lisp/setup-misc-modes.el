@@ -139,7 +139,10 @@
   ("C-x v R" . #'vc-revert)
   ("C-x v SPC" . #'git-gutter:mark-hunk))
 
+(use-package all-the-icons)
+
 (use-package neotree
+  :after (all-the-icons)
   :config
   (defun neotree-project ()
     "Open NeoTree in project root."
