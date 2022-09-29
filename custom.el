@@ -79,6 +79,7 @@
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect" "angular")
      (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect")))
  '(sp-navigate-interactive-always-progress-point t)
+ '(split-height-threshold 100)
  '(term-bind-key-alist
    '(("C-c C-c" . term-interrupt-subjob)
      ("C-c C-d" . term-send-eof)
