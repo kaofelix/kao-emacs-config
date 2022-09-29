@@ -66,14 +66,6 @@
  '(pos-tip-internal-border-width 8)
  '(py-underscore-word-syntax-p nil)
  '(register-preview-delay 0)
- '(safe-local-variable-values
-   '((checkdoc-minor-mode . 1)
-     (eval when
-           (fboundp 'rainbow-mode)
-           (rainbow-mode 1))
-     (pyvenv-activate . "/Users/kaofelix/Library/Caches/pypoetry/virtualenvs/op1-py3.")
-     (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect" "angular")
-     (js2-global-externs "describe" "beforeEach" "module" "inject" "it" "expect")))
  '(sp-navigate-interactive-always-progress-point t)
  '(split-height-threshold 100)
  '(term-bind-key-alist
