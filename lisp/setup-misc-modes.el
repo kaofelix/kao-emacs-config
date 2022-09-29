@@ -262,5 +262,7 @@
 (use-package tree-sitter)
 (use-package tree-sitter-langs)
 
+(use-package string-inflection)
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
