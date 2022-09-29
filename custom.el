@@ -17,6 +17,8 @@
  '(browse-kill-ring-highlight-current-entry t)
  '(browse-kill-ring-highlight-inserted-item 'pulse)
  '(coffee-tab-width 2)
+ '(consult-ripgrep-args
+   "rg --hidden -g \"!.git/*\" --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number .")
  '(custom-search-field nil)
  '(dap-auto-configure-features '(controls tooltip))
  '(dap-internal-terminal 'dap-internal-terminal-vterm)
