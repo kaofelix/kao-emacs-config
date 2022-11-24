@@ -12,44 +12,38 @@
 ;;; Code:
 (require 'use-package)
 
-(use-package nvm
-  :after (web-mode)
-  :hook (web-mode . nvm-use-for-buffer))
-
 (use-package add-node-modules-path
-  :after (web-mode)
-  :hook (web-mode . add-node-modules-path))
+  :after (typescript-mode)
+  :hook (typescript-mode . add-node-modules-path))
 
-(use-package web-mode
-  :mode
-  ("\\.ejs\\'" "\\.hbs\\'" "\\.html\\'" "\\.php\\'" "\\.[jt]sx?\\'")
+(use-package typescript-mode
+  :after tree-sitter
   :config
-  (setq web-mode-content-types-alist '(("jsx" . "\\.[jt]sx?\\'")))
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-script-padding 2)
-  (setq web-mode-block-padding 2)
-  (setq web-mode-style-padding 2)
-  (setq web-mode-enable-auto-pairing t)
-  (setq web-mode-enable-auto-closing t)
-  (setq web-mode-enable-auto-quoting nil)
-  (setq web-mode-enable-current-element-highlight t)
-  (setq web-mode-enable-comment-annotation t)
-  (setq web-mode-enable-comment-interpolation t)
+  ;; we choose this instead of tsx-mode so that eglot can automatically figure out language for server
+  ;; see https://github.com/joaotavora/eglot/issues/624 and https://github.com/joaotavora/eglot#handling-quirky-servers
+  (define-derived-mode typescriptreact-mode typescript-mode
+    "TypeScript TSX")
 
-  (defun setup-web-mode-ff-other-file()
-    (setq ff-search-directories '(".")
-          ff-other-file-alist '(("\\.spec\\.ts$" (".ts"))
-                                ("\\.ts$" (".spec.ts"))
-                                ("\\.test\\.ts$" (".ts"))
-                                ("\\.ts$" (".test.ts"))
-                                ("\\.spec\\.js$" (".js"))
-                                ("\\.js$" (".spec.js"))
-                                ("\\.test\\.js$" (".js"))
-                                ("\\.js$" (".test.js")))))
-  :hook
-  (web-mode . setup-web-mode-ff-other-file))
+  ;; use our derived mode for tsx files
+  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . typescriptreact-mode))
+  ;; by default, typescript-mode is mapped to the treesitter typescript parser
+  ;; use our derived mode to map both .tsx AND .ts -> typescriptreact-mode -> treesitter tsx
+  (add-to-list 'tree-sitter-major-mode-language-alist '(typescriptreact-mode . tsx)))
+
+;; https://github.com/orzechowskid/tsi.el/
+;; great tree-sitter-based indentation for typescript/tsx, css, json
+(use-package tsi
+  :after tree-sitter
+  :straight (:host github :repo "orzechowskid/tsi.el")
+  ;; define autoload definitions which when actually invoked will cause package to be loaded
+  :commands (tsi-typescript-mode tsi-json-mode tsi-css-mode)
+  :init
+  (add-hook 'typescript-mode-hook (lambda () (tsi-typescript-mode 1)))
+  (add-hook 'json-mode-hook (lambda () (tsi-json-mode 1)))
+  (add-hook 'css-mode-hook (lambda () (tsi-css-mode 1)))
+  (add-hook 'scss-mode-hook (lambda () (tsi-scss-mode 1)))
+  :config
+  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-mode default tsi-typescript-indent-offset)))
 
 (provide 'setup-js)
 ;;; setup-js.el ends here
