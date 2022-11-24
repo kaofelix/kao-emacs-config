@@ -11,7 +11,7 @@
 
 (require 'saveplace)
 
-(setq insert-directory-program "/usr/local/bin/gls")
+(setq insert-directory-program "gls")
 
 (setq apropos-do-all t
       require-final-newline t
