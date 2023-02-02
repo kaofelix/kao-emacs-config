@@ -72,6 +72,10 @@
    ("C-n" . #'company-select-next-or-abort)
    ("C-p" . #'company-select-previous-or-abort)))
 
+;; With use-package:
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
 (use-package dash-at-point)
 
 (use-package yaml-mode)
@@ -82,6 +86,17 @@
   (add-to-list 'dtrt-indent-hook-mapping-list '(json-mode default js-indent-level)))
 
 (add-hook 'prog-mode-hook 'hl-line-mode)
+
+(use-package copilot
+  :hook (prog-mode . copilot-mode)
+  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :config
+  (with-eval-after-load 'company
+    ;; disable inline previews
+    (delq 'company-preview-if-just-one-frontend company-frontends))
+
+  (define-key copilot-mode-map (kbd "s-i") 'copilot-accept-completion)
+  (define-key copilot-mode-map (kbd "C-s-i") 'copilot-accept-completion-by-word))
 
 (provide 'setup-prog-mode)
 ;;; setup-prog-mode.el ends here
