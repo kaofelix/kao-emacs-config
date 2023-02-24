@@ -37,6 +37,7 @@
 (use-package embark
   :bind
   (("M-o" . #'embark-act)
+   ("M-O" . #'embark-dwim)
    :map embark-general-map
    ("L" . nil)
    :map minibuffer-local-map
@@ -54,7 +55,7 @@
 
   (defun kao/embark-project-file-absolute-path(target)
     (if-let* ((project (project-current))
-                (root (project-root project)))
+              (root (project-root project)))
         (cons 'project-file (expand-file-name target root))
       target))
 
@@ -67,7 +68,7 @@ targets."
       (if (null keymap)
           (which-key--hide-popup-ignore-command)
         (which-key--show-keymap
-         (if (eq (caar targets) 'embark-become)
+         (if (eq (plist-get (car targets) :type) 'embark-become)
              "Become"
            (format "Act on %s '%s'%s"
                    (plist-get (car targets) :type)
@@ -78,47 +79,82 @@ targets."
                ((and (pred keymapp) km) km)
                (_ (key-binding prefix 'accept-default)))
            keymap)
-         nil nil t))))
+         nil nil t (lambda (binding)
+                     (not (string-suffix-p "-argument" (cdr binding))))))))
 
   (setq embark-indicators
         '(embark-which-key-indicator
           embark-highlight-indicator
-          embark-isearch-highlight-indicator)))
+          embark-isearch-highlight-indicator))
+
+  (defun embark-hide-which-key-indicator (fn &rest args)
+    "Hide the which-key indicator immediately when using the completing-read prompter."
+    (which-key--hide-popup-ignore-command)
+    (let ((embark-indicators
+           (remq #'embark-which-key-indicator embark-indicators)))
+      (apply fn args)))
+
+  (advice-add #'embark-completing-read-prompter
+              :around #'embark-hide-which-key-indicator))
 
 (use-package embark-consult
-  :after (embark consult)
-  :demand t ; only necessary if you have the hook below
-  ;; if you want to have consult previews as you move around an
-  ;; auto-updating embark collect buffer
   :hook
-  (embark-collect-mode . embark-consult-preview-minor-mode))
+  (embark-collect-mode . consult-preview-at-point-mode))
 
+;; Example configuration for Consult
 (use-package consult
   :after (project)
-  :bind
-  (("C-x M-:" . consult-complex-command)
-   ("C-c h" . consult-history)
-   ("C-c m" . consult-mode-command)
-   ("C-x b" . consult-buffer)
-   ("C-x 4 b" . consult-buffer-other-window)
-   ("C-x 5 b" . consult-buffer-other-frame)
-   ("C-x r x" . consult-register)
-   ("C-x r b" . consult-bookmark)
-   ("M-g g" . consult-goto-line)
-   ("M-g M-g" . consult-goto-line)
-   ("M-g o" . consult-outline)
-   ("M-g l" . consult-line)
-   ("M-g m" . consult-mark)
-   ("M-g k" . consult-global-mark)
-   ("M-g r" . consult-ripgrep)
-   ("M-g f" . consult-fd)
-   ("M-g i" . consult-project-imenu)
-   ("M-g e" . consult-error)
-   ("M-s m" . consult-multi-occur)
-   ("M-y" . consult-yank-pop)
-   ("<help> a" . consult-apropos)
-   :map project-prefix-map
-   ("s" . #'consult-ripgrep))
+  :bind (;; C-c bindings (mode-specific-map)
+         ("C-c h" . consult-history)
+         ("C-c m" . consult-mode-command)
+         ("C-c k" . consult-kmacro)
+         ;; C-x bindings (ctl-x-map)
+         ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+         ("C-x b" . consult-buffer)                ;; orig. switch-to-buffer
+         ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
+         ("C-x 5 b" . consult-buffer-other-frame)  ;; orig. switch-to-buffer-other-frame
+         ("C-x r b" . consult-bookmark)            ;; orig. bookmark-jump
+         ("C-x p b" . consult-project-buffer)      ;; orig. project-switch-to-buffer
+         ;; Custom M-# bindings for fast register access
+         ("M-#" . consult-register-load)
+         ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
+         ("C-M-#" . consult-register)
+         ;; Other custom bindings
+         ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+         ;; M-g bindings (goto-map)
+         ("M-g e" . consult-compile-error)
+         ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+         ("M-g g" . consult-goto-line)             ;; orig. goto-line
+         ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
+         ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+         ("M-g m" . consult-mark)
+         ("M-g k" . consult-global-mark)
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-imenu-multi)
+         ;; M-s bindings (search-map)
+         ("M-s d" . consult-find)
+         ("M-s D" . consult-locate)
+         ("M-s g" . consult-grep)
+         ("M-s G" . consult-git-grep)
+         ("M-s r" . consult-ripgrep)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
+         ("M-s m" . consult-multi-occur)
+         ("M-s k" . consult-keep-lines)
+         ("M-s u" . consult-focus-lines)
+         ;; Isearch integration
+         ("M-s e" . consult-isearch-history)
+         :map isearch-mode-map
+         ("M-e" . consult-isearch-history)         ;; orig. isearch-edit-string
+         ("M-s e" . consult-isearch-history)       ;; orig. isearch-edit-string
+         ("M-s l" . consult-line)                  ;; needed by consult-line to detect isearch
+         ("M-s L" . consult-line-multi)            ;; needed by consult-line to detect isearch
+         ;; Minibuffer history
+         :map minibuffer-local-map
+         ("M-s" . consult-history)                 ;; orig. next-matching-history-element
+         ("M-r" . consult-history)
+         :map project-prefix-map
+         ("s" . #'consult-ripgrep))                ;; orig. previous-matching-history-element
 
   :init
   (defun consult-fd (&optional dir)
@@ -129,14 +165,33 @@ targets."
 
   ;; Replace `multi-occur' with `consult-multi-occur', which is a drop-in replacement.
   (fset 'multi-occur #'consult-multi-occur)
+  ;; This improves the register preview for `consult-register',
+  ;; `consult-register-load', `consult-register-store' and the Emacs
+  ;; built-ins.
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format)
+
+  ;; Tweak the register preview window. This adds thin lines, sorting
+  ;; and hides the mode line of the window.
+  (advice-add #'register-preview :override #'consult-register-window)
+
+  ;; Use Consult to select xref locations with preview
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
 
   :config
-  (defun consult-project-root ()
-    (when-let (pr (project-current))
-      (project-root pr)))
 
-  (setq consult-config '((consult-buffer :preview-key nil)))
-  (setq consult-project-root-function #'consult-project-root))
+  (consult-customize
+   consult-theme :preview-key '(:debounce 0.2 any)
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   :preview-key '(:debounce 0.4 any))
+
+  ;; Optionally configure the narrowing key.
+  ;; Both < and C-+ work reasonably well.
+  (setq consult-narrow-key "<"))
 
 (provide 'setup-completion)
 ;;; setup-completion.el ends here
