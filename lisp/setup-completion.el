@@ -25,18 +25,10 @@
   (setq vertico-count 20)
   (setq vertico-cycle t))
 
-(use-package orderless
+(use-package vertico-prescient
   :init
-  ;; Configure a custom style dispatcher (see the Consult wiki)
-  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
-  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
-  (setq completion-styles '(orderless basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion))
-                                         ;; enable initialism by default for symbols
-                                        (command (styles +orderless-with-initialism))
-                                        (variable (styles +orderless-with-initialism))
-                                        (symbol (styles +orderless-with-initialism)))))
+  (vertico-prescient-mode +1)
+  (prescient-persist-mode +1))
 
 (use-package marginalia
   :init
