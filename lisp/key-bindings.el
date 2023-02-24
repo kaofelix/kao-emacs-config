@@ -72,6 +72,7 @@
 (define-key kao/toggle-map "l" 'toggle-truncate-lines)
 (define-key kao/toggle-map "w" 'whitespace-mode)
 (define-key kao/toggle-map "n" 'global-display-line-numbers-mode)
+(define-key kao/toggle-map "+" 'kao/toggle-big-font)
 
 (provide 'key-bindings)
 ;;; key-bindings.el ends here

@@ -126,5 +126,23 @@ closing delimiter, will open a new line between both delimiters."
       (forward-line 1)
       (indent-according-to-mode))))
 
+(defvar default-font-size (face-attribute 'default :height)
+  "Default font size.")
+
+(defvar large-font-size 200
+  "Default font size.")
+
+
+(defun kao/toggle-big-font (arg)
+  "Toggle between big and normal font size.
+If ARG is not nil or 1, set font size to ARG."
+  (interactive "P")
+  (let ((font-size (if arg
+                       arg
+                     (if (equal (face-attribute 'default :height) default-font-size)
+                         large-font-size
+                       default-font-size))))
+    (set-face-attribute 'default nil :height font-size)))
+
 (provide 'defuns)
 ;;; defuns.el ends here
