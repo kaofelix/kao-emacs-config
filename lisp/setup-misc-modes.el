@@ -269,5 +269,10 @@
 
 (use-package string-inflection)
 
+(use-package highlight-indent-guides
+  :custom
+  (highlight-indent-guides-method 'character)
+  (highlight-indent-guides-responsive 'top))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
