@@ -274,5 +274,10 @@
   (highlight-indent-guides-method 'character)
   (highlight-indent-guides-responsive 'top))
 
+(use-package csv-mode
+  :bind
+  (:map csv-mode-map
+   ("C-c C-c" . #'csv-align-mode)))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
