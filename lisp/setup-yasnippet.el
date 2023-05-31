@@ -42,5 +42,8 @@
    ("C-e" . #'yas/goto-end-of-active-field)
    ("C-a" . #'yas/goto-start-of-active-field)))
 
+(use-package yasnippet-snippets
+  :after yasnippet)
+
 (provide 'setup-yasnippet)
 ;;; setup-yasnippet.el ends here
