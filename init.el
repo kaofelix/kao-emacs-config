@@ -77,6 +77,7 @@
 (require 'setup-terraform)
 (require 'setup-yasnippet)
 (require 'setup-go)
+(require 'setup-swift)
 
 (let ((local-elisp (expand-file-name  "local.el" user-emacs-directory)))
   (when (file-exists-p local-elisp)
