@@ -87,6 +87,25 @@
 
 (add-hook 'prog-mode-hook 'hl-line-mode)
 
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install t)
+  :config
+  (global-treesit-auto-mode))
+
+(use-package combobulate
+  :straight (combobulate
+             :type git
+             :host github
+             :repo "mickeynp/combobulate"
+             :files ("*.el"))
+  :hook ((python-ts-mode . combobulate-mode)
+         (js-ts-mode . combobulate-mode)
+         (css-ts-mode . combobulate-mode)
+         (yaml-ts-mode . combobulate-mode)
+         (typescript-ts-mode . combobulate-mode)
+         (tsx-ts-mode . combobulate-mode)))
+
 (use-package copilot
   :hook (prog-mode . copilot-mode)
   :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))

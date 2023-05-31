@@ -259,14 +259,6 @@
   (emojify-emoji-styles '(github unicode))
   (emojify-display-style 'unicode))
 
-(use-package tree-sitter-langs)
-(use-package tree-sitter
-  :after (tree-sitter-langs)
-  :config
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-  :init
-  (global-tree-sitter-mode))
-
 (use-package string-inflection)
 
 (use-package highlight-indent-guides
