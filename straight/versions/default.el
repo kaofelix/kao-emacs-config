@@ -5,6 +5,5 @@
  ("gnu-elpa-mirror" . "3350028f721bec8076b332a7d50ae8fa488834a6")
  ("melpa" . "d0a5234d94cd9acab783c5918789062e912df9b2")
  ("nongnu-elpa" . "85c7a060c6174bf544f0ff8fe2480aaa1f70ed46")
- ("straight.el" . "3eca39dfc6797243ec7d1c6a7d45142407f73f88")
  ("use-package" . "77945e002f11440eae72d8730d3de218163d551e"))
 :gamma
