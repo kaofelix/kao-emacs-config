@@ -191,7 +191,10 @@
 
 (use-package ace-window
   :bind
-  (("C-x o" . #'ace-window)))
+  (("C-x o" . #'ace-window))
+  :config
+  (setq aw-ignore-current t
+        aw-ignored-buffers '(" *NeoTree*")))
 
 (use-package direnv
   :config
