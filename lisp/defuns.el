@@ -144,5 +144,15 @@ If ARG is not nil or 1, set font size to ARG."
                        default-font-size))))
     (set-face-attribute 'default nil :height font-size)))
 
+
+(defun kao/make-executable ()
+  "Make current file executable."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (when filename
+      (set-file-modes filename (logior (file-modes filename) #o100))
+      (message "Made '%s' executable." filename))))
+
+
 (provide 'defuns)
 ;;; defuns.el ends here
