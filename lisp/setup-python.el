@@ -24,8 +24,6 @@
   :config
   (pyvenv-mode 1))
 
-(use-package python-pytest)
-
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
 
