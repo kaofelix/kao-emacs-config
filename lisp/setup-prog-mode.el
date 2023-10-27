@@ -84,8 +84,7 @@
              :host github
              :repo "mickeynp/combobulate"
              :files ("*.el"))
-  :hook ((python-ts-mode . combobulate-mode)
-         (js-ts-mode . combobulate-mode)
+  :hook ((js-ts-mode . combobulate-mode)
          (css-ts-mode . combobulate-mode)
          (yaml-ts-mode . combobulate-mode)
          (typescript-ts-mode . combobulate-mode)
