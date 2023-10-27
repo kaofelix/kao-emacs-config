@@ -90,6 +90,32 @@
          (yaml-ts-mode . combobulate-mode)
          (typescript-ts-mode . combobulate-mode)
          (tsx-ts-mode . combobulate-mode)))
+(use-package testrun
+  :straight (:host github :repo "martini97/testrun.el" :files ("testrun.el" "testrun-*.el"))
+  :config
+  ;; this will allow you to override the runners on your .dir-locals.el
+  (put 'testrun-runners 'safe-local-variable #'listp)
+  (put 'testrun-mode-alist 'safe-local-variable #'listp)
+  (define-keymap :prefix 'testrun-keymap)
+
+  (defun testrun-code--root-allow-override (orig)
+    "Allow to override the root directory."
+    (message "testrun-code--root-allow-override")
+    (let ((root (or (locate-dominating-file (buffer-file-name) ".testrun-root")
+                    (funcall orig))))
+      root))
+
+  (advice-add 'testrun-core--root :around #'testrun-code--root-allow-override)
+
+  :bind
+  (:map prog-mode-map
+   ("C-c t" . my/tests-key-map)
+   :map testrun-keymap
+   ("t" . testrun-nearest)
+   ("c" . testrun-namespace)
+   ("f" . testrun-file)
+   ("a" . testrun-all)
+   ("l" . testrun-last)))
 
 (use-package copilot
   :hook (prog-mode . copilot-mode)

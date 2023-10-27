@@ -45,7 +45,7 @@
 
 (use-package change-inner
   :bind
-  ("M-i" . #'change-inner))
+  ("C-'" . #'change-inner))
 
 (use-package comment-dwim-2
   :bind
@@ -73,6 +73,7 @@
 (define-key kao/toggle-map "w" 'whitespace-mode)
 (define-key kao/toggle-map "n" 'global-display-line-numbers-mode)
 (define-key kao/toggle-map "+" 'kao/toggle-big-font)
+(define-key kao/toggle-map "_" 'subword-mode)
 
 (provide 'key-bindings)
 ;;; key-bindings.el ends here
