@@ -34,12 +34,7 @@
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(locate-command "mdfind")
- '(magit-diff-use-overlays nil)
  '(magit-save-repository-buffers 'dontask)
- '(magit-status-headers-hook
-   '(magit-insert-error-header magit-insert-diff-filter-header magit-insert-repo-header magit-insert-remote-header magit-insert-head-branch-header magit-insert-upstream-branch-header magit-insert-push-branch-header magit-insert-tags-header))
- '(magit-use-overlays nil)
- '(magit-wip-mode t)
  '(minibuffer-depth-indicate-mode t)
  '(mmm-parse-when-idle t)
  '(native-comp-async-report-warnings-errors 'silent)
