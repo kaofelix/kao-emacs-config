@@ -25,7 +25,7 @@
       create-lockfiles nil)
 
 (setq load-prefer-newer t)
-(setq x-select-enable-clipboard t
+(setq select-enable-clipboard t
       save-interprogram-paste-before-kill t)
 
 (global-auto-revert-mode 1)
