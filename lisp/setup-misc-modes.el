@@ -209,7 +209,6 @@
 
 (use-package docker-compose-mode
   :config
-  (add-hook 'docker-compose-mode-hook 'company-mode)
   (add-to-list 'auto-mode-alist
                '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
@@ -236,10 +235,6 @@
                         :repo "pashky/restclient.el"
                         :files ("restclient*.el"))
   :mode  ("\\.http\\'" . restclient-mode))
-
-(use-package company-restclient
-  :after (company restclient)
-  :hook (restclient-mode . company-mode))
 
 (use-package sudo-edit)
 

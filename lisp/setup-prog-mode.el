@@ -59,22 +59,7 @@
   :delight
   :hook (prog-mode . whitespace-mode))
 
-(use-package company
-  :delight
-  :hook (prog-mode . company-mode)
-  :config
-  (setq company-tooltip-align-annotations t)
-  :bind
-  (("C-c C-M-i" . #'completion-at-point)
-   :map company-mode-map
-   ("C-M-i" . #'company-complete-common)
-   :map company-active-map
-   ("C-n" . #'company-select-next-or-abort)
-   ("C-p" . #'company-select-previous-or-abort)))
 
-;; With use-package:
-(use-package company-box
-  :hook (company-mode . company-box-mode))
 
 (use-package dash-at-point)
 
@@ -110,10 +95,6 @@
   :hook (prog-mode . copilot-mode)
   :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
   :config
-  (with-eval-after-load 'company
-    ;; disable inline previews
-    (delq 'company-preview-if-just-one-frontend company-frontends))
-
   (define-key copilot-mode-map (kbd "s-i") 'copilot-accept-completion)
   (define-key copilot-mode-map (kbd "C-s-i") 'copilot-accept-completion-by-word))
 
