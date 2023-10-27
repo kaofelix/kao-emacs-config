@@ -14,11 +14,13 @@
 
 (use-package python
   :hook
-  (python-mode . eglot-ensure))
+  (python-mode . eglot-ensure)
+  (python-ts-mode . eglot-ensure))
 
 (use-package poetry
   :hook
-  (python-mode . poetry-tracking-mode))
+  (python-mode . poetry-tracking-mode)
+  (python-ts-mode . poetry-tracking-mode))
 
 (use-package pyvenv
   :config
