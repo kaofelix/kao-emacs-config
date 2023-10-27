@@ -38,8 +38,6 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
-(straight-use-package 'use-package)
-
 (eval-when-compile
   (require 'use-package))
 (use-package delight)
