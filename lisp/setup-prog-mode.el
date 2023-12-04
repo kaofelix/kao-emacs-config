@@ -12,6 +12,16 @@
 ;;; Code:
 (require 'use-package)
 
+(use-package eglot
+  :straight (:host github :repo "joaotavora/eglot")
+  :after yasnippet
+  :bind
+  (:map eglot-mode-map
+   ("C-c C-r" . eglot-rename)
+   ("C-c C-f" . eglot-format)
+   ("C-c C-c" . eglot-code-actions)
+   ("C-c C-e" . eglot-reconnect)))
+
 (use-package apheleia
   :straight (:host github :repo "raxod502/apheleia")
   :delight

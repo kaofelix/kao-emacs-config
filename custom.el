@@ -31,6 +31,7 @@
  '(dired-dwim-target t)
  '(dtrt-indent-max-merge-deviation 15.0)
  '(dumb-jump-force-searcher 'rg)
+ '(eglot-confirm-server-initiated-edits nil)
  '(enable-recursive-minibuffers t)
  '(exec-path-from-shell-arguments '("-l"))
  '(exec-path-from-shell-shell-name "/bin/zsh")
