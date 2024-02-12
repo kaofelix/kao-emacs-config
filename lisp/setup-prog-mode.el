@@ -13,7 +13,6 @@
 (require 'use-package)
 
 (use-package eglot
-  :straight (:host github :repo "joaotavora/eglot")
   :after yasnippet
   :bind
   (:map eglot-mode-map
