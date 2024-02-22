@@ -46,11 +46,8 @@
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
-  :config
-  (defun my-doom-modeline--font-height ()
-    "Calculate the actual char height of the mode-line."
-    (+ (frame-char-height) 2))
-  (advice-add #'doom-modeline--font-height :override #'my-doom-modeline--font-height))
+  :custom
+  (doom-modeline-height 25 "Make modeline taller"))
 
 (use-package which-key
   :delight
@@ -145,6 +142,7 @@
   (auto-dim-other-buffers-mode))
 
 (use-package all-the-icons)
+(use-package nerd-icons)
 
 (use-package neotree
   :after (all-the-icons)
