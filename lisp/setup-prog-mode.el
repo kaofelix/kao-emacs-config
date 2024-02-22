@@ -70,7 +70,9 @@
 
 
 
-(use-package dash-at-point)
+(use-package dash-at-point
+  :bind
+  (("s-." . dash-at-point)))
 
 (use-package yaml-mode)
 
