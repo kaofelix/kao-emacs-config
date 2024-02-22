@@ -12,7 +12,9 @@
   (:map magit-mode-map
    ("C-M-u" . #'magit-section-up)))
 
-(use-package browse-at-remote)
+(use-package browse-at-remote
+  :bind
+  ("C-c b" . #'browse-at-remote))
 
 (provide 'setup-magit)
 
