@@ -22,10 +22,13 @@
    ("C-c C-e" . eglot-reconnect)))
 
 (use-package apheleia
-  :straight (:host github :repo "raxod502/apheleia")
   :delight
   :config
-  (apheleia-global-mode +1))
+  (apheleia-global-mode +1)
+  (setf (alist-get 'python-mode apheleia-mode-alist)
+        '(ruff-isort ruff))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist)
+        '(ruff-isort ruff)))
 
 (use-package highlight-symbol
   :delight
