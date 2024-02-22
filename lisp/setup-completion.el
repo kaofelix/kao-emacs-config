@@ -176,14 +176,13 @@
 (use-package corfu
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-auto nil)                 ;; Enable auto completion
 
   :init
   (global-corfu-mode))
 
 (use-package cape
   :init
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
   (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package kind-icon
