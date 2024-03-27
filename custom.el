@@ -101,6 +101,7 @@
      ("M-." . comint-dynamic-complete)))
  '(term-unbind-key-list '("C-x" "C-c" "C-h" "C-y" "C-d" "<ESC>"))
  '(vc-follow-symlinks t)
+ '(vterm-always-compile-module t)
  '(wgrep-auto-save-buffer t)
  '(whitespace-action '(auto-cleanup))
  '(whitespace-global-modes nil)
