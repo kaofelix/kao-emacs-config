@@ -5,7 +5,6 @@
       '(
         anzu-replace-at-cursor-thing
         helm-M-x
-        hippie-expand-no-case-fold
         hungry-delete-backward
         hungry-delete-forward
         indent-for-tab-command

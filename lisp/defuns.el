@@ -154,5 +154,56 @@ If ARG is not nil or 1, set font size to ARG."
       (message "Made '%s' executable." filename))))
 
 
+(defun kao/inhibit-message-advice (orig-fun &rest args)
+  "Set inhibit-message to t while executing BODY."
+  (let ((inhibit-message t))
+    (apply orig-fun args)))
+
+(advice-add 'undo-tree-save-history :around 'kao/inhibit-message-advice)
+
+
+(defun kao/ad-memoize (orig-func &rest args)
+  "Memoize ORIG-FUNC with ARGS."
+  (let (
+        (function-name) (symbol-name orig-func)
+        (cache-file (no-littering-expand-var-file-name ".memo-cache.el"))
+        (cache-var (intern (concat "kao/ad-memoize")))
+        )
+    (unless (file-exists-p cache-file)
+      (error "Cache file '%s' does not exist." cache-file))
+    (load-file cache-file)
+    (unless (boundp cache-var)
+      (error "Cache variable '%s' does not exist." cache-var))
+    (let ((cache (symbol-value cache-var))
+          (function-cache (cdr (assoc function-name cache))))
+
+       (let ((result (apply orig-func args)))
+          (with-temp-file cache-file
+            (insert (format "%s" cache)))
+          result))))
+
+
+(defun kao/rename-symbol-at-point ()
+  "Rename symbol at point."
+  (interactive)
+  ;; If eglot is available, use it
+  (if (fboundp 'eglot-rename)
+      (call-interactively 'eglot-rename)
+    ;; Otherwise, use dumb-jump
+    (call-interactively 'dumb-jump-rename)))
+
+
+(defun move-current-buffer-file (new-directory)
+  "Move current buffer file to NEW-DIRECTORY."
+  (interactive "FNew location: ")
+  (let ((filename (buffer-file-name)))
+    (when filename
+      (let ((new-filename (expand-file-name (file-name-nondirectory filename) new-location)))
+        (copy-file filename new-filename 1)
+        (delete-file filename)
+        (set-visited-file-name new-filename)
+        (set-buffer-modified-p nil)
+        (message "File '%s' successfully moved to '%s'" filename new-filename)))))
+
 (provide 'defuns)
 ;;; defuns.el ends here

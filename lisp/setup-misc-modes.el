@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t -*-
 ;;; setup-misc-modes.el --- Config for misc modes
 
 ;; Copyright (C) 2014  Kao Felix
@@ -13,7 +14,7 @@
 
 ;; Dependencies requires
 (require 'use-package)
-
+(require 'cl)
 (use-package f)
 
 ;; Compile packages asynchronously
@@ -29,6 +30,10 @@
   (global-subword-mode 1)
   :bind
   ([remap open-line] . #'kao/open-line))
+
+(use-package gptel
+  :bind
+  ("C-c RET" . #'gptel-send))
 
 (use-package exec-path-from-shell
   :init
@@ -66,8 +71,6 @@
   (require 'smartparens-config)
   (show-smartparens-global-mode t)
   (smartparens-global-mode t)
-  :hook ((emacs-lisp-mode . smartparens-strict-mode)
-         (eval-expression-minibuffer-setup . smartparens-mode))
   :bind
   (:map smartparens-mode-map
    ("C-M-f" . #'sp-forward-sexp)
@@ -150,11 +153,10 @@
   (defun neotree-project ()
     "Open NeoTree in project root."
     (interactive)
-    (let ((project-dir (project-root (project-current t)))
-          (file-name (buffer-file-name)))
-      (if (and (neo-global--window-exists-p)
-               (eq major-mode 'neotree-mode))
-          (neotree-hide)
+    (if (and (neo-global--window-exists-p))
+        (neotree-hide)
+      (let ((project-dir (project-root (project-current t)))
+            (file-name (buffer-file-name)))
         (progn
           (neotree-show)
           (neotree-dir project-dir)
@@ -163,7 +165,6 @@
   (setq neo-theme 'icons
         neo-smart-open t
         neo-show-hidden-files t
-        neo-autorefresh nil
         neo-show-updir-line nil
         neo-mode-line-type 'neotree
         neo-default-system-application "open"
@@ -249,12 +250,6 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
-(use-package emojify
-  :hook (after-init . global-emojify-mode)
-  :custom
-  (emojify-emoji-styles '(github unicode))
-  (emojify-display-style 'unicode))
-
 (use-package string-inflection)
 
 (use-package highlight-indent-guides
@@ -267,5 +262,7 @@
   (:map csv-mode-map
    ("C-c C-c" . #'csv-align-mode)))
 
+(use-package graphviz-dot-mode)
+(use-package mermaid-mode)
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here

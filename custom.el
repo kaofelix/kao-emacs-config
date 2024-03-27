@@ -23,6 +23,7 @@
  '(coffee-tab-width 2)
  '(consult-ripgrep-args
    "rg --hidden -g \"!.git/*\" --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
+ '(copilot-indent-offset-warning-disable t)
  '(custom-safe-themes
    '("72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" default))
  '(custom-search-field nil)
@@ -31,6 +32,7 @@
  '(dired-dwim-target t)
  '(dtrt-indent-max-merge-deviation 15.0)
  '(dumb-jump-force-searcher 'rg)
+ '(eglot-confirm-server-edits nil)
  '(eglot-confirm-server-initiated-edits nil)
  '(enable-recursive-minibuffers t)
  '(exec-path-from-shell-arguments '("-l"))
@@ -44,6 +46,7 @@
  '(inhibit-startup-screen t)
  '(locate-command "mdfind")
  '(magit-save-repository-buffers 'dontask)
+ '(markdown-asymmetric-header t)
  '(minibuffer-depth-indicate-mode t)
  '(mmm-parse-when-idle t)
  '(native-comp-async-report-warnings-errors 'silent)

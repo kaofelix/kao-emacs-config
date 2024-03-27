@@ -18,10 +18,9 @@
 ;;
 (require 'minimal-gui)
 (require 'emoji)
-(when (version<= "28" emacs-version)
-    (require 'make-obsolete-workaround))
 
 ;; straight.el + use-package setup
+(setq package-install-upgrade-built-in t)
 (set-default 'straight-use-package-by-default t)
 (set-default 'straight-vc-git-default-protocol 'ssh)
 (set-default 'straight-disable-native-compile nil)
@@ -61,9 +60,9 @@
 (require 'setup-docker)
 (require 'setup-emacs-lisp)
 (require 'setup-completion)
-(require 'setup-gdscript)
+;; (require 'setup-gdscript)
 (require 'setup-hippie)
-(require 'setup-groovy)
+;; (require 'setup-groovy)
 (require 'setup-js)
 (require 'setup-markdown)
 (require 'setup-misc-modes)
