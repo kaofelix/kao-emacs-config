@@ -169,17 +169,20 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-
 ;; Corfu
 ;; -----
-
 (use-package corfu
-  :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto nil)                 ;; Enable auto completion
-
+  :after (eglot)
   :init
-  (global-corfu-mode))
+  (global-corfu-mode)
+  (corfu-popupinfo-mode)
+  :config
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+  :custom
+  (corfu-cycle t)        ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto nil)       ;; Enable auto completion
+  (corfu-preview-auto t) ;; Enable auto preview
+  )
 
 (use-package cape
   :init
