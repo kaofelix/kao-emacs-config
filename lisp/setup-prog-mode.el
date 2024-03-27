@@ -18,7 +18,7 @@
    ("M-h" . mark-defun)))
 
 (use-package eglot
-  :after yasnippet
+  :after (project yasnippet)
   :bind
   (:map eglot-mode-map
    ("C-c C-r" . eglot-rename)
