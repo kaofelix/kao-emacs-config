@@ -24,7 +24,8 @@
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
 
-(use-package pip-requirements)
+(use-package pip-requirements
+  :mode ("\\.in\\'" . pip-requirements-mode))
 
 (provide 'setup-python)
 ;;; setup-python.el ends here
