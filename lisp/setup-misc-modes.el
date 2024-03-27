@@ -245,11 +245,6 @@
   :after (project)
   :straight (:host github :repo "Kaali/pico8-mode"))
 
-(use-package dumb-jump
-  :after (project)
-  :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-
 (use-package string-inflection)
 
 (use-package highlight-indent-guides

@@ -78,6 +78,11 @@
   (("s-." . dash-at-point)))
 
 (use-package yaml-mode)
+(use-package dumb-jump
+  :after (project)
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
 
 (use-package json-mode
   :after (dtrt-indent)
