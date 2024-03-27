@@ -141,8 +141,8 @@
    ("l" . testrun-last)))
 
 (use-package copilot
+  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
   :hook (prog-mode . copilot-mode)
-  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
   :config
   (define-key copilot-mode-map (kbd "s-i") 'copilot-accept-completion)
   (define-key copilot-mode-map (kbd "C-s-i") 'copilot-accept-completion-by-word))
