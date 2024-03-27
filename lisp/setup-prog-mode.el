@@ -12,6 +12,11 @@
 ;;; Code:
 (require 'use-package)
 
+(use-package emacs
+  :bind
+  (:map prog-mode-map
+   ("M-h" . mark-defun)))
+
 (use-package eglot
   :after yasnippet
   :bind
