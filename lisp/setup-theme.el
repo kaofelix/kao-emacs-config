@@ -10,45 +10,37 @@
 
 ;;; Code:
 
-(use-package gruvbox-theme
-  :straight (gruvbox-theme :host github :repo "greduan/emacs-theme-gruvbox"
-                           :fork (:host github
-                                  :repo "kaofelix/emacs-theme-gruvbox"))
+(use-package doom-themes
+  :after (git-gutter)
   :config
-  (defvar kao/current-theme-file (no-littering-expand-var-file-name "current-theme"))
-  (defvar kao/current-theme 'gruvbox-dark-soft)
+  (load-theme 'doom-gruvbox t)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config)
 
-  (defvar kao/light-theme 'gruvbox-light-hard)
-  (defvar kao/dark-theme 'gruvbox-dark-soft)
+  ;; Git gutter should be a solid color
+  (dolist (face '(git-gutter:added
+                  git-gutter:modified
+                  git-gutter:deleted))
+    (set-face-background face (face-foreground face)))
 
-  (defun kao/theme-light-switch ()
-    "Toggle between light and dark theme."
-    (interactive)
-    (if (memq kao/light-theme custom-enabled-themes)
-        (kao/set-theme-and-save kao/dark-theme)
-      (kao/set-theme-and-save kao/light-theme)))
+  ;; Make target names in Makefiles different from variables
+  (eval-after-load 'make-mode
+    '(progn
+       (set-face-foreground 'makefile-targets nil)
+       (set-face-attribute 'makefile-targets nil :inherit font-lock-function-name-face))))
 
-  (defun kao/set-theme-and-save (new-theme)
-    "Set the current theme to `NEW-THEME' and save it to a theme file."
-    (mapc #'disable-theme custom-enabled-themes)
-    (load-theme new-theme t)
-    (setq kao/current-theme new-theme)
-    (with-temp-file kao/current-theme-file
-      (emacs-lisp-mode)
-      (kao/dump-theme-variable 'kao/current-theme)
-      (beginning-of-line)
-      (delete-char -1)))
-
-  (defun kao/dump-theme-variable (theme-variable)
-    "Insert \"(setq THEME-VARIABLE theme)\" in the current buffer."
-    (let ((value (symbol-value theme-variable)))
-      (insert (format "\n(setq %S '%S)\n" theme-variable value))))
-
-  (load kao/current-theme-file 'noerror 'nomessage)
-  (kao/set-theme-and-save kao/current-theme)
-
-  :bind
-  ("H-t" . #'kao/theme-light-switch))
+(use-package spacious-padding
+  :config
+  (spacious-padding-mode 1)
+  :custom
+  (spacious-padding-widths
+   '(:internal-border-width 10
+     :header-line-width 4
+     :mode-line-width 4
+     :tab-width 4
+     :right-divider-width 0
+     :scroll-bar-width 0
+     :fringe-width 12)))
 
 (provide 'setup-theme)
 ;;; setup-theme.el ends here

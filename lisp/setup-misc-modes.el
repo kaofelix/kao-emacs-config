@@ -139,11 +139,6 @@
   ("C-x v R" . #'vc-revert)
   ("C-x v SPC" . #'git-gutter:mark-hunk))
 
-
-(use-package auto-dim-other-buffers
-  :config
-  (auto-dim-other-buffers-mode))
-
 (use-package all-the-icons)
 (use-package nerd-icons)
 
