@@ -149,7 +149,8 @@
   :hook (prog-mode . copilot-mode)
   :config
   (define-key copilot-mode-map (kbd "s-i") 'copilot-accept-completion)
-  (define-key copilot-mode-map (kbd "C-s-i") 'copilot-accept-completion-by-word))
+  (define-key copilot-mode-map (kbd "C-s-i") 'copilot-accept-completion-by-word)
+  (define-key prog-mode-map (kbd "s-/") 'copilot-mode))
 
 (provide 'setup-prog-mode)
 ;;; setup-prog-mode.el ends here
