@@ -109,6 +109,7 @@
          (yaml-ts-mode . combobulate-mode)
          (typescript-ts-mode . combobulate-mode)
          (tsx-ts-mode . combobulate-mode)))
+
 (use-package testrun
   :straight (:host github :repo "martini97/testrun.el" :files ("testrun.el" "testrun-*.el"))
   :config
@@ -128,7 +129,7 @@
 
   :bind
   (:map prog-mode-map
-   ("C-c t" . my/tests-key-map)
+   ("C-c t" . testrun-keymap)
    :map testrun-keymap
    ("t" . testrun-nearest)
    ("c" . testrun-namespace)
