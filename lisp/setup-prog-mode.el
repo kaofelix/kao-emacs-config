@@ -26,6 +26,13 @@
    ("C-c C-c" . eglot-code-actions)
    ("C-c C-e" . eglot-reconnect)))
 
+(use-package eldoc-box
+  :bind
+  (:map prog-mode-map
+   ("s-e" . #'eldoc-box-help-at-point))
+  :custom
+  (eldoc-box-clear-with-C-g t))
+
 (use-package apheleia
   :delight
   :config
