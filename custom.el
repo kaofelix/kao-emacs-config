@@ -76,7 +76,22 @@
  '(py-underscore-word-syntax-p nil)
  '(register-preview-delay 0)
  '(safe-local-variable-values
-   '((project-current-directory-override concat
+   '((eval let
+           ((root
+             (locate-dominating-file default-directory ".dir-locals.el")))
+           (setq-local pyvenv-activate
+                       (expand-file-name ".venv" root)))
+     (eval let
+           ((root
+             (locate-dominating-file default-directory ".dir-locals.el")))
+           (setq-local pyvenv-activate
+                       (expand-file-name "path/to/venv" root)))
+     (eglot-server-programs
+      (typescript-ts-mode "bunx" "typescript-language-server" "--stdio"))
+     (typescript-ts-mode "bunx" "typescript-language-server" "--stdio")
+     (eglot-server-programs
+      (tsx-ts-mode "bunx" "typescript-language-server" "--stdio"))
+     (project-current-directory-override concat
                                          (project-root
                                           (project-current))
                                          "/dags")))
