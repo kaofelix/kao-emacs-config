@@ -13,9 +13,23 @@
 (require 'use-package)
 
 (use-package python
+  :after (apheleia)
   :hook
   (python-mode . eglot-ensure)
-  (python-ts-mode . eglot-ensure))
+  (python-ts-mode . eglot-ensure)
+
+  :config
+  (setf (alist-get 'python-mode apheleia-mode-alist)
+        '(ruff-isort ruff))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist)
+        '(ruff-isort ruff))
+
+  (defun python-fix-imports ()
+    (interactive)
+    (shell-command-on-region
+     (point-min) (point-max)
+     "ruff check --silent --select I,F401 --fix --fix-only -" t t nil)
+    (save-buffer)))
 
 (use-package pyvenv
   :config

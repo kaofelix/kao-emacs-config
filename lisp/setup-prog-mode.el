@@ -29,11 +29,7 @@
 (use-package apheleia
   :delight
   :config
-  (apheleia-global-mode +1)
-  (setf (alist-get 'python-mode apheleia-mode-alist)
-        '(ruff-isort ruff))
-  (setf (alist-get 'python-ts-mode apheleia-mode-alist)
-        '(ruff-isort ruff)))
+  (apheleia-global-mode +1))
 
 (use-package highlight-symbol
   :delight
