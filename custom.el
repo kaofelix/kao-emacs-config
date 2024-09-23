@@ -74,6 +74,8 @@
  '(pos-tip-border-width 3)
  '(pos-tip-internal-border-width 8)
  '(py-underscore-word-syntax-p nil)
+ '(python-check-command "ruff check")
+ '(python-flymake-command '("ruff check"))
  '(register-preview-delay 0)
  '(safe-local-variable-values
    '((eval let
