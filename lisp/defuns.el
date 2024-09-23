@@ -39,6 +39,16 @@
         (end-of-line)
         (insert "\n" (replace-regexp-in-string "\n" "" (thing-at-point 'line)))))))
 
+(defun kao/kill-whole-line ()
+  "Kill whole line but retain cursor position instead of moving to start of next line."
+  (interactive)
+  (let ((n (current-column)))
+    (kill-whole-line)
+    ;; do not move-to-column if that will add whitespaces at the end of line
+    (if (< n (- (line-end-position) (line-beginning-position)))
+        (move-to-column n t)
+      (end-of-line))))
+
 (defun kao/move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 

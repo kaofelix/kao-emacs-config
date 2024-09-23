@@ -18,6 +18,7 @@
 (setq mac-right-option-modifier nil)
 
 (global-set-key (kbd "C-c d") 'kao/duplicate-line)
+(global-set-key (kbd "C-S-k") 'kao/kill-whole-line)
 (global-set-key [remap move-beginning-of-line] 'kao/move-beginning-of-line)
 (global-set-key [remap just-one-space] 'cycle-spacing)
 (global-set-key (kbd "C-c r") 'replace-string)
