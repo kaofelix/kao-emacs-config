@@ -23,11 +23,21 @@
                   git-gutter:deleted))
     (set-face-background face (face-foreground face)))
 
+
+  ;; Set ansi-color-bright-black to doom base3
+  (set-face-foreground 'ansi-color-bright-black (doom-color 'base4))
+  (set-face-background 'ansi-color-bright-black (doom-color 'base4))
+
+
   ;; Make target names in Makefiles different from variables
   (eval-after-load 'make-mode
     '(progn
        (set-face-foreground 'makefile-targets nil)
-       (set-face-attribute 'makefile-targets nil :inherit font-lock-function-name-face))))
+       (set-face-attribute 'makefile-targets nil :inherit font-lock-function-name-face)))
+
+  (eval-after-load 'corfu
+    '(progn
+       (set-face-background 'corfu-current (doom-color 'base4)))))
 
 (use-package spacious-padding
   :config
