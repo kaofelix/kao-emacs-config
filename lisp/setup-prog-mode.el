@@ -91,6 +91,8 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
+(use-package k8s-mode
+  :hook (k8s-mode . yas-minor-mode))
 
 (use-package json-mode
   :after (dtrt-indent)
