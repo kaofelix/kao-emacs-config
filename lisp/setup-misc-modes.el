@@ -252,6 +252,18 @@
   (:map csv-mode-map
    ("C-c C-c" . #'csv-align-mode)))
 
+(use-package rainbow-csv
+  :straight (:host github :repo "emacs-vs/rainbow-csv")
+  :hook (csv-mode . rainbow-csv-mode))
+
+(use-package yank-indent
+  :straight (:host github :repo "jimeh/yank-indent")
+  :config (global-yank-indent-mode t))
+
+(use-package dotenv-mode
+  :mode (("\\.env\\..*\\'" . dotenv-mode)
+         ("\\.env\\'" . dotenv-mode)))
+
 (use-package graphviz-dot-mode)
 (use-package mermaid-mode)
 (provide 'setup-misc-modes)
