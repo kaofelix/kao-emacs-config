@@ -24,8 +24,6 @@
  '(consult-ripgrep-args
    "rg --hidden -g \"!.git/*\" --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip")
  '(copilot-indent-offset-warning-disable t)
- '(custom-safe-themes
-   '("72ed8b6bffe0bfa8d097810649fd57d2b598deef47c992920aef8b5d9599eefe" "2ff9ac386eac4dffd77a33e93b0c8236bb376c5a5df62e36d4bfa821d56e4e20" default))
  '(custom-search-field nil)
  '(dap-auto-configure-features '(controls tooltip))
  '(dap-internal-terminal 'dap-internal-terminal-vterm)
@@ -51,18 +49,9 @@
  '(mmm-parse-when-idle t)
  '(native-comp-async-report-warnings-errors 'silent)
  '(orderless-matching-styles '(orderless-regexp orderless-initialism orderless-flex))
- '(org-agenda-files '("~/org/notes.org"))
- '(org-capture-templates
-   '(("t" "Todo" entry
-      (file+headline "~/org/notes.org" "Inbox")
-      "* TODO %?" :prepend t)
-     ("e" "Emacs Idea" entry
-      (file+headline "~/org/notes.org" "Emacs Config")
-      "* TODO %?" :prepend t)))
  '(org-catch-invisible-edits 'error)
  '(org-fold-catch-invisible-edits 'error)
  '(org-hide-leading-stars t)
- '(org-mobile-directory "~/Dropbox/MobileOrg/" t)
  '(org-replace-disputed-keys t)
  '(org-return-follows-link t)
  '(org-special-ctrl-a/e t)
@@ -99,24 +88,6 @@
                                          "/dags")))
  '(sp-navigate-interactive-always-progress-point t)
  '(split-height-threshold 100)
- '(term-bind-key-alist
-   '(("C-c C-c" . term-interrupt-subjob)
-     ("C-c C-d" . term-send-eof)
-     ("C-c C-e" . term-send-esc)
-     ("C-c C-j" . term-line-mode)
-     ("C-c C-k" . term-char-mode)
-     ("C-c C-q" . term-pager-toggle)
-     ("C-m" . term-send-return)
-     ("C-y" . term-paste)
-     ("M-p" . term-send-up)
-     ("M-n" . term-send-down)
-     ("M-f" . term-send-forward-word)
-     ("M-b" . term-send-backward-word)
-     ("M-d" . term-send-forward-kill-word)
-     ("M-DEL" . term-send-backward-kill-word)
-     ("M-," . term-send-raw)
-     ("M-." . comint-dynamic-complete)))
- '(term-unbind-key-list '("C-x" "C-c" "C-h" "C-y" "C-d" "<ESC>"))
  '(vc-follow-symlinks t)
  '(vterm-always-compile-module t)
  '(wgrep-auto-save-buffer t)
@@ -129,4 +100,3 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(markdown-table-face ((t (:inherit org-table)))))
