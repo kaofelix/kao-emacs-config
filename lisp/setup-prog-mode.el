@@ -19,6 +19,10 @@
 
 (use-package eglot
   :after (project yasnippet)
+  :init
+  ;; Workaround for "Feature provided by different file" error
+  (load-library "project")
+  (load-library "xref")
   :bind
   (:map eglot-mode-map
    ("C-c C-r" . eglot-rename)
