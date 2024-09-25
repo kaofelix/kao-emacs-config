@@ -56,6 +56,7 @@
 ;; Load personal packages
 (require 'defuns)
 (require 'key-bindings)
+(require 'setup-treemacs)
 (require 'setup-docker)
 (require 'setup-emacs-lisp)
 (require 'setup-completion)
