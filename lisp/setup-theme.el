@@ -14,7 +14,6 @@
   :after (git-gutter)
   :config
   (load-theme 'doom-gruvbox t)
-  (doom-themes-neotree-config)
   (doom-themes-org-config)
 
   ;; Git gutter should be a solid color
