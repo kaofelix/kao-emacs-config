@@ -172,17 +172,13 @@
 ;; Corfu
 ;; -----
 (use-package corfu
-  :after (eglot)
-  :init
+  :config
   (global-corfu-mode)
   (corfu-popupinfo-mode)
-  :config
-  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+  (eval-after-load 'eglot
+    '(advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
   :custom
-  (corfu-cycle t)        ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto nil)       ;; Enable auto completion
-  (corfu-preview-auto t) ;; Enable auto preview
-  )
+  (corfu-preview-auto t))
 
 (use-package cape
   :init
@@ -192,7 +188,7 @@
   :ensure t
   :after corfu
   :custom
-  (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
+  (kind-icon-default-face 'corfu-default)
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
