@@ -38,7 +38,7 @@
     (`(t . _)
      (treemacs-git-mode 'simple)))
 
-  (treemacs-hide-gitignored-files-mode nil)
+  (treemacs-hide-gitignored-files-mode t)
   (defun kao/treemacs-close ()
     (interactive)
     (when (eq (treemacs-current-visibility) 'visible)
