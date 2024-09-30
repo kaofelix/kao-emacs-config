@@ -88,6 +88,7 @@
                                          "/dags")))
  '(sp-navigate-interactive-always-progress-point t)
  '(split-height-threshold 100)
+ '(use-package-enable-imenu-support t)
  '(vc-follow-symlinks t)
  '(vterm-always-compile-module t)
  '(wgrep-auto-save-buffer t)
