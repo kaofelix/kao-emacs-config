@@ -135,10 +135,25 @@
 (use-package copilot
   :straight (:host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
   :hook (prog-mode . copilot-mode)
+  :custom
+  (copilot-idle-delay nil) ; disable copilot auto complete
   :config
-  (define-key copilot-mode-map (kbd "s-i") 'copilot-accept-completion)
-  (define-key copilot-mode-map (kbd "C-s-i") 'copilot-accept-completion-by-word)
-  (define-key prog-mode-map (kbd "s-/") 'copilot-mode))
+  (defun copilot-complete-or-accept ()
+    (interactive)
+    (if (copilot--overlay-visible)
+        (copilot-accept-completion)
+      (copilot-complete)))
+
+  :bind (:map copilot-mode-map
+         ("s-i" . 'copilot-complete-or-accept)
+         ("C-s-i" . 'copilot-accept-completion-by-word)
+         ("C-s-j" . 'copilot-accept-completion-by-line)
+         :map copilot-completion-map
+         ("C-g" . 'copilot-clear-overlay)
+         ("M-p" . 'copilot-previous-completion)
+         ("M-n" . 'copilot-next-completion)
+         ("M-f" . 'copilot-accept-completion-by-word)
+         ("M-j" . 'copilot-accept-completion-by-line)))
 
 (use-package treesit
   :straight nil
