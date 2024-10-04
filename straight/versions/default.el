@@ -39,7 +39,7 @@
  ("emacs-direnv" . "c0bf3b81c7a97e2a0d06d05495e86848254fcc1f")
  ("emacs-dotenv-mode" . "e3701bf739bde44f6484eb7753deadaf691b73fb")
  ("emacs-k8s-mode" . "83266cecd6a39cdf57d124270646047860bfb7ab")
- ("emacs-libvterm" . "ae4ae1aef2fcae98a37aad83f2a6aeeaeacedd4f")
+ ("emacs-libvterm" . "988279316fc89e6d78947b48513f248597ba969a")
  ("emacs-request" . "01e338c335c07e4407239619e57361944a82cb8a")
  ("emacs-which-key" . "5111e377a2ae9881545710a9331f6788a26cdcbd")
  ("emacsmirror-mirror" . "832ccb6f3c511152a003b8b3ceab11bf22920d7b")
