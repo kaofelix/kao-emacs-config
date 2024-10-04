@@ -91,6 +91,7 @@
  ("popup-el" . "6a475b0384d24d94f541d535f5597daa8bb508d4")
  ("posframe" . "570273bcf6c21641f02ccfcc9478607728f0a2a2")
  ("prescient.el" . "c39bf07c56b427bf41aafd7d20eaef5cf3c312b5")
+ ("prodigy.el" . "c5a17c280d65a77b537ddec55df9276f2c42e49d")
  ("project" . "c0fb3da8b90735fb280ab157f4a8033b42105125")
  ("pyvenv" . "31ea715f2164dd611e7fc77b26390ef3ca93509b")
  ("queue" . "7ab8f23e770f64f6bd28a44c46c8becfc1af03d8")
