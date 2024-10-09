@@ -18,7 +18,7 @@
    ("M-h" . mark-defun)))
 
 (use-package eglot
-  :after (project yasnippet)
+  :after (yasnippet)
   :init
   ;; Workaround for "Feature provided by different file" error
   (load-library "project")
