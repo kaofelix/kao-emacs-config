@@ -33,7 +33,15 @@
 
 (use-package pyvenv
   :config
-  (pyvenv-mode 1))
+  (pyvenv-mode 1)
+  (with-eval-after-load 'projectile
+    (defun kao/activate-project-venv ()
+      (let* ((root (projectile-project-root))
+             (venv-path (concat root ".venv")))
+        (if (file-exists-p venv-path)
+            (pyvenv-activate venv-path))))
+
+    (add-hook 'projectile-after-switch-project-hook #'kao/activate-project-venv)))
 
 (setq python-shell-interpreter "ipython"
       python-shell-interpreter-args "-i --simple-prompt")
