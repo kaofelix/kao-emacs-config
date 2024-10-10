@@ -3,7 +3,7 @@
  ("ace-window" . "77115afc1b0b9f633084cf7479c767988106c196")
  ("all-the-icons.el" . "ee414384938ccf2ce93c77d717b85dc5538a257d")
  ("anzu" . "26fb50b429ee968eb944b0615dd0aed1dd66172c")
- ("apheleia" . "b776ed96b1a980af284c8fb07a8db387c1e6c358")
+ ("apheleia" . "d6f520752a77923a420f2ef894a6f2d26d29d7d0")
  ("avy" . "be612110cb116a38b8603df367942e2bb3d9bdbe")
  ("browse-at-remote" . "76aa27dfd469fcae75ed7031bb73830831aaccbf")
  ("cape" . "e01e4430234850263d326ad4521849cd46e64059")
