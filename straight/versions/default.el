@@ -93,6 +93,7 @@
  ("prescient.el" . "c39bf07c56b427bf41aafd7d20eaef5cf3c312b5")
  ("prodigy.el" . "c5a17c280d65a77b537ddec55df9276f2c42e49d")
  ("project" . "c0fb3da8b90735fb280ab157f4a8033b42105125")
+ ("projectile" . "41f8a8e7bdc50467256af632108989b5c980cd56")
  ("pyvenv" . "31ea715f2164dd611e7fc77b26390ef3ca93509b")
  ("queue" . "7ab8f23e770f64f6bd28a44c46c8becfc1af03d8")
  ("rainbow-csv" . "aa09e2cc79d32f890177c6d0b0376c4aa2708d3e")

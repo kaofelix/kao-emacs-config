@@ -40,22 +40,20 @@
   (call-interactively 'magit-pull-from-pushremote)
   (call-interactively 'magit-branch-spinoff))
 
-(use-package project
-  :after (magit)
-  :bind
-  (("s-;" . #'kao/vterm-project-dwim)
-   :map project-prefix-map
-   ("t" . #'kao/vterm-project-dwim)
-   ("m" . #'magit-project-status)
-   ("b" . #'kao/project-start-branch)
-   ("o" . #'ff-find-other-file))
+(use-package projectile
+  :init
+  (projectile-mode +1)
   :custom
-  (project-switch-commands '((project-find-file "Find file")
-                             (consult-ripgrep "Find regexp")
-                             (project-dired "Dired")
-                             (magit-project-status "Magit")
-                             (kao/project-start-branch "Create new branch" ?b)
-                             (kao/vterm-project-dwim "VTerm" ?t))))
+  (projectile-current-project-on-switch 'keep)
+  (projectile-switch-project-action #'projectile-commander)
+  :bind (("s-;" . #'kao/vterm-project-dwim)
+         :map projectile-mode-map
+         ("s-p" . projectile-command-map)
+         ("C-x p" . projectile-command-map)
+         :map projectile-command-map
+         ("s s" . consult-ripgrep)
+         ("s r" . nil)
+         ("s g" . nil)))
 
 (provide 'setup-project)
 ;;; setup-project.el ends here
