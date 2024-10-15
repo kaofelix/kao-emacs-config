@@ -36,9 +36,11 @@
 
 (use-package xref-union
   :after (eglot dumb-jump)
+  :hook (eglot-managed-mode . xref-union-mode)
   :config
   (cl-defmethod xref-backend-identifier-at-point ((_backend (eql eglot)))
     :extra "remove-lsp-identifier-at-point" :around
+    "Force the eglot backend to return nil, so it falls back to other xref backends"
     (let ((id (cl-call-next-method)))
       (if (string= id "LSP identifier at point") nil id)))
 
@@ -50,14 +52,11 @@
                                   (xref-file-location-line (xref-item-location l2)))))
       (equal file-and-line-l1 file-and-line-l2)))
 
-  (defun xref-eglot+dumb-backend ()
-    '(union eglot dumb-jump))
+  (defun xref-union-ignore-etags (backend)
+    (eq backend 'etags--xref-backend))
 
-  (defun install-xref-eglot+dumb-backend ()
-    (add-hook 'xref-backend-functions #'xref-eglot+dumb-backend nil t)
-    (remove-hook 'xref-backend-functions #'eglot-xref-backend t))
-
-  (add-hook 'eglot-managed-mode-hook #'install-xref-eglot+dumb-backend))
+  :custom
+  (xref-union-excluded-backends #'xref-union-ignore-etags))
 
 (use-package eldoc-box
   :bind
