@@ -30,6 +30,27 @@
    ("C-c C-c" . eglot-code-actions)
    ("C-c C-e" . eglot-reconnect)))
 
+(use-package dumb-jump
+  :config
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+
+(use-package xref-union
+  :after (eglot dumb-jump)
+  :config
+  (cl-defmethod xref-backend-identifier-at-point ((_backend (eql eglot)))
+    :extra "remove-lsp-identifier-at-point" :around
+    (let ((id (cl-call-next-method)))
+      (if (string= id "LSP identifier at point") nil id)))
+
+  (defun xref-eglot+dumb-backend ()
+    '(union eglot dumb-jump))
+
+  (defun install-xref-eglot+dumb-backend ()
+    (add-hook 'xref-backend-functions #'xref-eglot+dumb-backend nil t)
+    (remove-hook 'xref-backend-functions #'eglot-xref-backend t))
+
+  (add-hook 'eglot-managed-mode-hook #'install-xref-eglot+dumb-backend))
+
 (use-package eldoc-box
   :bind
   (:map prog-mode-map
@@ -90,10 +111,6 @@
   (("s-." . dash-at-point)))
 
 (use-package yaml-mode)
-(use-package dumb-jump
-  :after (project)
-  :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 (use-package k8s-mode
   :hook (k8s-mode . yas-minor-mode))
