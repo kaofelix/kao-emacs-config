@@ -147,6 +147,7 @@
   :bind
   (:map prog-mode-map
    ("C-c t" . testrun-keymap)
+   ("s-," . testrun-last)
    :map testrun-keymap
    ("t" . testrun-nearest)
    ("c" . testrun-namespace)
