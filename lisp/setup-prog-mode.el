@@ -46,11 +46,9 @@
 
   (defun xref-union-same-p (l1 l2)
     "More lenient version that only compares file and line number of xref location"
-    (let ((file-and-line-l1 (list (xref-file-location-file (xref-item-location l1))
-                                  (xref-file-location-line (xref-item-location l1))))
-          (file-and-line-l2 (list (xref-file-location-file (xref-item-location l2))
-                                  (xref-file-location-line (xref-item-location l2)))))
-      (equal file-and-line-l1 file-and-line-l2)))
+    (cl-flet ((file-and-line (l) (list (xref-file-location-file (xref-item-location l))
+                                       (xref-file-location-line (xref-item-location l)))))
+      (equal (file-and-line l1) (file-and-line l2))))
 
   (defun xref-union-ignore-etags (backend)
     (eq backend 'etags--xref-backend))
