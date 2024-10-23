@@ -109,7 +109,8 @@
   :delight
   :hook (prog-mode . whitespace-mode))
 
-
+(use-package nix-mode
+  :mode "\\.nix\\'")
 
 (use-package dash-at-point
   :bind
