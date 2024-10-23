@@ -31,5 +31,8 @@
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode)))
 
+(use-package fnm
+  :straight (:host github :repo "bobrowadam/fnm.el"))
+
 (provide 'setup-js)
 ;;; setup-js.el ends here

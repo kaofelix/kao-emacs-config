@@ -49,6 +49,7 @@
  ("external-completion" . "69f06e1eff72df60bb10153169edc859f27f58f2")
  ("f.el" . "1e7020dc0d4c52d3da9bd610d431cab13aa02d8c")
  ("flymake" . "1c501d7398922ba8d8f2714f277feb99a58cad2e")
+ ("fnm.el" . "eb6b2673ae429a187727355857255b44c677466c")
  ("git-gutter" . "a36edc0399369507e6497163e72de55297a3b61f")
  ("git-modes" . "3cc94974c09c43462dfbfbe20396a414352dbb92")
  ("git-timemachine" . "5ed73c3831cf6da10ba941e6abba708a86853e8f")
