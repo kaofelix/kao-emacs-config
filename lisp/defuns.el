@@ -72,6 +72,11 @@ point reaches the beginning or end of the buffer, stop there."
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
 
+(defun insert-iso-timestamp ()
+  "Insert the current date and time in ISO 8601 format."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%dT%H:%M:%SZ" (current-time) t)))
+
 (defun rename-current-buffer-file ()
   "Rename current buffer and file it is visiting."
   (interactive)
