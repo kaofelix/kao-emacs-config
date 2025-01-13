@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: QApplication
+# key: qapp
+# --
+if __name__ == "__main__":
+   import sys
+
+   from PySide6.QtWidgets import QApplication
+
+   app = QApplication(sys.argv)
+   w = ${0:MyWidget}()
+   w.resize(180, 400)
+   w.show()
+
+   sys.exit(app.exec())
