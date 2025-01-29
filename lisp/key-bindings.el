@@ -29,6 +29,10 @@
 (define-key key-translation-map (kbd "C-/") (kbd "C-h"))
 (define-key key-translation-map (kbd "C-?") (kbd "C-h"))
 
+;; Disable touchpad text-scale
+(global-unset-key (kbd "C-<wheel-down>"))
+(global-unset-key (kbd "C-<wheel-up>"))
+
 ;; Change quit keybing
 (global-unset-key (kbd "C-x C-c"))
 (global-set-key (kbd "C-x r q") 'save-buffers-kill-emacs)
