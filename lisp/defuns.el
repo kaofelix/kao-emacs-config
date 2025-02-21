@@ -30,14 +30,11 @@
          (clear-this-command-keys t)
          (setq unread-command-events (list last-input-event))))))
 
-(defun kao/duplicate-line (times)
+(defun kao/duplicate-dwim (times)
   "Duplicate the current line TIMES times."
   (interactive "p")
   (kao/type-last-key-to-repeat
-    (save-excursion
-      (dotimes (ignored times)
-        (end-of-line)
-        (insert "\n" (replace-regexp-in-string "\n" "" (thing-at-point 'line)))))))
+    (duplicate-dwim)))
 
 (defun kao/kill-whole-line ()
   "Kill whole line but retain cursor position instead of moving to start of next line."
