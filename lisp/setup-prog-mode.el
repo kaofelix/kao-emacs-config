@@ -34,28 +34,6 @@
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
-(use-package xref-union
-  :after (eglot dumb-jump)
-  :hook (eglot-managed-mode . xref-union-mode)
-  :config
-  (cl-defmethod xref-backend-identifier-at-point ((_backend (eql eglot)))
-    :extra "remove-lsp-identifier-at-point" :around
-    "Force the eglot backend to return nil, so it falls back to other xref backends"
-    (let ((id (cl-call-next-method)))
-      (if (string= id "LSP identifier at point") nil id)))
-
-  (defun xref-union-same-p (l1 l2)
-    "More lenient version that only compares file and line number of xref location"
-    (cl-flet ((file-and-line (l) (list (xref-file-location-file (xref-item-location l))
-                                       (xref-file-location-line (xref-item-location l)))))
-      (equal (file-and-line l1) (file-and-line l2))))
-
-  (defun xref-union-ignore-etags (backend)
-    (eq backend 'etags--xref-backend))
-
-  :custom
-  (xref-union-excluded-backends #'xref-union-ignore-etags))
-
 (use-package eldoc-box
   :bind
   (:map prog-mode-map
