@@ -23,6 +23,11 @@
   ;; Workaround for "Feature provided by different file" error
   (load-library "project")
   (load-library "xref")
+  :config
+  (add-to-list 'eglot-server-programs
+               '(astro-ts-mode . ("astro-ls" "--stdio"
+                                  :initializationOptions
+                                  (:typescript (:tsdk "./node_modules/typescript/lib")))))
   :bind
   (:map eglot-mode-map
    ("C-c C-r" . eglot-rename)
@@ -167,7 +172,8 @@
     (dolist (grammar
              ;; Note the version numbers. These are the versions that
              ;; are known to work with Combobulate *and* Emacs.
-             '((css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
+             '((astro "https://github.com/virchau13/tree-sitter-astro")
+               (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
                (go . ("https://github.com/tree-sitter/tree-sitter-go" "v0.20.0"))
                (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.20.1"))
                (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1" "src"))

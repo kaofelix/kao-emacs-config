@@ -34,5 +34,9 @@
 (use-package fnm
   :straight (:host github :repo "bobrowadam/fnm.el"))
 
+(use-package astro-ts-mode
+  :hook (astro-ts-mode . eglot-ensure)
+  :mode "\\.astro\\'")
+
 (provide 'setup-js)
 ;;; setup-js.el ends here
