@@ -7,9 +7,14 @@
  '(ahs-face-check-include-overlay t)
  '(ahs-idle-interval 0.5)
  '(ahs-inhibit-face-list
-   '(font-lock-comment-delimiter-face font-lock-comment-face font-lock-doc-face font-lock-doc-string-face font-lock-string-face font-lock-keyword-face))
+   '(font-lock-comment-delimiter-face font-lock-comment-face
+                                      font-lock-doc-face
+                                      font-lock-doc-string-face
+                                      font-lock-string-face
+                                      font-lock-keyword-face))
  '(ansi-color-names-vector
-   ["#3c3836" "#fb4933" "#b8bb26" "#fabd2f" "#83a598" "#d3869b" "#8ec07c" "#ebdbb2"])
+   ["#3c3836" "#fb4933" "#b8bb26" "#fabd2f" "#83a598" "#d3869b" "#8ec07c"
+    "#ebdbb2"])
  '(anzu-replace-to-string-separator " => ")
  '(auto-revert-check-vc-info t)
  '(avy-background t)
@@ -68,16 +73,18 @@
  '(safe-local-variable-values
    '((eval let
            ((root
-             (locate-dominating-file default-directory ".dir-locals.el")))
-           (setq-local pyvenv-activate
-                       (expand-file-name ".venv" root)))
+             (locate-dominating-file default-directory
+                                     ".dir-locals.el")))
+           (setq-local pyvenv-activate (expand-file-name ".venv" root)))
      (eval let
            ((root
-             (locate-dominating-file default-directory ".dir-locals.el")))
+             (locate-dominating-file default-directory
+                                     ".dir-locals.el")))
            (setq-local pyvenv-activate
                        (expand-file-name "path/to/venv" root)))
      (eglot-server-programs
-      (typescript-ts-mode "bunx" "typescript-language-server" "--stdio"))
+      (typescript-ts-mode "bunx" "typescript-language-server"
+                          "--stdio"))
      (typescript-ts-mode "bunx" "typescript-language-server" "--stdio")
      (eglot-server-programs
       (tsx-ts-mode "bunx" "typescript-language-server" "--stdio"))
@@ -95,3 +102,9 @@
  '(whitespace-global-modes nil)
  '(whitespace-style '(face trailing tabs))
  '(whitespace-trailing 'whitespace-space-before-tab t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
