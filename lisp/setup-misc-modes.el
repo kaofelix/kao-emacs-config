@@ -191,9 +191,6 @@
 (use-package restclient
   :after (jq-mode)
   :commands (restclient-jq-interactive-result)
-  :straight (restclient :type git :host github
-                        :repo "pashky/restclient.el"
-                        :files ("restclient*.el"))
   :mode  ("\\.http\\'" . restclient-mode))
 
 (use-package sudo-edit)
@@ -201,10 +198,6 @@
 (use-package vterm
   :custom
   (vterm-shell "/bin/zsh -l"))
-
-(use-package pico8-mode
-  :after (project)
-  :straight (:host github :repo "Kaali/pico8-mode"))
 
 (use-package string-inflection)
 
@@ -219,11 +212,11 @@
    ("C-c C-c" . #'csv-align-mode)))
 
 (use-package rainbow-csv
-  :straight (:host github :repo "emacs-vs/rainbow-csv")
+  :vc (:url "https://github.com/emacs-vs/rainbow-csv")
   :hook (csv-mode . rainbow-csv-mode))
 
 (use-package yank-indent
-  :straight (:host github :repo "jimeh/yank-indent")
+  :vc (:url "https://github.com/jimeh/yank-indent")
   :config (global-yank-indent-mode t))
 
 (use-package dotenv-mode

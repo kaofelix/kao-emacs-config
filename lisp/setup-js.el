@@ -21,7 +21,8 @@
   (eglot-ensure)
   (eglot--code-action eglot-code-action-organize-imports "source.organizeImports.ts")
   (eglot--code-action eglot-code-action-remove-unused-import "source.removeUnusedImports.ts")
-  (add-hook 'before-save-hook 'kao/ts-eglot-organize-imports nil t))
+  ;; (add-hook 'before-save-hook 'kao/ts-eglot-organize-imports nil t)
+  )
 
 (use-package typescript-ts-mode
   :hook
@@ -32,7 +33,7 @@
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode)))
 
 (use-package fnm
-  :straight (:host github :repo "bobrowadam/fnm.el"))
+  :vc (:url "https://github.com/bobrowadam/fnm.el"))
 
 (use-package astro-ts-mode
   :hook (astro-ts-mode . eglot-ensure)

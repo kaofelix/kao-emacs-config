@@ -7,6 +7,8 @@
 
 ;;; Code:
 (menu-bar-mode -1)
+(when (eq window-system 'ns)
+  (menu-bar-mode t))
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1)

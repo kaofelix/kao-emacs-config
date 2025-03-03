@@ -39,7 +39,6 @@
  '(git-commit-post-finish-hook '(git-gutter:update-all-windows))
  '(global-rbenv-mode nil)
  '(gofmt-command "goimports")
- '(gptel-model "gpt-4")
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(locate-command "mdfind")

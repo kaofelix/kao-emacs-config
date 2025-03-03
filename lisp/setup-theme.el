@@ -11,32 +11,28 @@
 ;;; Code:
 
 (use-package doom-themes
-  :after (git-gutter)
   :config
   (load-theme 'doom-gruvbox t)
   (doom-themes-org-config)
 
   ;; Git gutter should be a solid color
-  (dolist (face '(git-gutter:added
-                  git-gutter:modified
-                  git-gutter:deleted))
-    (set-face-background face (face-foreground face)))
-
+  (with-eval-after-load 'git-gutter
+    (dolist (face '(git-gutter:added
+                    git-gutter:modified
+                    git-gutter:deleted))
+      (set-face-background face (face-foreground face))))
 
   ;; Set ansi-color-bright-black to doom base3
-  (set-face-foreground 'ansi-color-bright-black (doom-color 'base4))
-  (set-face-background 'ansi-color-bright-black (doom-color 'base4))
-
+  ;; (set-face-foreground 'ansi-color-bright-black (doom-color 'base4))
+  ;; (set-face-background 'ansi-color-bright-black (doom-color 'base4))
 
   ;; Make target names in Makefiles different from variables
-  (eval-after-load 'make-mode
-    '(progn
-       (set-face-foreground 'makefile-targets nil)
-       (set-face-attribute 'makefile-targets nil :inherit font-lock-function-name-face)))
+  (with-eval-after-load 'make-mode
+    (set-face-foreground 'makefile-targets nil)
+    (set-face-attribute 'makefile-targets nil :inherit font-lock-function-name-face))
 
-  (eval-after-load 'corfu
-    '(progn
-       (set-face-background 'corfu-current (doom-color 'base4)))))
+  (with-eval-after-load 'corfu
+    (set-face-background 'corfu-current (doom-color 'base4))))
 
 (use-package spacious-padding
   :config

@@ -112,7 +112,7 @@
 (add-hook 'prog-mode-hook 'hl-line-mode)
 
 (use-package testrun
-  :straight (:host github :repo "martini97/testrun.el" :files ("testrun.el" "testrun-*.el"))
+  :vc (:url "https://github.com/martini97/testrun.el")
   :config
   ;; this will allow you to override the runners on your .dir-locals.el
   (put 'testrun-runners 'safe-local-variable #'listp)
@@ -140,7 +140,7 @@
    ("l" . testrun-last)))
 
 (use-package copilot
-  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
+  :vc (:url "https://github.com/copilot-emacs/copilot.el")
   :hook (prog-mode . copilot-mode)
   :custom
   (copilot-idle-delay nil) ; disable copilot auto complete
@@ -163,7 +163,7 @@
          ("M-j" . 'copilot-accept-completion-by-line)))
 
 (use-package treesit
-  :straight nil
+  :ensure nil
   :mode (("\\.tsx\\'" . tsx-ts-mode))
   :preface
   (defun mp-setup-install-grammars ()
@@ -214,13 +214,7 @@
   (mp-setup-install-grammars))
 
 (use-package combobulate
-  :after (treesit)
-  :straight (combobulate
-             :type git
-             :host github
-             :repo "mickeynp/combobulate"
-             :files ("*.el"))
-
+  :vc (:url "https://github.com/mickeynp/combobulate.git")
   :hook ((prog-mode . combobulate-mode)))
 
 
