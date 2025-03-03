@@ -31,7 +31,6 @@
  ("editorconfig-emacs" . "7c7b1f81f8fac654791fa2b04da55edced2cef33")
  ("eglot" . "7a9311e4b4237b2a752a7e50e30b9a20fd8aaf36")
  ("el-get" . "847901f07bdf67763fa3a6c0fb057048cd58603b")
- ("el-patch" . "92803e7ea6e07cd56667ed7ea0dfacfc1f37f6d9")
  ("eldoc" . "91a8ae2fa66ac09f45337f9eca6c7aa643a063f4")
  ("eldoc-box" . "c36f31074b09930e8425963f39d5508da6d2c32d")
  ("elisp-slime-nav" . "8588d80d414aee1fafce5b9da0e913612ee0bcdd")

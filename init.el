@@ -44,7 +44,6 @@
 
 (require 'defaults)
 
-(use-package el-patch)
 (require 'setup-theme)
 
 (when (eq window-system 'ns)
