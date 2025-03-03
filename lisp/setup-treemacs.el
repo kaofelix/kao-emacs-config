@@ -10,6 +10,11 @@
 
 (use-package all-the-icons)
 
+(defun kao/treemacs-close ()
+  (interactive)
+  (when (eq (treemacs-current-visibility) 'visible)
+    (delete-window (treemacs-get-local-window))))
+
 (use-package treemacs
   :custom
   (treemacs-is-never-other-window           t)
@@ -39,10 +44,6 @@
      (treemacs-git-mode 'simple)))
 
   (treemacs-hide-gitignored-files-mode t)
-  (defun kao/treemacs-close ()
-    (interactive)
-    (when (eq (treemacs-current-visibility) 'visible)
-      (delete-window (treemacs-get-local-window))))
 
   :bind
   (:map global-map
