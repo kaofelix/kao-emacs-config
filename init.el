@@ -34,6 +34,7 @@
 (require 'setup-theme)
 (require 'defuns)
 (require 'key-bindings)
+(require 'setup-hippie)
 (require 'setup-completion)
 (require 'setup-misc-modes)
 (require 'setup-yasnippet)
@@ -44,11 +45,9 @@
 (require 'setup-emacs-lisp)
 (require 'setup-js)
 (require 'setup-python)
+(require 'setup-markdown)
 
 ;;(require 'setup-docker)
-
-;;(require 'setup-hippie)
-;;(require 'setup-markdown)
 ;;(require 'setup-rust)
 ;;(require 'setup-terraform)
 ;;(require 'setup-go)
