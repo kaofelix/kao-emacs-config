@@ -10,7 +10,6 @@
 ;;
 
 ;;; Code:
-(require 'use-package)
 
 (use-package yasnippet
   :delight  yas-minor-mode

@@ -10,7 +10,6 @@
 ;;
 
 ;;; Code:
-(require 'use-package)
 
 (use-package python
   :after (apheleia)

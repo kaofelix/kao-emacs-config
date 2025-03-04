@@ -10,7 +10,6 @@
 ;;
 
 ;;; Code:
-(require 'use-package)
 (use-package elisp-slime-nav
   :delight
   :hook (emacs-lisp-mode . elisp-slime-nav-mode))

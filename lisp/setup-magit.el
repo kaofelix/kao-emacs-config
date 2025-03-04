@@ -4,7 +4,6 @@
 ;;
 
 ;;; Code:
-(require 'use-package)
 
 (use-package magit
   :bind

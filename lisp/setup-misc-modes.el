@@ -12,11 +12,6 @@
 
 ;;; Code:
 
-;; Dependencies requires
-(require 'use-package)
-(require 'cl)
-(use-package f)
-
 ;; Compile packages asynchronously
 (use-package async
   :config

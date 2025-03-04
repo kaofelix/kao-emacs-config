@@ -10,7 +10,6 @@
 ;;
 
 ;;; Code:
-(require 'use-package)
 
 (defun kao/vterm-project-dwim()
   "Opens a vterm with or without a project."

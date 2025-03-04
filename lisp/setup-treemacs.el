@@ -6,7 +6,6 @@
 ;; Keywords: local
 
 ;;; Code:
-(require 'use-package)
 
 (use-package all-the-icons)
 

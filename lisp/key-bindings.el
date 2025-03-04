@@ -10,7 +10,6 @@
 ;; My global keybindings.
 
 ;;; Code:
-(require 'use-package)
 
 ;; Mac modifiers
 (setq mac-function-modifier 'hyper)

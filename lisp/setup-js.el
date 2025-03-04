@@ -10,7 +10,6 @@
 ;;
 
 ;;; Code:
-(require 'use-package)
 
 (defun kao/ts-eglot-organize-imports ()
   (interactive)
