@@ -139,7 +139,6 @@
    ("l" . testrun-last)))
 
 (use-package copilot
-  :vc (:url "https://github.com/copilot-emacs/copilot.el")
   :hook (prog-mode . copilot-mode)
   :custom
   (copilot-idle-delay nil) ; disable copilot auto complete
