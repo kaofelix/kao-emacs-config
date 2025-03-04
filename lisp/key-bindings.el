@@ -44,9 +44,10 @@
 (windmove-default-keybindings)
 
 ;;; Expand region
-(use-package expand-region
+(use-package expreg
   :bind
-  ("C-=" . #'er/expand-region))
+  ("C-=" . #'expreg-expand)
+  ("C--" . #'expreg-contract))
 
 (use-package change-inner
   :bind
