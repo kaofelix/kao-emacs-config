@@ -10,16 +10,27 @@
 ;;
 
 ;;; Code:
+(use-package adaptive-wrap
+  :hook (text-mode . adaptive-wrap-prefix-mode))
+
+(use-package visual-fill-column
+  :hook (text-mode . visual-line-fill-column-mode)
+  :custom
+  (visual-fill-column-enable-sensible-window-split t)
+  (visual-fill-column-center-text nil)
+  (visual-fill-column-width 100))
 
 (use-package markdown-mode
   :commands (markdown-mode gfm-mode)
   :init
   (setq markdown-command "multimarkdown")
   (setq markdown-open-command (expand-file-name "bin/mark" user-emacs-directory))
-  :config
-  (add-hook 'markdown-mode-hook #'auto-fill-mode)
   :mode (("\\.md\\'" . gfm-mode)
          ("\\.mdx\\'" . markdown-mode))
+
+  :custom
+  (markdown-header-scaling t)
+
   :bind
   (:map markdown-mode-map
    ("M-<up>" . #'markdown-move-up)
