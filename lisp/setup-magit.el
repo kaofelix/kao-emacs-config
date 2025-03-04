@@ -9,7 +9,9 @@
   :bind
   ("C-c g" . #'magit-project-status)
   (:map magit-mode-map
-   ("C-M-u" . #'magit-section-up)))
+   ("C-M-u" . #'magit-section-up))
+  :custom
+  (magit-save-repository-buffers 'dontask))
 
 (use-package browse-at-remote
   :bind

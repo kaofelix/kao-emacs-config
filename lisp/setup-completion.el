@@ -167,7 +167,10 @@
 
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
-  (setq consult-narrow-key "<"))
+  (setq consult-narrow-key "<")
+  :custom
+  (consult-ripgrep-args
+   "rg --hidden -g \"!.git/*\" --null --line-buffered --color=never --max-columns=1000 --path-separator / --smart-case --no-heading --with-filename --line-number --search-zip"))
 
 ;; Corfu
 ;; -----

@@ -28,7 +28,10 @@
     (shell-command-on-region
      (point-min) (point-max)
      "ruff check --silent --select I,F401 --fix --fix-only -" t t nil)
-    (save-buffer)))
+    (save-buffer))
+  :custom
+  (python-check-command "ruff check")
+  (python-flymake-command '("ruff check")))
 
 (use-package pyvenv
   :config

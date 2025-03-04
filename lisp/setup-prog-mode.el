@@ -18,10 +18,6 @@
 
 (use-package eglot
   :after (yasnippet)
-  :init
-  ;; Workaround for "Feature provided by different file" error
-  (load-library "project")
-  (load-library "xref")
   :config
   (add-to-list 'eglot-server-programs
                '(astro-ts-mode . ("astro-ls" "--stdio"
@@ -32,11 +28,16 @@
    ("C-c C-r" . eglot-rename)
    ("C-c C-f" . eglot-format)
    ("C-c C-c" . eglot-code-actions)
-   ("C-c C-e" . eglot-reconnect)))
+   ("C-c C-e" . eglot-reconnect))
+  :custom
+  (eglot-confirm-server-edits nil)
+  (eglot-confirm-server-initiated-edits nil))
 
 (use-package dumb-jump
   :config
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+  :custom
+  (dumb-jump-force-searcher 'rg))
 
 (use-package eldoc-box
   :bind
@@ -140,15 +141,12 @@
 
 (use-package copilot
   :hook (prog-mode . copilot-mode)
-  :custom
-  (copilot-idle-delay nil) ; disable copilot auto complete
   :config
   (defun copilot-complete-or-accept ()
     (interactive)
     (if (copilot--overlay-visible)
         (copilot-accept-completion)
       (copilot-complete)))
-
   :bind (:map copilot-mode-map
          ("s-i" . 'copilot-complete-or-accept)
          ("C-s-i" . 'copilot-accept-completion-by-word)
@@ -158,7 +156,10 @@
          ("M-p" . 'copilot-previous-completion)
          ("M-n" . 'copilot-next-completion)
          ("M-f" . 'copilot-accept-completion-by-word)
-         ("M-j" . 'copilot-accept-completion-by-line)))
+         ("M-j" . 'copilot-accept-completion-by-line))
+  :custom
+  (copilot-idle-delay nil) ; disable copilot auto complete
+  (copilot-indent-offset-warning-disable t))
 
 (use-package treesit
   :ensure nil

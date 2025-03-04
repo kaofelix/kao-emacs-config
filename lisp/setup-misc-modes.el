@@ -33,7 +33,11 @@
 (use-package exec-path-from-shell
   :init
   (when (memq window-system '(mac ns))
-    (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize))
+  :custom
+  (exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-shell-name "/bin/zsh")
+  (exec-path-from-shell-variables '("PATH" "MANPATH" "WORKON_HOME")))
 
 (use-package prodigy)
 
@@ -103,7 +107,10 @@
    ("C-S-<f6>" . #'anzu-query-replace-at-cursor)
    :map isearch-mode-map
    ([remap isearch-query-replace] .  #'anzu-isearch-query-replace)
-   ([remap isearch-query-replace-regexp] . #'anzu-isearch-query-replace-regexp)))
+   ([remap isearch-query-replace-regexp] . #'anzu-isearch-query-replace-regexp))
+  :custom
+  (anzu-replace-to-string-separator " => ")
+  (auto-revert-check-vc-info t))
 
 (use-package rainbow-mode
   :delight
@@ -142,7 +149,9 @@
   ;; Any lower-case letter a-z.
   (setq avy-keys (number-sequence ?a ?z))
   :bind
-  (("C-;" . #'avy-goto-word-or-subword-1)))
+  (("C-;" . #'avy-goto-word-or-subword-1))
+  :custom
+  (avy-background t))
 
 (use-package ace-window
   :bind
