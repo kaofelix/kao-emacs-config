@@ -183,6 +183,26 @@ If ARG is not nil or 1, set font size to ARG."
     (call-interactively 'dumb-jump-rename)))
 
 
+(defun kao/unfill-paragraph ()
+  "Replace newline chars in current paragraph by single spaces.
+This command does the inverse of `fill-paragraph'.
+
+Source: `http://xahlee.info/emacs/emacs/emacs_unfill-paragraph.html'
+Version 2016-07-13"
+  (interactive)
+  (let ((fill-column most-positive-fixnum))
+    (fill-paragraph)))
+
+(defun kao/unfill-region (start end)
+  "Replace newline chars in region by single spaces.
+This command does the inverse of `fill-region'.
+
+Source: `http://xahlee.info/emacs/emacs/emacs_unfill-paragraph.html'
+Version 2016-07-13"
+  (interactive "r")
+  (let ((fill-column most-positive-fixnum))
+    (fill-region start end)))
+
 (defun move-current-buffer-file (new-directory)
   "Move current buffer file to NEW-DIRECTORY."
   (interactive "FNew location: ")
