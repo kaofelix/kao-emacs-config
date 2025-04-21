@@ -129,6 +129,13 @@
 
   (advice-add 'testrun-core--root :around #'testrun-code--root-allow-override)
 
+  (add-to-list 'testrun-runners '(yarn "yarn" "test"))
+  (let ((jsts-modes
+         '(js-mode js-ts-mode typescript-mode typescript-ts-mode tsx-ts-mode)))
+    (dolist (key jsts-modes)
+      (setf (alist-get key testrun-mode-alist) 'yarn)))
+  (add-to-list 'testrun-runner-function-alist '(yarn . testrun-jest-get-test))
+
   :bind
   (:map prog-mode-map
    ("C-c t" . testrun-keymap)
