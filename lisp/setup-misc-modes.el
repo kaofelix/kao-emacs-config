@@ -26,6 +26,9 @@
   :bind
   ([remap open-line] . #'kao/open-line))
 
+(use-package ansi-color
+  :hook (compilation-filter . ansi-color-compilation-filter))
+
 (use-package gptel
   :bind
   ("C-c RET" . #'gptel-send))
