@@ -219,7 +219,7 @@
    ("C-c C-c" . #'csv-align-mode)))
 
 (use-package rainbow-csv
-  :vc (:url "https://github.com/emacs-vs/rainbow-csv")
+  :vc (:url "https://github.com/emacs-vs/rainbow-csv" :rev "c005ea8")
   :hook (csv-mode . rainbow-csv-mode))
 
 (use-package yank-indent
