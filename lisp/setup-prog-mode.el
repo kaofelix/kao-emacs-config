@@ -80,6 +80,7 @@
     (unless (parent-mode-is-derived-p major-mode 'emacs-lisp-mode)
       (dtrt-indent-mode)))
   (add-to-list 'dtrt-indent-hook-mapping-list '(js-ts-mode default js-indent-level))
+  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-ts-mode default typescript-ts-mode-indent-offset))
   :hook (prog-mode . turn-on-dtrt-indent-mode-maybe))
 
 (use-package drag-stuff
