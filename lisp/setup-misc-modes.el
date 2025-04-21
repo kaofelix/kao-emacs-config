@@ -237,6 +237,13 @@
   :mode (("\\.env\\..*\\'" . dotenv-mode)
          ("\\.env\\'" . dotenv-mode)))
 
+(use-package fix-word
+  :bind
+  ("M-u" . #'fix-word-upcase)
+  ("M-l" . #'fix-word-downcase)
+  ("M-c" . #'fix-word-capitalize))
+
+
 (use-package docker)
 
 (use-package graphviz-dot-mode)
