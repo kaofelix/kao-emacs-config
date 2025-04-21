@@ -30,6 +30,13 @@
   :hook (compilation-filter . ansi-color-compilation-filter))
 
 (use-package gptel
+  :config
+  (setq gptel-model "deepseek-chat"
+        gptel-backend
+        (gptel-make-deepseek "DeepSeek"
+          :stream t
+          :key #'gptel-api-key-from-auth-source))
+
   :bind
   ("C-c RET" . #'gptel-send))
 
