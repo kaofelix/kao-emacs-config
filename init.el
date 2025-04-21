@@ -45,6 +45,7 @@
 (require 'setup-emacs-lisp)
 (require 'setup-js)
 (require 'setup-python)
+(require 'setup-ruby)
 (require 'setup-markdown)
 
 ;;(require 'setup-docker)
