@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: dunder method
+# key: _
+# --
+def __${1:init}__(self$2):
+    $0
