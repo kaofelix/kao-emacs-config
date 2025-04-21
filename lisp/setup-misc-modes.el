@@ -230,6 +230,8 @@
   :mode (("\\.env\\..*\\'" . dotenv-mode)
          ("\\.env\\'" . dotenv-mode)))
 
+(use-package docker)
+
 (use-package graphviz-dot-mode)
 (use-package mermaid-mode)
 (provide 'setup-misc-modes)
