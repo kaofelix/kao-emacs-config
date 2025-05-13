@@ -29,7 +29,17 @@
   (tsx-ts-mode . setup-typescript)
   :init
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode)))
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+
+  :config
+  (with-eval-after-load 'smartparens
+    (sp-local-pair 'typescript-ts-mode "/" "/" :actions '(wrap))
+    (sp-local-pair 'tsx-ts-mode "/" "/" :actions '(wrap))
+    (sp-local-pair 'js-ts-mode "/" "/" :actions '(wrap))
+
+    (sp-local-pair 'typescript-ts-mode "<" nil :actions :rem)
+    (sp-local-pair 'tsx-ts-mode "<" nil :actions :rem)
+    (sp-local-pair 'js-ts-mode "<" nil :actions :rem)))
 
 (use-package fnm
   :vc (:url "https://github.com/bobrowadam/fnm.el"))
