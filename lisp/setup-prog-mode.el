@@ -222,7 +222,9 @@
   (mp-setup-install-grammars))
 
 (use-package combobulate
-  :vc (:url "https://github.com/mickeynp/combobulate.git")
+  :vc (:url "https://github.com/mickeynp/combobulate.git" :rev "master")
+  :custom
+  (combobulate-key-prefix "C-c o")
   :hook ((prog-mode . combobulate-mode)))
 
 
