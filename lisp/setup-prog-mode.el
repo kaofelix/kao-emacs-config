@@ -167,7 +167,8 @@
          ("M-j" . 'copilot-accept-completion-by-line))
   :custom
   (copilot-idle-delay nil) ; disable copilot auto complete
-  (copilot-indent-offset-warning-disable t))
+  (copilot-indent-offset-warning-disable t)
+  (copilot-max-char 800000))
 
 
 (use-package treesit-auto
