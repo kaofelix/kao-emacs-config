@@ -47,10 +47,10 @@
 (require 'setup-python)
 (require 'setup-ruby)
 (require 'setup-markdown)
+(require 'setup-terraform)
 
 ;;(require 'setup-docker)
 ;;(require 'setup-rust)
-;;(require 'setup-terraform)
 ;;(require 'setup-go)
 ;;(require 'setup-swift)
 

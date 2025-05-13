@@ -12,8 +12,9 @@
 ;;; Code:
 
 (use-package terraform-mode
-  :config
-  (add-hook 'terraform-mode-hook 'terraform-format-on-save-mode))
+  :hook (terraform-mode . outline-minor-mode)
+  :custom
+  (terraform-format-on-save t))
 
 (provide 'setup-terraform)
 ;;; setup-terraform.el ends here
