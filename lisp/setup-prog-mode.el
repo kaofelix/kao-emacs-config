@@ -148,6 +148,7 @@
    ("l" . testrun-last)))
 
 (use-package copilot
+  :vc (:url "https://github.com/copilot-emacs/copilot.el" :rev "main")
   :hook (prog-mode . copilot-mode)
   :config
   (defun copilot-complete-or-accept ()
