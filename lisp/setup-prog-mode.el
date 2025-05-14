@@ -51,6 +51,10 @@
   :config
   (apheleia-global-mode +1))
 
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+
 (use-package highlight-symbol
   :delight
   :bind
