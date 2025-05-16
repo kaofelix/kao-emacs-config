@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: jest it.todo
+# key: itt
+# uuid: jest-it-todo
+# --
+it.todo("$0");

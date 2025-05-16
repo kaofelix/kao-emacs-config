@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: jest describe
+# key: desc
+# uuid: jest-describe
+# --
+describe("$1", () => {
+    $0
+});

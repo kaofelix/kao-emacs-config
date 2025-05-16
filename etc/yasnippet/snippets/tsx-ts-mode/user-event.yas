@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: user-event
+# key: uev
+# --
+const user = userEvent.setup();
