@@ -14,7 +14,7 @@
   :hook (text-mode . adaptive-wrap-prefix-mode))
 
 (use-package visual-fill-column
-  :hook (text-mode . visual-line-fill-column-mode)
+  :hook (markdown-mode . visual-line-fill-column-mode)
   :custom
   (visual-fill-column-enable-sensible-window-split t)
   (visual-fill-column-center-text nil)
