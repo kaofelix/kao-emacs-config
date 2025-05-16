@@ -13,9 +13,12 @@
 
 (use-package dockerfile-mode)
 
-(use-package docker
-  :bind
-  ("H-d" . 'docker))
+(use-package docker)
+
+(use-package docker-compose-mode
+  :config
+  (add-to-list 'auto-mode-alist
+               '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
 (use-package kubernetes
   :ensure t

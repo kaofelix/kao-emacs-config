@@ -185,11 +185,6 @@
   :bind (:map kao/toggle-map
          ("g" . #'git-timemachine-toggle)))
 
-(use-package docker-compose-mode
-  :config
-  (add-to-list 'auto-mode-alist
-               '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
-
 (use-package origami
   :hook (yaml-mode . origami-mode)
   :bind (:map origami-mode-map
@@ -247,7 +242,6 @@
   ("M-l" . #'fix-word-downcase))
 
 
-(use-package docker)
 
 (use-package graphviz-dot-mode)
 (use-package mermaid-mode)
