@@ -26,6 +26,10 @@
   :bind
   ([remap open-line] . #'kao/open-line))
 
+(use-package persist-state
+  :config
+  (persist-state-mode))
+
 (use-package ansi-color
   :hook (compilation-filter . ansi-color-compilation-filter))
 
