@@ -23,6 +23,14 @@
   ;; (add-hook 'before-save-hook 'kao/ts-eglot-organize-imports nil t)
   )
 
+(use-package js
+  :init
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js-ts-mode))
+  :config
+  (with-eval-after-load 'smartparens
+    (sp-local-pair 'js-ts-mode "/" "/" :actions '(wrap))
+    (sp-local-pair 'js-ts-mode "<" nil :actions :rem)))
+
 (use-package typescript-ts-mode
   :hook
   (typescript-ts-mode . setup-typescript)
@@ -35,11 +43,10 @@
   (with-eval-after-load 'smartparens
     (sp-local-pair 'typescript-ts-mode "/" "/" :actions '(wrap))
     (sp-local-pair 'tsx-ts-mode "/" "/" :actions '(wrap))
-    (sp-local-pair 'js-ts-mode "/" "/" :actions '(wrap))
 
     (sp-local-pair 'typescript-ts-mode "<" nil :actions :rem)
-    (sp-local-pair 'tsx-ts-mode "<" nil :actions :rem)
-    (sp-local-pair 'js-ts-mode "<" nil :actions :rem)))
+    (sp-local-pair 'tsx-ts-mode "<" nil :actions :rem)))
+
 
 (use-package fnm
   :vc (:url "https://github.com/bobrowadam/fnm.el"))

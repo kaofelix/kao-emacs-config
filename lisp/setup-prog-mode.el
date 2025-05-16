@@ -217,6 +217,7 @@
              (css-mode . css-ts-mode)
              (typescript-mode . typescript-ts-mode)
              (js2-mode . js-ts-mode)
+             (js-mode . js-ts-mode)
              (bash-mode . bash-ts-mode)
              (conf-toml-mode . toml-ts-mode)
              (go-mode . go-ts-mode)
