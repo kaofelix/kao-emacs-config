@@ -117,7 +117,7 @@
 (add-hook 'prog-mode-hook 'hl-line-mode)
 
 (use-package testrun
-  :vc (:url "https://github.com/martini97/testrun.el")
+  :vc (:url "https://github.com/martini97/testrun.el" :rev :newest)
   :config
   ;; this will allow you to override the runners on your .dir-locals.el
   (put 'testrun-runners 'safe-local-variable #'listp)
@@ -152,7 +152,7 @@
    ("l" . testrun-last)))
 
 (use-package copilot
-  :vc (:url "https://github.com/copilot-emacs/copilot.el" :rev "main")
+  :vc (:url "https://github.com/copilot-emacs/copilot.el" :rev :newest)
   :hook (prog-mode . copilot-mode)
   :config
   (defun copilot-complete-or-accept ()
@@ -229,7 +229,7 @@
   (mp-setup-install-grammars))
 
 (use-package combobulate
-  :vc (:url "https://github.com/mickeynp/combobulate.git" :rev "master")
+  :vc (:url "https://github.com/mickeynp/combobulate.git" :rev :newest)
   :custom
   (combobulate-key-prefix "C-c o")
   :hook ((prog-mode . combobulate-mode)))

@@ -225,11 +225,11 @@
    ("C-c C-c" . #'csv-align-mode)))
 
 (use-package rainbow-csv
-  :vc (:url "https://github.com/emacs-vs/rainbow-csv" :rev "c005ea8")
+  :vc (:url "https://github.com/emacs-vs/rainbow-csv" :rev :newest)
   :hook (csv-mode . rainbow-csv-mode))
 
 (use-package yank-indent
-  :vc (:url "https://github.com/jimeh/yank-indent")
+  :vc (:url "https://github.com/jimeh/yank-indent" :rev :newest)
   :config (global-yank-indent-mode t))
 
 (use-package dotenv-mode

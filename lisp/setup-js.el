@@ -49,7 +49,7 @@
 
 
 (use-package fnm
-  :vc (:url "https://github.com/bobrowadam/fnm.el"))
+  :vc (:url "https://github.com/bobrowadam/fnm.el" :rev :newest))
 
 (use-package astro-ts-mode
   :hook (astro-ts-mode . eglot-ensure)
