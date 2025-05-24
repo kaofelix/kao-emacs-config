@@ -217,7 +217,14 @@
   :custom
   (vterm-shell "/bin/zsh -l"))
 
-(use-package string-inflection)
+(use-package string-inflection
+  :config
+  (defun repeatable-string-inflection-cycle ()
+    (interactive)
+    (kao/type-last-key-to-repeat
+      (string-inflection-cycle)))
+  :bind
+  ("C-c i" . 'repeatable-string-inflection-cycle))
 
 (use-package highlight-indent-guides
   :custom
