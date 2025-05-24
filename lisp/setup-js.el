@@ -53,7 +53,9 @@
 
 (use-package astro-ts-mode
   :hook (astro-ts-mode . eglot-ensure)
-  :mode "\\.astro\\'")
+  :mode "\\.astro\\'"
+  :config
+  (add-to-list 'apheleia-mode-alist '(astro-ts-mode . prettier)))
 
 (provide 'setup-js)
 ;;; setup-js.el ends here
