@@ -35,14 +35,19 @@
 
 (use-package gptel
   :config
-  (setq gptel-model "deepseek-chat"
-        gptel-backend
-        (gptel-make-deepseek "DeepSeek"
-          :stream t
-          :key #'gptel-api-key-from-auth-source))
-
+  (define-prefix-command 'gptel-prefix-map)
+  (setq gptel-model 'deepseek-chat
+        gptel-backend (gptel-make-deepseek "DeepSeek"
+                        :stream t
+                        :key #'gptel-api-key-from-auth-source))
   :bind
-  ("C-c RET" . #'gptel-send))
+  ("C-c RET" . #'gptel-menu)
+  ("C-c c" . 'gptel-prefix-map)
+  (:map gptel-prefix-map
+   ("r" . #'gptel-rewrite)
+   ("a" . #'gptel-context-add)
+   ("k" . #'gptel-context-remove)
+   ("DEL" . #'gptel-context-remove-all)))
 
 (use-package exec-path-from-shell
   :init
