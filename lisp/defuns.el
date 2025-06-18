@@ -114,6 +114,21 @@ point reaches the beginning or end of the buffer, stop there."
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
+(defun kao/buffer-file-name-relative-to-vc-root ()
+  (let ((filename (buffer-file-name)))
+    (when filename
+      (let ((root (vc-root-dir)))
+        (if root
+            (file-relative-name filename root)
+          (error "Not in a version-controlled directory."))))))
+
+(defun kao/copy-file-name-relative-to-vc-root ()
+  "Copies the path to the current buffer file name as a relative path to the version control root."
+  (interactive)
+  (let ((filename (kao/buffer-file-name-relative-to-vc-root)))
+    (kill-new filename)
+    (message "Copied relative path '%s' to the clipboard." filename)))
+
 (defun kao/open-line (arg)
   "Open `ARG' lines under current point position.
 If point is on beggining of line, open lines above the current

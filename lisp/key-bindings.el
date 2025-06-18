@@ -21,6 +21,7 @@
 (global-set-key [remap move-beginning-of-line] 'kao/move-beginning-of-line)
 (global-set-key [remap just-one-space] 'cycle-spacing)
 (global-set-key (kbd "C-c r") 'replace-string)
+(global-set-key (kbd "M-W") 'kao/copy-file-name-relative-to-vc-root)
 
 ;; Make C-h act like backspace and C-/ or C-? as help key
 (define-key key-translation-map [?\C-h] [?\C-?])
