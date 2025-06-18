@@ -13,6 +13,7 @@
 
 (use-package ruby-ts-mode
   :hook (ruby-ts-mode . eglot-ensure)
+  :mode ("\\.rb\\'" "\\.rake\\'" "\\.gemspec\\'" "\\.ru\\'")
   :config
   (add-to-list 'major-mode-remap-alist '(ruby-mode . ruby-ts-mode))
   (with-eval-after-load 'eglot
