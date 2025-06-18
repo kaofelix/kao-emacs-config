@@ -42,9 +42,9 @@
 (use-package project
   :after (magit)
   :bind
-  (("s-;" . #'kao/vterm-project-dwim)
+  (("s-;" . #'eat-project-other-window)
    :map project-prefix-map
-   ("t" . #'kao/vterm-project-dwim)
+   ("t" . #'eat-project-other-window)
    ("m" . #'magit-project-status)
    ("b" . #'kao/project-start-branch)
    ("o" . #'ff-find-other-file))

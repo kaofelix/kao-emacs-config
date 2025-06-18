@@ -217,6 +217,8 @@
   :custom
   (vterm-shell "/bin/zsh -l"))
 
+(use-package eat)
+
 (use-package string-inflection
   :config
   (defun repeatable-string-inflection-cycle ()
