@@ -230,5 +230,25 @@ Version 2016-07-13"
         (set-buffer-modified-p nil)
         (message "File '%s' successfully moved to '%s'" filename new-filename)))))
 
+(defun kao/custom-copy-var-as-use-package-sexp ()
+  "Copy the current custom variable and its value as a `use-package` :custom sexp."
+  (interactive)
+  (let* ((var (completing-read "Variable: " obarray #'boundp t))
+         (val (symbol-value (intern var)))
+         (sexp (format "(%s %S)" var val)))
+    (kill-new sexp)
+    (message "Copied to kill-ring: %s" sexp)))
+
+(defun kao/open-in-vscode ()
+  "Open current buffer file in VS Code using the 'code' CLI command."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (when filename
+      (call-process "code" nil 0 nil filename))))
+
+(defun kao/apply-ansi-color ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
 (provide 'defuns)
 ;;; defuns.el ends here
