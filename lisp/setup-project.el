@@ -54,7 +54,7 @@
                              (project-dired "Dired")
                              (magit-project-status "Magit")
                              (kao/project-start-branch "Create new branch" ?b)
-                             (kao/vterm-project-dwim "VTerm" ?t)))
+                             (eat-project-other-window "Eat" ?t)))
   (project-vc-extra-root-markers '("package.json" "Gemfile")))
 
 (provide 'setup-project)
