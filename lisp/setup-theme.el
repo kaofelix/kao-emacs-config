@@ -5,7 +5,7 @@
 
 ;; Copyright (C) 2014  Kao Felix
 
-;; Author: Kao Felix <kcfelix@gmail.com>
+;; Author: Kao Felix <me@kaofelix.dev>
 ;; Keywords: local
 
 ;;; Code:

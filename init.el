@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2014  Kao Felix
 
-;; Author: Kao Felix;; Custom theme <kcfelix@gmail.com>
+;; Author: Kao Felix;; Custom theme <me@kaofelix.dev>
 ;; Keywords: local
 
 ;;; Commentary:
@@ -14,7 +14,7 @@
 
 ;;; Code:
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory) t)
-(setq user-mail-address "kcfelix@gmail.com")
+(setq user-mail-address "me@kaofelix.dev")
 
 
 (require 'package)

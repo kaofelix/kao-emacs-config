@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2020  Kao Felix
 
-;; Author: Kao Felix <kcfelix@gmail.com>
+;; Author: Kao Felix <me@kaofelix.dev>
 ;; Keywords: local
 
 ;;; Commentary:
