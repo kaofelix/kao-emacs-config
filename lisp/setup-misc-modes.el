@@ -26,6 +26,12 @@
   :bind
   ([remap open-line] . #'kao/open-line))
 
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-listing-switches "-alh")
+  (dired-dwim-target t))
+
 (use-package persist-state
   :config
   (persist-state-mode))
