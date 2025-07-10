@@ -19,5 +19,12 @@
   (with-eval-after-load 'eglot
     (add-to-list 'eglot-server-programs '((ruby-ts-mode) . ("ruby-lsp")))))
 
+(use-package rspec-mode
+  :after ruby-ts-mode
+  :hook (ruby-ts-mode . rspec-mode)
+  :custom
+  (rspec-use-rake-when-possible nil)
+  (rspec-use-bundler-when-possible nil))
+
 (provide 'setup-ruby)
 ;;; setup-ruby.el ends here
