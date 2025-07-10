@@ -250,5 +250,12 @@ Version 2016-07-13"
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
 
+(defun kao/save-flymake-diagnostic-to-kill-ring ()
+  "Save current Flymake diagnostic message to kill-ring."
+  (interactive)
+  (when-let ((diag (car (flymake-diagnostics (point)))))
+    (kill-new (flymake-diagnostic-text diag))
+    (message "Copied to kill-ring: %s" (flymake-diagnostic-text diag))))
+
 (provide 'defuns)
 ;;; defuns.el ends here
