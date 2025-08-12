@@ -223,7 +223,8 @@ Version 2016-07-13"
   (interactive "FNew location: ")
   (let ((filename (buffer-file-name)))
     (when filename
-      (let ((new-filename (expand-file-name (file-name-nondirectory filename) new-location)))
+      (let ((new-filename (expand-file-name (file-name-nondirectory filename) new-directory)))
+        (make-directory new-directory t)
         (copy-file filename new-filename 1)
         (delete-file filename)
         (set-visited-file-name new-filename)
