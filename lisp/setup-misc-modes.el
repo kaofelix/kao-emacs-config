@@ -29,6 +29,12 @@
 (use-package emacs
   :delight subword-mode
   :config
+  (defun disable-flymake-for-large-files ()
+    "Disable Flymake if the current buffer has more than 5000 lines."
+    (when (> (count-lines (point-min) (point-max)) 5000)
+      (flymake-mode -1)))
+
+  (add-hook 'find-file-hook #'disable-flymake-for-large-files)
   (global-subword-mode 1)
   :bind
   ([remap open-line] . #'kao/open-line))
