@@ -33,6 +33,10 @@
   (eglot-confirm-server-edits nil)
   (eglot-confirm-server-initiated-edits nil))
 
+(use-package repeat
+  :config
+  (repeat-mode))
+
 (use-package dumb-jump
   :config
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
