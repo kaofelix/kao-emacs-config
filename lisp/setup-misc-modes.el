@@ -19,6 +19,13 @@
 
 (add-hook 'Man-mode-hook 'visual-line-mode)
 
+(use-package dimmer
+  :config
+  (dimmer-mode)
+  :custom
+  (dimmer-use-colorspace :rgb)
+  (dimmer-fraction 0.3))
+
 (use-package emacs
   :delight subword-mode
   :config
