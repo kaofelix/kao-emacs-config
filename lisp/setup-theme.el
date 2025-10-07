@@ -10,11 +10,7 @@
 
 ;;; Code:
 
-(use-package doom-themes
-  :config
-  (load-theme 'doom-gruvbox t)
-  (doom-themes-org-config)
-
+(defun general-theme-config ()
   ;; Git gutter should be a solid color
   (with-eval-after-load 'git-gutter
     (dolist (face '(git-gutter:added
@@ -22,14 +18,19 @@
                     git-gutter:deleted))
       (set-face-background face (face-foreground face))))
 
-  ;; Set ansi-color-bright-black to doom base3
-  ;; (set-face-foreground 'ansi-color-bright-black (doom-color 'base4))
-  ;; (set-face-background 'ansi-color-bright-black (doom-color 'base4))
-
   ;; Make target names in Makefiles different from variables
   (with-eval-after-load 'make-mode
     (set-face-foreground 'makefile-targets nil)
-    (set-face-attribute 'makefile-targets nil :inherit font-lock-function-name-face))
+    (set-face-attribute 'makefile-targets nil :inherit font-lock-function-name-face)))
+
+(use-package doom-themes
+  :config
+  (load-theme 'doom-nord-aurora t)
+  (doom-themes-org-config)
+  (general-theme-config)
+  ;; Set ansi-color-bright-black to doom base3
+  (set-face-foreground 'ansi-color-bright-black (doom-color 'base4))
+  (set-face-background 'ansi-color-bright-black (doom-color 'base4))
 
   (with-eval-after-load 'corfu
     (set-face-background 'corfu-current (doom-color 'base4))))
