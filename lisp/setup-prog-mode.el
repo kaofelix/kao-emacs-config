@@ -240,6 +240,9 @@
 (use-package treesit-fold
   :hook (prog-mode . turn-on-treesit-fold)
   :after (treesit)
+  :bind
+  (:map treesit-fold-mode-map
+   ("C-c [ [" . 'treesit-fold-toggle))
   :vc (:url "https://github.com/emacs-tree-sitter/treesit-fold" :rev :newest))
 
 (use-package combobulate
