@@ -193,11 +193,6 @@
   :bind (:map kao/toggle-map
          ("g" . #'git-timemachine-toggle)))
 
-(use-package origami
-  :hook (yaml-mode . origami-mode)
-  :bind (:map origami-mode-map
-         ("C-c [ [" . #'origami-toggle-node)))
-
 (use-package goto-line-preview
   :bind (([remap goto-line] . #'goto-line-preview)))
 
