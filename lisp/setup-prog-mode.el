@@ -33,6 +33,8 @@
   (eglot-confirm-server-edits nil)
   (eglot-confirm-server-initiated-edits nil))
 
+(use-package dape)
+
 (use-package repeat
   :config
   (repeat-mode))
