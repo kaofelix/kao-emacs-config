@@ -234,19 +234,6 @@
   :config
   (mp-setup-install-grammars))
 
-(defun turn-on-treesit-fold ()
-  (treesit-fold-mode 1)
-  (treesit-fold-indicators-mode 1)
-  (setq left-fringe-width 24))
-
-(use-package treesit-fold
-  :hook (prog-mode . turn-on-treesit-fold)
-  :after (treesit)
-  :bind
-  (:map treesit-fold-mode-map
-   ("C-c [ [" . 'treesit-fold-toggle))
-  :vc (:url "https://github.com/emacs-tree-sitter/treesit-fold" :rev :newest))
-
 (use-package combobulate
   :vc (:url "https://github.com/mickeynp/combobulate.git" :rev :newest)
   :custom
