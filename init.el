@@ -48,6 +48,7 @@
 (require 'setup-markdown)
 (require 'setup-terraform)
 (require 'setup-docker)
+(require 'setup-ai)
 
 ;;(require 'setup-rust)
 ;;(require 'setup-go)
