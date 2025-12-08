@@ -26,3 +26,4 @@ recentf
 /eln-cache/
 /tree-sitter/
 /.chatgpt-shell.el
+.aider*
