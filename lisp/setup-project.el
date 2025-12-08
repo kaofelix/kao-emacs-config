@@ -42,9 +42,9 @@
 (use-package project
   :after (magit)
   :bind
-  (("s-;" . #'eat-project-other-window)
+  (("s-;" . #'kao/vterm-project-dwim)
    :map project-prefix-map
-   ("t" . #'eat-project-other-window)
+   ("t" . #'kao/vterm-project-dwim)
    ("m" . #'magit-project-status)
    ("b" . #'kao/project-start-branch)
    ("o" . #'ff-find-other-file))
@@ -54,7 +54,7 @@
                              (project-dired "Dired")
                              (magit-project-status "Magit")
                              (kao/project-start-branch "Create new branch" ?b)
-                             (eat-project-other-window "Eat" ?t)))
+                             (kao/vterm-project-dwim "VTerm" ?t)))
   (project-vc-extra-root-markers '("package.json" "Gemfile")))
 
 (provide 'setup-project)

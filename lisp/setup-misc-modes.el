@@ -215,37 +215,7 @@
   :custom
   (vterm-shell "/bin/zsh -l"))
 
-(use-package eat
-  :config
-  (defun eat-cycle-to-next-buffer (&optional n)
-    "Cycle to next buffer with same name pattern.
-With universal argument N, cycle by N steps (negative for backward)."
-    (interactive "P")
-    (let* ((current-name (buffer-name))
-           (base-name (if (string-match "\\(.*\\)<[0-9]+>\\'" current-name)
-                          (match-string 1 current-name)
-                        current-name))
-           (pattern (concat "^" (regexp-quote base-name) "\\(<[0-9]+>\\)?\\'"))
-           (buffers (cl-remove-if-not
-                     (lambda (buf) (string-match-p pattern (buffer-name buf)))
-                     (buffer-list)))
-           (sorted-buffers (sort buffers (lambda (a b)
-                                           (string< (buffer-name a) (buffer-name b)))))
-           (current-index (cl-position (current-buffer) sorted-buffers :test 'eq))
-           (step (cond ((numberp n) n)
-                       ((consp n) (prefix-numeric-value n))
-                       (t 1)))
-           (len (length sorted-buffers))
-           (new-index (mod (+ current-index step) len)))
-      (switch-to-buffer (nth new-index sorted-buffers))))
-
-  (defun eat-cycle-to-previous-buffer (&optional n)
-    (interactive "P")
-    (eat-cycle-to-next-buffer (- (or n 1))))
-
-  :bind (:map eat-mode-map
-         ("s-<right>" . eat-cycle-to-next-buffer)
-         ("s-<left>" . eat-cycle-to-previous-buffer)))
+(use-package eat)
 
 (use-package string-inflection
   :config
