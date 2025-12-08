@@ -23,7 +23,6 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
-(require 'emoji)
 (require 'defaults)
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
