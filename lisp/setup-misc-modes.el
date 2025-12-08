@@ -257,5 +257,10 @@
 
 (use-package graphviz-dot-mode)
 (use-package mermaid-mode)
+
+(use-package webjump
+  :bind
+  ("C-c j" . #'webjump))
+
 (provide 'setup-misc-modes)
 ;;; setup-misc-modes.el ends here
