@@ -55,7 +55,9 @@
 (use-package apheleia
   :delight
   :config
-  (apheleia-global-mode +1))
+  (apheleia-global-mode +1)
+  :custom
+  (apheleia-formatters-respect-indent-level nil))
 
 (use-package editorconfig
   :config
