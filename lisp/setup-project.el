@@ -54,8 +54,7 @@
                              (project-dired "Dired")
                              (magit-project-status "Magit")
                              (kao/project-start-branch "Create new branch" ?b)
-                             (kao/vterm-project-dwim "VTerm" ?t)))
-  (project-vc-extra-root-markers '("package.json" "Gemfile")))
+                             (kao/vterm-project-dwim "VTerm" ?t))))
 
 (provide 'setup-project)
 ;;; setup-project.el ends here
