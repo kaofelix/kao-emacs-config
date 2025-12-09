@@ -14,7 +14,8 @@
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
 
   :custom
-  (magit-save-repository-buffers 'dontask))
+  (magit-save-repository-buffers 'dontask)
+  (magit-ediff-dwim-show-on-hunks t))
 
 (use-package browse-at-remote
   :bind
