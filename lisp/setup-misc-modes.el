@@ -254,6 +254,12 @@
   ("M-l" . #'fix-word-downcase))
 
 
+(use-package qml-ts-mode
+  :vc (:url "https://github.com/xhcoding/qml-ts-mode" :rev :newest)
+  :init
+  (with-eval-after-load 'treesit
+    (add-to-list 'treesit-language-source-alist
+                 '(qmljs "https://github.com/yuja/tree-sitter-qmljs.git"))))
 
 (use-package graphviz-dot-mode)
 (use-package mermaid-mode)
