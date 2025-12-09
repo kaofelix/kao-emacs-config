@@ -253,6 +253,12 @@
   ("M-u" . #'fix-word-upcase)
   ("M-l" . #'fix-word-downcase))
 
+(use-package graphql-ts-mode
+  :mode ("\\.graphql\\'" "\\.gql\\'")
+  :init
+  (with-eval-after-load 'treesit
+    (add-to-list 'treesit-language-source-alist
+                 '(graphql "https://github.com/bkegley/tree-sitter-graphql"))))
 
 (use-package qml-ts-mode
   :vc (:url "https://github.com/xhcoding/qml-ts-mode" :rev :newest)
