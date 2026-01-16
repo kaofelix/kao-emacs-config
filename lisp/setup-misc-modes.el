@@ -24,7 +24,10 @@
   (dimmer-mode)
   :custom
   (dimmer-use-colorspace :rgb)
-  (dimmer-fraction 0.3))
+  (dimmer-fraction 0.3)
+  :hook
+  (ediff-before-setup . (lambda () (dimmer-mode -1)))
+  (ediff-cleanup . (lambda () (dimmer-mode t))))
 
 (use-package emacs
   :delight subword-mode
