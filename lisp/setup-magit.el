@@ -15,7 +15,8 @@
 
   :custom
   (magit-save-repository-buffers 'dontask)
-  (magit-ediff-dwim-show-on-hunks t))
+  (magit-ediff-dwim-show-on-hunks t)
+  (magit-wip-mode t))
 
 (use-package browse-at-remote
   :bind
