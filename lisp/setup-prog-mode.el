@@ -69,6 +69,29 @@
   :delight
   :config
   (apheleia-global-mode +1)
+
+  ;; Use npx directly for oxfmt instead of apheleia-npx, which fails
+  ;; in monorepos where a .pnp.cjs at the root shadows npm packages
+  ;; installed in subdirectories.
+  (setf (alist-get 'oxfmt apheleia-formatters) '("npx" "oxfmt" inplace))
+
+  (defun apheleia-detect-oxfmt ()
+    "Set `apheleia-formatter' to oxfmt if the project uses it.
+Detection checks for .oxfmtrc or .oxfmtrc.json config files
+walking up from the buffer's directory."
+    (when-let ((root (and buffer-file-name
+                          (or (locate-dominating-file buffer-file-name ".oxfmtrc")
+                              (locate-dominating-file buffer-file-name ".oxfmtrc.json")))))
+      (setq-local apheleia-formatter 'oxfmt)))
+
+  (dolist (hook '(tsx-ts-mode-hook
+                  typescript-ts-mode-hook
+                  js-ts-mode-hook
+                  js-mode-hook
+                  json-ts-mode-hook
+                  json-mode-hook))
+    (add-hook hook #'apheleia-detect-oxfmt))
+
   :custom
   (apheleia-formatters-respect-indent-level nil))
 
