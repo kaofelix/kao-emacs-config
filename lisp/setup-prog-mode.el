@@ -20,9 +20,22 @@
   :after (yasnippet)
   :config
   (add-to-list 'eglot-server-programs
+               '((json-ts-mode json-mode js-json-mode) . ("vscode-json-languageserver" "--stdio")))
+  (add-to-list 'eglot-server-programs
                '(astro-ts-mode . ("astro-ls" "--stdio"
                                   :initializationOptions
                                   (:typescript (:tsdk "./node_modules/typescript/lib")))))
+
+  ;; Prevent servers from claiming JSON buffers via mode inheritance.
+  ;; json-ts-mode inherits from json-mode -> javascript-mode -> js-mode,
+  ;; which causes the TypeScript server to claim JSON buffers as "javascript".
+  (define-advice eglot--languageId (:around (orig &rest args) json-fix)
+    (let ((server (car args)))
+      (if (and server
+               (derived-mode-p 'json-ts-mode 'json-mode)
+               (not (cl-find major-mode (eglot--languages server) :key #'car)))
+          nil
+        (apply orig args))))
   :bind
   (:map eglot-mode-map
    ("C-c C-r" . eglot-rename)
