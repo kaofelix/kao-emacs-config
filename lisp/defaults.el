@@ -51,6 +51,7 @@
 (setq column-number-mode t)
 (setq fill-column 80)
 (set-default 'indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 (savehist-mode 1)
 (setq history-length 1000)

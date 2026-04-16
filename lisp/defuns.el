@@ -114,6 +114,12 @@ point reaches the beginning or end of the buffer, stop there."
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
+(defun copy-file-name-with-line ()
+  (interactive)
+  (let ((text (format "%s:%d" (buffer-file-name) (line-number-at-pos))))
+    (kill-new text)
+    (message "%s" text)))
+
 (defun kao/buffer-file-name-relative-to-vc-root ()
   (let ((filename (buffer-file-name)))
     (when filename

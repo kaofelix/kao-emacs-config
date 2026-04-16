@@ -139,7 +139,9 @@ walking up from the buffer's directory."
 
 (use-package whitespace
   :delight
-  :hook (prog-mode . whitespace-mode))
+  :hook (prog-mode . whitespace-mode)
+  :custom
+  (whitespace-style '(face trailing indentation)))
 
 (use-package nix-mode
   :mode "\\.nix\\'")
