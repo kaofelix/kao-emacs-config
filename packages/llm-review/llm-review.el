@@ -361,31 +361,31 @@ Return non-nil if a comment was removed."
                    (< (llm-review-comment-id left)
                       (llm-review-comment-id right)))))))
 
-(defun llm-review-render-comment-plain (comment)
-  "Render COMMENT as plain text."
-  (format "Lines: %d-%d\nCode:\n%s\n\nComment:\n%s"
+(defun llm-review-render-comment-plain (relative-file comment)
+  "Render COMMENT from RELATIVE-FILE as compact plain text."
+  (format "%s:%d-%d\n```\n%s\n```\n\n%s"
+          relative-file
           (llm-review-comment-line-start comment)
           (llm-review-comment-line-end comment)
           (llm-review-comment-snippet comment)
           (llm-review-comment-comment comment)))
 
 (defun llm-review-render-file-review-plain (file-review)
-  "Render FILE-REVIEW as plain text."
-  (concat
-   (format "File: %s"
-           (llm-review-file-review-relative-file file-review))
-   "\n\n"
-   (string-join
-    (mapcar #'llm-review-render-comment-plain
-            (llm-review-store-sorted-comments file-review))
-    "\n\n")))
+  "Render FILE-REVIEW as compact plain text."
+  (string-join
+   (mapcar (lambda (comment)
+             (llm-review-render-comment-plain
+              (llm-review-file-review-relative-file file-review)
+              comment))
+           (llm-review-store-sorted-comments file-review))
+   "\n\n---\n\n"))
 
 (defun llm-review-render-project-plain (project)
-  "Render PROJECT as plain text."
+  "Render PROJECT as plain text for export."
   (let ((rendered (string-join
                    (mapcar #'llm-review-render-file-review-plain
                            (llm-review-store-sorted-file-reviews project))
-                   "\n\n")))
+                   "\n\n---\n\n")))
     (if (string-empty-p rendered)
         rendered
       (concat rendered "\n"))))

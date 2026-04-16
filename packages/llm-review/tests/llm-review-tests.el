@@ -123,7 +123,7 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                         (car (llm-review-file-review-comments
                               (car (llm-review-project-files loaded)))))))))))
 
-(ert-deftest llm-review-render-project-plain-groups-comments-by-file ()
+(ert-deftest llm-review-render-project-plain-uses-compact-export-format ()
   (let* ((project (llm-review-store-empty-project "/tmp/project/"))
          (comment-1 (llm-review-tests--make-comment 1 "First comment" 3 "alpha"))
          (comment-2 (llm-review-tests--make-comment 2 "Second comment" 8 "beta"))
@@ -135,17 +135,23 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
      (equal
       (llm-review-render-project-plain project)
       (concat
-       "File: src/example.el\n\n"
-       "Lines: 3-3\n"
-       "Code:\nalpha\n\n"
-       "Comment:\nFirst comment\n\n"
-       "Lines: 8-8\n"
-       "Code:\nbeta\n\n"
-       "Comment:\nSecond comment\n\n"
-       "File: src/other.el\n\n"
-       "Lines: 1-1\n"
-       "Code:\ngamma\n\n"
-       "Comment:\nThird comment\n")))))
+       "src/example.el:3-3\n"
+       "```\n"
+       "alpha\n"
+       "```\n\n"
+       "First comment\n\n"
+       "---\n\n"
+       "src/example.el:8-8\n"
+       "```\n"
+       "beta\n"
+       "```\n\n"
+       "Second comment\n\n"
+       "---\n\n"
+       "src/other.el:1-1\n"
+       "```\n"
+       "gamma\n"
+       "```\n\n"
+       "Third comment\n")))))
 
 (ert-deftest llm-review-capture-groups-comments-under-file ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\nthird\n"))
