@@ -1,0 +1,369 @@
+;;; llm-review-tests.el --- Tests for llm-review -*- lexical-binding: t; -*-
+
+(require 'ert)
+(require 'cl-lib)
+(require 'project)
+(require 'seq)
+(require 'transient)
+
+(ignore-errors (load "llm-review" nil t))
+
+(defmacro llm-review-tests--with-project-files (files &rest body)
+  "Create a temporary project with FILES and evaluate BODY.
+
+FILES is an alist of (RELATIVE-PATH . CONTENT)."
+  (declare (indent 1))
+  `(let* ((project-root (make-temp-file "llm-review-test-project-" t))
+          (llm-review-storage-directory (make-temp-file "llm-review-test-storage-" t))
+          (llm-review--projects-by-root (make-hash-table :test #'equal))
+          (llm-review--comment-locators (make-hash-table :test #'eql))
+          (llm-review--next-comment-id 0)
+          (file-specs ,files))
+     (dolist (file-spec file-specs)
+       (let ((file (expand-file-name (car file-spec) project-root)))
+         (make-directory (file-name-directory file) t)
+         (with-temp-file file
+           (insert (cdr file-spec)))))
+     (unwind-protect
+         (cl-letf (((symbol-function 'project-current)
+                    (lambda (&optional _maybe-prompt _dir)
+                      `(transient . ,project-root))))
+           ,@body)
+       (dolist (file-spec file-specs)
+         (when-let ((buffer (get-file-buffer (expand-file-name (car file-spec) project-root))))
+           (kill-buffer buffer)))
+       (delete-directory project-root t)
+       (delete-directory llm-review-storage-directory t))))
+
+(defun llm-review-tests--find-file (project-root relative-file)
+  "Open RELATIVE-FILE from PROJECT-ROOT and return its buffer."
+  (let ((buffer (find-file-noselect (expand-file-name relative-file project-root))))
+    (with-current-buffer buffer
+      (setq-local transient-mark-mode t))
+    buffer))
+
+(defun llm-review-tests--make-comment (id text &optional line snippet)
+  "Create a comment with ID and TEXT for tests."
+  (make-llm-review-comment
+   :id id
+   :line-start (or line 1)
+   :line-end (or line 1)
+   :snippet (or snippet "(message \"hello\")")
+   :comment text
+   :created-at '(0 0 0 0)
+   :updated-at '(0 0 0 0)))
+
+(defun llm-review-tests--project-comment-count (project)
+  "Return number of comments in PROJECT."
+  (length (llm-review-store-project-comment-ids project)))
+
+(ert-deftest llm-review-capture-bounds-uses-region-when-active ()
+  (with-temp-buffer
+    (insert "alpha\nbeta\n")
+    (goto-char (point-min))
+    (set-mark (point))
+    (forward-word 1)
+    (activate-mark)
+    (should (equal (llm-review--capture-bounds)
+                   (cons (region-beginning) (region-end))))))
+
+(ert-deftest llm-review-capture-bounds-uses-current-line-without-region ()
+  (with-temp-buffer
+    (insert "alpha\nbeta\n")
+    (goto-char (point-min))
+    (forward-line 1)
+    (forward-char 2)
+    (should (equal (llm-review--capture-bounds)
+                   (cons (line-beginning-position)
+                         (line-end-position))))))
+
+(ert-deftest llm-review-store-add-comment-groups-by-file ()
+  (let* ((project (llm-review-store-empty-project "/tmp/project/"))
+         (comment-1 (llm-review-tests--make-comment 1 "First comment" 3 "alpha"))
+         (comment-2 (llm-review-tests--make-comment 2 "Second comment" 8 "beta")))
+    (llm-review-store-add-comment project "src/example.el" comment-1)
+    (llm-review-store-add-comment project "src/example.el" comment-2)
+    (should (= 1 (length (llm-review-project-files project))))
+    (let ((file-review (car (llm-review-project-files project))))
+      (should (equal "src/example.el" (llm-review-file-review-relative-file file-review)))
+      (should (= 2 (length (llm-review-file-review-comments file-review)))))))
+
+(ert-deftest llm-review-serialize-roundtrip-preserves-file-grouping ()
+  (let* ((project (llm-review-store-empty-project "/tmp/project/"))
+         (comment-1 (llm-review-tests--make-comment 1 "First comment" 3 "alpha"))
+         (comment-2 (llm-review-tests--make-comment 2 "Second comment" 8 "beta"))
+         serialized
+         restored)
+    (llm-review-store-add-comment project "src/example.el" comment-1)
+    (llm-review-store-add-comment project "src/example.el" comment-2)
+    (setq serialized (llm-review-persist-serialize-project project))
+    (setq restored (llm-review-persist-deserialize-project serialized))
+    (should (= 1 (length (llm-review-project-files restored))))
+    (should (= 2 (length (llm-review-file-review-comments
+                          (car (llm-review-project-files restored))))))
+    (should (equal "Second comment"
+                   (llm-review-comment-comment
+                    (cadr (llm-review-file-review-comments
+                           (car (llm-review-project-files restored)))))))))
+
+(ert-deftest llm-review-persist-save-and-load-project ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let* ((project (llm-review-store-empty-project project-root))
+           (comment (llm-review-tests--make-comment 7 "Persist me" 1 "first")))
+      (llm-review-store-add-comment project "src/example.el" comment)
+      (llm-review-persist-save-project project)
+      (clrhash llm-review--projects-by-root)
+      (setq llm-review--next-comment-id 0)
+      (let ((loaded (llm-review-persist-load-project project-root)))
+        (should loaded)
+        (should (= 1 (llm-review-tests--project-comment-count loaded)))
+        (should (= 7 llm-review--next-comment-id))
+        (should (equal "Persist me"
+                       (llm-review-comment-comment
+                        (car (llm-review-file-review-comments
+                              (car (llm-review-project-files loaded)))))))))))
+
+(ert-deftest llm-review-render-project-plain-groups-comments-by-file ()
+  (let* ((project (llm-review-store-empty-project "/tmp/project/"))
+         (comment-1 (llm-review-tests--make-comment 1 "First comment" 3 "alpha"))
+         (comment-2 (llm-review-tests--make-comment 2 "Second comment" 8 "beta"))
+         (comment-3 (llm-review-tests--make-comment 3 "Third comment" 1 "gamma")))
+    (llm-review-store-add-comment project "src/example.el" comment-1)
+    (llm-review-store-add-comment project "src/example.el" comment-2)
+    (llm-review-store-add-comment project "src/other.el" comment-3)
+    (should
+     (equal
+      (llm-review-render-project-plain project)
+      (concat
+       "File: src/example.el\n\n"
+       "Lines: 3-3\n"
+       "Code:\nalpha\n\n"
+       "Comment:\nFirst comment\n\n"
+       "Lines: 8-8\n"
+       "Code:\nbeta\n\n"
+       "Comment:\nSecond comment\n\n"
+       "File: src/other.el\n\n"
+       "Lines: 1-1\n"
+       "Code:\ngamma\n\n"
+       "Comment:\nThird comment\n")))))
+
+(ert-deftest llm-review-capture-groups-comments-under-file ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\nthird\n"))
+    (cl-letf (((symbol-function 'read-string)
+               (let ((comments '("Comment one" "Comment two")))
+                 (lambda (&rest _args)
+                   (prog1 (car comments)
+                     (setq comments (cdr comments)))))))
+      (let ((buffer (llm-review-tests--find-file project-root "src/example.el")))
+        (unwind-protect
+            (with-current-buffer buffer
+              (goto-char (point-min))
+              (llm-review-capture)
+              (forward-line 1)
+              (llm-review-capture)
+              (let* ((project (llm-review-store-get-project (file-name-as-directory project-root)))
+                     (file-review (car (llm-review-project-files project))))
+                (should (= 1 (length (llm-review-project-files project))))
+                (should (= 2 (length (llm-review-file-review-comments file-review))))))
+          (kill-buffer buffer))))))
+
+(ert-deftest llm-review-copy-loads-persisted-project-from-disk ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((kill-ring nil)
+          (buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Persisted comment")))
+              (with-current-buffer buffer
+                (goto-char (point-min))
+                (llm-review-capture)))
+            (clrhash llm-review--projects-by-root)
+            (with-current-buffer buffer
+              (llm-review-copy))
+            (should (string-match-p "Persisted comment" (current-kill 0))))
+        (kill-buffer buffer)))))
+
+(ert-deftest llm-review-list-renders-grouped-file-sections ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n")
+                                          ("src/other.el" . "other\n"))
+    (cl-letf (((symbol-function 'read-string)
+               (let ((comments '("Comment one" "Comment two" "Comment three")))
+                 (lambda (&rest _args)
+                   (prog1 (car comments)
+                     (setq comments (cdr comments)))))))
+      (let ((example-buffer (llm-review-tests--find-file project-root "src/example.el"))
+            (other-buffer (llm-review-tests--find-file project-root "src/other.el")))
+        (unwind-protect
+            (progn
+              (with-current-buffer example-buffer
+                (goto-char (point-min))
+                (llm-review-capture)
+                (forward-line 1)
+                (llm-review-capture))
+              (with-current-buffer other-buffer
+                (goto-char (point-min))
+                (llm-review-capture))
+              (let ((buffer (llm-review-list)))
+                (unwind-protect
+                    (with-current-buffer buffer
+                      (should (string-match-p "File: src/example.el" (buffer-string)))
+                      (should (string-match-p "File: src/other.el" (buffer-string)))
+                      (should (= 2 (how-many "File: " (point-min) (point-max)))))
+                  (when (buffer-live-p buffer)
+                    (kill-buffer buffer)))))
+          (kill-buffer example-buffer)
+          (kill-buffer other-buffer))))))
+
+(ert-deftest llm-review-list-applies-faces ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Comment one")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)))
+            (let ((list-buffer (llm-review-list)))
+              (unwind-protect
+                  (with-current-buffer list-buffer
+                    (goto-char (point-min))
+                    (should (equal (get-text-property (point) 'face)
+                                   'llm-review-file-heading-face))
+                    (search-forward "Code:")
+                    (should (equal (get-text-property (match-beginning 0) 'face)
+                                   'llm-review-section-label-face)))
+                (when (buffer-live-p list-buffer)
+                  (kill-buffer list-buffer)))))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-list-auto-refreshes-after-capture ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Comment one")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)))
+            (let ((list-buffer (llm-review-list)))
+              (unwind-protect
+                  (progn
+                    (with-current-buffer list-buffer
+                      (should-not (string-match-p "Comment two" (buffer-string))))
+                    (cl-letf (((symbol-function 'read-string)
+                               (lambda (&rest _args) "Comment two")))
+                      (with-current-buffer source-buffer
+                        (forward-line 1)
+                        (llm-review-capture)))
+                    (with-current-buffer list-buffer
+                      (should (string-match-p "Comment one" (buffer-string)))
+                      (should (string-match-p "Comment two" (buffer-string)))))
+                (when (buffer-live-p list-buffer)
+                  (kill-buffer list-buffer)))))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-menu-defines-core-actions ()
+  (should (commandp 'llm-review-menu))
+  (should (transient-get-suffix 'llm-review-menu "c"))
+  (should (transient-get-suffix 'llm-review-menu "l"))
+  (should (transient-get-suffix 'llm-review-menu "w"))
+  (should (transient-get-suffix 'llm-review-menu "e"))
+  (should (transient-get-suffix 'llm-review-menu "d"))
+  (should (transient-get-suffix 'llm-review-menu "x")))
+
+(ert-deftest llm-review-delete-comment-removes-entry-and-persists-change ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (let ((comments '("Comment one" "Comment two")))
+                         (lambda (&rest _args)
+                           (prog1 (car comments)
+                             (setq comments (cdr comments)))))))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)
+                (forward-line 1)
+                (llm-review-capture)))
+            (let ((list-buffer (llm-review-list)))
+              (unwind-protect
+                  (cl-letf (((symbol-function 'yes-or-no-p)
+                             (lambda (&rest _args) t)))
+                    (with-current-buffer list-buffer
+                      (goto-char (point-min))
+                      (search-forward "Comment:\nComment one")
+                      (beginning-of-line 0)
+                      (llm-review-delete-comment)
+                      (should-not (string-match-p "Comment one" (buffer-string)))
+                      (should (string-match-p "Comment two" (buffer-string)))))
+                (when (buffer-live-p list-buffer)
+                  (kill-buffer list-buffer))))
+            (clrhash llm-review--projects-by-root)
+            (let ((loaded (llm-review-store-get-project project-root)))
+              (should (= 1 (llm-review-tests--project-comment-count loaded)))
+              (should (equal "Comment two"
+                             (llm-review-comment-comment
+                              (car (llm-review-file-review-comments
+                                    (car (llm-review-project-files loaded)))))))))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-edit-comment-updates-entry-and-persists-change ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Original comment")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)))
+            (let ((list-buffer (llm-review-list)))
+              (unwind-protect
+                  (cl-letf (((symbol-function 'read-string)
+                             (lambda (&rest _args) "Updated comment")))
+                    (with-current-buffer list-buffer
+                      (goto-char (point-min))
+                      (search-forward "Comment:\nOriginal comment")
+                      (beginning-of-line 0)
+                      (llm-review-edit-comment)
+                      (should (string-match-p "Updated comment" (buffer-string)))
+                      (should-not (string-match-p "Original comment" (buffer-string)))))
+                (when (buffer-live-p list-buffer)
+                  (kill-buffer list-buffer))))
+            (clrhash llm-review--projects-by-root)
+            (let ((loaded (llm-review-store-get-project project-root)))
+              (should (equal "Updated comment"
+                             (llm-review-comment-comment
+                              (car (llm-review-file-review-comments
+                                    (car (llm-review-project-files loaded)))))))))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-visit-jumps-to-source-entry ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
+    (cl-letf (((symbol-function 'read-string)
+               (lambda (&rest _args) "Use a more specific message.")))
+      (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+        (unwind-protect
+            (progn
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (forward-line 1)
+                (llm-review-capture))
+              (let ((list-buffer (llm-review-list)))
+                (unwind-protect
+                    (with-current-buffer list-buffer
+                      (goto-char (point-min))
+                      (search-forward "Lines: 2-2")
+                      (beginning-of-line)
+                      (llm-review-visit)
+                      (should (eq (current-buffer) source-buffer))
+                      (should (= (line-number-at-pos) 2)))
+                  (when (buffer-live-p list-buffer)
+                    (kill-buffer list-buffer)))))
+          (kill-buffer source-buffer))))))
+
+;;; llm-review-tests.el ends here

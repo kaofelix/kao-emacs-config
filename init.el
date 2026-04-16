@@ -37,6 +37,7 @@
 (require 'setup-misc-modes)
 (require 'setup-yasnippet)
 (require 'setup-project)
+(require 'setup-llm-review)
 (require 'setup-magit)
 (require 'setup-treemacs)
 (require 'setup-prog-mode)
