@@ -20,10 +20,6 @@
   (add-to-list 'auto-mode-alist
                '("docker-compose[^/]*\\.ya?ml\\'" . docker-compose-mode)))
 
-(use-package kubernetes
-  :ensure t
-  :commands (kubernetes-overview))
-
 (provide 'setup-docker)
 ;;; setup-docker.el ends here
 
