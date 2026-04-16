@@ -151,7 +151,7 @@
    ("C-/" . nil)))
 
 (use-package git-gutter
-  :after (hydra)
+  :after hydra
   :delight git-gutter-mode
   :config
   (defhydra hydra-zoom (global-map "C-x v")
@@ -159,6 +159,11 @@
     ("n" #'git-gutter:next-hunk "next")
     ("p" #'git-gutter:previous-hunk "previous"))
   (global-git-gutter-mode t)
+  (setq-default git-gutter:start-revision "HEAD")
+  (with-eval-after-load 'magit
+    (add-hook 'magit-post-stage-hook #'git-gutter:update-all-windows)
+    (add-hook 'magit-post-unstage-hook #'git-gutter:update-all-windows)
+    (add-hook 'magit-post-commit-hook #'git-gutter:update-all-windows))
   :bind
   ("C-x C-g" . #'git-gutter)
   ("C-x v =" . #'git-gutter:popup-hunk)
