@@ -177,12 +177,13 @@ walking up from the buffer's directory."
 
   (advice-add 'testrun-core--root :around #'testrun-code--root-allow-override)
 
-  (add-to-list 'testrun-runners '(yarn "yarn" "test"))
+  (add-to-list 'testrun-runners '(npx-jest "npx" "jest" "test"))
+  (add-to-list 'testrun-comint-runners 'npx-jest)
   (let ((jsts-modes
          '(js-mode js-ts-mode typescript-mode typescript-ts-mode tsx-ts-mode)))
     (dolist (key jsts-modes)
-      (setf (alist-get key testrun-mode-alist) 'yarn)))
-  (add-to-list 'testrun-runner-function-alist '(yarn . testrun-jest-get-test))
+      (setf (alist-get key testrun-mode-alist) 'npx-jest)))
+  (add-to-list 'testrun-runner-function-alist '(npx-jest . testrun-jest-get-test))
 
   :bind
   (:map prog-mode-map
