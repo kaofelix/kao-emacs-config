@@ -158,6 +158,24 @@
     "next/previous hunk"
     ("n" #'git-gutter:next-hunk "next")
     ("p" #'git-gutter:previous-hunk "previous"))
+  (defun kao/git-gutter-refresh-on-window-buffer-change (win)
+    "Refresh git-gutter when the current buffer starts showing in WIN."
+    (when (and (window-live-p win)
+               (eq (window-buffer win) (current-buffer)))
+      (with-selected-window win
+        (if git-gutter:diffinfos
+            (git-gutter:update-diffinfo git-gutter:diffinfos)
+          (git-gutter)))))
+  (add-hook 'git-gutter-mode-on-hook
+            (lambda ()
+              (add-hook 'window-buffer-change-functions
+                        #'kao/git-gutter-refresh-on-window-buffer-change
+                        nil t)))
+  (add-hook 'git-gutter-mode-off-hook
+            (lambda ()
+              (remove-hook 'window-buffer-change-functions
+                           #'kao/git-gutter-refresh-on-window-buffer-change
+                           t)))
   (global-git-gutter-mode t)
   (setq-default git-gutter:start-revision "HEAD")
   (with-eval-after-load 'magit
