@@ -527,6 +527,21 @@ Return non-nil if a comment was removed."
       (and (> (point) (point-min))
            (get-text-property (1- (point)) 'llm-review-comment-id))))
 
+(defun llm-review--display-preview-buffer (project-root)
+  "Render and display the review buffer for PROJECT-ROOT."
+  (let* ((project (or (llm-review-store-get-project project-root)
+                      (llm-review-store-empty-project project-root)))
+         (buffer (get-buffer-create (llm-review--buffer-name project-root))))
+    (llm-review-render-project-into-buffer project buffer)
+    (display-buffer buffer '(display-buffer-pop-up-window))
+    buffer))
+
+(defun llm-review--read-comment-with-preview (project-root)
+  "Prompt for a review comment while showing the project review buffer."
+  (save-window-excursion
+    (llm-review--display-preview-buffer project-root)
+    (read-string "Review comment: ")))
+
 (defun llm-review--save-project (project)
   "Persist PROJECT, or delete persisted storage when it is empty."
   (if (llm-review-project-files project)
@@ -561,7 +576,7 @@ Return non-nil if a comment was removed."
   (llm-review--ensure-file-buffer)
   (let* ((project-root (llm-review--project-root))
          (relative-file (file-relative-name buffer-file-name project-root))
-         (comment-text (read-string "Review comment: "))
+         (comment-text (llm-review--read-comment-with-preview project-root))
          (payload (llm-review--make-comment-from-context comment-text))
          (comment (plist-get payload :comment))
          (project (llm-review-store-get-project project-root t)))

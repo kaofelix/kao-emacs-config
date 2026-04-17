@@ -271,6 +271,35 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                   (kill-buffer list-buffer)))))
         (kill-buffer source-buffer)))))
 
+(ert-deftest llm-review-capture-displays-review-buffer-during-prompt ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el"))
+          preview-buffer
+          preview-action)
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Comment one")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)))
+            (cl-letf (((symbol-function 'display-buffer)
+                       (lambda (buffer-or-name action &optional _frame)
+                         (setq preview-buffer (get-buffer buffer-or-name)
+                               preview-action action)
+                         (selected-window)))
+                      ((symbol-function 'read-string)
+                       (lambda (&rest _args)
+                         (should (buffer-live-p preview-buffer))
+                         (with-current-buffer preview-buffer
+                           (should (string-match-p "Comment one" (buffer-string))))
+                         "Comment two")))
+              (with-current-buffer source-buffer
+                (forward-line 1)
+                (llm-review-capture)))
+            (should (eq (car preview-action) 'display-buffer-pop-up-window)))
+        (kill-buffer source-buffer)))))
+
 (ert-deftest llm-review-menu-defines-core-actions ()
   (should (commandp 'llm-review-menu))
   (should (transient-get-suffix 'llm-review-menu "c"))
