@@ -244,6 +244,78 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                   (kill-buffer list-buffer)))))
         (kill-buffer source-buffer)))))
 
+(ert-deftest llm-review-list-highlights-current-comment ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (let ((comments '("Comment one" "Comment two")))
+                         (lambda (&rest _args)
+                           (prog1 (car comments)
+                             (setq comments (cdr comments)))))))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)
+                (forward-line 1)
+                (llm-review-capture)))
+            (let ((list-buffer (llm-review-list)))
+              (unwind-protect
+                  (with-current-buffer list-buffer
+                    (goto-char (point-min))
+                    (let ((overlay llm-review--current-comment-overlay))
+                      (should (overlayp overlay))
+                      (should (> (overlay-start overlay) (point)))
+                      (should (string-match-p "Comment one"
+                                              (buffer-substring-no-properties
+                                               (overlay-start overlay)
+                                               (overlay-end overlay)))))
+                    (search-forward "Comment:\nComment two")
+                    (beginning-of-line 0)
+                    (llm-review--update-current-comment-highlight)
+                    (should (string-match-p "Comment two"
+                                            (buffer-substring-no-properties
+                                             (overlay-start llm-review--current-comment-overlay)
+                                             (overlay-end llm-review--current-comment-overlay)))))
+                (when (buffer-live-p list-buffer)
+                  (kill-buffer list-buffer)))))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-list-navigation-moves-between-comments ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\nthird\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (let ((comments '("Comment one" "Comment two" "Comment three")))
+                         (lambda (&rest _args)
+                           (prog1 (car comments)
+                             (setq comments (cdr comments)))))))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)
+                (forward-line 1)
+                (llm-review-capture)
+                (forward-line 1)
+                (llm-review-capture)))
+            (let ((list-buffer (llm-review-list)))
+              (unwind-protect
+                  (with-current-buffer list-buffer
+                    (goto-char (point-min))
+                    (llm-review-next-comment)
+                    (should (string-match-p "Comment two"
+                                            (buffer-substring-no-properties
+                                             (overlay-start llm-review--current-comment-overlay)
+                                             (overlay-end llm-review--current-comment-overlay))))
+                    (llm-review-previous-comment)
+                    (should (string-match-p "Comment one"
+                                            (buffer-substring-no-properties
+                                             (overlay-start llm-review--current-comment-overlay)
+                                             (overlay-end llm-review--current-comment-overlay)))))
+                (when (buffer-live-p list-buffer)
+                  (kill-buffer list-buffer)))))
+        (kill-buffer source-buffer)))))
+
 (ert-deftest llm-review-list-auto-refreshes-after-capture ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
     (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
@@ -308,6 +380,14 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
   (should (transient-get-suffix 'llm-review-menu "e"))
   (should (transient-get-suffix 'llm-review-menu "d"))
   (should (transient-get-suffix 'llm-review-menu "x")))
+
+(ert-deftest llm-review-list-mode-map-setup-adds-navigation-bindings ()
+  (let ((llm-review-list-mode-map (make-sparse-keymap)))
+    (llm-review--setup-list-mode-map llm-review-list-mode-map)
+    (should (eq (lookup-key llm-review-list-mode-map (kbd "n")) #'llm-review-next-comment))
+    (should (eq (lookup-key llm-review-list-mode-map (kbd "p")) #'llm-review-previous-comment))
+    (should (eq (lookup-key llm-review-list-mode-map (kbd "e")) #'llm-review-edit-comment))
+    (should (eq (lookup-key llm-review-list-mode-map (kbd "d")) #'llm-review-delete-comment))))
 
 (ert-deftest llm-review-delete-comment-removes-entry-and-persists-change ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))

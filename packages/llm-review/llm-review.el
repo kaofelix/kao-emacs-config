@@ -50,6 +50,10 @@
   '((t :inherit default))
   "Face for comment text in `llm-review-list-mode'.")
 
+(defface llm-review-current-comment-face
+  '((t :inherit hl-line :extend t))
+  "Face for the current comment block in `llm-review-list-mode'.")
+
 (cl-defstruct llm-review-project
   version
   project-root
@@ -84,6 +88,9 @@
 (defvar-local llm-review--project-root nil
   "Project root associated with the current LLM review list buffer.")
 
+(defvar-local llm-review--current-comment-overlay nil
+  "Overlay used to highlight the current comment block.")
+
 (defvar llm-review-after-change-hook nil
   "Hook run after LLM review data changes.
 
@@ -92,19 +99,29 @@ COMMENT-ID. ACTION is one of the symbols `capture', `edit', `delete', or
 `clear'. PROJECT is the current in-memory project object, or nil for `clear'.
 COMMENT-ID is the affected comment id when applicable.")
 
+(defun llm-review--setup-list-mode-map (map)
+  "Populate MAP with `llm-review-list-mode' bindings."
+  (set-keymap-parent map special-mode-map)
+  (define-key map (kbd "RET") #'llm-review-visit)
+  (define-key map (kbd "g") #'llm-review-list)
+  (define-key map (kbd "w") #'llm-review-copy)
+  (define-key map (kbd "e") #'llm-review-edit-comment)
+  (define-key map (kbd "d") #'llm-review-delete-comment)
+  (define-key map (kbd "n") #'llm-review-next-comment)
+  (define-key map (kbd "p") #'llm-review-previous-comment)
+  map)
+
 (defvar llm-review-list-mode-map
-  (let ((map (make-sparse-keymap)))
-    (set-keymap-parent map special-mode-map)
-    (define-key map (kbd "RET") #'llm-review-visit)
-    (define-key map (kbd "g") #'llm-review-list)
-    (define-key map (kbd "w") #'llm-review-copy)
-    (define-key map (kbd "e") #'llm-review-edit-comment)
-    (define-key map (kbd "d") #'llm-review-delete-comment)
-    map)
+  (llm-review--setup-list-mode-map (make-sparse-keymap))
   "Keymap for `llm-review-list-mode'.")
 
+(llm-review--setup-list-mode-map llm-review-list-mode-map)
+
 (define-derived-mode llm-review-list-mode special-mode "LLM-Review"
-  "Major mode for reviewing collected LLM review comments.")
+  "Major mode for reviewing collected LLM review comments."
+  (setq-local llm-review--current-comment-overlay (make-overlay (point-min) (point-min)))
+  (overlay-put llm-review--current-comment-overlay 'face 'llm-review-current-comment-face)
+  (add-hook 'post-command-hook #'llm-review--update-current-comment-highlight nil t))
 
 ;;;###autoload (autoload 'llm-review-menu "llm-review" nil t)
 (transient-define-prefix llm-review-menu ()
@@ -424,6 +441,100 @@ Return non-nil if a comment was removed."
       (when comments
         (insert "\n")))))
 
+(defun llm-review--comment-bounds-for-id (comment-id)
+  "Return bounds of COMMENT-ID in the current buffer, or nil."
+  (when-let ((start (text-property-any (point-min) (point-max)
+                                       'llm-review-comment-id
+                                       comment-id)))
+    (cons start
+          (or (next-single-property-change start 'llm-review-comment-id nil (point-max))
+              (point-max)))))
+
+(defun llm-review--comment-bounds-at-point ()
+  "Return bounds of the comment block at point, or nil."
+  (when-let ((comment-id (llm-review--comment-id-at-point)))
+    (llm-review--comment-bounds-for-id comment-id)))
+
+(defun llm-review--first-comment-bounds ()
+  "Return bounds of the first comment block in the current buffer, or nil."
+  (when-let ((start (text-property-any (point-min) (point-max)
+                                       'llm-review-comment-id
+                                       (get-text-property (point-min) 'llm-review-comment-id))))
+    (let ((comment-id (get-text-property start 'llm-review-comment-id)))
+      (llm-review--comment-bounds-for-id comment-id))))
+
+(defun llm-review--next-comment-bounds-from (position)
+  "Return bounds for the next comment block after POSITION, or nil."
+  (let ((pos position)
+        next-id)
+    (while (and (< pos (point-max)) (not next-id))
+      (setq next-id (get-text-property pos 'llm-review-comment-id))
+      (unless next-id
+        (setq pos (or (next-single-property-change pos 'llm-review-comment-id nil (point-max))
+                      (point-max)))))
+    (when next-id
+      (llm-review--comment-bounds-for-id next-id))))
+
+(defun llm-review--update-current-comment-highlight ()
+  "Update the overlay highlighting the current comment block."
+  (when (and (derived-mode-p 'llm-review-list-mode)
+             (overlayp llm-review--current-comment-overlay))
+    (if-let ((bounds (or (llm-review--comment-bounds-at-point)
+                         (llm-review--next-comment-bounds-from (point-min)))))
+        (move-overlay llm-review--current-comment-overlay
+                      (car bounds)
+                      (cdr bounds)
+                      (current-buffer))
+      (delete-overlay llm-review--current-comment-overlay))))
+
+(defun llm-review-next-comment ()
+  "Move point to the next review comment."
+  (interactive)
+  (unless (derived-mode-p 'llm-review-list-mode)
+    (user-error "Not in an LLM review list buffer"))
+  (let* ((current-start (and (overlayp llm-review--current-comment-overlay)
+                             (overlay-start llm-review--current-comment-overlay)))
+         (current-end (and (overlayp llm-review--current-comment-overlay)
+                           (overlay-end llm-review--current-comment-overlay)))
+         (bounds (or (and current-end
+                          (llm-review--next-comment-bounds-from current-end))
+                     (llm-review--next-comment-bounds-from (point-min)))))
+    (if (and bounds (not (equal (car bounds) current-start)))
+        (progn
+          (goto-char (car bounds))
+          (llm-review--update-current-comment-highlight))
+      (user-error "No next review comment"))))
+
+(defun llm-review--all-comment-starts ()
+  "Return a list of all comment block start positions in the current buffer."
+  (let ((pos (point-min))
+        starts)
+    (while (< pos (point-max))
+      (when-let ((bounds (llm-review--next-comment-bounds-from pos)))
+        (push (car bounds) starts)
+        (setq pos (cdr bounds)))
+      (unless (llm-review--next-comment-bounds-from pos)
+        (setq pos (point-max))))
+    (nreverse starts)))
+
+(defun llm-review-previous-comment ()
+  "Move point to the previous review comment."
+  (interactive)
+  (unless (derived-mode-p 'llm-review-list-mode)
+    (user-error "Not in an LLM review list buffer"))
+  (let* ((current-start (and (overlayp llm-review--current-comment-overlay)
+                             (overlay-start llm-review--current-comment-overlay)))
+         (starts (llm-review--all-comment-starts))
+         (previous-start nil))
+    (dolist (start starts)
+      (when (and current-start (< start current-start))
+        (setq previous-start start)))
+    (if previous-start
+        (progn
+          (goto-char previous-start)
+          (llm-review--update-current-comment-highlight))
+      (user-error "No previous review comment"))))
+
 (defun llm-review-render-project-into-buffer (project buffer)
   "Render PROJECT into BUFFER."
   (with-current-buffer buffer
@@ -439,7 +550,8 @@ Return non-nil if a comment was removed."
             (when file-reviews
               (insert "\n\n")))
         (insert "No review comments collected for this project.\n"))
-      (goto-char (point-min))))
+      (goto-char (point-min))
+      (llm-review--update-current-comment-highlight)))
   buffer)
 
 (defun llm-review-nav-register-comment (comment-id marker-start marker-end)
