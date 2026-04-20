@@ -11,7 +11,10 @@
   (:map magit-mode-map
    ("C-M-u" . #'magit-section-up))
   (:map magit-status-mode-map
-   ("e" . #'kao/magit-ediff-dwim))
+   ("e" . #'kao/magit-ediff-dwim)
+   ("o" . #'magit-diff-visit-worktree-file-other-window))
+  (:map magit-revision-mode-map
+   ("o" . #'magit-diff-visit-worktree-file-other-window))
   :config
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
 
