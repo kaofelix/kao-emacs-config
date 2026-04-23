@@ -34,6 +34,14 @@
   "Directory where persisted LLM review projects are stored."
   :type 'directory)
 
+(defcustom llm-review-clear-on-copy t
+  "Whether `llm-review-copy' should clear active comments after copying."
+  :type 'boolean)
+
+(defcustom llm-review-history-length 20
+  "Maximum number of archived exports to keep per project."
+  :type 'integer)
+
 (defface llm-review-file-heading-face
   '((t :inherit bold :height 1.1))
   "Face for file headings in `llm-review-list-mode'.")
@@ -76,11 +84,19 @@
   created-at
   updated-at)
 
+(cl-defstruct llm-review-history-entry
+  exported-at
+  export-text
+  project-snapshot)
+
 (defvar llm-review--projects-by-root (make-hash-table :test #'equal)
   "Hash table of `llm-review-project' objects keyed by project root.")
 
 (defvar llm-review--comment-locators (make-hash-table :test #'eql)
   "Hash table of ephemeral comment locators keyed by comment id.")
+
+(defvar llm-review--history-by-root (make-hash-table :test #'equal)
+  "Hash table of archived export history keyed by project root.")
 
 (defvar llm-review--next-comment-id 0
   "Next numeric identifier for `llm-review-comment' objects.")
@@ -111,6 +127,14 @@ COMMENT-ID is the affected comment id when applicable.")
   (define-key map (kbd "p") #'llm-review-previous-comment)
   map)
 
+(defvar llm-review-history-mode-map
+  (let ((map (make-sparse-keymap)))
+    (set-keymap-parent map special-mode-map)
+    (define-key map (kbd "g") #'llm-review-history)
+    (define-key map (kbd "w") #'llm-review-history-copy-entry)
+    map)
+  "Keymap for `llm-review-history-mode'.")
+
 (defvar llm-review-list-mode-map
   (llm-review--setup-list-mode-map (make-sparse-keymap))
   "Keymap for `llm-review-list-mode'.")
@@ -123,6 +147,9 @@ COMMENT-ID is the affected comment id when applicable.")
   (overlay-put llm-review--current-comment-overlay 'face 'llm-review-current-comment-face)
   (add-hook 'post-command-hook #'llm-review--update-current-comment-highlight nil t))
 
+(define-derived-mode llm-review-history-mode special-mode "LLM-Review-History"
+  "Major mode for browsing archived LLM review exports.")
+
 ;;;###autoload (autoload 'llm-review-menu "llm-review" nil t)
 (transient-define-prefix llm-review-menu ()
   "Open the LLM review command menu."
@@ -134,6 +161,8 @@ COMMENT-ID is the affected comment id when applicable.")
    ["Item"
     ("e" "Edit at point" llm-review-edit-comment)
     ("d" "Delete at point" llm-review-delete-comment)]
+   ["History"
+    ("h" "History" llm-review-history)]
    ["Project"
     ("x" "Clear project" llm-review-clear-project)]])
 
@@ -145,7 +174,13 @@ COMMENT-ID is the affected comment id when applicable.")
      (or project (llm-review-store-empty-project project-root))
      comment-id)))
 
+(defun llm-review-refresh-open-history-buffer (_action project-root _project _comment-id)
+  "Refresh the open history buffer for PROJECT-ROOT, if any."
+  (when-let ((buffer (get-buffer (llm-review--history-buffer-name project-root))))
+    (llm-review-render-history-into-buffer project-root buffer)))
+
 (add-hook 'llm-review-after-change-hook #'llm-review-refresh-open-list-buffer)
+(add-hook 'llm-review-after-change-hook #'llm-review-refresh-open-history-buffer)
 
 (defun llm-review-store-empty-project (project-root)
   "Create an empty review project for PROJECT-ROOT."
@@ -174,6 +209,12 @@ COMMENT-ID is the affected comment id when applicable.")
   "Return persistence file path for PROJECT-ROOT."
   (expand-file-name
    (format "%s.el" (secure-hash 'sha1 (file-name-as-directory project-root)))
+   llm-review-storage-directory))
+
+(defun llm-review-persist-history-file (project-root)
+  "Return history persistence file path for PROJECT-ROOT."
+  (expand-file-name
+   (format "%s-history.el" (secure-hash 'sha1 (file-name-as-directory project-root)))
    llm-review-storage-directory))
 
 (defun llm-review-persist-serialize-comment (comment)
@@ -263,6 +304,54 @@ Return nil if no persisted data exists."
   (let ((file (llm-review-persist-project-file project-root)))
     (when (file-exists-p file)
       (delete-file file))))
+
+(defun llm-review-history-serialize-entry (entry)
+  "Serialize history ENTRY into a plist."
+  (list :exported-at (llm-review-history-entry-exported-at entry)
+        :export-text (llm-review-history-entry-export-text entry)
+        :project-snapshot (llm-review-history-entry-project-snapshot entry)))
+
+(defun llm-review-history-deserialize-entry (data)
+  "Deserialize history entry DATA plist into a struct."
+  (make-llm-review-history-entry
+   :exported-at (plist-get data :exported-at)
+   :export-text (plist-get data :export-text)
+   :project-snapshot (plist-get data :project-snapshot)))
+
+(defun llm-review-history-save-entries (project-root entries)
+  "Persist history ENTRIES for PROJECT-ROOT and cache them in memory."
+  (let* ((project-root (file-name-as-directory project-root))
+         (file (llm-review-persist-history-file project-root)))
+    (make-directory (file-name-directory file) t)
+    (with-temp-file file
+      (let ((print-length nil)
+            (print-level nil))
+        (prin1 (mapcar #'llm-review-history-serialize-entry entries) (current-buffer))))
+    (puthash project-root entries llm-review--history-by-root)
+    entries))
+
+(defun llm-review-history-get-entries (project-root)
+  "Return archived export entries for PROJECT-ROOT."
+  (let* ((project-root (file-name-as-directory project-root))
+         (cached (gethash project-root llm-review--history-by-root)))
+    (or cached
+        (let ((file (llm-review-persist-history-file project-root)))
+          (when (file-exists-p file)
+            (let ((entries (with-temp-buffer
+                             (insert-file-contents file)
+                             (goto-char (point-min))
+                             (mapcar #'llm-review-history-deserialize-entry
+                                     (read (current-buffer))))))
+              (puthash project-root entries llm-review--history-by-root)
+              entries))))))
+
+(defun llm-review-history-add-entry (project-root entry)
+  "Archive ENTRY for PROJECT-ROOT and persist history."
+  (let* ((project-root (file-name-as-directory project-root))
+         (entries (cons entry (llm-review-history-get-entries project-root))))
+    (llm-review-history-save-entries
+     project-root
+     (seq-take entries llm-review-history-length))))
 
 (defun llm-review-store-get-project (project-root &optional create)
   "Return review project for PROJECT-ROOT.
@@ -378,7 +467,7 @@ Return non-nil if a comment was removed."
                    (< (llm-review-comment-id left)
                       (llm-review-comment-id right)))))))
 
-(defun llm-review-render-comment-plain (relative-file comment)
+(defun llm-review-render-export-comment (relative-file comment)
   "Render COMMENT from RELATIVE-FILE as compact plain text."
   (format "%s:%d-%d\n```\n%s\n```\n\n%s"
           relative-file
@@ -391,7 +480,7 @@ Return non-nil if a comment was removed."
   "Render FILE-REVIEW as compact plain text."
   (string-join
    (mapcar (lambda (comment)
-             (llm-review-render-comment-plain
+             (llm-review-render-export-comment
               (llm-review-file-review-relative-file file-review)
               comment))
            (llm-review-store-sorted-comments file-review))
@@ -611,6 +700,11 @@ Return non-nil if a comment was removed."
   (format "*LLM Review: %s*"
           (file-name-nondirectory (directory-file-name project-root))))
 
+(defun llm-review--history-buffer-name (project-root)
+  "Return history buffer name for PROJECT-ROOT."
+  (format "*LLM Review History: %s*"
+          (file-name-nondirectory (directory-file-name project-root))))
+
 (defun llm-review--next-comment-id ()
   "Return the next comment id."
   (cl-incf llm-review--next-comment-id))
@@ -663,6 +757,24 @@ Return non-nil if a comment was removed."
       (llm-review-persist-delete-project (llm-review-project-project-root project))
       nil)))
 
+(defun llm-review--archive-project-export (project export-text)
+  "Archive PROJECT with EXPORT-TEXT in history."
+  (llm-review-history-add-entry
+   (llm-review-project-project-root project)
+   (make-llm-review-history-entry
+    :exported-at (current-time)
+    :export-text export-text
+    :project-snapshot (llm-review-persist-serialize-project project))))
+
+(defun llm-review--clear-active-project (project-root)
+  "Clear active comments for PROJECT-ROOT without touching history."
+  (let ((project (llm-review-store-get-project project-root)))
+    (when project
+      (llm-review-nav-clear-project-locators project))
+    (remhash project-root llm-review--projects-by-root)
+    (llm-review-persist-delete-project project-root)
+    (llm-review--notify-change 'clear project-root nil nil)))
+
 (defun llm-review--notify-change (action project-root &optional project comment-id)
   "Notify listeners of ACTION for PROJECT-ROOT."
   (run-hook-with-args 'llm-review-after-change-hook
@@ -680,6 +792,39 @@ Return non-nil if a comment was removed."
                                          'llm-review-comment-id
                                          comment-id)))
         (goto-char pos)))))
+
+(defun llm-review-render-history-into-buffer (project-root buffer)
+  "Render archived history for PROJECT-ROOT into BUFFER."
+  (let ((entries (llm-review-history-get-entries project-root)))
+    (with-current-buffer buffer
+      (let ((inhibit-read-only t))
+        (llm-review-history-mode)
+        (setq-local llm-review--project-root project-root)
+        (erase-buffer)
+        (if entries
+            (dolist (entry entries)
+              (let ((start (point)))
+                (insert (format-time-string "%Y-%m-%d %H:%M:%S"
+                                            (llm-review-history-entry-exported-at entry))
+                        "\n\n"
+                        (llm-review-history-entry-export-text entry)
+                        "\n")
+                (add-text-properties start (point)
+                                     `(llm-review-history-entry ,entry))))
+          (insert "No archived exports for this project.\n"))
+        (goto-char (point-min)))))
+  buffer)
+
+(defun llm-review-history-copy-entry ()
+  "Copy the archived export at point to the kill ring."
+  (interactive)
+  (unless (derived-mode-p 'llm-review-history-mode)
+    (user-error "Not in an LLM review history buffer"))
+  (if-let ((entry (get-text-property (point) 'llm-review-history-entry)))
+      (progn
+        (kill-new (llm-review-history-entry-export-text entry))
+        (message "Copied archived review export"))
+    (user-error "No archived export at point")))
 
 ;;;###autoload
 (defun llm-review-capture ()
@@ -712,8 +857,12 @@ Return non-nil if a comment was removed."
          (project (llm-review-store-get-project project-root)))
     (unless (and project (llm-review-project-files project))
       (user-error "No review comments collected for this project"))
-    (kill-new (llm-review-render-project-plain project))
-    (let ((count (length (llm-review-store-project-comment-ids project))))
+    (let* ((export-text (llm-review-render-project-plain project))
+           (count (length (llm-review-store-project-comment-ids project))))
+      (llm-review--archive-project-export project export-text)
+      (kill-new export-text)
+      (when llm-review-clear-on-copy
+        (llm-review--clear-active-project project-root))
       (message "Copied %d review comment%s"
                count
                (if (= count 1) "" "s")))))
@@ -788,16 +937,20 @@ Return non-nil if a comment was removed."
       (message "Deleted review comment"))))
 
 ;;;###autoload
+(defun llm-review-history ()
+  "Display archived exports for the current project."
+  (interactive)
+  (let* ((project-root (llm-review--project-root))
+         (buffer (get-buffer-create (llm-review--history-buffer-name project-root))))
+    (llm-review-render-history-into-buffer project-root buffer)
+    (pop-to-buffer buffer)
+    buffer))
+
 (defun llm-review-clear-project ()
   "Clear collected review comments for the current project."
   (interactive)
-  (let* ((project-root (llm-review--project-root))
-         (project (llm-review-store-get-project project-root)))
-    (when project
-      (llm-review-nav-clear-project-locators project))
-    (remhash project-root llm-review--projects-by-root)
-    (llm-review-persist-delete-project project-root)
-    (llm-review--notify-change 'clear project-root nil nil)
+  (let ((project-root (llm-review--project-root)))
+    (llm-review--clear-active-project project-root)
     (message "Cleared review comments for %s"
              (file-name-nondirectory (directory-file-name project-root)))))
 

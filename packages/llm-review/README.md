@@ -10,6 +10,7 @@
 - Jump back to source locations
 - Edit or delete comments from the review buffer
 - Copy all comments for the current project to the kill ring
+- Archive copied comments in a separate history buffer
 - Persist comments across Emacs sessions
 - Transient menu for common actions
 
@@ -21,6 +22,7 @@
 - `llm-review-copy`
 - `llm-review-edit-comment`
 - `llm-review-delete-comment`
+- `llm-review-history`
 - `llm-review-clear-project`
 
 ## Review buffer keys
@@ -45,7 +47,7 @@ The package does not define a default global keybinding.
 
 ## Persistence
 
-Projects are stored under `llm-review-storage-directory`.
+Projects and archived exports are stored under `llm-review-storage-directory`.
 
 ## Tests
 

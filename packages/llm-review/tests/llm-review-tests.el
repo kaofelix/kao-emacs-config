@@ -173,7 +173,7 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                 (should (= 2 (length (llm-review-file-review-comments file-review))))))
           (kill-buffer buffer))))))
 
-(ert-deftest llm-review-copy-loads-persisted-project-from-disk ()
+(ert-deftest llm-review-copy-archives-and-clears-project ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
     (let ((kill-ring nil)
           (buffer (llm-review-tests--find-file project-root "src/example.el")))
@@ -187,7 +187,31 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
             (clrhash llm-review--projects-by-root)
             (with-current-buffer buffer
               (llm-review-copy))
-            (should (string-match-p "Persisted comment" (current-kill 0))))
+            (should (string-match-p "Persisted comment" (current-kill 0)))
+            (should-not (llm-review-store-get-project project-root))
+            (let ((history (llm-review-history-get-entries project-root)))
+              (should (= 1 (length history)))
+              (should (string-match-p "Persisted comment"
+                                      (llm-review-history-entry-export-text (car history))))))
+        (kill-buffer buffer)))))
+
+(ert-deftest llm-review-history-renders-archived-exports ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Archived comment")))
+              (with-current-buffer buffer
+                (goto-char (point-min))
+                (llm-review-capture)
+                (llm-review-copy)))
+            (let ((history-buffer (llm-review-history)))
+              (unwind-protect
+                  (with-current-buffer history-buffer
+                    (should (string-match-p "Archived comment" (buffer-string))))
+                (when (buffer-live-p history-buffer)
+                  (kill-buffer history-buffer)))))
         (kill-buffer buffer)))))
 
 (ert-deftest llm-review-list-renders-grouped-file-sections ()
@@ -379,6 +403,7 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
   (should (transient-get-suffix 'llm-review-menu "w"))
   (should (transient-get-suffix 'llm-review-menu "e"))
   (should (transient-get-suffix 'llm-review-menu "d"))
+  (should (transient-get-suffix 'llm-review-menu "h"))
   (should (transient-get-suffix 'llm-review-menu "x")))
 
 (ert-deftest llm-review-list-mode-map-setup-adds-navigation-bindings ()

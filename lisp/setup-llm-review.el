@@ -12,6 +12,7 @@
   :commands (llm-review-menu
              llm-review-capture
              llm-review-list
+             llm-review-history
              llm-review-copy
              llm-review-clear-project)
   :bind (("C-c l" . llm-review-menu)))
