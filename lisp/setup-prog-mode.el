@@ -198,26 +198,6 @@ walking up from the buffer's directory."
    ("a" . testrun-all)
    ("l" . testrun-last)))
 
-(use-package copilot
-  :vc (:url "https://github.com/copilot-emacs/copilot.el" :rev :newest)
-  :hook ((prog-mode . copilot-mode)
-         (prog-mode . copilot-nes-mode))
-  :bind (:map copilot-mode-map
-         ("s-i" . 'copilot-complete)
-         ("C-s-i" . 'copilot-accept-completion-by-word)
-         ("C-s-j" . 'copilot-accept-completion-by-line)
-         :map copilot-completion-map
-         ("s-i" . 'copilot-accept-completion)
-         ("C-g" . 'copilot-clear-overlay)
-         ("M-p" . 'copilot-previous-completion)
-         ("M-n" . 'copilot-next-completion)
-         ("M-f" . 'copilot-accept-completion-by-word)
-         ("M-j" . 'copilot-accept-completion-by-line))
-  :custom
-  (copilot-idle-delay 0.2)
-  (copilot-indent-offset-warning-disable t)
-  (copilot-max-char 800000))
-
 (use-package treesit
   :ensure nil
   :mode (("\\.tsx\\'" . tsx-ts-mode))
