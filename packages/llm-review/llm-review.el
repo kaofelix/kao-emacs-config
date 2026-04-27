@@ -793,6 +793,25 @@ Return non-nil if a comment was removed."
                                          comment-id)))
         (goto-char pos)))))
 
+(defun llm-review-render-history-entry-into-buffer (entry)
+  "Insert archived history ENTRY into the current buffer."
+  (let* ((start (point))
+         (project (llm-review-persist-deserialize-project
+                   (llm-review-history-entry-project-snapshot entry))))
+    (insert (propertize (format-time-string "%Y-%m-%d %H:%M:%S"
+                                            (llm-review-history-entry-exported-at entry))
+                        'face 'llm-review-file-heading-face)
+            "\n\n")
+    (let ((file-reviews (llm-review-store-sorted-file-reviews project)))
+      (while file-reviews
+        (llm-review-render-file-review-into-buffer (car file-reviews))
+        (setq file-reviews (cdr file-reviews))
+        (when file-reviews
+          (insert "\n\n"))))
+    (insert "\n")
+    (add-text-properties start (point)
+                         `(llm-review-history-entry ,entry))))
+
 (defun llm-review-render-history-into-buffer (project-root buffer)
   "Render archived history for PROJECT-ROOT into BUFFER."
   (let ((entries (llm-review-history-get-entries project-root)))
@@ -802,15 +821,12 @@ Return non-nil if a comment was removed."
         (setq-local llm-review--project-root project-root)
         (erase-buffer)
         (if entries
-            (dolist (entry entries)
-              (let ((start (point)))
-                (insert (format-time-string "%Y-%m-%d %H:%M:%S"
-                                            (llm-review-history-entry-exported-at entry))
-                        "\n\n"
-                        (llm-review-history-entry-export-text entry)
-                        "\n")
-                (add-text-properties start (point)
-                                     `(llm-review-history-entry ,entry))))
+            (let ((remaining entries))
+              (while remaining
+                (llm-review-render-history-entry-into-buffer (car remaining))
+                (setq remaining (cdr remaining))
+                (when remaining
+                  (insert "\n\n"))))
           (insert "No archived exports for this project.\n"))
         (goto-char (point-min)))))
   buffer)

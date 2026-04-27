@@ -209,7 +209,16 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
             (let ((history-buffer (llm-review-history)))
               (unwind-protect
                   (with-current-buffer history-buffer
-                    (should (string-match-p "Archived comment" (buffer-string))))
+                    (goto-char (point-min))
+                    (should (string-match-p "Archived comment" (buffer-string)))
+                    (should (equal (get-text-property (point) 'face)
+                                   'llm-review-file-heading-face))
+                    (search-forward "File: src/example.el")
+                    (should (equal (get-text-property (match-beginning 0) 'face)
+                                   'llm-review-file-heading-face))
+                    (search-forward "Code:")
+                    (should (equal (get-text-property (match-beginning 0) 'face)
+                                   'llm-review-section-label-face)))
                 (when (buffer-live-p history-buffer)
                   (kill-buffer history-buffer)))))
         (kill-buffer buffer)))))
@@ -244,6 +253,28 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                     (kill-buffer buffer)))))
           (kill-buffer example-buffer)
           (kill-buffer other-buffer))))))
+
+(ert-deftest llm-review-history-copy-entry-copies-export-text ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((kill-ring nil)
+          (buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "History copy comment")))
+              (with-current-buffer buffer
+                (goto-char (point-min))
+                (llm-review-capture)
+                (llm-review-copy)))
+            (let ((history-buffer (llm-review-history)))
+              (unwind-protect
+                  (with-current-buffer history-buffer
+                    (goto-char (point-min))
+                    (llm-review-history-copy-entry)
+                    (should (string-match-p "History copy comment" (current-kill 0))))
+                (when (buffer-live-p history-buffer)
+                  (kill-buffer history-buffer)))))
+        (kill-buffer buffer)))))
 
 (ert-deftest llm-review-list-applies-faces ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
