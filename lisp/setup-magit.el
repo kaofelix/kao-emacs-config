@@ -27,7 +27,25 @@
   ;; cause magit-process-filter to discard the actual hook output.
   ;; Trade-off: Magit can't prompt for SSH passphrases interactively
   ;; (use ssh-agent, credential helpers, or keychain instead).
-  (magit-process-connection-type nil))
+  (magit-process-connection-type nil)
+  ;; Reorder status sections: Stashes after Unmerged into ...
+  (magit-status-sections-hook
+   (list #'magit-insert-status-headers
+         #'magit-insert-merge-log
+         #'magit-insert-rebase-sequence
+         #'magit-insert-am-sequence
+         #'magit-insert-sequencer-sequence
+         #'magit-insert-bisect-output
+         #'magit-insert-bisect-rest
+         #'magit-insert-bisect-log
+         #'magit-insert-untracked-files
+         #'magit-insert-unstaged-changes
+         #'magit-insert-staged-changes
+         #'magit-insert-unpushed-to-pushremote
+         #'magit-insert-unpushed-to-upstream-or-recent
+         #'magit-insert-stashes
+         #'magit-insert-unpulled-from-pushremote
+         #'magit-insert-unpulled-from-upstream)))
 
 (defun kao/magit-ediff-dwim ()
   "Run magit-ediff-dwim, but open new files directly instead of ediffing."
