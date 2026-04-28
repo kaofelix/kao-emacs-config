@@ -45,6 +45,7 @@
 ;;; Generated autoloads from setup-treemacs.el
 
 (register-definition-prefixes "setup-treemacs" '("kao/treemacs-close"))
+
 
 ;;; End of scraped data
 
