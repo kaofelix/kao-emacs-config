@@ -168,7 +168,7 @@ COMMENT-ID is the affected comment id when applicable.")
 
 (defun llm-review-refresh-open-list-buffer (_action project-root project comment-id)
   "Refresh the open list buffer for PROJECT-ROOT, if any."
-  (when-let ((buffer (get-buffer (llm-review--buffer-name project-root))))
+  (when-let* ((buffer (get-buffer (llm-review--buffer-name project-root))))
     (llm-review--refresh-list-buffer
      buffer
      (or project (llm-review-store-empty-project project-root))
@@ -176,7 +176,7 @@ COMMENT-ID is the affected comment id when applicable.")
 
 (defun llm-review-refresh-open-history-buffer (_action project-root _project _comment-id)
   "Refresh the open history buffer for PROJECT-ROOT, if any."
-  (when-let ((buffer (get-buffer (llm-review--history-buffer-name project-root))))
+  (when-let* ((buffer (get-buffer (llm-review--history-buffer-name project-root))))
     (llm-review-render-history-into-buffer project-root buffer)))
 
 (add-hook 'llm-review-after-change-hook #'llm-review-refresh-open-list-buffer)
@@ -496,6 +496,10 @@ Return non-nil if a comment was removed."
         rendered
       (concat rendered "\n"))))
 
+(defun llm-review--propertize-code (text)
+  "Return TEXT with faces suitable for displaying source code."
+  (propertize text 'face '(llm-review-code-face fixed-pitch)))
+
 (defun llm-review-render-comment-into-buffer (comment)
   "Insert COMMENT into current buffer and add navigation properties."
   (let ((start (point)))
@@ -506,8 +510,7 @@ Return non-nil if a comment was removed."
             "\n"
             (propertize "Code:" 'face 'llm-review-section-label-face)
             "\n"
-            (propertize (llm-review-comment-snippet comment)
-                        'face 'llm-review-code-face)
+            (llm-review--propertize-code (llm-review-comment-snippet comment))
             "\n\n"
             (propertize "Comment:" 'face 'llm-review-section-label-face)
             "\n"
@@ -532,7 +535,7 @@ Return non-nil if a comment was removed."
 
 (defun llm-review--comment-bounds-for-id (comment-id)
   "Return bounds of COMMENT-ID in the current buffer, or nil."
-  (when-let ((start (text-property-any (point-min) (point-max)
+  (when-let* ((start (text-property-any (point-min) (point-max)
                                        'llm-review-comment-id
                                        comment-id)))
     (cons start
@@ -541,12 +544,12 @@ Return non-nil if a comment was removed."
 
 (defun llm-review--comment-bounds-at-point ()
   "Return bounds of the comment block at point, or nil."
-  (when-let ((comment-id (llm-review--comment-id-at-point)))
+  (when-let* ((comment-id (llm-review--comment-id-at-point)))
     (llm-review--comment-bounds-for-id comment-id)))
 
 (defun llm-review--first-comment-bounds ()
   "Return bounds of the first comment block in the current buffer, or nil."
-  (when-let ((start (text-property-any (point-min) (point-max)
+  (when-let* ((start (text-property-any (point-min) (point-max)
                                        'llm-review-comment-id
                                        (get-text-property (point-min) 'llm-review-comment-id))))
     (let ((comment-id (get-text-property start 'llm-review-comment-id)))
@@ -568,7 +571,7 @@ Return non-nil if a comment was removed."
   "Update the overlay highlighting the current comment block."
   (when (and (derived-mode-p 'llm-review-list-mode)
              (overlayp llm-review--current-comment-overlay))
-    (if-let ((bounds (or (llm-review--comment-bounds-at-point)
+    (if-let* ((bounds (or (llm-review--comment-bounds-at-point)
                          (llm-review--next-comment-bounds-from (point-min)))))
         (move-overlay llm-review--current-comment-overlay
                       (car bounds)
@@ -599,7 +602,7 @@ Return non-nil if a comment was removed."
   (let ((pos (point-min))
         starts)
     (while (< pos (point-max))
-      (when-let ((bounds (llm-review--next-comment-bounds-from pos)))
+      (when-let* ((bounds (llm-review--next-comment-bounds-from pos)))
         (push (car bounds) starts)
         (setq pos (cdr bounds)))
       (unless (llm-review--next-comment-bounds-from pos)
@@ -678,7 +681,7 @@ Return non-nil if a comment was removed."
   (cond
    (llm-review--project-root
     llm-review--project-root)
-   ((if-let ((current-project (project-current nil)))
+   ((if-let* ((current-project (project-current nil)))
         (file-name-as-directory (project-root current-project))
       nil))
    (t
@@ -788,7 +791,7 @@ Return non-nil if a comment was removed."
   (with-current-buffer buffer
     (llm-review-render-project-into-buffer project buffer)
     (when comment-id
-      (when-let ((pos (text-property-any (point-min) (point-max)
+      (when-let* ((pos (text-property-any (point-min) (point-max)
                                          'llm-review-comment-id
                                          comment-id)))
         (goto-char pos)))))
@@ -836,7 +839,7 @@ Return non-nil if a comment was removed."
   (interactive)
   (unless (derived-mode-p 'llm-review-history-mode)
     (user-error "Not in an LLM review history buffer"))
-  (if-let ((entry (get-text-property (point) 'llm-review-history-entry)))
+  (if-let* ((entry (get-text-property (point) 'llm-review-history-entry)))
       (progn
         (kill-new (llm-review-history-entry-export-text entry))
         (message "Copied archived review export"))
