@@ -62,6 +62,43 @@
   '((t :inherit hl-line :extend t))
   "Face for the current comment block in `llm-review-list-mode'.")
 
+(defface llm-review-source-marker-face
+  '((t :inherit warning))
+  "Face for source buffer fringe markers that indicate active review comments.")
+
+(define-fringe-bitmap 'llm-review-fringe-top
+  [#b11111000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000]
+  nil 8 'center)
+
+(define-fringe-bitmap 'llm-review-fringe-middle
+  [#b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000]
+  nil 8 'center)
+
+(define-fringe-bitmap 'llm-review-fringe-bottom
+  [#b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b11111000]
+  nil 8 'center)
+
 (cl-defstruct llm-review-project
   version
   project-root
@@ -94,6 +131,9 @@
 
 (defvar llm-review--comment-locators (make-hash-table :test #'eql)
   "Hash table of ephemeral comment locators keyed by comment id.")
+
+(defvar llm-review--source-overlays (make-hash-table :test #'eql)
+  "Hash table of source buffer marker overlays keyed by comment id.")
 
 (defvar llm-review--history-by-root (make-hash-table :test #'equal)
   "Hash table of archived export history keyed by project root.")
@@ -195,6 +235,7 @@ COMMENT-ID is the affected comment id when applicable.")
 
 (add-hook 'llm-review-after-change-hook #'llm-review-refresh-open-list-buffer)
 (add-hook 'llm-review-after-change-hook #'llm-review-refresh-open-history-buffer)
+(add-hook 'find-file-hook #'llm-review-source-refresh-buffer-markers)
 
 (defun llm-review-store-empty-project (project-root)
   "Create an empty review project for PROJECT-ROOT."
@@ -454,7 +495,8 @@ Return non-nil if a comment was removed."
     (when deleted
       (setf (llm-review-project-files project) (nreverse remaining-files)
             (llm-review-project-updated-at project) now)
-      (remhash comment-id llm-review--comment-locators))
+      (remhash comment-id llm-review--comment-locators)
+      (llm-review-source-delete-marker comment-id))
     deleted))
 
 (defun llm-review-store-project-comment-ids (project)
@@ -667,6 +709,89 @@ Return non-nil if a comment was removed."
                  :marker-end (copy-marker marker-end))
            llm-review--comment-locators))
 
+(defun llm-review-source-marker-string (bitmap)
+  "Return a fringe marker string displaying BITMAP."
+  (propertize "!" 'display `(left-fringe ,bitmap llm-review-source-marker-face)))
+
+(defun llm-review-source-delete-marker (comment-id)
+  "Delete source marker overlays for COMMENT-ID, if any."
+  (when-let* ((overlays (gethash comment-id llm-review--source-overlays)))
+    (dolist (overlay (if (listp overlays) overlays (list overlays)))
+      (delete-overlay overlay))
+    (remhash comment-id llm-review--source-overlays)))
+
+(defun llm-review-source--line-starts (start end)
+  "Return line start positions touched by the range START to END."
+  (let ((effective-end (if (and (> end start)
+                                (save-excursion
+                                  (goto-char end)
+                                  (bolp)))
+                           (1- end)
+                         end))
+        starts)
+    (save-excursion
+      (goto-char start)
+      (beginning-of-line)
+      (while (<= (point) effective-end)
+        (push (point) starts)
+        (forward-line 1))
+      (nreverse starts))))
+
+(defun llm-review-source--bitmap-for-line (index count)
+  "Return fringe bitmap for line INDEX out of COUNT marked lines."
+  (cond
+   ((= count 1) 'llm-review-fringe-top)
+   ((= index 0) 'llm-review-fringe-top)
+   ((= index (1- count)) 'llm-review-fringe-bottom)
+   (t 'llm-review-fringe-middle)))
+
+(defun llm-review-source-add-marker (comment-id start end &optional comment-text)
+  "Add source fringe marker overlays for COMMENT-ID between START and END.
+
+COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
+  (llm-review-source-delete-marker comment-id)
+  (let* ((line-starts (llm-review-source--line-starts start end))
+         (count (length line-starts))
+         overlays)
+    (cl-loop for line-start in line-starts
+             for index from 0
+             for bitmap = (llm-review-source--bitmap-for-line index count)
+             do (let ((overlay (make-overlay line-start line-start nil nil t)))
+                  (overlay-put overlay 'before-string
+                               (llm-review-source-marker-string bitmap))
+                  (overlay-put overlay 'help-echo (or comment-text "LLM review comment"))
+                  (overlay-put overlay 'priority 1)
+                  (overlay-put overlay 'llm-review-comment-id comment-id)
+                  (push overlay overlays)))
+    (setq overlays (nreverse overlays))
+    (puthash comment-id overlays llm-review--source-overlays)
+    overlays))
+
+(defun llm-review-source--comment-bounds (comment)
+  "Return buffer bounds for COMMENT using persisted line metadata."
+  (save-excursion
+    (goto-char (point-min))
+    (forward-line (1- (llm-review-comment-line-start comment)))
+    (let ((start (point)))
+      (goto-char (point-min))
+      (forward-line (1- (llm-review-comment-line-end comment)))
+      (cons start (line-end-position)))))
+
+(defun llm-review-source-refresh-buffer-markers ()
+  "Restore active review markers for the current source buffer."
+  (when buffer-file-name
+    (when-let* ((project-root (ignore-errors (llm-review--project-root)))
+                (project (llm-review-store-get-project project-root))
+                (file-review (llm-review-store-find-file-review
+                              project
+                              (file-relative-name buffer-file-name project-root))))
+      (dolist (comment (llm-review-file-review-comments file-review))
+        (let ((bounds (llm-review-source--comment-bounds comment)))
+          (llm-review-source-add-marker (llm-review-comment-id comment)
+                                        (car bounds)
+                                        (cdr bounds)
+                                        (llm-review-comment-comment comment)))))))
+
 (defun llm-review-nav-find-comment-locator (comment-id)
   "Return runtime locator for COMMENT-ID, if any."
   (gethash comment-id llm-review--comment-locators))
@@ -674,7 +799,8 @@ Return non-nil if a comment was removed."
 (defun llm-review-nav-clear-project-locators (project)
   "Remove runtime locators associated with PROJECT."
   (dolist (comment-id (llm-review-store-project-comment-ids project))
-    (remhash comment-id llm-review--comment-locators)))
+    (remhash comment-id llm-review--comment-locators)
+    (llm-review-source-delete-marker comment-id)))
 
 (defun llm-review-nav-goto-comment (project-root relative-file comment)
   "Jump to COMMENT in RELATIVE-FILE under PROJECT-ROOT."
@@ -895,6 +1021,10 @@ current context has no project."
     (llm-review-nav-register-comment (llm-review-comment-id comment)
                                      (plist-get payload :start)
                                      (plist-get payload :end))
+    (llm-review-source-add-marker (llm-review-comment-id comment)
+                                  (plist-get payload :start)
+                                  (plist-get payload :end)
+                                  (llm-review-comment-comment comment))
     (llm-review--save-project project)
     (llm-review--notify-change 'capture project-root project
                                (llm-review-comment-id comment))

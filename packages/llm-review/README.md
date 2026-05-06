@@ -8,6 +8,7 @@
 - Group comments by file
 - Review comments in a dedicated buffer
 - Jump back to source locations
+- Mark active comments in source buffers with fringe indicators
 - Edit or delete comments from the review buffer
 - Copy all comments for the current project to the kill ring
 - Archive copied comments in a separate history buffer
