@@ -1,4 +1,4 @@
-;;; key-bindings.el --- Global keybindinggs
+;;; key-bindings.el --- Global keybindinggs -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

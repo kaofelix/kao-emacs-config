@@ -1,4 +1,4 @@
-;;; setup-prog-mode.el --- prog-mode config
+;;; setup-prog-mode.el --- prog-mode config -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -79,9 +79,9 @@
     "Set `apheleia-formatter' to oxfmt if the project uses it.
 Detection checks for .oxfmtrc or .oxfmtrc.json config files
 walking up from the buffer's directory."
-    (when-let ((root (and buffer-file-name
-                          (or (locate-dominating-file buffer-file-name ".oxfmtrc")
-                              (locate-dominating-file buffer-file-name ".oxfmtrc.json")))))
+    (when-let* ((root (and buffer-file-name
+                           (or (locate-dominating-file buffer-file-name ".oxfmtrc")
+                               (locate-dominating-file buffer-file-name ".oxfmtrc.json")))))
       (setq-local apheleia-formatter 'oxfmt)))
 
   (dolist (hook '(tsx-ts-mode-hook

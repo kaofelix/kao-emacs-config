@@ -1,4 +1,4 @@
-;;; setup-ai.el --- configs for LLM integration packages
+;;; setup-ai.el --- configs for LLM integration packages -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2025  Kao Felix
 

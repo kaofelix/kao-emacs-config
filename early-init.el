@@ -1,4 +1,4 @@
-;;; early-init.el --- setup a minimal GUI early
+;;; early-init.el --- setup a minimal GUI early -*- lexical-binding: t; -*-
 (menu-bar-mode -1)
 (when (eq window-system 'ns)
   (menu-bar-mode t))

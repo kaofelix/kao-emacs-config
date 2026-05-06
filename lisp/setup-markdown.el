@@ -1,4 +1,4 @@
-;;; setup-markdown.el --- Setup markdown
+;;; setup-markdown.el --- Setup markdown -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

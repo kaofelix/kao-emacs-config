@@ -1,4 +1,4 @@
-;;; setup-theme.el --- Theme configs
+;;; setup-theme.el --- Theme configs -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Sets up gruvbox with a toggle function

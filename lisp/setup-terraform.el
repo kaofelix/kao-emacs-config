@@ -1,4 +1,4 @@
-;;; setup-terraform.el --- configs for terraform
+;;; setup-terraform.el --- configs for terraform -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

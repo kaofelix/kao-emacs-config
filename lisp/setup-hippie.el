@@ -1,4 +1,4 @@
-;;; setup-hippie.el --- hippie setup
+;;; setup-hippie.el --- hippie setup -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

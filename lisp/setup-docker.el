@@ -1,4 +1,4 @@
-;;; setup-docker.el --- configs for docker and related
+;;; setup-docker.el --- configs for docker and related -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

@@ -1,4 +1,4 @@
-;;; emacs-lisp.el --- Config for Emacs Lisp editing
+;;; emacs-lisp.el --- Config for Emacs Lisp editing -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

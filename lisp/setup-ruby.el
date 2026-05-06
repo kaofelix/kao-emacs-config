@@ -1,4 +1,4 @@
-;;; setup-ruby.el --- configs for ruby
+;;; setup-ruby.el --- configs for ruby -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

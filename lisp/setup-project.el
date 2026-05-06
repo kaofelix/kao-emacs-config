@@ -1,4 +1,4 @@
-;;; setup-project.el --- configs for js
+;;; setup-project.el --- configs for js -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

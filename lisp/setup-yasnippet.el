@@ -1,4 +1,4 @@
-;;; setup-yasnippet.el --- yasnippet setup
+;;; setup-yasnippet.el --- yasnippet setup -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

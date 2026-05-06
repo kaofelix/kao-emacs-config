@@ -1,4 +1,4 @@
-;;; setup-completion.el --- vertico+consult+embark
+;;; setup-completion.el --- vertico+consult+embark -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Kao Felix
 

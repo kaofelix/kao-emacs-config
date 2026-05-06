@@ -1,4 +1,4 @@
-;;; defuns.el --- Defuns
+;;; defuns.el --- Defuns -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -260,7 +260,7 @@ Version 2016-07-13"
 (defun kao/save-flymake-diagnostic-to-kill-ring ()
   "Save current Flymake diagnostic message to kill-ring."
   (interactive)
-  (when-let ((diag (car (flymake-diagnostics (point)))))
+  (when-let* ((diag (car (flymake-diagnostics (point)))))
     (kill-new (flymake-diagnostic-text diag))
     (message "Copied to kill-ring: %s" (flymake-diagnostic-text diag))))
 

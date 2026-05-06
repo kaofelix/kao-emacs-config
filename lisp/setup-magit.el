@@ -1,4 +1,4 @@
-;;; setup-magit.el --- set up for Magit
+;;; setup-magit.el --- set up for Magit -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;
@@ -53,7 +53,7 @@
   (magit-section-case
     (file
      ;; Check if the file is in an untracked section
-     (when-let ((parent (oref it parent)))
+     (when-let* ((parent (oref it parent)))
        (if (eq (oref parent type) 'untracked)
            ;; For new/untracked files, just open the file directly
            (magit-visit-thing)

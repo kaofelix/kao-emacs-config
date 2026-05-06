@@ -1,4 +1,4 @@
-;;; setup-python.el --- configs for python
+;;; setup-python.el --- configs for python -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 

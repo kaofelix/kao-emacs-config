@@ -1,4 +1,4 @@
-;;; defaults.el --- nice defaults
+;;; defaults.el --- nice defaults -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 
