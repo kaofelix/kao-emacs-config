@@ -1,4 +1,4 @@
-;;; init.el --- Kao's init file
+;;; init.el --- Kao's init file -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2014  Kao Felix
 
@@ -39,6 +39,7 @@
 (require 'setup-project)
 (require 'setup-llm-review)
 (require 'setup-magit)
+(require 'setup-ediff)
 (require 'setup-treemacs)
 (require 'setup-prog-mode)
 (require 'setup-emacs-lisp)
