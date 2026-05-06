@@ -164,7 +164,15 @@ COMMENT-ID is the affected comment id when applicable.")
    ["History"
     ("h" "History" llm-review-history)]
    ["Project"
-    ("x" "Clear project" llm-review-clear-project)]])
+    ("x" "Clear project" llm-review-clear-project)]]
+  (interactive)
+  (let ((cleanup (llm-review--show-list-during-transient)))
+    (condition-case err
+        (transient-setup 'llm-review-menu)
+      (error
+       (when cleanup
+         (funcall cleanup))
+       (signal (car err) (cdr err))))))
 
 (defun llm-review-refresh-open-list-buffer (_action project-root project comment-id)
   "Refresh the open list buffer for PROJECT-ROOT, if any."
@@ -744,6 +752,22 @@ Return non-nil if a comment was removed."
     (llm-review-render-project-into-buffer project buffer)
     (display-buffer buffer '(display-buffer-pop-up-window))
     buffer))
+
+(defun llm-review--show-list-during-transient ()
+  "Display the project review buffer until the current transient exits.
+
+Return a cleanup function when a preview was displayed, or nil when the
+current context has no project."
+  (when-let* ((project-root (ignore-errors (llm-review--project-root))))
+    (let ((window-configuration (current-window-configuration))
+          cleanup)
+      (llm-review--display-preview-buffer project-root)
+      (setq cleanup
+            (lambda ()
+              (remove-hook 'transient-exit-hook cleanup)
+              (set-window-configuration window-configuration)))
+      (add-hook 'transient-exit-hook cleanup)
+      cleanup)))
 
 (defun llm-review--read-comment-with-preview (project-root)
   "Prompt for a review comment while showing the project review buffer."

@@ -443,6 +443,40 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
   (should (transient-get-suffix 'llm-review-menu "h"))
   (should (transient-get-suffix 'llm-review-menu "x")))
 
+(ert-deftest llm-review-menu-displays-review-buffer-until-transient-exits ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el"))
+          preview-buffer
+          preview-action
+          restored-window-configuration)
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Menu preview comment")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)))
+            (let ((transient-exit-hook nil))
+              (cl-letf (((symbol-function 'display-buffer)
+                         (lambda (buffer-or-name action &optional _frame)
+                           (setq preview-buffer (get-buffer buffer-or-name)
+                                 preview-action action)
+                           (selected-window)))
+                        ((symbol-function 'set-window-configuration)
+                         (lambda (configuration)
+                           (setq restored-window-configuration configuration)))
+                        ((symbol-function 'transient-setup)
+                         (lambda (&rest _args)
+                           (should (buffer-live-p preview-buffer))
+                           (with-current-buffer preview-buffer
+                             (should (string-match-p "Menu preview comment" (buffer-string))))
+                           (run-hooks 'transient-exit-hook))))
+                (with-current-buffer source-buffer
+                  (llm-review-menu)))
+              (should (eq (car preview-action) 'display-buffer-pop-up-window))
+              (should restored-window-configuration)))
+        (kill-buffer source-buffer)))))
+
 (ert-deftest llm-review-list-mode-map-setup-adds-navigation-bindings ()
   (let ((llm-review-list-mode-map (make-sparse-keymap)))
     (llm-review--setup-list-mode-map llm-review-list-mode-map)
