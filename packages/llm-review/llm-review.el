@@ -107,6 +107,12 @@
 (defvar-local llm-review--current-comment-overlay nil
   "Overlay used to highlight the current comment block.")
 
+(defvar llm-review--transient-preview-active nil
+  "Non-nil while a transient-owned list preview is displayed.")
+
+(defvar llm-review--keep-transient-preview-window nil
+  "Non-nil when transient preview cleanup should not restore windows.")
+
 (defvar llm-review-after-change-hook nil
   "Hook run after LLM review data changes.
 
@@ -762,10 +768,15 @@ current context has no project."
     (let ((window-configuration (current-window-configuration))
           cleanup)
       (llm-review--display-preview-buffer project-root)
-      (setq cleanup
+      (setq llm-review--transient-preview-active t
+            llm-review--keep-transient-preview-window nil
+            cleanup
             (lambda ()
               (remove-hook 'transient-exit-hook cleanup)
-              (set-window-configuration window-configuration)))
+              (setq llm-review--transient-preview-active nil)
+              (if llm-review--keep-transient-preview-window
+                  (setq llm-review--keep-transient-preview-window nil)
+                (set-window-configuration window-configuration))))
       (add-hook 'transient-exit-hook cleanup)
       cleanup)))
 
@@ -914,6 +925,8 @@ current context has no project."
 (defun llm-review-list ()
   "Display collected review comments for the current project."
   (interactive)
+  (when llm-review--transient-preview-active
+    (setq llm-review--keep-transient-preview-window t))
   (let* ((project-root (llm-review--project-root))
          (project (or (llm-review-store-get-project project-root)
                       (llm-review-store-empty-project project-root)))
