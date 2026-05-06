@@ -58,6 +58,9 @@
 
 (winner-mode 1)
 
+;; Restore Emacs 30 split-width-threshold (default changed from 160 to 150).
+(setq split-width-threshold 160)
+
 (setq-default truncate-lines t)
 (setq gc-cons-threshold 100000000)
 (set-default 'sentence-end-double-space nil)
