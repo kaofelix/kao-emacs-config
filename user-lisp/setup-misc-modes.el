@@ -280,18 +280,10 @@
   ("M-l" . #'fix-word-downcase))
 
 (use-package graphql-ts-mode
-  :mode ("\\.graphql\\'" "\\.gql\\'")
-  :init
-  (with-eval-after-load 'treesit
-    (add-to-list 'treesit-language-source-alist
-                 '(graphql "https://github.com/bkegley/tree-sitter-graphql"))))
+  :mode ("\\.graphql\\'" "\\.gql\\'"))
 
 (use-package qml-ts-mode
-  :vc (:url "https://github.com/xhcoding/qml-ts-mode" :rev :newest)
-  :init
-  (with-eval-after-load 'treesit
-    (add-to-list 'treesit-language-source-alist
-                 '(qmljs "https://github.com/yuja/tree-sitter-qmljs.git"))))
+  :vc (:url "https://github.com/xhcoding/qml-ts-mode" :rev :newest))
 
 (use-package graphviz-dot-mode)
 (use-package mermaid-mode)

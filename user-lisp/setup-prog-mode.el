@@ -198,58 +198,32 @@ walking up from the buffer's directory."
    ("a" . testrun-all)
    ("l" . testrun-last)))
 
-(use-package treesit
-  :ensure nil
-  :mode (("\\.tsx\\'" . tsx-ts-mode))
-  :preface
-  (defun mp-setup-install-grammars ()
-    "Install Tree-sitter grammars if they are absent."
-    (interactive)
-    (dolist (grammar
-             ;; Note the version numbers. These are the versions that
-             ;; are known to work with Combobulate *and* Emacs.
-             '((astro "https://github.com/virchau13/tree-sitter-astro")
-               (css . ("https://github.com/tree-sitter/tree-sitter-css" "v0.20.0"))
-               (go . ("https://github.com/tree-sitter/tree-sitter-go" "v0.20.0"))
-               (html . ("https://github.com/tree-sitter/tree-sitter-html" "v0.20.1"))
-               (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "v0.20.1" "src"))
-               (json . ("https://github.com/tree-sitter/tree-sitter-json" "v0.20.2"))
-               (markdown "https://github.com/ikatyang/tree-sitter-markdown")
-               (python . ("https://github.com/tree-sitter/tree-sitter-python" "v0.20.4"))
-               (rust "https://github.com/tree-sitter/tree-sitter-rust")
-               (toml . ("https://github.com/tree-sitter/tree-sitter-toml" "v0.5.1"))
-               (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "tsx/src"))
-               (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src"))
-               (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "v0.5.0"))
-               (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "master"))))
-      (add-to-list 'treesit-language-source-alist grammar)
-      ;; Only install `grammar' if we don't already have it
-      ;; installed. However, if you want to *update* a grammar then
-      ;; this obviously prevents that from happening.
-      (unless (treesit-language-available-p (car grammar))
-        (treesit-install-language-grammar (car grammar)))))
+;; Tree-sitter: enable all available TS modes and auto-install grammars.
+;; Emacs 31.1 provides `treesit-enabled-modes' to replace manual
+;; `major-mode-remap-alist' setup, and `treesit-auto-install-grammar'
+;; to replace manual grammar installation.
+(setq treesit-enabled-modes t
+      treesit-auto-install-grammar t)
 
-  ;; Optional. Combobulate works in both xxxx-ts-modes and
-  ;; non-ts-modes.
-
-  ;; You can remap major modes with `major-mode-remap-alist'. Note
-  ;; that this does *not* extend to hooks! Make sure you migrate them
-  ;; also
-  (dolist (mapping
-           '((python-mode . python-ts-mode)
-             (css-mode . css-ts-mode)
-             (typescript-mode . typescript-ts-mode)
-             (js2-mode . js-ts-mode)
-             (js-mode . js-ts-mode)
-             (bash-mode . bash-ts-mode)
-             (conf-toml-mode . toml-ts-mode)
-             (go-mode . go-ts-mode)
-             (css-mode . css-ts-mode)
-             (json-mode . json-ts-mode)
-             (js-json-mode . json-ts-mode)))
-    (add-to-list 'major-mode-remap-alist mapping))
-  :config
-  (mp-setup-install-grammars))
+;; Grammar sources needed for auto-install.  Uses Emacs 31.1's keyword
+;; syntax (:revision, :source-dir, :commit) for clarity.
+(setq treesit-language-source-alist
+      '((astro . ("https://github.com/virchau13/tree-sitter-astro"))
+        (css . ("https://github.com/tree-sitter/tree-sitter-css" :revision "v0.20.0"))
+        (go . ("https://github.com/tree-sitter/tree-sitter-go" :revision "v0.20.0"))
+        (graphql . ("https://github.com/bkegley/tree-sitter-graphql"))
+        (html . ("https://github.com/tree-sitter/tree-sitter-html" :revision "v0.20.1"))
+        (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" :revision "v0.20.1" :source-dir "src"))
+        (json . ("https://github.com/tree-sitter/tree-sitter-json" :revision "v0.20.2"))
+        (markdown . ("https://github.com/ikatyang/tree-sitter-markdown"))
+        (python . ("https://github.com/tree-sitter/tree-sitter-python" :revision "v0.20.4"))
+        (qmljs . ("https://github.com/yuja/tree-sitter-qmljs.git"))
+        (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" :revision "master"))
+        (rust . ("https://github.com/tree-sitter/tree-sitter-rust"))
+        (toml . ("https://github.com/tree-sitter/tree-sitter-toml" :revision "v0.5.1"))
+        (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" :revision "v0.20.3" :source-dir "tsx/src"))
+        (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" :revision "v0.20.3" :source-dir "typescript/src"))
+        (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" :revision "v0.5.0"))))
 
 (use-package combobulate
   :vc (:url "https://github.com/mickeynp/combobulate.git" :rev :newest)
