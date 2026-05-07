@@ -55,6 +55,8 @@
 (context-menu-mode 1)
 ;; Emacs 31.1: smooth pixel-level scrolling.
 (pixel-scroll-precision-mode 1)
+;; Avoid janky recentering when scrolling past buffer boundaries.
+(setq pixel-scroll-precision-interpolate-page nil)
 (setq line-number-mode t)
 (setq column-number-mode t)
 (setq fill-column 80)
