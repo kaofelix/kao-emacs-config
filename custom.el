@@ -12,7 +12,6 @@
  '(bookmark-fringe-mark nil)
  '(bookmark-save-flag 1)
  '(bookmark-set-fringe-mark nil)
- '(dired-dwim-target t)
  '(dtrt-indent-max-merge-deviation 15.0)
  '(enable-recursive-minibuffers t)
  '(git-commit-post-finish-hook '(git-gutter:update-all-windows))
@@ -60,7 +59,6 @@
  '(wgrep-auto-save-buffer t)
  '(whitespace-action '(auto-cleanup))
  '(whitespace-global-modes nil)
- '(whitespace-style '(face trailing tabs))
  '(whitespace-trailing 'whitespace-space-before-tab t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
