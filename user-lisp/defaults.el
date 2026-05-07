@@ -68,6 +68,8 @@
 (setq split-width-threshold 160)
 
 (setq-default truncate-lines t)
+;; Emacs 30.1: continuation lines visually indented as if filled with M-q.
+(global-visual-wrap-prefix-mode 1)
 (setq gc-cons-threshold 100000000)
 (set-default 'sentence-end-double-space nil)
 
