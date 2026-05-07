@@ -10,6 +10,8 @@
 ;; Custom elisp functions and macros
 
 ;;; Code:
+(require 'ansi-color)
+(require 'flymake)
 
 (defmacro kao/type-last-key-to-repeat (&rest body)
   "Repeat BODY when typing the last key on the key sequence typed."

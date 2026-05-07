@@ -12,6 +12,12 @@
 
 ;;; Code:
 
+;; Declare functions defined in other files to silence byte-compiler.
+(declare-function kao/open-line "defuns")
+(declare-function kao/type-last-key-to-repeat "defuns")
+(declare-function kao/wrap-with-round-brackets "defuns")
+(declare-function async-bytecomp-package-mode "async-bytecomp")
+
 ;; Compile packages asynchronously
 (use-package async
   :config
