@@ -11,6 +11,11 @@
 
 (require 'saveplace)
 
+;; Emacs 30.1: group grep output by file with headings.
+(setq grep-use-headings t)
+;; Emacs 30.1: highlight pure add/remove lines (not just modified) in diff hunks.
+(setq diff-refine-nonmodified t)
+
 (setq insert-directory-program "gls")
 
 (setq apropos-do-all t
@@ -75,6 +80,8 @@
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
+;; Emacs 30.1: use project name instead of directory path for uniquified buffer names.
+(setq uniquify-dirname-transform #'project-uniquify-dirname-transform)
 
 (use-package recentf
   :after no-littering
