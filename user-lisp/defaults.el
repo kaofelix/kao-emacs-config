@@ -51,6 +51,10 @@
 (delete-selection-mode 1)
 ;; Emacs 31.1: C-w kills last word when no region is active.
 (setq kill-region-dwim t)
+;; Emacs 31.1: right-click context menu.
+(context-menu-mode 1)
+;; Emacs 31.1: smooth pixel-level scrolling.
+(pixel-scroll-precision-mode 1)
 (setq line-number-mode t)
 (setq column-number-mode t)
 (setq fill-column 80)
