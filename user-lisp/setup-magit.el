@@ -19,6 +19,7 @@
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
 
   :custom
+  (magit-format-file-function #'magit-format-file-nerd-icons)
   (magit-save-repository-buffers 'dontask)
   (magit-ediff-dwim-show-on-hunks t)
   (magit-wip-mode t)
