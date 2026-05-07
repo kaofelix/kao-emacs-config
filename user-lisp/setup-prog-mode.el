@@ -109,11 +109,18 @@ walking up from the buffer's directory."
 (use-package hideshow
   :delight hs-minor-mode
   :hook (prog-mode . hs-minor-mode)
+  :custom
+  ;; Emacs 31.1: show hide/show indicators in the fringe.
+  (hs-indicator-type 'fringe)
+  ;; Emacs 31.1: show count of hidden lines next to ellipsis.
+  (hs-display-lines-hidden t)
   :bind
   (:map hs-minor-mode-map
    ("C-c [ [" . #'hs-toggle-hiding)
+   ("C-c [ c" . #'hs-cycle)
    ("C-c [ s" . #'hs-show-all)
-   ("C-c [ h" . #'hs-hide-all)))
+   ("C-c [ h" . #'hs-hide-all)
+   ("C-c [ a" . #'hs-toggle-all)))
 
 (use-package highlight-numbers
   :delight
