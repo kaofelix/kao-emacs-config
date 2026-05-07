@@ -709,9 +709,13 @@ Return non-nil if a comment was removed."
                  :marker-end (copy-marker marker-end))
            llm-review--comment-locators))
 
-(defun llm-review-source-marker-string (bitmap)
-  "Return a fringe marker string displaying BITMAP."
-  (propertize "!" 'display `(left-fringe ,bitmap llm-review-source-marker-face)))
+(defun llm-review-source-marker-string (bitmap &optional help-echo)
+  "Return a fringe marker string displaying BITMAP.
+
+HELP-ECHO, when non-nil, is attached to the visible marker string."
+  (propertize "!"
+              'display `(left-fringe ,bitmap llm-review-source-marker-face)
+              'help-echo help-echo))
 
 (defun llm-review-source-delete-marker (comment-id)
   "Delete source marker overlays for COMMENT-ID, if any."
@@ -758,12 +762,19 @@ COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
              for bitmap = (llm-review-source--bitmap-for-line index count)
              do (let ((overlay (make-overlay line-start line-start nil nil t)))
                   (overlay-put overlay 'before-string
-                               (llm-review-source-marker-string bitmap))
+                               (llm-review-source-marker-string
+                                bitmap
+                                (or comment-text "LLM review comment")))
                   (overlay-put overlay 'help-echo (or comment-text "LLM review comment"))
                   (overlay-put overlay 'priority 1)
                   (overlay-put overlay 'llm-review-comment-id comment-id)
                   (push overlay overlays)))
     (setq overlays (nreverse overlays))
+    (let ((range-overlay (make-overlay start end nil nil t)))
+      (overlay-put range-overlay 'help-echo (or comment-text "LLM review comment"))
+      (overlay-put range-overlay 'priority 1)
+      (overlay-put range-overlay 'llm-review-comment-id comment-id)
+      (setq overlays (append overlays (list range-overlay))))
     (puthash comment-id overlays llm-review--source-overlays)
     overlays))
 

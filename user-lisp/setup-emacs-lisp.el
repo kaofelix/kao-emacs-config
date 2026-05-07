@@ -24,13 +24,9 @@
 ;; auto-modes
 (add-to-list 'auto-mode-alist '("Cask$" . emacs-lisp-mode))
 
-(defface emacs-lisp-keyword-symbol-face
-  '((t :inherit font-lock-variable-name-face))
-  "Face to highlight Lisp keyword symbols (e.g. :foobar)."
-  :group 'keyword-symbol)
-
-(font-lock-add-keywords 'emacs-lisp-mode
-                        '((":\\(\\sw\\|\\s_\\|\\\\.\\)+" . 'emacs-lisp-keyword-symbol-face)))
+;; Emacs 31.1+: use built-in semantic highlighting instead of
+;; custom keyword-symbol face and font-lock rules.
+(setq elisp-fontify-semantically t)
 
 
 (use-package el-patch

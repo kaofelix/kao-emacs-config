@@ -13,7 +13,6 @@
 ;; -Neal Stephenson, "In the Beginning was the Command Line"
 
 ;;; Code:
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory) t)
 (setq user-mail-address "me@kaofelix.dev")
 
 
