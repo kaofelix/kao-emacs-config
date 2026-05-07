@@ -74,9 +74,12 @@
 
 (use-package recentf
   :after no-littering
+  :custom
+  (recentf-max-saved-items 100)
+  ;; Emacs 31.1: auto-save recentf list every 5 minutes.
+  (recentf-autosave-interval 300)
   :config
-  (recentf-mode 1)
-  (setq recentf-max-saved-items 100))
+  (recentf-mode 1))
 
 (use-package no-littering
   :config
