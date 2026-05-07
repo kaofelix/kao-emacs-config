@@ -28,6 +28,31 @@
  '(org-special-ctrl-a/e t)
  '(org-special-ctrl-k t)
  '(org-src-fontify-natively t)
+ '(package-selected-packages
+   '(adaptive-wrap all-the-icons anzu apheleia astro-ts-mode async
+                   browse-at-remote cape change-inner chatgpt-shell
+                   combobulate comment-dwim-2 corfu dape dash-at-point
+                   dimmer direnv docker docker-compose-mode
+                   dockerfile-mode doom-modeline doom-themes
+                   dotenv-mode drag-stuff dtrt-indent dumb-jump eat
+                   el-patch eldoc-box elisp-slime-nav embark-consult
+                   expreg fix-word fnm git-gutter git-modes
+                   git-timemachine go-mode goto-line-preview
+                   graphql-ts-mode graphviz-dot-mode
+                   highlight-indent-guides highlight-numbers
+                   highlight-quoted highlight-symbol jq-mode json-mode
+                   jtsx k8s-mode kind-icon macher magit-delta
+                   marginalia markdown-mode mermaid-mode minuet
+                   multiple-cursors nginx-mode nix-mode no-littering
+                   nord-theme origami paren-face persist-state
+                   phscroll pi-coding-agent pip-requirements popup
+                   prodigy pyvenv qml-ts-mode rainbow-csv rainbow-mode
+                   request restclient rspec-mode smartparens
+                   spacious-padding string-inflection sudo-edit
+                   terraform-mode testrun toml-mode
+                   treemacs-icons-dired treemacs-magit treesit-auto
+                   try undo-tree vertico-prescient visual-fill-column
+                   vterm wgrep yank-indent yasnippet-snippets))
  '(register-preview-delay 0)
  '(safe-local-variable-values
    '((eval let
