@@ -56,6 +56,11 @@
 
 (use-package persist-state
   :config
+  ;; Fix: guard against void-variable eshell-hist-mode when no eshell buffer exists
+  (advice-add 'persist-state--maybe-save-eshell :around
+              (lambda (orig-fn &rest args)
+                (when (boundp 'eshell-hist-mode)
+                  (apply orig-fn args))))
   (persist-state-mode))
 
 (use-package ansi-color

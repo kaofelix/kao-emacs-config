@@ -174,14 +174,16 @@
   :config
   (global-corfu-mode)
   (corfu-popupinfo-mode)
-  (eval-after-load 'eglot
-    '(advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
   :custom
   (corfu-preview-auto t))
 
+(with-eval-after-load 'eglot
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
+
 (use-package cape
   :init
-  (add-to-list 'completion-at-point-functions #'cape-file))
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev))
 
 (use-package kind-icon
   :ensure t
