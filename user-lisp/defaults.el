@@ -28,7 +28,9 @@
 (setq select-enable-clipboard t
       save-interprogram-paste-before-kill t)
 
-(global-auto-revert-mode 1)
+;; Emacs 31.1: vc-auto-revert-mode is more reliable for VCS-tracked files
+;; than global-auto-revert-mode.  Keep global-auto-revert for non-file buffers.
+(vc-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
@@ -47,6 +49,8 @@
 (setenv "LC_ALL" "en_US.UTF-8")
 
 (delete-selection-mode 1)
+;; Emacs 31.1: C-w kills last word when no region is active.
+(setq kill-region-dwim t)
 (setq line-number-mode t)
 (setq column-number-mode t)
 (setq fill-column 80)
