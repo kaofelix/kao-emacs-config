@@ -9,7 +9,8 @@
 - Review comments in a dedicated buffer
 - Jump back to source locations
 - Mark active comments in source buffers with configurable fringe/background indicators
-- Edit or delete comments from the review buffer
+- Capture the current Ediff hunk as a review item
+- Edit or delete comments from the review buffer or source buffer
 - Copy all comments for the current project to the kill ring
 - Archive copied comments in a separate history buffer
 - Persist comments across Emacs sessions
@@ -24,6 +25,7 @@
 - `llm-review-edit-comment`
 - `llm-review-delete-comment`
 - `llm-review-history`
+- `llm-review-ediff-capture-current-hunk`
 - `llm-review-clear-project`
 
 ## Review buffer keys
@@ -50,6 +52,7 @@ The package does not define a default global keybinding.
 
 - `llm-review-storage-directory`: where projects and history are stored
 - `llm-review-source-display`: source indicators for active comments; one of `fringe`, `background`, `both`, or nil
+- `llm-review-ediff-target-variant`: Ediff side to capture; defaults to `B`
 
 ## Persistence
 

@@ -19,6 +19,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'ediff)
 (require 'project)
 (require 'seq)
 (require 'subr-x)
@@ -51,6 +52,12 @@ means no source buffer indicators are displayed."
                  (const :tag "Background" background)
                  (const :tag "Fringe markers and background" both)
                  (const :tag "None" nil)))
+
+(defcustom llm-review-ediff-target-variant 'B
+  "Ediff variant used by `llm-review-ediff-capture-current-hunk'."
+  :type '(choice (const :tag "Variant A" A)
+                 (const :tag "Variant B" B)
+                 (const :tag "Variant C" C)))
 
 (defface llm-review-file-heading-face
   '((t :inherit bold :height 1.1))
@@ -196,6 +203,8 @@ means no source buffer indicators are displayed."
 
 (defvar llm-review--keep-transient-preview-window nil
   "Non-nil when transient preview cleanup should not restore windows.")
+
+(defvar ediff-keymap-setup-hook)
 
 (defvar llm-review-after-change-hook nil
   "Hook run after LLM review data changes.
@@ -919,9 +928,11 @@ COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
   "Return the next comment id."
   (cl-incf llm-review--next-comment-id))
 
-(defun llm-review--make-comment-from-context (comment-text)
-  "Build a `llm-review-comment' from current buffer context and COMMENT-TEXT."
-  (let* ((bounds (llm-review--capture-bounds))
+(defun llm-review--make-comment-from-context (comment-text &optional bounds)
+  "Build a `llm-review-comment' from current buffer context and COMMENT-TEXT.
+
+When BOUNDS is non-nil, use it instead of `llm-review--capture-bounds'."
+  (let* ((bounds (or bounds (llm-review--capture-bounds)))
          (start (car bounds))
          (end (cdr bounds))
          (now (current-time)))
@@ -1110,15 +1121,14 @@ current context has no project."
         (message "Copied archived review export"))
     (user-error "No archived export at point")))
 
-;;;###autoload
-(defun llm-review-capture ()
-  "Capture the active region or current line as an LLM review note."
-  (interactive)
+(defun llm-review--capture-comment-in-current-buffer (comment-text &optional bounds)
+  "Capture COMMENT-TEXT in the current file buffer.
+
+When BOUNDS is non-nil, use it as the captured source range."
   (llm-review--ensure-file-buffer)
   (let* ((project-root (llm-review--project-root))
          (relative-file (file-relative-name buffer-file-name project-root))
-         (comment-text (llm-review--read-comment-with-preview project-root))
-         (payload (llm-review--make-comment-from-context comment-text))
+         (payload (llm-review--make-comment-from-context comment-text bounds))
          (comment (plist-get payload :comment))
          (project (llm-review-store-get-project project-root t)))
     (llm-review-store-add-comment project relative-file comment)
@@ -1136,6 +1146,64 @@ current context has no project."
              relative-file
              (llm-review-comment-line-start comment))
     comment))
+
+;;;###autoload
+(defun llm-review-capture ()
+  "Capture the active region or current line as an LLM review note."
+  (interactive)
+  (let* ((project-root (llm-review--project-root))
+         (comment-text (llm-review--read-comment-with-preview project-root)))
+    (llm-review--capture-comment-in-current-buffer comment-text)))
+
+(defun llm-review-ediff--variant-symbol (kind variant)
+  "Return Ediff symbol for KIND and VARIANT."
+  (intern (format "ediff-%s-%s" kind variant)))
+
+(defun llm-review-ediff--variant-buffer (variant)
+  "Return Ediff buffer for VARIANT."
+  (let ((symbol (llm-review-ediff--variant-symbol "buffer" variant)))
+    (and (boundp symbol) (buffer-live-p (symbol-value symbol)) (symbol-value symbol))))
+
+(defun llm-review-ediff--variant-overlay (variant)
+  "Return Ediff current diff overlay for VARIANT."
+  (let ((symbol (llm-review-ediff--variant-symbol "current-diff-overlay" variant)))
+    (and (boundp symbol) (overlayp (symbol-value symbol)) (symbol-value symbol))))
+
+(defun llm-review-ediff--target-context (&optional variant)
+  "Return target buffer and overlay for Ediff VARIANT."
+  (let* ((variant (or variant llm-review-ediff-target-variant))
+         (buffer (llm-review-ediff--variant-buffer variant))
+         (overlay (llm-review-ediff--variant-overlay variant)))
+    (unless buffer
+      (user-error "No live Ediff buffer for variant %s" variant))
+    (unless (and overlay (eq (overlay-buffer overlay) buffer))
+      (user-error "No current Ediff hunk overlay for variant %s" variant))
+    (list :variant variant :buffer buffer :overlay overlay)))
+
+;;;###autoload
+(defun llm-review-ediff-capture-current-hunk ()
+  "Capture the current Ediff hunk as an LLM review comment.
+
+The target side is controlled by `llm-review-ediff-target-variant', which
+defaults to variant B for Magit Ediff workflows."
+  (interactive)
+  (let* ((context (llm-review-ediff--target-context))
+         (buffer (plist-get context :buffer))
+         (overlay (plist-get context :overlay)))
+    (with-current-buffer buffer
+      (llm-review--ensure-file-buffer)
+      (let* ((project-root (llm-review--project-root))
+             (comment-text (llm-review--read-comment-with-preview project-root)))
+        (llm-review--capture-comment-in-current-buffer
+         comment-text
+         (cons (overlay-start overlay) (overlay-end overlay)))))))
+
+(defun llm-review-ediff-setup-keymap ()
+  "Install `llm-review' bindings into the current Ediff control keymap."
+  (when (keymapp ediff-mode-map)
+    (define-key ediff-mode-map (kbd "L") #'llm-review-ediff-capture-current-hunk)))
+
+(add-hook 'ediff-keymap-setup-hook #'llm-review-ediff-setup-keymap)
 
 ;;;###autoload
 (defun llm-review-copy ()

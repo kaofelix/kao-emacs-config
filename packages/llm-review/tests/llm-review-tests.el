@@ -5,6 +5,7 @@
 (require 'project)
 (require 'seq)
 (require 'transient)
+(require 'ediff)
 
 (ignore-errors (load "llm-review" nil t))
 
@@ -173,6 +174,32 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                 (should (= 1 (length (llm-review-project-files project))))
                 (should (= 2 (length (llm-review-file-review-comments file-review))))))
           (kill-buffer buffer))))))
+
+(ert-deftest llm-review-ediff-capture-current-hunk-captures-target-variant ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\nthird\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (let (overlay comment)
+            (with-current-buffer source-buffer
+              (setq overlay (make-overlay (line-beginning-position 2)
+                                          (line-end-position 3))))
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Ediff hunk comment")))
+              (let ((ediff-buffer-B source-buffer)
+                    (ediff-current-diff-overlay-B overlay))
+                (setq comment (llm-review-ediff-capture-current-hunk))))
+            (should (equal "Ediff hunk comment"
+                           (llm-review-comment-comment comment)))
+            (should (= 2 (llm-review-comment-line-start comment)))
+            (should (= 3 (llm-review-comment-line-end comment)))
+            (should (equal "second\nthird"
+                           (llm-review-comment-snippet comment)))
+            (let* ((project (llm-review-store-get-project project-root))
+                   (file-review (car (llm-review-project-files project))))
+              (should (equal "src/example.el"
+                             (llm-review-file-review-relative-file file-review)))
+              (should (= 1 (length (llm-review-file-review-comments file-review))))))
+        (kill-buffer source-buffer)))))
 
 (ert-deftest llm-review-copy-archives-and-clears-project ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
