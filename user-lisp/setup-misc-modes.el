@@ -224,6 +224,19 @@
   (direnv-mode)
   (add-to-list 'direnv-non-file-modes 'magit-status-mode))
 
+(use-package mise
+  :custom
+  (mise-update-on-eshell-directory-change t)
+  :config
+  (defun kao/doom-modeline-update-ruby-after-mise ()
+    "Refresh doom-modeline's Ruby version after mise updates the buffer env."
+    (when (and (derived-mode-p 'ruby-mode 'ruby-ts-mode 'enh-ruby-mode)
+               (fboundp 'doom-modeline-env-update-ruby))
+      (doom-modeline-env-update-ruby)))
+
+  (add-hook 'mise-mode-hook #'kao/doom-modeline-update-ruby-after-mise)
+  (global-mise-mode 1))
+
 (use-package git-modes)
 
 (use-package git-timemachine
