@@ -42,6 +42,16 @@
   "Maximum number of archived exports to keep per project."
   :type 'integer)
 
+(defcustom llm-review-source-display 'both
+  "How active review comments are indicated in source buffers.
+
+Valid values are `fringe', `background', `both', and nil.  The nil value
+means no source buffer indicators are displayed."
+  :type '(choice (const :tag "Fringe markers" fringe)
+                 (const :tag "Background" background)
+                 (const :tag "Fringe markers and background" both)
+                 (const :tag "None" nil)))
+
 (defface llm-review-file-heading-face
   '((t :inherit bold :height 1.1))
   "Face for file headings in `llm-review-list-mode'.")
@@ -65,6 +75,10 @@
 (defface llm-review-source-marker-face
   '((t :inherit warning))
   "Face for source buffer fringe markers that indicate active review comments.")
+
+(defface llm-review-source-range-face
+  '((t :inherit hl-line :extend t))
+  "Subtle face for active review comment ranges in source buffers.")
 
 (define-fringe-bitmap 'llm-review-fringe-top
   [#b11111000
@@ -750,33 +764,37 @@ HELP-ECHO, when non-nil, is attached to the visible marker string."
    (t 'llm-review-fringe-middle)))
 
 (defun llm-review-source-add-marker (comment-id start end &optional comment-text)
-  "Add source fringe marker overlays for COMMENT-ID between START and END.
+  "Add source marker overlays for COMMENT-ID between START and END.
 
 COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
   (llm-review-source-delete-marker comment-id)
-  (let* ((line-starts (llm-review-source--line-starts start end))
-         (count (length line-starts))
-         overlays)
-    (cl-loop for line-start in line-starts
-             for index from 0
-             for bitmap = (llm-review-source--bitmap-for-line index count)
-             do (let ((overlay (make-overlay line-start line-start nil nil t)))
-                  (overlay-put overlay 'before-string
-                               (llm-review-source-marker-string
-                                bitmap
-                                (or comment-text "LLM review comment")))
-                  (overlay-put overlay 'help-echo (or comment-text "LLM review comment"))
-                  (overlay-put overlay 'priority 1)
-                  (overlay-put overlay 'llm-review-comment-id comment-id)
-                  (push overlay overlays)))
-    (setq overlays (nreverse overlays))
-    (let ((range-overlay (make-overlay start end nil nil t)))
-      (overlay-put range-overlay 'help-echo (or comment-text "LLM review comment"))
-      (overlay-put range-overlay 'priority 1)
-      (overlay-put range-overlay 'llm-review-comment-id comment-id)
-      (setq overlays (append overlays (list range-overlay))))
-    (puthash comment-id overlays llm-review--source-overlays)
-    overlays))
+  (when llm-review-source-display
+    (let* ((line-starts (llm-review-source--line-starts start end))
+           (count (length line-starts))
+           overlays)
+      (when (memq llm-review-source-display '(fringe both))
+        (cl-loop for line-start in line-starts
+                 for index from 0
+                 for bitmap = (llm-review-source--bitmap-for-line index count)
+                 do (let ((overlay (make-overlay line-start line-start nil nil t)))
+                      (overlay-put overlay 'before-string
+                                   (llm-review-source-marker-string
+                                    bitmap
+                                    (or comment-text "LLM review comment")))
+                      (overlay-put overlay 'help-echo (or comment-text "LLM review comment"))
+                      (overlay-put overlay 'priority 1)
+                      (overlay-put overlay 'llm-review-comment-id comment-id)
+                      (push overlay overlays)))
+        (setq overlays (nreverse overlays)))
+      (let ((range-overlay (make-overlay start end nil nil t)))
+        (when (memq llm-review-source-display '(background both))
+          (overlay-put range-overlay 'face 'llm-review-source-range-face))
+        (overlay-put range-overlay 'help-echo (or comment-text "LLM review comment"))
+        (overlay-put range-overlay 'priority 1)
+        (overlay-put range-overlay 'llm-review-comment-id comment-id)
+        (setq overlays (append overlays (list range-overlay))))
+      (puthash comment-id overlays llm-review--source-overlays)
+      overlays)))
 
 (defun llm-review-source--comment-bounds (comment)
   "Return buffer bounds for COMMENT using persisted line metadata."
@@ -882,10 +900,47 @@ COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
      :end end)))
 
 (defun llm-review--comment-id-at-point ()
-  "Return comment id at point in a review list buffer."
+  "Return comment id at point in a review list buffer or source buffer."
   (or (get-text-property (point) 'llm-review-comment-id)
       (and (> (point) (point-min))
-           (get-text-property (1- (point)) 'llm-review-comment-id))))
+           (get-text-property (1- (point)) 'llm-review-comment-id))
+      (when-let* ((overlay (seq-find (lambda (overlay)
+                                       (overlay-get overlay 'llm-review-comment-id))
+                                     (overlays-at (point)))))
+        (overlay-get overlay 'llm-review-comment-id))))
+
+(defun llm-review--source-result-at-point (project-root project)
+  "Return source review result at point for PROJECT-ROOT and PROJECT."
+  (when buffer-file-name
+    (when-let* ((file-review (llm-review-store-find-file-review
+                              project
+                              (file-relative-name buffer-file-name project-root)))
+                (line (line-number-at-pos)))
+      (when-let* ((comment (seq-find
+                            (lambda (candidate)
+                              (and (<= (llm-review-comment-line-start candidate) line)
+                                   (<= line (llm-review-comment-line-end candidate))))
+                            (llm-review-store-sorted-comments file-review))))
+        (list :file-review file-review :comment comment)))))
+
+(defun llm-review--comment-result-at-point ()
+  "Return project and comment context for the review comment at point."
+  (let* ((project-root (llm-review--project-root))
+         (project (llm-review-store-get-project project-root))
+         (comment-id (llm-review--comment-id-at-point))
+         (result (or (and project comment-id
+                          (llm-review-store-find-comment project comment-id))
+                     (and project
+                          (llm-review--source-result-at-point project-root project)))))
+    (when result
+      (list :project-root project-root
+            :project project
+            :comment-id (llm-review-comment-id (plist-get result :comment))
+            :result result))))
+
+(defun llm-review--preview-display-action ()
+  "Return display action for temporary review previews."
+  '(display-buffer-pop-up-window . ((inhibit-same-window . t))))
 
 (defun llm-review--display-preview-buffer (project-root)
   "Render and display the review buffer for PROJECT-ROOT."
@@ -893,7 +948,7 @@ COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
                       (llm-review-store-empty-project project-root)))
          (buffer (get-buffer-create (llm-review--buffer-name project-root))))
     (llm-review-render-project-into-buffer project buffer)
-    (display-buffer buffer '(display-buffer-pop-up-window))
+    (display-buffer buffer (llm-review--preview-display-action))
     buffer))
 
 (defun llm-review--show-list-during-transient ()
@@ -1098,19 +1153,19 @@ current context has no project."
 (defun llm-review-edit-comment ()
   "Edit the review comment at point."
   (interactive)
-  (unless (derived-mode-p 'llm-review-list-mode)
-    (user-error "Not in an LLM review list buffer"))
-  (let* ((project-root (llm-review--project-root))
-         (project (llm-review-store-get-project project-root))
-         (comment-id (llm-review--comment-id-at-point))
-         (result (and project comment-id
-                      (llm-review-store-find-comment project comment-id))))
+  (let* ((context (llm-review--comment-result-at-point))
+         (project-root (plist-get context :project-root))
+         (project (plist-get context :project))
+         (comment-id (plist-get context :comment-id))
+         (result (plist-get context :result)))
     (unless result
       (user-error "No review entry at point"))
     (let* ((comment (plist-get result :comment))
            (new-text (read-string "Edit review comment: "
                                   (llm-review-comment-comment comment))))
       (llm-review-store-update-comment project comment-id new-text)
+      (when buffer-file-name
+        (llm-review-source-refresh-buffer-markers))
       (llm-review--save-project project)
       (llm-review--notify-change 'edit project-root project comment-id)
       (message "Updated review comment"))))
@@ -1119,11 +1174,10 @@ current context has no project."
 (defun llm-review-delete-comment ()
   "Delete the review comment at point."
   (interactive)
-  (unless (derived-mode-p 'llm-review-list-mode)
-    (user-error "Not in an LLM review list buffer"))
-  (let* ((project-root (llm-review--project-root))
-         (project (llm-review-store-get-project project-root))
-         (comment-id (llm-review--comment-id-at-point)))
+  (let* ((context (llm-review--comment-result-at-point))
+         (project-root (plist-get context :project-root))
+         (project (plist-get context :project))
+         (comment-id (plist-get context :comment-id)))
     (unless (and project comment-id)
       (user-error "No review entry at point"))
     (when (yes-or-no-p "Delete review comment? ")

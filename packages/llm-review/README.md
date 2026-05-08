@@ -8,7 +8,7 @@
 - Group comments by file
 - Review comments in a dedicated buffer
 - Jump back to source locations
-- Mark active comments in source buffers with fringe indicators
+- Mark active comments in source buffers with configurable fringe/background indicators
 - Edit or delete comments from the review buffer
 - Copy all comments for the current project to the kill ring
 - Archive copied comments in a separate history buffer
@@ -45,6 +45,11 @@
 ```
 
 The package does not define a default global keybinding.
+
+## Customization
+
+- `llm-review-storage-directory`: where projects and history are stored
+- `llm-review-source-display`: source indicators for active comments; one of `fringe`, `background`, `both`, or nil
 
 ## Persistence
 

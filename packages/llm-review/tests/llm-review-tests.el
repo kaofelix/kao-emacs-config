@@ -431,7 +431,8 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
               (with-current-buffer source-buffer
                 (forward-line 1)
                 (llm-review-capture)))
-            (should (eq (car preview-action) 'display-buffer-pop-up-window)))
+            (should (eq (car preview-action) 'display-buffer-pop-up-window))
+            (should (eq (alist-get 'inhibit-same-window (cdr preview-action)) t)))
         (kill-buffer source-buffer)))))
 
 (ert-deftest llm-review-menu-defines-core-actions ()
@@ -475,6 +476,7 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                 (with-current-buffer source-buffer
                   (llm-review-menu)))
               (should (eq (car preview-action) 'display-buffer-pop-up-window))
+              (should (eq (alist-get 'inhibit-same-window (cdr preview-action)) t))
               (should restored-window-configuration)))
         (kill-buffer source-buffer)))))
 
@@ -533,9 +535,10 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
               (should (cl-every (lambda (overlay)
                                   (eq (overlay-buffer overlay) source-buffer))
                                 overlays))
-              (should-not (seq-some (lambda (overlay)
-                                      (overlay-get overlay 'face))
-                                    overlays))
+              (should (= 1 (length (seq-filter (lambda (overlay)
+                                                  (eq (overlay-get overlay 'face)
+                                                      'llm-review-source-range-face))
+                                                overlays))))
               (let ((top-marker (overlay-get (car overlays) 'before-string))
                     (bottom-marker (overlay-get (cadr overlays) 'before-string))
                     (range-overlay (caddr overlays)))
@@ -548,6 +551,8 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                 (should (equal (get-text-property 0 'help-echo bottom-marker)
                                "Marked comment"))
                 (should-not (overlay-get range-overlay 'before-string))
+                (should (eq (overlay-get range-overlay 'face)
+                            'llm-review-source-range-face))
                 (should (equal (overlay-get range-overlay 'help-echo)
                                "Marked comment"))
                 (should (= (overlay-start range-overlay)
@@ -594,6 +599,8 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                 (should (= 2 (length overlays)))
                 (should (eq (overlay-buffer (car overlays)) source-buffer))
                 (should-not (overlay-get (car overlays) 'face))
+                (should (eq (overlay-get (cadr overlays) 'face)
+                            'llm-review-source-range-face))
                 (should (equal (overlay-get (car overlays) 'help-echo)
                                "Persisted marker"))
                 (should (equal (overlay-get (cadr overlays) 'help-echo)
@@ -606,6 +613,107 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                                (forward-line 1)
                                (point)))))))
           (kill-buffer source-buffer))))))
+
+(ert-deftest llm-review-source-display-fringe-only-omits-background-face ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
+    (let ((llm-review-source-display 'fringe)
+          (source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (let (comment)
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Fringe only")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (set-mark (point))
+                (forward-line 2)
+                (activate-mark)
+                (setq comment (llm-review-capture))))
+            (let ((overlays (gethash (llm-review-comment-id comment)
+                                     llm-review--source-overlays)))
+              (should (= 3 (length overlays)))
+              (should (= 2 (length (seq-filter (lambda (overlay)
+                                                 (overlay-get overlay 'before-string))
+                                               overlays))))
+              (should-not (seq-some (lambda (overlay)
+                                      (overlay-get overlay 'face))
+                                    overlays))))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-source-display-background-only-omits-fringe-markers ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
+    (let ((llm-review-source-display 'background)
+          (source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (let (comment)
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Background only")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (set-mark (point))
+                (forward-line 2)
+                (activate-mark)
+                (setq comment (llm-review-capture))))
+            (let ((overlays (gethash (llm-review-comment-id comment)
+                                     llm-review--source-overlays)))
+              (should (= 1 (length overlays)))
+              (should-not (overlay-get (car overlays) 'before-string))
+              (should (eq (overlay-get (car overlays) 'face)
+                          'llm-review-source-range-face))))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-source-display-none-omits-source-overlays ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((llm-review-source-display nil)
+          (source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (let (comment)
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "No marker")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (setq comment (llm-review-capture))))
+            (should-not (gethash (llm-review-comment-id comment)
+                                 llm-review--source-overlays)))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-edit-comment-works-from-source-line ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (let ((responses '("Original comment" "Edited from source")))
+                         (lambda (&rest _args)
+                           (prog1 (car responses)
+                             (setq responses (cdr responses)))))))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)
+                (llm-review-edit-comment)))
+            (let* ((project (llm-review-store-get-project project-root))
+                   (comment (car (llm-review-file-review-comments
+                                  (car (llm-review-project-files project))))))
+              (should (equal "Edited from source"
+                             (llm-review-comment-comment comment)))))
+        (kill-buffer source-buffer)))))
+
+(ert-deftest llm-review-delete-comment-works-from-source-line ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (progn
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Delete from source")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-capture)))
+            (cl-letf (((symbol-function 'yes-or-no-p)
+                       (lambda (&rest _args) t)))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (llm-review-delete-comment)))
+            (should-not (llm-review-store-get-project project-root)))
+        (kill-buffer source-buffer)))))
 
 (ert-deftest llm-review-delete-comment-removes-entry-and-persists-change ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\n"))
