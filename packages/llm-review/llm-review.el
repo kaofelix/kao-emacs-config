@@ -88,11 +88,31 @@ means no source buffer indicators are displayed."
    #b10000000
    #b10000000
    #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
    #b10000000]
   nil 8 'center)
 
 (define-fringe-bitmap 'llm-review-fringe-middle
   [#b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
    #b10000000
    #b10000000
    #b10000000
@@ -110,7 +130,17 @@ means no source buffer indicators are displayed."
    #b10000000
    #b10000000
    #b10000000
-   #b11111000]
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b11111000
+   #b10000000]
   nil 8 'center)
 
 (cl-defstruct llm-review-project
@@ -723,6 +753,13 @@ Return non-nil if a comment was removed."
                  :marker-end (copy-marker marker-end))
            llm-review--comment-locators))
 
+(defun llm-review-source-help-echo (comment-text)
+  "Return formatted tooltip text for COMMENT-TEXT."
+  (format "LLM Review Comment\n\n%s"
+          (if (and comment-text (not (string-empty-p (string-trim comment-text))))
+              comment-text
+            "No comment text.")))
+
 (defun llm-review-source-marker-string (bitmap &optional help-echo)
   "Return a fringe marker string displaying BITMAP.
 
@@ -771,6 +808,7 @@ COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
   (when llm-review-source-display
     (let* ((line-starts (llm-review-source--line-starts start end))
            (count (length line-starts))
+           (help-echo (llm-review-source-help-echo comment-text))
            overlays)
       (when (memq llm-review-source-display '(fringe both))
         (cl-loop for line-start in line-starts
@@ -780,8 +818,8 @@ COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
                       (overlay-put overlay 'before-string
                                    (llm-review-source-marker-string
                                     bitmap
-                                    (or comment-text "LLM review comment")))
-                      (overlay-put overlay 'help-echo (or comment-text "LLM review comment"))
+                                    help-echo))
+                      (overlay-put overlay 'help-echo help-echo)
                       (overlay-put overlay 'priority 1)
                       (overlay-put overlay 'llm-review-comment-id comment-id)
                       (push overlay overlays)))
@@ -789,7 +827,7 @@ COMMENT-TEXT, when non-nil, is shown as each overlay tooltip."
       (let ((range-overlay (make-overlay start end nil nil t)))
         (when (memq llm-review-source-display '(background both))
           (overlay-put range-overlay 'face 'llm-review-source-range-face))
-        (overlay-put range-overlay 'help-echo (or comment-text "LLM review comment"))
+        (overlay-put range-overlay 'help-echo help-echo)
         (overlay-put range-overlay 'priority 1)
         (overlay-put range-overlay 'llm-review-comment-id comment-id)
         (setq overlays (append overlays (list range-overlay))))
