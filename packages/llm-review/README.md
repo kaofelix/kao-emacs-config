@@ -54,6 +54,17 @@ The package does not define a default global keybinding.
 - `llm-review-source-display`: source indicators for active comments; one of `fringe`, `background`, `both`, or nil
 - `llm-review-ediff-target-variant`: Ediff side to capture; defaults to `B`
 
+## Ediff integration
+
+Ediff keybindings are opt-in. To bind `L` in Ediff control buffers:
+
+```elisp
+(use-package llm-review
+  :config
+  (with-eval-after-load 'ediff
+    (add-hook 'ediff-keymap-setup-hook #'llm-review-ediff-install-keybindings)))
+```
+
 ## Persistence
 
 Projects and archived exports are stored under `llm-review-storage-directory`.

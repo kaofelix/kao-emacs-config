@@ -175,6 +175,12 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                 (should (= 2 (length (llm-review-file-review-comments file-review))))))
           (kill-buffer buffer))))))
 
+(ert-deftest llm-review-ediff-install-keybindings-defines-ediff-key ()
+  (let ((ediff-mode-map (make-sparse-keymap)))
+    (llm-review-ediff-install-keybindings)
+    (should (eq (lookup-key ediff-mode-map (kbd "L"))
+                #'llm-review-ediff-capture-current-hunk))))
+
 (ert-deftest llm-review-ediff-capture-current-hunk-captures-target-variant ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\nsecond\nthird\n"))
     (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))

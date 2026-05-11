@@ -1219,12 +1219,10 @@ defaults to variant B for Magit Ediff workflows."
          comment-text
          (cons (overlay-start overlay) (overlay-end overlay)))))))
 
-(defun llm-review-ediff-setup-keymap ()
-  "Install `llm-review' bindings into the current Ediff control keymap."
-  (when (keymapp ediff-mode-map)
-    (define-key ediff-mode-map (kbd "L") #'llm-review-ediff-capture-current-hunk)))
-
-(add-hook 'ediff-keymap-setup-hook #'llm-review-ediff-setup-keymap)
+;;;###autoload
+(defun llm-review-ediff-install-keybindings ()
+  "Bind `llm-review-ediff-capture-current-hunk' in `ediff-mode-map'."
+  (define-key ediff-mode-map (kbd "L") #'llm-review-ediff-capture-current-hunk))
 
 ;;;###autoload
 (defun llm-review-copy ()
