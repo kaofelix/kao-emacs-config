@@ -150,6 +150,27 @@ means no source buffer indicators are displayed."
    #b10000000]
   nil 8 'center)
 
+(define-fringe-bitmap 'llm-review-fringe-single
+  [#b11111000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b10000000
+   #b11111000
+   #b10000000]
+  nil 8 'center)
+
 (cl-defstruct llm-review-project
   version
   project-root
@@ -804,7 +825,7 @@ HELP-ECHO, when non-nil, is attached to the visible marker string."
 (defun llm-review-source--bitmap-for-line (index count)
   "Return fringe bitmap for line INDEX out of COUNT marked lines."
   (cond
-   ((= count 1) 'llm-review-fringe-top)
+   ((= count 1) 'llm-review-fringe-single)
    ((= index 0) 'llm-review-fringe-top)
    ((= index (1- count)) 'llm-review-fringe-bottom)
    (t 'llm-review-fringe-middle)))

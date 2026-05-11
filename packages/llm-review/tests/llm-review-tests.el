@@ -588,6 +588,24 @@ FILES is an alist of (RELATIVE-PATH . CONTENT)."
                            (with-current-buffer source-buffer (point-max))))))
         (kill-buffer source-buffer))))))
 
+(ert-deftest llm-review-single-line-source-marker-uses-combined-bracket ()
+  (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
+    (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
+      (unwind-protect
+          (let (comment)
+            (cl-letf (((symbol-function 'read-string)
+                       (lambda (&rest _args) "Single line marker")))
+              (with-current-buffer source-buffer
+                (goto-char (point-min))
+                (setq comment (llm-review-capture))))
+            (let* ((overlays (gethash (llm-review-comment-id comment)
+                                      llm-review--source-overlays))
+                   (marker (get-text-property 0 'display
+                                              (overlay-get (car overlays) 'before-string))))
+              (should (equal marker
+                             '(left-fringe llm-review-fringe-single llm-review-source-marker-face)))))
+        (kill-buffer source-buffer)))))
+
 (ert-deftest llm-review-delete-comment-removes-source-marker-overlay ()
   (llm-review-tests--with-project-files '(("src/example.el" . "first\n"))
     (let ((source-buffer (llm-review-tests--find-file project-root "src/example.el")))
