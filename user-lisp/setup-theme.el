@@ -25,7 +25,7 @@
 
 (use-package doom-themes
   :config
-  (load-theme 'doom-nord-aurora t)
+  (load-theme 'doom-nord t)
   (doom-themes-org-config)
   (general-theme-config)
   ;; Set ansi-color-bright-black to doom base3
