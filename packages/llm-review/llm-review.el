@@ -43,6 +43,10 @@
   "Maximum number of archived exports to keep per project."
   :type 'integer)
 
+(defcustom llm-review-preview-during-transient t
+  "Whether `llm-review-menu' temporarily displays the review list."
+  :type 'boolean)
+
 (defcustom llm-review-source-display 'both
   "How active review comments are indicated in source buffers.
 
@@ -1026,7 +1030,8 @@ When BOUNDS is non-nil, use it instead of `llm-review--capture-bounds'."
 
 Return a cleanup function when a preview was displayed, or nil when the
 current context has no project."
-  (when-let* ((project-root (ignore-errors (llm-review--project-root))))
+  (when-let* ((_ llm-review-preview-during-transient)
+              (project-root (ignore-errors (llm-review--project-root))))
     (let ((window-configuration (current-window-configuration))
           cleanup)
       (llm-review--display-preview-buffer project-root)
@@ -1042,11 +1047,10 @@ current context has no project."
       (add-hook 'transient-exit-hook cleanup)
       cleanup)))
 
-(defun llm-review--read-comment-with-preview (project-root)
-  "Prompt for a review comment while showing the project review buffer."
-  (save-window-excursion
-    (llm-review--display-preview-buffer project-root)
-    (read-string "Review comment: ")))
+(defun llm-review--read-comment (project-root)
+  "Prompt for a review comment for PROJECT-ROOT."
+  (ignore project-root)
+  (read-string "Review comment: "))
 
 (defun llm-review--save-project (project)
   "Persist PROJECT, or delete persisted storage when it is empty."
@@ -1173,7 +1177,7 @@ When BOUNDS is non-nil, use it as the captured source range."
   "Capture the active region or current line as an LLM review note."
   (interactive)
   (let* ((project-root (llm-review--project-root))
-         (comment-text (llm-review--read-comment-with-preview project-root)))
+         (comment-text (llm-review--read-comment project-root)))
     (llm-review--capture-comment-in-current-buffer comment-text)))
 
 (defun llm-review-ediff--variant-symbol (kind variant)
@@ -1214,7 +1218,7 @@ defaults to variant B for Magit Ediff workflows."
     (with-current-buffer buffer
       (llm-review--ensure-file-buffer)
       (let* ((project-root (llm-review--project-root))
-             (comment-text (llm-review--read-comment-with-preview project-root)))
+             (comment-text (llm-review--read-comment project-root)))
         (llm-review--capture-comment-in-current-buffer
          comment-text
          (cons (overlay-start overlay) (overlay-end overlay)))))))

@@ -51,6 +51,7 @@ The package does not define a default global keybinding.
 ## Customization
 
 - `llm-review-storage-directory`: where projects and history are stored
+- `llm-review-preview-during-transient`: whether the transient menu temporarily shows the review list
 - `llm-review-source-display`: source indicators for active comments; one of `fringe`, `background`, `both`, or nil
 - `llm-review-ediff-target-variant`: Ediff side to capture; defaults to `B`
 
